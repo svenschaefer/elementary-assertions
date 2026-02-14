@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## v0.1.4 - 2026-02-14
+
 ### Added
 - Integration coverage for non-public dev report scripts:
   - `test/integration/dev-report-scripts.test.js`
