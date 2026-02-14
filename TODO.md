@@ -50,6 +50,25 @@ Status: Completed through Phase 9 gap-closure (as of 2026-02-14).
   - enforce README mention of `ValidationError` stable `code` semantics
 - Updated changelog Unreleased notes for docs-contract lock expansion.
 
+## Phase 10.5 Snapshot (2026-02-14)
+
+- Expanded validation error-code contract coverage (`test/unit/validate-errors.contract.test.js`) for:
+  - unknown mention token reference
+  - invalid mention head token
+  - unknown assertion mention reference
+  - unknown assertion evidence token
+  - coverage unresolved length mismatch
+  - coverage unresolved unknown mention
+  - unknown suppressed target assertion reference
+- Re-ran full suite after expansion:
+  - `npm test` green (`106/106`)
+
+## Phase 10.6 Snapshot (2026-02-14)
+
+- Added explicit validation error contract language to `docs/OPERATIONAL.md`:
+  - `ValidationError` is thrown for contract violations
+  - `ValidationError.code` is stable and should be used for consumer branching
+
 ## Post-Phase 9 Snapshot (2026-02-14)
 
 - Added integration automation for dev report scripts JSON validity:

@@ -9,6 +9,7 @@
 - New contract tests for validation error typing/codes:
   - `test/unit/validate-errors.contract.test.js`
   - includes coverage and determinism error-code assertions
+  - includes unknown token/mention refs, invalid head token, unresolved coverage, and suppressed target reference assertions
 - Docs consistency now enforces explicit release commit staging command in `docs/NPM_RELEASE.md`.
 - Docs consistency now also enforces:
   - README includes `docs/DEV_TOOLING.md` in documentation links
@@ -17,6 +18,11 @@
   - role arrays always present (`arguments`, `modifiers`, `operators`)
   - legacy `assertions[*].slots` absence
   - required coverage arrays
+
+### Changed
+- `docs/OPERATIONAL.md` now documents the validation error contract:
+  - `ValidationError` usage
+  - stable `ValidationError.code` semantics for consumer branching
 
 ## v0.1.5 - 2026-02-14
 

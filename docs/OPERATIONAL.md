@@ -87,6 +87,12 @@ Boolean flag parsing is strict:
 - internal normalization target: lowercase (`true` or `false`)
 - rejected forms: `1/0`, `yes/no`, and bare flags without explicit values
 
+### Validation error contract
+
+- `elementary-assertions/validate` throws `ValidationError` for contract violations.
+- `ValidationError.code` is stable and intended for consumer branching.
+- Consumers should branch on `err.code`, not on free-text message matching.
+
 ## Repository layout convenience (optional)
 
 If you operate within a repo that follows the conventional seed layout, the CLI may offer convenience flags:

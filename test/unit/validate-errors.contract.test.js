@@ -122,3 +122,134 @@ test("determinism sort violations have stable validation error code", () => {
     (err) => err instanceof ValidationError && err.code === "EA_VALIDATE_DETERMINISM_SORT"
   );
 });
+
+test("mention unknown token reference has stable validation error code", () => {
+  const doc = buildValidDoc({
+    mentions: [
+      { id: "m1", kind: "token", token_ids: ["t404"], head_token_id: "t404", span: { start: 0, end: 5 }, segment_id: "s1", is_primary: true },
+      { id: "m2", kind: "token", token_ids: ["t2"], head_token_id: "t2", span: { start: 6, end: 12 }, segment_id: "s1", is_primary: true },
+      { id: "m3", kind: "token", token_ids: ["t3"], head_token_id: "t3", span: { start: 13, end: 18 }, segment_id: "s1", is_primary: true },
+    ],
+    coverage: {
+      primary_mention_ids: ["m1", "m2", "m3"],
+      covered_primary_mention_ids: ["m1", "m2", "m3"],
+      uncovered_primary_mention_ids: [],
+      unresolved: [],
+    },
+  });
+  assert.throws(
+    () => validateElementaryAssertions(doc),
+    (err) => err instanceof ValidationError && err.code === "EA_VALIDATE_UNKNOWN_TOKEN_REFERENCE"
+  );
+});
+
+test("mention invalid head token has stable validation error code", () => {
+  const doc = buildValidDoc({
+    mentions: [
+      { id: "m1", kind: "token", token_ids: ["t1"], head_token_id: "t404", span: { start: 0, end: 5 }, segment_id: "s1", is_primary: true },
+      { id: "m2", kind: "token", token_ids: ["t2"], head_token_id: "t2", span: { start: 6, end: 12 }, segment_id: "s1", is_primary: true },
+      { id: "m3", kind: "token", token_ids: ["t3"], head_token_id: "t3", span: { start: 13, end: 18 }, segment_id: "s1", is_primary: true },
+    ],
+  });
+  assert.throws(
+    () => validateElementaryAssertions(doc),
+    (err) => err instanceof ValidationError && err.code === "EA_VALIDATE_INVALID_HEAD_TOKEN"
+  );
+});
+
+test("assertion unknown mention reference has stable validation error code", () => {
+  const doc = buildValidDoc({
+    assertions: [
+      {
+        id: "a1",
+        segment_id: "s1",
+        predicate: { mention_id: "m2", head_token_id: "t2" },
+        arguments: [
+          { role: "actor", mention_ids: ["m404"], evidence: { relation_ids: ["r1"], token_ids: ["t1", "t2"] } },
+          { role: "theme", mention_ids: ["m3"], evidence: { relation_ids: ["r2"], token_ids: ["t2", "t3"] } },
+        ],
+        modifiers: [],
+        operators: [],
+        evidence: { token_ids: ["t1", "t2", "t3"] },
+      },
+    ],
+  });
+  assert.throws(
+    () => validateElementaryAssertions(doc),
+    (err) => err instanceof ValidationError && err.code === "EA_VALIDATE_UNKNOWN_ASSERTION_MENTION"
+  );
+});
+
+test("assertion evidence unknown token has stable validation error code", () => {
+  const doc = buildValidDoc({
+    assertions: [
+      {
+        id: "a1",
+        segment_id: "s1",
+        predicate: { mention_id: "m2", head_token_id: "t2" },
+        arguments: [
+          { role: "actor", mention_ids: ["m1"], evidence: { relation_ids: ["r1"], token_ids: ["t1", "t2"] } },
+          { role: "theme", mention_ids: ["m3"], evidence: { relation_ids: ["r2"], token_ids: ["t2", "t3"] } },
+        ],
+        modifiers: [],
+        operators: [],
+        evidence: { token_ids: ["t1", "t2", "t404"] },
+      },
+    ],
+  });
+  assert.throws(
+    () => validateElementaryAssertions(doc),
+    (err) => err instanceof ValidationError && err.code === "EA_VALIDATE_UNKNOWN_ASSERTION_EVIDENCE_TOKEN"
+  );
+});
+
+test("coverage unresolved length mismatch has stable validation error code", () => {
+  const doc = buildValidDoc({
+    coverage: {
+      primary_mention_ids: ["m1", "m2", "m3"],
+      covered_primary_mention_ids: ["m1", "m2"],
+      uncovered_primary_mention_ids: ["m3"],
+      unresolved: [],
+    },
+  });
+  assert.throws(
+    () => validateElementaryAssertions(doc),
+    (err) => err instanceof ValidationError && err.code === "EA_VALIDATE_COVERAGE_UNRESOLVED_LENGTH"
+  );
+});
+
+test("coverage unresolved unknown mention has stable validation error code", () => {
+  const doc = buildValidDoc({
+    coverage: {
+      primary_mention_ids: ["m1", "m2", "m3"],
+      covered_primary_mention_ids: ["m1", "m2"],
+      uncovered_primary_mention_ids: ["m3"],
+      unresolved: [{ mention_id: "m404", reason: "test" }],
+    },
+  });
+  assert.throws(
+    () => validateElementaryAssertions(doc),
+    (err) => err instanceof ValidationError && err.code === "EA_VALIDATE_COVERAGE_UNKNOWN_UNRESOLVED_MENTION"
+  );
+});
+
+test("suppressed target unknown assertion has stable validation error code", () => {
+  const doc = buildValidDoc({
+    diagnostics: {
+      suppressed_assertions: [
+        {
+          id: "s1",
+          diagnostics: {
+            suppressed_by: {
+              target_assertion_id: "a404",
+            },
+          },
+        },
+      ],
+    },
+  });
+  assert.throws(
+    () => validateElementaryAssertions(doc),
+    (err) => err instanceof ValidationError && err.code === "EA_VALIDATE_UNKNOWN_SUPPRESSED_TARGET"
+  );
+});
