@@ -14,6 +14,17 @@
 - Release guide (`docs/NPM_RELEASE.md`) now uses the shared smoke script for pre-tag and post-tag verification.
 - README documentation section includes the release notes template link.
 
+### Release Evidence
+- Release commit: `7908ff90c977e0226d9d8b5b6144e4ac648f059f`
+- Tag: `v0.1.2`
+- CI run: `22020450744` (success)
+- Smoke roots:
+  - `C:\code\elementary-assertions-smoke-test\v0.1.2-pretag-smoke-20260214-171538`
+  - `C:\code\elementary-assertions-smoke-test\v0.1.2-posttag-smoke-20260214-171605`
+- Rendered smoke output roots:
+  - `C:\code\elementary-assertions-smoke-test\v0.1.2-pretag-smoke-20260214-171538\rendered`
+  - `C:\code\elementary-assertions-smoke-test\v0.1.2-posttag-smoke-20260214-171605\rendered`
+
 ## v0.1.1 - 2026-02-14
 
 ### Added

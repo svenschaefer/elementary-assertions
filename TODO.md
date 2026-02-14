@@ -64,6 +64,21 @@ Status: Completed through Phase 8 and post-phase helper deduplication (as of 202
   - `C:\code\elementary-assertions-smoke-test\v0.1.1-posttag-smoke-20260214-170418\rendered\*.compact.txt`
   - `C:\code\elementary-assertions-smoke-test\v0.1.1-posttag-smoke-20260214-170418\rendered\*.table.md`
 
+## Release Execution Snapshot (v0.1.2, 2026-02-14)
+
+- Released version: `v0.1.2`
+- Release commit: `7908ff90c977e0226d9d8b5b6144e4ac648f059f`
+- Annotated tag: `v0.1.2` (pushed)
+- CI run: `22020450744` (success)
+- Smoke workspaces (clean installs, version + reason naming):
+  - `C:\code\elementary-assertions-smoke-test\v0.1.2-pretag-smoke-20260214-171538`
+  - `C:\code\elementary-assertions-smoke-test\v0.1.2-posttag-smoke-20260214-171605`
+- Rendered smoke outputs were generated in both folders under:
+  - `C:\code\elementary-assertions-smoke-test\v0.1.2-pretag-smoke-20260214-171538\rendered\*.compact.txt`
+  - `C:\code\elementary-assertions-smoke-test\v0.1.2-pretag-smoke-20260214-171538\rendered\*.table.md`
+  - `C:\code\elementary-assertions-smoke-test\v0.1.2-posttag-smoke-20260214-171605\rendered\*.compact.txt`
+  - `C:\code\elementary-assertions-smoke-test\v0.1.2-posttag-smoke-20260214-171605\rendered\*.table.md`
+
 ## Scope and Goal
 
 Build a production Node.js package with stable CommonJS APIs:
