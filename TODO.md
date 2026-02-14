@@ -54,6 +54,11 @@ Status: Completed through Phase 8 and post-phase helper deduplication (as of 202
 - Smoke workspaces (clean installs, version + reason naming):
   - `C:\code\elementary-assertions-smoke-test\v0.1.1-pretag-smoke-20260214-170352`
   - `C:\code\elementary-assertions-smoke-test\v0.1.1-posttag-smoke-20260214-170418`
+- Rendered smoke outputs were generated in both folders under:
+  - `C:\code\elementary-assertions-smoke-test\v0.1.1-pretag-smoke-20260214-170352\rendered\*.compact.txt`
+  - `C:\code\elementary-assertions-smoke-test\v0.1.1-pretag-smoke-20260214-170352\rendered\*.table.md`
+  - `C:\code\elementary-assertions-smoke-test\v0.1.1-posttag-smoke-20260214-170418\rendered\*.compact.txt`
+  - `C:\code\elementary-assertions-smoke-test\v0.1.1-posttag-smoke-20260214-170418\rendered\*.table.md`
 
 ## Scope and Goal
 

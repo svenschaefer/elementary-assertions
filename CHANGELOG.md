@@ -15,6 +15,16 @@
 - CI workflow now runs on Node `24` (matching dependency engine constraints).
 - `test/fixtures` is tracked (`.gitkeep`) so repository layout checks are stable in CI.
 
+### Release Evidence
+- Release commit: `378acc1d177cd3dbcd0c72dfccc83df7fdae7486`
+- Tag: `v0.1.1`
+- Smoke roots:
+  - `C:\code\elementary-assertions-smoke-test\v0.1.1-pretag-smoke-20260214-170352`
+  - `C:\code\elementary-assertions-smoke-test\v0.1.1-posttag-smoke-20260214-170418`
+- Rendered smoke output roots:
+  - `C:\code\elementary-assertions-smoke-test\v0.1.1-pretag-smoke-20260214-170352\rendered`
+  - `C:\code\elementary-assertions-smoke-test\v0.1.1-posttag-smoke-20260214-170418\rendered`
+
 ## v0.1.0 - 2026-02-14
 
 ### Added
