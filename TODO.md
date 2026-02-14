@@ -34,6 +34,8 @@ Status: Completed through Phase 8 and post-phase helper deduplication (as of 202
   - script: `scripts/benchmark-run-from-relations.js`
   - npm script: `npm run benchmark:core`
   - repo workflow note in `docs/REPO_WORKFLOWS.md`
+- Latest hardening commit: `f5e8439` (`chore: add changelog ci smoke checks and hardening tests`)
+- Current local suite status at head: `npm test` green (`75/75`)
 
 ## Scope and Goal
 
