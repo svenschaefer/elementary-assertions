@@ -4,7 +4,7 @@ const { buildTokenIndex, getTokenWikipediaEvidence, buildTokenWikiById, getToken
 const { getMweHeadEvidence, getMweLexiconEvidence } = require('./mention-materialization');
 const { toAnnotationSummary, buildAcceptedAnnotationsInventory } = require('./accepted-annotations');
 const { buildChunkHeadMaps, buildDependencyObservationMaps, posFallbackHead, resolveMentionHead } = require('./mention-head-resolution');
-const { buildMentionLexiconEvidence } = require('./mention-evidence');
+const { buildMentionLexiconEvidence, buildAssertionWikiSignals } = require('./mention-evidence');
 
 function normalizeWikiSurface(surface) {
   if (typeof surface !== 'string') return '';
@@ -122,36 +122,6 @@ function chooseBestMentionForToken({ tokenId, segmentId, mentionById, candidateM
     candidate_count: filteredIds.length,
     chosen_was_first: sourceIds.length > 0 ? sourceIds[0] === chosenId : true,
   };
-}
-
-function buildAssertionWikiSignals({ predicateMentionId, relations, mentionById }) {
-  const mentionIds = new Set([predicateMentionId]);
-  for (const rel of relations) {
-    if (rel && typeof rel.dep_mention_id === 'string') mentionIds.add(rel.dep_mention_id);
-  }
-
-  const mentionEvidence = Array.from(mentionIds)
-    .sort((a, b) => a.localeCompare(b))
-    .map((mentionId) => {
-      const mention = mentionById.get(mentionId);
-      const lexiconEvidence =
-        mention &&
-        mention.provenance &&
-        mention.provenance.lexicon_evidence &&
-        typeof mention.provenance.lexicon_evidence === 'object'
-          ? deepCloneJson(mention.provenance.lexicon_evidence)
-          : null;
-      if (!mention || !lexiconEvidence) return null;
-      return {
-        mention_id: mentionId,
-        token_ids: normalizeIds(mention.token_ids || []),
-        evidence: lexiconEvidence,
-      };
-    })
-    .filter(Boolean);
-
-  if (mentionEvidence.length === 0) return null;
-  return { mention_evidence: mentionEvidence };
 }
 
 function buildMentions({ relationsSeed, mweSeed, headsSeed, tokenById, tokenWikiById }) {
