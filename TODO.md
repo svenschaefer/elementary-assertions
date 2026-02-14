@@ -219,7 +219,7 @@ Exit criteria:
 
 ## Phase 2 - API Runtime Layer
 
-- [ ] Implement `src/run.js` with:
+- [x] Implement `src/run.js` with:
 - [x] `runFromRelations(relationsDoc, options)`
 - [x] `runElementaryAssertions(text, options)`
 - [x] Implement strict structural input validation for `runFromRelations`.
@@ -232,7 +232,7 @@ Exit criteria:
   - [x] no retries
   - [x] no implicit auth headers
 - [x] Ensure CLI uses library-runner behavior and does not implement an independent health-check path.
-- [ ] Ensure schema_version behavior:
+- [x] Ensure schema_version behavior:
   - [x] present upstream -> carry verbatim
   - [x] absent upstream -> omit
 
@@ -272,7 +272,7 @@ Exit criteria:
 ## Phase 6 - Tooling and CLI
 
 - [x] Implement `src/tools/io.js` for strict parsing and I/O.
-- [ ] Implement `src/tools/cli.js` with public commands:
+- [x] Implement `src/tools/cli.js` with public commands:
 - [x] `run`
 - [x] `validate`
 - [x] `render`
@@ -282,7 +282,7 @@ Exit criteria:
   - [x] neither provided -> explicit error
 - [x] Enforce strict booleans: `true|false` (case-insensitive only).
 - [x] Add `--wti-timeout-ms` and endpoint precedence behavior.
-- [ ] Keep prototype diagnostics non-public:
+- [x] Keep prototype diagnostics non-public:
   - [x] require global `--dev` flag
   - [x] reject diagnostic flags when `--dev` is absent
   - [x] do not document diagnostics in public CLI docs
@@ -300,7 +300,7 @@ Exit criteria:
 
 ### Phase 7B - Contract Tightening
 
-- [ ] Remove/rewrite all tests that rely on legacy `slots`.
+- [x] Remove/rewrite all tests that rely on legacy `slots`.
 - [x] Add explicit tests for invalid `slots` rejection in validate/render.
 - [x] Add tests for schema_version omission behavior.
 - [x] Add tests for strict CLI boolean parsing and one-of input enforcement.
@@ -322,14 +322,14 @@ Exit criteria:
 
 ## Acceptance Checklist (Definition of Done)
 
-- [ ] `runFromRelations` and `runElementaryAssertions` implemented and tested.
-- [ ] Determinism guarantees implemented per scoped rules in docs.
-- [ ] Legacy `slots` fully removed and explicitly rejected.
-- [ ] Public CLI stable and minimal; dev diagnostics not public.
-- [ ] Validation and rendering enforce strict current contract.
-- [ ] Golden artifact regression checks in place and green.
-- [ ] Package exports stable, including schema export.
-- [ ] Documentation and implementation fully aligned.
+- [x] `runFromRelations` and `runElementaryAssertions` implemented and tested.
+- [x] Determinism guarantees implemented per scoped rules in docs.
+- [x] Legacy `slots` fully removed and explicitly rejected.
+- [x] Public CLI stable and minimal; dev diagnostics not public.
+- [x] Validation and rendering enforce strict current contract.
+- [x] Golden artifact regression checks in place and green.
+- [x] Package exports stable, including schema export.
+- [x] Documentation and implementation fully aligned.
 
 ## Initial Execution Order (Recommended)
 
