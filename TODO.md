@@ -45,6 +45,10 @@ Status: Completed through Phase 8 and post-phase helper deduplication (as of 202
   - successful run after fixes: `22020277602`
 - successful run for release commit:
   - `release: v0.1.1` -> run `22020293090` (success)
+- release-smoke automation is now script-driven and CI-enforced:
+  - script: `scripts/release-smoke-check.js`
+  - checks: API surface, CLI help, rendered output generation, and txt/md golden parity
+  - wired into CI workflow and release guide (`docs/NPM_RELEASE.md`)
 
 ## Release Execution Snapshot (v0.1.1, 2026-02-14)
 
