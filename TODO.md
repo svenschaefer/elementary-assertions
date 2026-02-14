@@ -53,7 +53,7 @@ while enforcing product docs and constraints in:
 
 ## Current State Snapshot
 
-- `src/` product modules are placeholders and need full implementation.
+- `src/` product modules are implemented and wired (`core`, `run`, `render`, `validate`, `tools`).
 - Prototype has comprehensive logic in:
   - `prototype/elementary-assertions.js`
   - `prototype/elementary-assertions/assertions.js`
@@ -68,6 +68,12 @@ while enforcing product docs and constraints in:
 - Golden baseline references are committed under:
   - `test/artifacts/*/prototype-reference/`
   - `test/artifacts/README.md` (freeze metadata)
+- Golden parity locks are active for all artifact sets:
+  - `prime_gen`
+  - `webshop`
+  - `access_control`
+  - `irs`
+  - `prime_factors`
 
 ## Target Architecture
 
@@ -209,6 +215,10 @@ Exit criteria:
 
 Required refactors during port:
 - [ ] Remove duplicated helpers across modules (single owner per helper).
+  - Remaining known duplicates in `src/`:
+    - `normalizeIds` (`src/core/determinism.js`, `src/core/ids.js`)
+    - `mentionSortKey` (`src/core/mentions.js`, `src/core/mention-builder.js`)
+    - `collectAssertionMentionRefs` (`src/core/assertions.js`, `src/core/roles.js`)
 - [x] Delete dead code and undefined-reference code paths from prototype carry-over.
 - [x] Remove all slot compatibility code from core path.
 - [x] Ensure all role arrays are always present (empty allowed).
@@ -295,7 +305,7 @@ Exit criteria:
 ### Phase 7A - Coverage Preservation
 
 - [x] Port prototype tests with minimal surgery to new module paths.
-- [ ] Keep behavior parity where still contract-valid.
+- [x] Keep behavior parity where still contract-valid.
 - [x] Validate deterministic stability over repeated runs.
 
 ### Phase 7B - Contract Tightening
