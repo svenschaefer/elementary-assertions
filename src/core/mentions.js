@@ -1,6 +1,6 @@
 const { findSelector, normalizeSpanKey, normalizeIds, deepCloneJson } = require('./determinism');
 const { annotationHasSource, collectStep11Relations } = require('./upstream');
-const { buildTokenIndex, getTokenWikipediaEvidence, buildTokenWikiById } = require('./tokens');
+const { buildTokenIndex, getTokenWikipediaEvidence, buildTokenWikiById, getTokenMetadataProjection } = require('./tokens');
 const { getMweHeadEvidence, getMweLexiconEvidence } = require('./mention-materialization');
 
 function normalizeWikiSurface(surface) {
@@ -119,14 +119,6 @@ function chooseBestMentionForToken({ tokenId, segmentId, mentionById, candidateM
     candidate_count: filteredIds.length,
     chosen_was_first: sourceIds.length > 0 ? sourceIds[0] === chosenId : true,
   };
-}
-
-function getTokenMetadataProjection(token) {
-  const out = {};
-  if (token && typeof token.normalized === 'string') out.normalized = token.normalized;
-  if (token && token.flags && typeof token.flags === 'object') out.flags = deepCloneJson(token.flags);
-  if (token && token.joiner && typeof token.joiner === 'object') out.joiner = deepCloneJson(token.joiner);
-  return out;
 }
 
 function toAnnotationSummary(annotation) {

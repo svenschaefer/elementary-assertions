@@ -1,16 +1,8 @@
 const { deepCloneJson, sha256Hex, normalizeIds } = require('./determinism');
 const { chooseBestMentionForToken, compareMentionProjectionPriority, mentionHasLexiconEvidence } = require('./mentions');
 const { annotationHasSource, collectStep11Relations } = require('./upstream');
-const { getTokenWikipediaEvidence, buildTokenWikiById } = require('./tokens');
+const { getTokenWikipediaEvidence, buildTokenWikiById, getTokenMetadataProjection } = require('./tokens');
 const { getMweHeadEvidence, getMweLexiconEvidence } = require('./mention-materialization');
-
-function getTokenMetadataProjection(token) {
-  const out = {};
-  if (token && typeof token.normalized === 'string') out.normalized = token.normalized;
-  if (token && token.flags && typeof token.flags === 'object') out.flags = deepCloneJson(token.flags);
-  if (token && token.joiner && typeof token.joiner === 'object') out.joiner = deepCloneJson(token.joiner);
-  return out;
-}
 
 function toAnnotationSummary(annotation) {
   const tokenSelector = findSelector(annotation, 'TokenSelector');

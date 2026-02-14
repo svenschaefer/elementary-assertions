@@ -5,6 +5,7 @@ const {
   buildTokenIndex,
   getTokenWikipediaEvidence,
   buildTokenWikiById,
+  getTokenMetadataProjection,
 } = require("../../src/core/tokens");
 
 test("buildTokenIndex validates and indexes tokens by id", () => {
@@ -41,4 +42,24 @@ test("buildTokenWikiById indexes only tokens with wiki evidence", () => {
   assert.equal(out.size, 2);
   assert.deepEqual(out.get("t1"), { wiki_any_signal: true });
   assert.deepEqual(out.get("t3"), { wiki_prefix_count: 2 });
+});
+
+test("getTokenMetadataProjection clones normalized flags and joiner metadata", () => {
+  const token = {
+    normalized: "alpha",
+    flags: { has_dash: true },
+    joiner: { left: "", right: "-" },
+  };
+  const out = getTokenMetadataProjection(token);
+  assert.deepEqual(out, {
+    normalized: "alpha",
+    flags: { has_dash: true },
+    joiner: { left: "", right: "-" },
+  });
+  out.flags.has_dash = false;
+  assert.deepEqual(getTokenMetadataProjection(token), {
+    normalized: "alpha",
+    flags: { has_dash: true },
+    joiner: { left: "", right: "-" },
+  });
 });
