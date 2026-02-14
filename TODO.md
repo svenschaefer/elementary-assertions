@@ -214,11 +214,7 @@ Exit criteria:
 - [x] Implement `src/core/output.js`.
 
 Required refactors during port:
-- [ ] Remove duplicated helpers across modules (single owner per helper).
-  - Remaining known duplicates in `src/`:
-    - `normalizeIds` (`src/core/determinism.js`, `src/core/ids.js`)
-    - `mentionSortKey` (`src/core/mentions.js`, `src/core/mention-builder.js`)
-    - `collectAssertionMentionRefs` (`src/core/assertions.js`, `src/core/roles.js`)
+- [x] Remove duplicated helpers across modules (single owner per helper).
 - [x] Delete dead code and undefined-reference code paths from prototype carry-over.
 - [x] Remove all slot compatibility code from core path.
 - [x] Ensure all role arrays are always present (empty allowed).
