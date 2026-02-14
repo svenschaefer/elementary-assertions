@@ -20,6 +20,22 @@ function usage() {
   ].join("\n");
 }
 
+const DEV_DIAGNOSTIC_FLAGS = [
+  "--diagnose-wiki-upstream",
+  "--diagnose-wti-wiring",
+  "--diagnose-coverage-audit",
+];
+
+function enforceDevFlagPolicy(args) {
+  const hasDev = args.includes("--dev");
+  const usedDiagnostics = DEV_DIAGNOSTIC_FLAGS.filter((f) => args.includes(f));
+  if (usedDiagnostics.length === 0) return;
+  if (!hasDev) {
+    throw new Error(`Diagnostic flags require --dev: ${usedDiagnostics.join(", ")}`);
+  }
+  throw new Error(`Diagnostic flags are developer-only and not available in the public CLI: ${usedDiagnostics.join(", ")}`);
+}
+
 function parseRunInput(args) {
   const text = arg(args, "--text");
   const inPath = arg(args, "--in");
@@ -105,14 +121,17 @@ async function runCli(argv = process.argv.slice(2)) {
   }
 
   if (cmd === "run") {
+    enforceDevFlagPolicy(args);
     await runCommand(args);
     return;
   }
   if (cmd === "validate") {
+    enforceDevFlagPolicy(args);
     validateCommand(args);
     return;
   }
   if (cmd === "render") {
+    enforceDevFlagPolicy(args);
     renderCommand(args);
     return;
   }
