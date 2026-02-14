@@ -1,7 +1,7 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
 
-const { analyzeUpstreamWikiEvidence } = require("../../src/core/diagnostics");
+const { analyzeUpstreamWikiEvidence, mergeOperator } = require("../../src/core/diagnostics");
 
 test("analyzeUpstreamWikiEvidence counts only positive wiki signals", () => {
   const upstreamFixture = {
@@ -63,4 +63,24 @@ test("analyzeUpstreamWikiEvidence counts only positive wiki signals", () => {
   );
   assert.ok(Array.isArray(stats.sample_missing_mention_ids));
   assert.ok(Array.isArray(stats.sample_missing_predicate_ids));
+});
+
+test("mergeOperator deduplicates and sorts evidence deterministically", () => {
+  const map = new Map();
+  mergeOperator(map, {
+    kind: "quantifier",
+    token_id: "t2",
+    evidence: [
+      { from_token_id: "t2", to_token_id: "t1", label: "theme", relation_id: "r2" },
+      { from_token_id: "t2", to_token_id: "t1", label: "theme", relation_id: "r2" },
+      { from_token_id: "t1", to_token_id: "t2", label: "actor", relation_id: "r1" },
+    ],
+  });
+
+  const stored = Array.from(map.values());
+  assert.equal(stored.length, 1);
+  assert.deepEqual(stored[0].evidence, [
+    { from_token_id: "t1", to_token_id: "t2", label: "actor", relation_id: "r1" },
+    { from_token_id: "t2", to_token_id: "t1", label: "theme", relation_id: "r2" },
+  ]);
 });

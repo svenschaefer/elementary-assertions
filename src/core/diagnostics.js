@@ -1,23 +1,10 @@
-const { UNRESOLVED_REASON_PRECEDENCE, stableObjectKey, normalizeIds, findSelector } = require('./determinism');
+const { UNRESOLVED_REASON_PRECEDENCE, normalizeIds, findSelector, dedupeAndSortEvidence } = require('./determinism');
 const { hasPositiveWikiSignal, isSubjectRoleLabel, isCompareLabel, isQuantifierLabel } = require('./mentions');
 const { normalizeOptionalString } = require('./strings');
 const { annotationHasSource } = require('./projection');
 
 function operatorIdentityKey(op) {
   return `${op.kind || ''}|${op.value || ''}|${op.group_id || ''}|${op.role || ''}`;
-}
-
-function evidenceSortKey(e) {
-  return `${e.from_token_id || ''}|${e.to_token_id || ''}|${e.label || ''}|${e.relation_id || e.annotation_id || ''}`;
-}
-
-function dedupeAndSortEvidence(items) {
-  const byKey = new Map();
-  for (const it of items || []) {
-    const k = stableObjectKey(it);
-    if (!byKey.has(k)) byKey.set(k, it);
-  }
-  return Array.from(byKey.values()).sort((a, b) => evidenceSortKey(a).localeCompare(evidenceSortKey(b)));
 }
 
 function mergeOperator(opMap, op) {
