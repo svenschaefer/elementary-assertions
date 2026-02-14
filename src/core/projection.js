@@ -1,12 +1,7 @@
 const { deepCloneJson, sha256Hex, normalizeIds } = require('./determinism');
 const { chooseBestMentionForToken, compareMentionProjectionPriority, mentionHasLexiconEvidence } = require('./mentions');
 const { annotationHasSource, collectStep11Relations } = require('./upstream');
-
-function getMweHeadEvidence(mwe) {
-  if (!Array.isArray(mwe.sources)) return null;
-  const src = mwe.sources.find((s) => s && s.name === 'mwe-materialization' && s.evidence && typeof s.evidence.head_token_id === 'string');
-  return src ? src.evidence.head_token_id : null;
-}
+const { getMweHeadEvidence } = require('./mention-materialization');
 
 function getMweLexiconEvidence(mwe) {
   if (!Array.isArray(mwe.sources)) return null;
