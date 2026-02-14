@@ -1,4 +1,5 @@
 const { findSelector, normalizeSpanKey, normalizeIds, deepCloneJson } = require('./determinism');
+const { annotationHasSource } = require('./upstream');
 
 function normalizeWikiSurface(surface) {
   if (typeof surface !== 'string') return '';
@@ -132,10 +133,6 @@ function buildTokenIndex(seed) {
     byId.set(t.id, t);
   }
   return byId;
-}
-
-function annotationHasSource(annotation, name) {
-  return Array.isArray(annotation.sources) && annotation.sources.some((s) => s && s.name === name);
 }
 
 function collectStep11Relations(relationsSeed, tokenById) {

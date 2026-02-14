@@ -1,9 +1,6 @@
 const { deepCloneJson, sha256Hex, normalizeIds } = require('./determinism');
 const { chooseBestMentionForToken, compareMentionProjectionPriority, mentionHasLexiconEvidence } = require('./mentions');
-
-function annotationHasSource(annotation, name) {
-  return Array.isArray(annotation.sources) && annotation.sources.some((s) => s && s.name === name);
-}
+const { annotationHasSource } = require('./upstream');
 
 function collectStep11Relations(relationsSeed, tokenById) {
   const out = [];
