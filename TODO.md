@@ -6,6 +6,8 @@ This plan defines how to build the productized package described in `README.md`,
 
 It is execution-oriented, phase-gated, and contract-first.
 
+Status: Completed through Phase 8 and post-phase helper deduplication (as of 2026-02-14).
+
 ## Scope and Goal
 
 Build a production Node.js package with stable CommonJS APIs:
