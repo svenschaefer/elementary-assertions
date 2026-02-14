@@ -124,3 +124,83 @@ test("strict diagnostics enforces suppression eligibility coherence", () => {
     (err) => err instanceof ValidationError && err.code === "EA_VALIDATE_STRICT_SUPPRESSION_ELIGIBILITY"
   );
 });
+
+test("strict diagnostics enforces suppression eligibility assertion/segment consistency", () => {
+  const doc = buildStrictValidDoc();
+  doc.assertions[0].diagnostics.suppression_eligibility = {
+    ...doc.assertions[0].diagnostics.suppression_eligibility,
+    assertion_id: "a404",
+  };
+  assert.throws(
+    () => validateElementaryAssertions(doc, { strict: true }),
+    (err) => err instanceof ValidationError && err.code === "EA_VALIDATE_STRICT_SUPPRESSION_ELIGIBILITY"
+  );
+});
+
+test("strict diagnostics enforces subject_role_gaps sorted keys", () => {
+  const doc = buildStrictValidDoc();
+  doc.assertions[0].arguments = [
+    { role: "theme", mention_ids: ["m3"], evidence: { relation_ids: ["r2"], token_ids: ["t2", "t3"] } },
+  ];
+  doc.diagnostics.subject_role_gaps = [
+    {
+      segment_id: "s2",
+      assertion_id: "a1",
+      predicate_mention_id: "m2",
+      predicate_head_token_id: "t2",
+      reason: "missing_subject_role",
+      evidence: { token_ids: ["t2"], upstream_relation_ids: [] },
+    },
+    {
+      segment_id: "s1",
+      assertion_id: "a1",
+      predicate_mention_id: "m2",
+      predicate_head_token_id: "t2",
+      reason: "missing_subject_role",
+      evidence: { token_ids: ["t2"], upstream_relation_ids: [] },
+    },
+  ];
+  assert.throws(
+    () => validateElementaryAssertions(doc, { strict: true }),
+    (err) => err instanceof ValidationError && err.code === "EA_VALIDATE_STRICT_SUBJECT_GAP_ORDER"
+  );
+});
+
+test("strict diagnostics enforces subject_role_gaps actor-empty consistency", () => {
+  const doc = buildStrictValidDoc();
+  doc.diagnostics.subject_role_gaps = [
+    {
+      segment_id: "s1",
+      assertion_id: "a1",
+      predicate_mention_id: "m2",
+      predicate_head_token_id: "t2",
+      reason: "missing_subject_role",
+      evidence: { token_ids: ["t2"], upstream_relation_ids: [] },
+    },
+  ];
+  assert.throws(
+    () => validateElementaryAssertions(doc, { strict: true }),
+    (err) => err instanceof ValidationError && err.code === "EA_VALIDATE_STRICT_SUBJECT_GAP_ACTOR_CONSISTENCY"
+  );
+});
+
+test("strict diagnostics enforces subject_role_gaps evidence sorting", () => {
+  const doc = buildStrictValidDoc();
+  doc.assertions[0].arguments = [
+    { role: "theme", mention_ids: ["m3"], evidence: { relation_ids: ["r2"], token_ids: ["t2", "t3"] } },
+  ];
+  doc.diagnostics.subject_role_gaps = [
+    {
+      segment_id: "s1",
+      assertion_id: "a1",
+      predicate_mention_id: "m2",
+      predicate_head_token_id: "t2",
+      reason: "missing_subject_role",
+      evidence: { token_ids: ["t2", "t1"], upstream_relation_ids: [] },
+    },
+  ];
+  assert.throws(
+    () => validateElementaryAssertions(doc, { strict: true }),
+    (err) => err instanceof ValidationError && err.code === "EA_VALIDATE_STRICT_SUBJECT_GAP_EVIDENCE_ORDER"
+  );
+});

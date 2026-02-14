@@ -685,13 +685,13 @@ Objective: non-breaking hardening of strict/dev validation depth and release-smo
 
 ### 12.1 Expand Strict Diagnostics Invariants
 
-- [ ] Enforce full ordering, reference, and content rules for:
-  - [ ] `suppression_eligibility`
-  - [ ] `fragmentation`
-  - [ ] `gap_signals`
-  - [ ] `subject_role_gaps`
-- [ ] Align strict-mode diagnostics checks with prototype checker depth where contract-valid.
-- [ ] Keep enforcement behind strict/dev tooling path (not default runtime path).
+- [x] Enforce full ordering, reference, and content rules for:
+  - [x] `suppression_eligibility`
+  - [x] `fragmentation`
+  - [x] `gap_signals`
+  - [x] `subject_role_gaps`
+- [x] Align strict-mode diagnostics checks with prototype checker depth where contract-valid.
+- [x] Keep enforcement behind strict/dev tooling path (not default runtime path).
 
 ### 12.2 Suppressed-Assertion Semantic Validation
 
@@ -711,11 +711,11 @@ Objective: non-breaking hardening of strict/dev validation depth and release-smo
 
 ### 12.4 Subject-Role-Gap Deep Coherence
 
-- [ ] Validate:
-  - [ ] sorted gap entries
-  - [ ] sorted evidence arrays
-  - [ ] consistency with actor-empty assertions
-- [ ] Strict-mode only.
+- [x] Validate:
+  - [x] sorted gap entries
+  - [x] sorted evidence arrays
+  - [x] consistency with actor-empty assertions
+- [x] Strict-mode only.
 
 ### 12.5 Release Smoke Parity Expansion
 
