@@ -3,6 +3,7 @@ const assert = require("node:assert/strict");
 
 const {
   argumentRolePriority,
+  collectEntryTokenIds,
   modifierRolePriority,
   canonicalizeRoleEntries,
   slotToRoleEntries,
@@ -25,6 +26,14 @@ test("modifierRolePriority ordering is stable", () => {
   assert.equal(modifierRolePriority("recipient"), 0);
   assert.equal(modifierRolePriority("modifier"), 1);
   assert.equal(modifierRolePriority("unknown"), 10);
+});
+
+test("collectEntryTokenIds returns unique sorted token ids across mentions", () => {
+  const mentionById = new Map([
+    ["m1", { token_ids: ["t3", "t1"] }],
+    ["m2", { token_ids: ["t2", "t1"] }],
+  ]);
+  assert.deepEqual(collectEntryTokenIds(["m2", "m1"], mentionById), ["t1", "t2", "t3"]);
 });
 
 test("canonicalizeRoleEntries is deterministic and drops empty entries", () => {
