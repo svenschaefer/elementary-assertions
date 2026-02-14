@@ -10,6 +10,9 @@
   - `test/unit/validate-errors.contract.test.js`
   - includes coverage and determinism error-code assertions
 - Docs consistency now enforces explicit release commit staging command in `docs/NPM_RELEASE.md`.
+- Docs consistency now also enforces:
+  - README includes `docs/DEV_TOOLING.md` in documentation links
+  - README documents `ValidationError` with stable `code` field semantics
 - Golden-reference contract coverage expanded with YAML-parsed structural checks for:
   - role arrays always present (`arguments`, `modifiers`, `operators`)
   - legacy `assertions[*].slots` absence

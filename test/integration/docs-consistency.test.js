@@ -39,6 +39,7 @@ test("README documentation links reference existing files", () => {
     "docs/OPERATIONAL.md",
     "docs/REPO_WORKFLOWS.md",
     "docs/NPM_RELEASE.md",
+    "docs/DEV_TOOLING.md",
     "docs/RELEASE_NOTES_TEMPLATE.md",
     "CHANGELOG.md",
   ];
@@ -47,4 +48,10 @@ test("README documentation links reference existing files", () => {
     assert.match(readme, new RegExp(doc.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
     assert.ok(exists(doc), `missing documented file: ${doc}`);
   }
+});
+
+test("README documents stable validation error contract", () => {
+  const readme = read("README.md");
+  assert.match(readme, /ValidationError/i);
+  assert.match(readme, /stable\s+`code`\s+field/i);
 });

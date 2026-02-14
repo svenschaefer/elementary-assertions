@@ -43,6 +43,13 @@ Status: Completed through Phase 9 gap-closure (as of 2026-02-14).
   - determinism sort failures (`EA_VALIDATE_DETERMINISM_SORT`)
 - Updated changelog Unreleased notes for expanded validation code coverage.
 
+## Phase 10.4 Snapshot (2026-02-14)
+
+- Extended docs consistency integration checks:
+  - enforce `docs/DEV_TOOLING.md` presence in README documentation links
+  - enforce README mention of `ValidationError` stable `code` semantics
+- Updated changelog Unreleased notes for docs-contract lock expansion.
+
 ## Post-Phase 9 Snapshot (2026-02-14)
 
 - Added integration automation for dev report scripts JSON validity:
