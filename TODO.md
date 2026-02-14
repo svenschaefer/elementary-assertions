@@ -639,8 +639,8 @@ Objective: non-breaking product hardening for validation depth, provenance fidel
 
 ### 11.3 Strict Diagnostics Integrity Mode
 
-- [ ] Add deep diagnostics coherence checks (ordering, references, suppression eligibility, coordination groups).
-- [ ] Gate these checks behind dev/strict mode (not part of minimal runtime validation path).
+- [x] Add deep diagnostics coherence checks (ordering, references, suppression eligibility, coordination groups).
+- [x] Gate these checks behind dev/strict mode (not part of minimal runtime validation path).
 
 ### 11.4 Dedicated Strict Checker Entry Point
 
