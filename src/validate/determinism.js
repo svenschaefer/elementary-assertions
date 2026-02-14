@@ -1,3 +1,5 @@
+const { failValidation } = require("./errors");
+
 function isSortedStrings(arr) {
   for (let i = 1; i < arr.length; i += 1) {
     if (String(arr[i - 1]).localeCompare(String(arr[i])) > 0) return false;
@@ -7,7 +9,7 @@ function isSortedStrings(arr) {
 
 function ensureSortedStrings(arr, message) {
   if (!isSortedStrings(arr || [])) {
-    throw new Error(`Integrity error: ${message}`);
+    failValidation("EA_VALIDATE_DETERMINISM_SORT", `Integrity error: ${message}`);
   }
 }
 
@@ -59,7 +61,7 @@ function validateAssertionDeterminism(assertion, assertionId) {
     const prev = relationEvidenceSortKey(relationEvidence[i - 1]);
     const cur = relationEvidenceSortKey(relationEvidence[i]);
     if (prev.localeCompare(cur) > 0) {
-      throw new Error(`Integrity error: assertion ${assertionId} evidence.relation_evidence must be sorted for determinism.`);
+      failValidation("EA_VALIDATE_DETERMINISM_RELATION_EVIDENCE_ORDER", `Integrity error: assertion ${assertionId} evidence.relation_evidence must be sorted for determinism.`);
     }
   }
 
@@ -83,14 +85,14 @@ function validateAssertionDeterminism(assertion, assertionId) {
     const prev = roleEntrySortKey(assertion.arguments[i - 1], argumentRolePriority);
     const cur = roleEntrySortKey(assertion.arguments[i], argumentRolePriority);
     if (prev.localeCompare(cur) > 0) {
-      throw new Error(`Integrity error: assertion ${assertionId} arguments must be sorted for determinism.`);
+      failValidation("EA_VALIDATE_DETERMINISM_ARGUMENT_ORDER", `Integrity error: assertion ${assertionId} arguments must be sorted for determinism.`);
     }
   }
   for (let i = 1; i < assertion.modifiers.length; i += 1) {
     const prev = roleEntrySortKey(assertion.modifiers[i - 1], modifierRolePriority);
     const cur = roleEntrySortKey(assertion.modifiers[i], modifierRolePriority);
     if (prev.localeCompare(cur) > 0) {
-      throw new Error(`Integrity error: assertion ${assertionId} modifiers must be sorted for determinism.`);
+      failValidation("EA_VALIDATE_DETERMINISM_MODIFIER_ORDER", `Integrity error: assertion ${assertionId} modifiers must be sorted for determinism.`);
     }
   }
 
@@ -100,7 +102,7 @@ function validateAssertionDeterminism(assertion, assertionId) {
       const prev = relationEvidenceSortKey(opEvidence[i - 1]);
       const cur = relationEvidenceSortKey(opEvidence[i]);
       if (prev.localeCompare(cur) > 0) {
-        throw new Error(`Integrity error: assertion ${assertionId} operators[*].evidence must be sorted for determinism.`);
+        failValidation("EA_VALIDATE_DETERMINISM_OPERATOR_EVIDENCE_ORDER", `Integrity error: assertion ${assertionId} operators[*].evidence must be sorted for determinism.`);
       }
     }
   }

@@ -1,5 +1,6 @@
 const { rejectLegacySlots, validateSchemaShape } = require("./schema");
 const { validateIntegrity } = require("./integrity");
+const { ValidationError } = require("./errors");
 
 function validateElementaryAssertions(doc) {
   rejectLegacySlots(doc);
@@ -10,4 +11,5 @@ function validateElementaryAssertions(doc) {
 
 module.exports = {
   validateElementaryAssertions,
+  ValidationError,
 };

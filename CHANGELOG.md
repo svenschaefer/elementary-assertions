@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+### Added
+- Stable validation diagnostics contract:
+  - validator failures now throw `ValidationError` with deterministic `err.code`
+  - coded failures are wired across schema + integrity validation paths
+- New contract tests for validation error typing/codes:
+  - `test/unit/validate-errors.contract.test.js`
+- Docs consistency now enforces explicit release commit staging command in `docs/NPM_RELEASE.md`.
+
 ## v0.1.5 - 2026-02-14
 
 ### Added

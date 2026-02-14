@@ -120,6 +120,7 @@ const { validateElementaryAssertions } = require("elementary-assertions/validate
 validateElementaryAssertions(doc);
 ```
 Validation includes deterministic integrity invariants; determinism is additionally locked by regression and golden-reference tests.
+Validation failures throw a `ValidationError` with a stable `code` field for contract-level error handling.
 
 Rendering (view-only, multiple layouts):
 ```js

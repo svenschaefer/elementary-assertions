@@ -16,6 +16,17 @@ Status: Completed through Phase 9 gap-closure (as of 2026-02-14).
   - `npm test` green (`90/90`)
   - `npm pack --dry-run` green
 
+## Phase 10.1 Snapshot (2026-02-14)
+
+- Added stable validation diagnostics with explicit typed errors:
+  - `src/validate/errors.js` (`ValidationError` + `failValidation`)
+  - schema/integrity validation now emits stable `err.code` values.
+- Exported `ValidationError` from `elementary-assertions/validate`.
+- Added contract tests:
+  - `test/unit/validate-errors.contract.test.js`
+- Re-ran full suite after hardening:
+  - `npm test` green (`95/95`)
+
 ## Post-Phase 9 Snapshot (2026-02-14)
 
 - Added integration automation for dev report scripts JSON validity:
