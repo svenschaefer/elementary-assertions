@@ -2,7 +2,7 @@ const { findSelector, normalizeSpanKey, normalizeIds, deepCloneJson } = require(
 const { annotationHasSource, collectStep11Relations } = require('./upstream');
 const { buildTokenIndex, getTokenWikipediaEvidence, buildTokenWikiById, getTokenMetadataProjection } = require('./tokens');
 const { getMweHeadEvidence, getMweLexiconEvidence } = require('./mention-materialization');
-const { toAnnotationSummary } = require('./accepted-annotations');
+const { toAnnotationSummary, buildAcceptedAnnotationsInventory } = require('./accepted-annotations');
 
 function normalizeWikiSurface(surface) {
   if (typeof surface !== 'string') return '';
@@ -120,19 +120,6 @@ function chooseBestMentionForToken({ tokenId, segmentId, mentionById, candidateM
     candidate_count: filteredIds.length,
     chosen_was_first: sourceIds.length > 0 ? sourceIds[0] === chosenId : true,
   };
-}
-
-function buildAcceptedAnnotationsInventory(relationsSeed) {
-  const annotations = Array.isArray(relationsSeed && relationsSeed.annotations) ? relationsSeed.annotations : [];
-  return annotations
-    .filter((a) => a && a.status === 'accepted')
-    .map(toAnnotationSummary)
-    .sort((a, b) => {
-      if (a.kind !== b.kind) return a.kind.localeCompare(b.kind);
-      if ((a.span && a.span.start) !== (b.span && b.span.start)) return (a.span ? a.span.start : -1) - (b.span ? b.span.start : -1);
-      if ((a.span && a.span.end) !== (b.span && b.span.end)) return (a.span ? a.span.end : -1) - (b.span ? b.span.end : -1);
-      return a.id.localeCompare(b.id);
-    });
 }
 
 function buildMentionLexiconEvidence({ tokenIds, tokenWikiById, mweLexiconEvidence }) {

@@ -1,7 +1,10 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
 
-const { toAnnotationSummary } = require("../../src/core/accepted-annotations");
+const {
+  toAnnotationSummary,
+  buildAcceptedAnnotationsInventory,
+} = require("../../src/core/accepted-annotations");
 
 test("toAnnotationSummary returns stable annotation summary", () => {
   const summary = toAnnotationSummary({
@@ -27,4 +30,30 @@ test("toAnnotationSummary returns stable annotation summary", () => {
     span: { start: 10, end: 20 },
     source_names: ["a", "b"],
   });
+});
+
+test("buildAcceptedAnnotationsInventory keeps accepted annotations in deterministic order", () => {
+  const out = buildAcceptedAnnotationsInventory({
+    annotations: [
+      {
+        id: "ann:2",
+        kind: "dependency",
+        status: "accepted",
+        anchor: { selectors: [{ type: "TextPositionSelector", span: { start: 5, end: 6 } }] },
+      },
+      {
+        id: "ann:1",
+        kind: "chunk",
+        status: "accepted",
+        anchor: { selectors: [{ type: "TextPositionSelector", span: { start: 1, end: 4 } }] },
+      },
+      {
+        id: "ann:3",
+        kind: "chunk",
+        status: "observation",
+        anchor: { selectors: [{ type: "TextPositionSelector", span: { start: 7, end: 8 } }] },
+      },
+    ],
+  });
+  assert.deepEqual(out.map((entry) => entry.id), ["ann:1", "ann:2"]);
 });
