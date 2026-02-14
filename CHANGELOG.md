@@ -2,6 +2,17 @@
 
 ## Unreleased
 
+## v0.1.5 - 2026-02-14
+
+### Added
+- `run --relations` parser edge-case tests:
+  - JSON input file accepted
+  - non-object parsed input rejected with explicit validation error
+
+### Changed
+- `v0.1.4` release evidence now includes CI run `22020914080` (success) in docs.
+- Release guide now documents local tarball cleanup after `npm pack`.
+
 ## v0.1.4 - 2026-02-14
 
 ### Added

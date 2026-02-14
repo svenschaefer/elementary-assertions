@@ -22,7 +22,8 @@ Status: Completed through Phase 9 gap-closure (as of 2026-02-14).
   - `scripts/dev-report-metrics.js`
   - `scripts/dev-report-fragment-hotspots.js`
   - `scripts/dev-report-maturity.js`
-- Current local suite status at head: `npm test` green (`87/87`)
+- Latest main CI run for docs/test hardening commit: `22024273512` (success).
+- Current local suite status at head: `npm test` green (`90/90`)
 
 ## Active Workstream (Phase 9 - Contract Hardening and Dev Workflow Productization)
 

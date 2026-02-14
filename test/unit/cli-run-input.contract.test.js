@@ -115,3 +115,40 @@ test("CLI run with --relations fails on invalid structured file", async () => {
 
   fs.rmSync(tmpRoot, { recursive: true, force: true });
 });
+
+test("CLI run --relations accepts JSON document input", async () => {
+  const tmpRoot = fs.mkdtempSync(path.join(os.tmpdir(), "ea-cli-relations-json-"));
+  const inPath = path.join(tmpRoot, "relations.json");
+  const outPath = path.join(tmpRoot, "out.yaml");
+  const relationsDoc = {
+    seed_id: "seed",
+    canonical_text: "Alpha runs.",
+    stage: "relations_extracted",
+    segments: [{ id: "s1", span: { start: 0, end: 11 }, token_range: { start: 0, end: 2 } }],
+    tokens: [
+      { id: "t1", i: 0, segment_id: "s1", span: { start: 0, end: 5 }, surface: "Alpha", pos: { tag: "NNP", coarse: "NOUN" } },
+      { id: "t2", i: 1, segment_id: "s1", span: { start: 6, end: 10 }, surface: "runs", pos: { tag: "VBZ", coarse: "VERB" } },
+    ],
+    annotations: [],
+  };
+  fs.writeFileSync(inPath, JSON.stringify(relationsDoc, null, 2), "utf8");
+
+  await runCli(["run", "--relations", inPath, "--out", outPath]);
+
+  const out = yaml.load(fs.readFileSync(outPath, "utf8"));
+  assert.equal(out.stage, "elementary_assertions");
+  fs.rmSync(tmpRoot, { recursive: true, force: true });
+});
+
+test("CLI run --relations rejects non-object parsed input", async () => {
+  const tmpRoot = fs.mkdtempSync(path.join(os.tmpdir(), "ea-cli-relations-scalar-"));
+  const inPath = path.join(tmpRoot, "relations.yaml");
+  fs.writeFileSync(inPath, "- just\n- a\n- list\n", "utf8");
+
+  await assert.rejects(
+    () => runCli(["run", "--relations", inPath]),
+    /tokens\[\]/i
+  );
+
+  fs.rmSync(tmpRoot, { recursive: true, force: true });
+});
