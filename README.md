@@ -107,11 +107,13 @@ const doc = runFromRelations(relationsSeed, {});
 
 These modules are consumers of the core model.
 
-Validation (schema + integrity + determinism checks):
+Validation (schema + integrity checks):
 ```js
 const { validateElementaryAssertions } = require("elementary-assertions/validate");
 validateElementaryAssertions(doc);
 ```
+
+Determinism is enforced via regression and golden-reference tests.
 
 Rendering (view-only, multiple layouts):
 ```js
