@@ -244,40 +244,6 @@ function buildSubjectRoleGaps({ assertions, projected }) {
   return out;
 }
 
-function buildSourceInputs(seedDir) {
-  const seedTxtPath = path.join(seedDir, 'seed.txt');
-  if (!fs.existsSync(seedTxtPath)) {
-    throw new Error(`Missing input seed.txt at ${seedTxtPath}`);
-  }
-  const seedTxt = fs.readFileSync(seedTxtPath, 'utf8');
-  return [
-    { artifact: 'seed.txt', digest: sha256Hex(seedTxt) },
-  ];
-}
-
-function buildRunOptions({ wtiEndpoint, timeoutMs }) {
-  const runOptions = {
-    target: 'relations_extracted',
-  };
-  if (wtiEndpoint) {
-    runOptions.services = { 'wikipedia-title-index': { endpoint: wtiEndpoint } };
-  }
-  if (Number.isFinite(timeoutMs) && timeoutMs > 0) {
-    runOptions.timeoutMs = timeoutMs;
-  }
-  return runOptions;
-}
-
-function buildPipelineTrace(relationsSeed, runOptions, wtiEndpoint) {
-  return {
-    target: String(runOptions && runOptions.target ? runOptions.target : ''),
-    relations_extracted_digest: sha256Hex(JSON.stringify(relationsSeed || {})),
-    token_count: Array.isArray(relationsSeed && relationsSeed.tokens) ? relationsSeed.tokens.length : 0,
-    annotation_count: Array.isArray(relationsSeed && relationsSeed.annotations) ? relationsSeed.annotations.length : 0,
-    wikipedia_title_index_configured: Boolean(normalizeOptionalString(wtiEndpoint)),
-  };
-}
-
 function buildDiagnostics({ tokenWikiById, mentions, assertions, projectedBuild, relationsSeed, wtiEndpoint, suppressedAssertions }) {
   const mentionWithLexicon = mentions.filter(
     (m) => m && m.provenance && m.provenance.lexicon_evidence && typeof m.provenance.lexicon_evidence === 'object'
