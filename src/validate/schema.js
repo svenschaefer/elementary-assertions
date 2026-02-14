@@ -1,4 +1,5 @@
 const { failValidation } = require("./errors");
+const { getSchemaValidator } = require("./ajv");
 
 function rejectLegacySlots(doc) {
   const assertions = Array.isArray(doc && doc.assertions) ? doc.assertions : [];
@@ -21,7 +22,29 @@ function validateSchemaShape(doc) {
   if (!doc.coverage || typeof doc.coverage !== "object") failValidation("EA_VALIDATE_COVERAGE_OBJECT", "Invalid document: coverage required.");
 }
 
+function toAjvIssue(err) {
+  return {
+    instancePath: String((err && err.instancePath) || ""),
+    schemaPath: String((err && err.schemaPath) || ""),
+    keyword: String((err && err.keyword) || ""),
+    message: String((err && err.message) || ""),
+  };
+}
+
+function validateSchemaContract(doc, options = {}) {
+  const validate = getSchemaValidator();
+  const ok = validate(doc);
+  if (ok) return;
+
+  const errors = Array.isArray(validate.errors) ? validate.errors.map(toAjvIssue) : [];
+  if (options && options.strict) {
+    failValidation("EA_VALIDATE_SCHEMA_CONTRACT", "Schema contract validation failed.", errors);
+  }
+  failValidation("EA_VALIDATE_SCHEMA_CONTRACT", "Schema contract validation failed.");
+}
+
 module.exports = {
   rejectLegacySlots,
   validateSchemaShape,
+  validateSchemaContract,
 };

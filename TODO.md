@@ -625,9 +625,9 @@ Objective: non-breaking product hardening for validation depth, provenance fidel
 
 ### 11.1 Full JSON Schema Enforcement (Runtime + Dev)
 
-- [ ] Add AJV-based validation against packaged schema (`src/schema/seed.elementary-assertions.schema.json`).
-- [ ] Runtime path: fail fast on schema violations.
-- [ ] Dev/strict path: include full error reporting with schema paths for CI diagnostics.
+- [x] Add AJV-based validation against packaged schema (`src/schema/seed.elementary-assertions.schema.json`).
+- [x] Runtime path: fail fast on schema violations.
+- [x] Dev/strict path: include full error reporting with schema paths for CI diagnostics.
 
 ### 11.2 Cross-Field Integrity Invariants
 
