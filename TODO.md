@@ -301,11 +301,11 @@ Exit criteria:
 ### Phase 7B - Contract Tightening
 
 - [ ] Remove/rewrite all tests that rely on legacy `slots`.
-- [ ] Add explicit tests for invalid `slots` rejection in validate/render.
-- [ ] Add tests for schema_version omission behavior.
-- [ ] Add tests for strict CLI boolean parsing and one-of input enforcement.
-- [ ] Add tests for WTI health-check strictness and timeout default.
-- [ ] Add tests against frozen golden references in `test/artifacts/*/prototype-reference`.
+- [x] Add explicit tests for invalid `slots` rejection in validate/render.
+- [x] Add tests for schema_version omission behavior.
+- [x] Add tests for strict CLI boolean parsing and one-of input enforcement.
+- [x] Add tests for WTI health-check strictness and timeout default.
+- [x] Add tests against frozen golden references in `test/artifacts/*/prototype-reference`.
 
 Exit criteria:
 - test suite asserts current product contract, not prototype internals.
