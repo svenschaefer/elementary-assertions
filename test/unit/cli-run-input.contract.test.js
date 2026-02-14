@@ -54,6 +54,38 @@ test("CLI run supports --relations without requiring WTI endpoint", async () => 
   fs.rmSync(tmpRoot, { recursive: true, force: true });
 });
 
+test("CLI run --relations succeeds when WIKIPEDIA_TITLE_INDEX_ENDPOINT is unset", async () => {
+  const tmpRoot = fs.mkdtempSync(path.join(os.tmpdir(), "ea-cli-relations-noenv-"));
+  const inPath = path.join(tmpRoot, "relations.yaml");
+  const outPath = path.join(tmpRoot, "out.yaml");
+
+  const relationsDoc = {
+    seed_id: "seed",
+    canonical_text: "Alpha runs.",
+    stage: "relations_extracted",
+    segments: [{ id: "s1", span: { start: 0, end: 11 }, token_range: { start: 0, end: 2 } }],
+    tokens: [
+      { id: "t1", i: 0, segment_id: "s1", span: { start: 0, end: 5 }, surface: "Alpha", pos: { tag: "NNP", coarse: "NOUN" } },
+      { id: "t2", i: 1, segment_id: "s1", span: { start: 6, end: 10 }, surface: "runs", pos: { tag: "VBZ", coarse: "VERB" } },
+    ],
+    annotations: [],
+  };
+
+  fs.writeFileSync(inPath, yaml.dump(relationsDoc), "utf8");
+  const prevEndpoint = process.env.WIKIPEDIA_TITLE_INDEX_ENDPOINT;
+  delete process.env.WIKIPEDIA_TITLE_INDEX_ENDPOINT;
+  try {
+    await runCli(["run", "--relations", inPath, "--out", outPath]);
+  } finally {
+    if (typeof prevEndpoint === "string") process.env.WIKIPEDIA_TITLE_INDEX_ENDPOINT = prevEndpoint;
+  }
+
+  const out = yaml.load(fs.readFileSync(outPath, "utf8"));
+  assert.equal(out.stage, "elementary_assertions");
+  assert.equal(out.index_basis.text_field, "canonical_text");
+  fs.rmSync(tmpRoot, { recursive: true, force: true });
+});
+
 test("CLI usage includes --relations in run syntax", async () => {
   const chunks = [];
   const origWrite = process.stdout.write;

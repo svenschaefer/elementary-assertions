@@ -26,6 +26,7 @@
 ### Release Evidence
 - Release commit: `e116ff6298a6ab139bb5f6b79c109f35f90a20e1`
 - Tag: `v0.1.4`
+- CI run: `22020914080` (success)
 - Smoke roots:
   - `C:\code\elementary-assertions-smoke-test\v0.1.4-pretag-smoke-20260214-175142`
   - `C:\code\elementary-assertions-smoke-test\v0.1.4-posttag-smoke-20260214-175210`

@@ -75,6 +75,12 @@ Optional: build the tarball locally (not uploaded anywhere):
 npm pack
 ```
 
+Cleanup after local pack steps:
+
+```powershell
+Remove-Item -Force .\elementary-assertions-*.tgz
+```
+
 ## 5) Smoke install checks (pre-tag)
 
 Create a clean workspace and install from the commit hash you intend to tag.
