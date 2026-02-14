@@ -1,5 +1,20 @@
 # Changelog
 
+## v0.1.1 - 2026-02-14
+
+### Added
+- Additional `runFromRelations` hardening checks for malformed accepted annotation internals:
+  - accepted dependency refs must point to known token ids
+  - accepted `TokenSelector` ids must point to known token ids
+  - accepted `TextPositionSelector` spans must be numeric and valid (`start <= end`)
+- New negative contract tests for malformed accepted annotation internals.
+- Dense benchmark scenario for `runFromRelations`:
+  - `npm run benchmark:core -- <iterations> dense`
+
+### Changed
+- CI workflow now runs on Node `24` (matching dependency engine constraints).
+- `test/fixtures` is tracked (`.gitkeep`) so repository layout checks are stable in CI.
+
 ## v0.1.0 - 2026-02-14
 
 ### Added
