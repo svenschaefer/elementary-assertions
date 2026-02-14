@@ -24,3 +24,15 @@ test("package.json packlist includes docs for linked README references", () => {
   assert.ok(pkg.files.includes("docs/"));
   assert.ok(pkg.files.includes("README.md"));
 });
+
+test("exported schema JSON is non-empty and parseable", () => {
+  const pkg = JSON.parse(fs.readFileSync(packageJsonPath, "utf8"));
+  const schemaPath = path.join(repoRoot, pkg.exports["./schema"]);
+  const raw = fs.readFileSync(schemaPath, "utf8");
+  assert.ok(raw.trim().length > 0, "schema export file must not be empty");
+
+  const schema = JSON.parse(raw);
+  assert.equal(typeof schema, "object");
+  assert.equal(schema.type, "object");
+  assert.equal(typeof schema.$schema, "string");
+});

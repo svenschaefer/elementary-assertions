@@ -241,10 +241,10 @@ Exit criteria:
 
 ## Phase 3 - Package Entry and Schema Export
 
-- [ ] Implement `src/index.js` exports.
-- [ ] Implement/verify `exports` map targets in `package.json`.
-- [ ] Ensure `require("elementary-assertions/schema")` is stable and resolves correctly.
-- [ ] Add unit tests for package exports.
+- [x] Implement `src/index.js` exports.
+- [x] Implement/verify `exports` map targets in `package.json`.
+- [x] Ensure `require("elementary-assertions/schema")` is stable and resolves correctly.
+- [x] Add unit tests for package exports.
 
 Exit criteria:
 - all package entry points function as documented.
@@ -313,9 +313,9 @@ Exit criteria:
 ## Phase 8 - Release Readiness
 
 - [ ] Ensure docs and behavior are synchronized (`README.md`, `docs/OPERATIONAL.md`, `docs/NPM_RELEASE.md`).
-- [ ] Ensure `npm test` passes consistently.
-- [ ] Ensure `npm pack --dry-run` is clean and deterministic.
-- [ ] Ensure docs included in packlist (`package.json` `files` includes `docs/`).
+- [x] Ensure `npm test` passes consistently.
+- [x] Ensure `npm pack --dry-run` is clean and deterministic.
+- [x] Ensure docs included in packlist (`package.json` `files` includes `docs/`).
 
 Exit criteria:
 - release flow in `docs/NPM_RELEASE.md` can be executed without contract drift.
