@@ -644,11 +644,11 @@ Objective: non-breaking product hardening for validation depth, provenance fidel
 
 ### 11.4 Dedicated Strict Checker Entry Point
 
-- [ ] Add single checker command (for example `npm run dev:check`) aggregating:
-  - [ ] full schema validation
-  - [ ] cross-field integrity invariants
-  - [ ] deep diagnostics checks
-- [ ] Position checker for CI and golden-reference verification workflows.
+- [x] Add single checker command (for example `npm run dev:check`) aggregating:
+  - [x] full schema validation
+  - [x] cross-field integrity invariants
+  - [x] deep diagnostics checks
+- [x] Position checker for CI and golden-reference verification workflows.
 
 ### 11.5 Provenance Fidelity for File-Origin Runs
 
