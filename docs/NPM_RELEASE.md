@@ -114,7 +114,7 @@ For release commits, prefer explicit staging paths to avoid unintended additions
 
 ```powershell
 Set-Location C:\code\elementary-assertions
-git add -A
+git add src docs test scripts package.json README.md CHANGELOG.md
 git commit -m "release: vX.Y.Z"
 git push -u origin release/vX.Y.Z
 ```
