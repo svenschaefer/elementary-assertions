@@ -158,6 +158,7 @@ For release and smoke-install workspace conventions (including `C:\code\elementa
 - Operational guide: `docs/OPERATIONAL.md`
 - Repository workflow policies: `docs/REPO_WORKFLOWS.md`
 - Release flow: `docs/NPM_RELEASE.md`
+- Release notes template: `docs/RELEASE_NOTES_TEMPLATE.md`
 - Changelog: `CHANGELOG.md`
 
 ## License

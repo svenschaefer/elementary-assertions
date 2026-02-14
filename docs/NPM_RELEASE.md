@@ -148,3 +148,8 @@ npm ls elementary-assertions
 
 If anything is wrong after tagging, do not move or delete the tag.
 Ship a new patch version with a new tag.
+
+## Release notes
+
+Create/update release notes using:
+- `docs/RELEASE_NOTES_TEMPLATE.md`
