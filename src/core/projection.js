@@ -5,22 +5,7 @@ const { getTokenWikipediaEvidence, buildTokenWikiById, getTokenMetadataProjectio
 const { getMweHeadEvidence, getMweLexiconEvidence } = require('./mention-materialization');
 const { toAnnotationSummary, buildAcceptedAnnotationsInventory } = require('./accepted-annotations');
 const { buildChunkHeadMaps, buildDependencyObservationMaps, posFallbackHead, resolveMentionHead } = require('./mention-head-resolution');
-
-function buildMentionLexiconEvidence({ tokenIds, tokenWikiById, mweLexiconEvidence }) {
-  const tokenEvidence = normalizeIds(tokenIds || [])
-    .filter((tokenId) => tokenWikiById.has(tokenId))
-    .map((tokenId) => ({
-      token_id: tokenId,
-      evidence: deepCloneJson(tokenWikiById.get(tokenId)),
-    }));
-
-  if (tokenEvidence.length === 0 && !mweLexiconEvidence) return null;
-
-  const out = {};
-  if (mweLexiconEvidence) out.mwe = deepCloneJson(mweLexiconEvidence);
-  if (tokenEvidence.length > 0) out.tokens = tokenEvidence;
-  return out;
-}
+const { buildMentionLexiconEvidence } = require('./mention-evidence');
 
 function buildAssertionWikiSignals({ predicateMentionId, relations, mentionById }) {
   const mentionIds = new Set([predicateMentionId]);

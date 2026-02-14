@@ -4,6 +4,7 @@ const { buildTokenIndex, getTokenWikipediaEvidence, buildTokenWikiById, getToken
 const { getMweHeadEvidence, getMweLexiconEvidence } = require('./mention-materialization');
 const { toAnnotationSummary, buildAcceptedAnnotationsInventory } = require('./accepted-annotations');
 const { buildChunkHeadMaps, buildDependencyObservationMaps, posFallbackHead, resolveMentionHead } = require('./mention-head-resolution');
+const { buildMentionLexiconEvidence } = require('./mention-evidence');
 
 function normalizeWikiSurface(surface) {
   if (typeof surface !== 'string') return '';
@@ -121,22 +122,6 @@ function chooseBestMentionForToken({ tokenId, segmentId, mentionById, candidateM
     candidate_count: filteredIds.length,
     chosen_was_first: sourceIds.length > 0 ? sourceIds[0] === chosenId : true,
   };
-}
-
-function buildMentionLexiconEvidence({ tokenIds, tokenWikiById, mweLexiconEvidence }) {
-  const tokenEvidence = normalizeIds(tokenIds || [])
-    .filter((tokenId) => tokenWikiById.has(tokenId))
-    .map((tokenId) => ({
-      token_id: tokenId,
-      evidence: deepCloneJson(tokenWikiById.get(tokenId)),
-    }));
-
-  if (tokenEvidence.length === 0 && !mweLexiconEvidence) return null;
-
-  const out = {};
-  if (mweLexiconEvidence) out.mwe = deepCloneJson(mweLexiconEvidence);
-  if (tokenEvidence.length > 0) out.tokens = tokenEvidence;
-  return out;
 }
 
 function buildAssertionWikiSignals({ predicateMentionId, relations, mentionById }) {
