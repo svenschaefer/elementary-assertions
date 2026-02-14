@@ -198,21 +198,21 @@ Exit criteria:
 
 ## Phase 1 - Port Core Modules (No CLI yet)
 
-- [ ] Implement `src/core/determinism.js`.
-- [ ] Implement `src/core/tokens.js`.
-- [ ] Implement `src/core/mentions.js`.
-- [ ] Implement `src/core/projection.js`.
-- [ ] Implement `src/core/roles.js`.
-- [ ] Implement `src/core/assertions.js`.
-- [ ] Implement `src/core/diagnostics.js`.
-- [ ] Implement `src/core/output.js`.
+- [x] Implement `src/core/determinism.js`.
+- [x] Implement `src/core/tokens.js`.
+- [x] Implement `src/core/mentions.js`.
+- [x] Implement `src/core/projection.js`.
+- [x] Implement `src/core/roles.js`.
+- [x] Implement `src/core/assertions.js`.
+- [x] Implement `src/core/diagnostics.js`.
+- [x] Implement `src/core/output.js`.
 
 Required refactors during port:
 - [ ] Remove duplicated helpers across modules (single owner per helper).
-- [ ] Delete dead code and undefined-reference code paths from prototype carry-over.
-- [ ] Remove all slot compatibility code from core path.
-- [ ] Ensure all role arrays are always present (empty allowed).
-- [ ] Ensure deterministic ordering and canonical IDs are preserved.
+- [x] Delete dead code and undefined-reference code paths from prototype carry-over.
+- [x] Remove all slot compatibility code from core path.
+- [x] Ensure all role arrays are always present (empty allowed).
+- [x] Ensure deterministic ordering and canonical IDs are preserved.
 
 Exit criteria:
 - `runFromRelations` pipeline can be wired purely from `src/core/*`.
@@ -220,21 +220,21 @@ Exit criteria:
 ## Phase 2 - API Runtime Layer
 
 - [ ] Implement `src/run.js` with:
-  - [ ] `runFromRelations(relationsDoc, options)`
-  - [ ] `runElementaryAssertions(text, options)`
-- [ ] Implement strict structural input validation for `runFromRelations`.
-- [ ] Enforce earliest-fail slot rejection in `runFromRelations` (inputs containing `assertions[*].slots` must error before further processing).
-- [ ] Implement WTI policy in `runElementaryAssertions`:
-  - [ ] endpoint required
-  - [ ] `GET /health`
-  - [ ] HTTP 200 only
-  - [ ] timeout default 2000ms
-  - [ ] no retries
-  - [ ] no implicit auth headers
-- [ ] Ensure CLI uses library-runner behavior and does not implement an independent health-check path.
+- [x] `runFromRelations(relationsDoc, options)`
+- [x] `runElementaryAssertions(text, options)`
+- [x] Implement strict structural input validation for `runFromRelations`.
+- [x] Enforce earliest-fail slot rejection in `runFromRelations` (inputs containing `assertions[*].slots` must error before further processing).
+- [x] Implement WTI policy in `runElementaryAssertions`:
+  - [x] endpoint required
+  - [x] `GET /health`
+  - [x] HTTP 200 only
+  - [x] timeout default 2000ms
+  - [x] no retries
+  - [x] no implicit auth headers
+- [x] Ensure CLI uses library-runner behavior and does not implement an independent health-check path.
 - [ ] Ensure schema_version behavior:
-  - [ ] present upstream -> carry verbatim
-  - [ ] absent upstream -> omit
+  - [x] present upstream -> carry verbatim
+  - [x] absent upstream -> omit
 
 Exit criteria:
 - API-level contract in `README.md` is executable and tested.
@@ -251,41 +251,41 @@ Exit criteria:
 
 ## Phase 4 - Validation Layer
 
-- [ ] Implement schema validator (`src/validate/schema.js`).
-- [ ] Implement integrity + determinism checks (`src/validate/integrity.js`).
-- [ ] Implement wrapper API (`src/validate/index.js`).
-- [ ] Add explicit invalidation rule for legacy `assertions[*].slots`.
+- [x] Implement schema validator (`src/validate/schema.js`).
+- [x] Implement integrity + determinism checks (`src/validate/integrity.js`).
+- [x] Implement wrapper API (`src/validate/index.js`).
+- [x] Add explicit invalidation rule for legacy `assertions[*].slots`.
 
 Exit criteria:
 - `validate` catches schema/integrity violations and rejects legacy slots explicitly.
 
 ## Phase 5 - Renderer
 
-- [ ] Implement renderer core (`src/render/render.js`) and layout modules.
-- [ ] Keep renderer view-only and deterministic.
-- [ ] Reject legacy slot-shaped inputs explicitly.
-- [ ] Preserve documented layout options and formatting toggles.
+- [x] Implement renderer core (`src/render/render.js`) and layout modules.
+- [x] Keep renderer view-only and deterministic.
+- [x] Reject legacy slot-shaped inputs explicitly.
+- [x] Preserve documented layout options and formatting toggles.
 
 Exit criteria:
 - render path matches `docs/OPERATIONAL.md` contract and passes deterministic tests.
 
 ## Phase 6 - Tooling and CLI
 
-- [ ] Implement `src/tools/io.js` for strict parsing and I/O.
+- [x] Implement `src/tools/io.js` for strict parsing and I/O.
 - [ ] Implement `src/tools/cli.js` with public commands:
-  - [ ] `run`
-  - [ ] `validate`
-  - [ ] `render`
-- [ ] Enforce CLI input rules:
-  - [ ] exactly one of `--text` / `--in`
-  - [ ] both provided -> explicit error
-  - [ ] neither provided -> explicit error
-- [ ] Enforce strict booleans: `true|false` (case-insensitive only).
-- [ ] Add `--wti-timeout-ms` and endpoint precedence behavior.
+- [x] `run`
+- [x] `validate`
+- [x] `render`
+- [x] Enforce CLI input rules:
+  - [x] exactly one of `--text` / `--in`
+  - [x] both provided -> explicit error
+  - [x] neither provided -> explicit error
+- [x] Enforce strict booleans: `true|false` (case-insensitive only).
+- [x] Add `--wti-timeout-ms` and endpoint precedence behavior.
 - [ ] Keep prototype diagnostics non-public:
-  - [ ] require global `--dev` flag
-  - [ ] reject diagnostic flags when `--dev` is absent
-  - [ ] do not document diagnostics in public CLI docs
+  - [x] require global `--dev` flag
+  - [x] reject diagnostic flags when `--dev` is absent
+  - [x] do not document diagnostics in public CLI docs
 
 Exit criteria:
 - CLI behavior fully aligned with `docs/OPERATIONAL.md`.
