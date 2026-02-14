@@ -132,7 +132,10 @@ const { renderElementaryAssertions } = require("elementary-assertions/render");
 const md = renderElementaryAssertions(doc, { format: "md", layout: "table" });
 ```
 Renderer contract scope:
-- Contract-locked today: compact text (`format: "txt", layout: "compact"`) and table markdown (`format: "md", layout: "table"`) via golden/parity tests.
+- Contract-locked today via golden/parity tests:
+  - compact text (`format: "txt", layout: "compact"`)
+  - table markdown (`format: "md", layout: "table"`)
+  - meaning markdown (`format: "md", layout: "meaning"`)
 - Other renderer combinations are currently best-effort and may evolve without contract change.
 
 Tooling (file I/O and CLI wiring):

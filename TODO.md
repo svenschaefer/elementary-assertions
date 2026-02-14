@@ -6,7 +6,7 @@ This plan defines how to build the productized package described in `README.md`,
 
 It is execution-oriented, phase-gated, and contract-first.
 
-Status: Completed through Phase 9 gap-closure (as of 2026-02-14).
+Status: Completed through Phase 11 hardening (as of 2026-02-14).
 
 ## Phase 10 Kickoff Snapshot (2026-02-14)
 
@@ -658,8 +658,8 @@ Objective: non-breaking product hardening for validation depth, provenance fidel
 
 ### 11.6 Renderer Contract Expansion
 
-- [ ] Extend parity/contract locks beyond compact/table where renderer behavior is stable.
-- [ ] Explicitly document renderer behaviors that are contract-locked vs best-effort.
+- [x] Extend parity/contract locks beyond compact/table where renderer behavior is stable.
+- [x] Explicitly document renderer behaviors that are contract-locked vs best-effort.
 
 Exit criteria:
 - product guarantees stronger correctness, traceability, and reproducibility without expanding assertion semantics.
