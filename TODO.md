@@ -35,7 +35,25 @@ Status: Completed through Phase 8 and post-phase helper deduplication (as of 202
   - npm script: `npm run benchmark:core`
   - repo workflow note in `docs/REPO_WORKFLOWS.md`
 - Latest hardening commit: `f5e8439` (`chore: add changelog ci smoke checks and hardening tests`)
-- Current local suite status at head: `npm test` green (`75/75`)
+- Current local suite status at head: `npm test` green (`76/76`)
+
+## CI Stabilization Snapshot (2026-02-14)
+
+- CI workflow validated on `main` via GitHub Actions:
+  - initial failing runs analyzed and fixed
+  - `test/fixtures/.gitkeep` added so repository layout test is stable in clean checkouts
+  - successful run after fixes: `22020277602`
+- successful run for release commit:
+  - `release: v0.1.1` -> run `22020293090` (success)
+
+## Release Execution Snapshot (v0.1.1, 2026-02-14)
+
+- Released version: `v0.1.1`
+- Release commit: `378acc1d177cd3dbcd0c72dfccc83df7fdae7486`
+- Annotated tag: `v0.1.1` (pushed)
+- Smoke workspaces (clean installs, version + reason naming):
+  - `C:\code\elementary-assertions-smoke-test\v0.1.1-pretag-smoke-20260214-170352`
+  - `C:\code\elementary-assertions-smoke-test\v0.1.1-posttag-smoke-20260214-170418`
 
 ## Scope and Goal
 
