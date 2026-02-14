@@ -11,15 +11,17 @@ Status: Completed through Phase 11 hardening (as of 2026-02-14).
 ## Release Execution Snapshot (v0.1.7, 2026-02-14)
 
 - Released version: `v0.1.7`
-- Release commit: `PENDING`
+- Release commit: `554fe1df2f4fb9381bb2b125df1f64a6bf322b2d`
 - Annotated tag: `v0.1.7` (pushed)
-- CI run: `PENDING`
+- CI run: `22025229028` (success)
 - Smoke workspaces (clean installs, version + reason naming):
-  - `PENDING`
-  - `PENDING`
+  - `C:\code\elementary-assertions-smoke-test\v0.1.7-pretag-smoke-20260214-232200`
+  - `C:\code\elementary-assertions-smoke-test\v0.1.7-posttag-smoke-20260214-232230`
 - Rendered smoke outputs were generated in both folders under:
-  - `PENDING`
-  - `PENDING`
+  - `C:\code\elementary-assertions-smoke-test\v0.1.7-pretag-smoke-20260214-232200\rendered\*.compact.txt`
+  - `C:\code\elementary-assertions-smoke-test\v0.1.7-pretag-smoke-20260214-232200\rendered\*.table.md`
+  - `C:\code\elementary-assertions-smoke-test\v0.1.7-posttag-smoke-20260214-232230\rendered\*.compact.txt`
+  - `C:\code\elementary-assertions-smoke-test\v0.1.7-posttag-smoke-20260214-232230\rendered\*.table.md`
 
 ## Phase 10 Kickoff Snapshot (2026-02-14)
 

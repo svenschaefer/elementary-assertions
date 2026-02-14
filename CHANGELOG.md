@@ -26,15 +26,15 @@
   - contract-locked renderer combinations (`txt/compact`, `md/table`, `md/meaning`).
 
 ### Release Evidence
-- Release commit: `PENDING`
+- Release commit: `554fe1df2f4fb9381bb2b125df1f64a6bf322b2d`
 - Tag: `v0.1.7`
-- CI run: `PENDING`
+- CI run: `22025229028` (success)
 - Smoke roots:
-  - `PENDING`
-  - `PENDING`
+  - `C:\code\elementary-assertions-smoke-test\v0.1.7-pretag-smoke-20260214-232200`
+  - `C:\code\elementary-assertions-smoke-test\v0.1.7-posttag-smoke-20260214-232230`
 - Rendered smoke output roots:
-  - `PENDING`
-  - `PENDING`
+  - `C:\code\elementary-assertions-smoke-test\v0.1.7-pretag-smoke-20260214-232200\rendered`
+  - `C:\code\elementary-assertions-smoke-test\v0.1.7-posttag-smoke-20260214-232230\rendered`
 
 ## v0.1.6 - 2026-02-14
 
