@@ -52,3 +52,21 @@ test("runFromRelations carries schema_version verbatim when present upstream", (
   assert.equal(out.schema_version, "9.9.9");
 });
 
+test("runFromRelations is deterministic for identical input", () => {
+  const input = minimalRelationsDoc({
+    annotations: [
+      {
+        id: "ann:dep:1",
+        kind: "dependency",
+        status: "accepted",
+        label: "nsubj",
+        head: { id: "t2" },
+        dep: { id: "t1" },
+        sources: [{ name: "relation-extraction", evidence: {} }],
+      },
+    ],
+  });
+  const a = runFromRelations(input);
+  const b = runFromRelations(input);
+  assert.equal(JSON.stringify(a), JSON.stringify(b));
+});
