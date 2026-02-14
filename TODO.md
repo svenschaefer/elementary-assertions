@@ -12,6 +12,12 @@ Status: Completed through Phase 9 gap-closure (as of 2026-02-14).
 
 - Added integration automation for dev report scripts JSON validity:
   - `test/integration/dev-report-scripts.test.js`
+- Refactored validator internals into focused modules (no contract change):
+  - `src/validate/determinism.js`
+  - `src/validate/coverage.js`
+  - `src/validate/references.js`
+  - `src/validate/integrity.js` as orchestrator
+- CI now executes `dev:report:*` scripts directly as workflow gates.
 - Coverage now asserts report shape for:
   - `scripts/dev-report-metrics.js`
   - `scripts/dev-report-fragment-hotspots.js`

@@ -23,6 +23,12 @@ jobs:
       - name: Test
         run: npm test
 
+      - name: Dev Report Scripts (JSON Sanity)
+        run: |
+          npm run dev:report:metrics >/tmp/dev-report-metrics.json
+          npm run dev:report:hotspots >/tmp/dev-report-hotspots.json
+          npm run dev:report:maturity >/tmp/dev-report-maturity.json
+
       - name: Pack Dry Run
         run: npm pack --dry-run
 

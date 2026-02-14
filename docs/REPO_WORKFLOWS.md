@@ -32,3 +32,17 @@ npm run benchmark:core -- 1000 dense
 ```
 
 This benchmark is advisory for repo workflow only (trend watching) and is not a package contract gate.
+
+## CI gates (repo workflow)
+
+Current CI workflow gates on:
+- `npm install`
+- `npm test`
+- dev report script execution:
+  - `npm run dev:report:metrics`
+  - `npm run dev:report:hotspots`
+  - `npm run dev:report:maturity`
+- `npm pack --dry-run`
+- packed-tarball clean-install smoke check via `scripts/release-smoke-check.js`
+
+These are repository quality gates and release hygiene checks, not package runtime contract.

@@ -10,6 +10,17 @@
     - `scripts/dev-report-fragment-hotspots.js`
     - `scripts/dev-report-maturity.js`
 
+### Changed
+- Validation internals were refactored into focused modules without contract changes:
+  - `src/validate/determinism.js`
+  - `src/validate/coverage.js`
+  - `src/validate/references.js`
+  - `src/validate/integrity.js` now orchestrates these modules.
+- CI now executes dev report scripts directly as workflow gates:
+  - `npm run dev:report:metrics`
+  - `npm run dev:report:hotspots`
+  - `npm run dev:report:maturity`
+
 ## v0.1.3 - 2026-02-14
 
 ### Added
