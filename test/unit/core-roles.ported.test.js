@@ -2,12 +2,23 @@ const test = require("node:test");
 const assert = require("node:assert/strict");
 
 const {
+  argumentRolePriority,
   canonicalizeRoleEntries,
   slotToRoleEntries,
   collectAssertionMentionRefs,
   projectRolesToSlots,
   collectMentionIdsFromRoles,
 } = require("../../src/core/roles");
+
+test("argumentRolePriority ordering is stable", () => {
+  assert.equal(argumentRolePriority("actor"), 0);
+  assert.equal(argumentRolePriority("patient"), 1);
+  assert.equal(argumentRolePriority("location"), 2);
+  assert.equal(argumentRolePriority("theme"), 3);
+  assert.equal(argumentRolePriority("attribute"), 4);
+  assert.equal(argumentRolePriority("topic"), 5);
+  assert.equal(argumentRolePriority("unknown"), 10);
+});
 
 test("canonicalizeRoleEntries is deterministic and drops empty entries", () => {
   const input = [
@@ -79,4 +90,3 @@ test("projectRolesToSlots maps role arrays deterministically", () => {
   assert.deepEqual(slots.theme, ["m2"]);
   assert.deepEqual(slots.other, [{ role: "recipient", mention_ids: ["m3"] }]);
 });
-

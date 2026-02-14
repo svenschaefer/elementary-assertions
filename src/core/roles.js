@@ -153,7 +153,10 @@ function collectMentionIdsFromRoles(assertion) {
 }
 
 module.exports = {
+  argumentRolePriority,
+  modifierRolePriority,
   canonicalizeRoleEntries,
+  collectEntryTokenIds,
   slotToRoleEntries,
   collectAssertionMentionRefs,
   projectRolesToSlots,

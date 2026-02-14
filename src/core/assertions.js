@@ -2,7 +2,7 @@ const { sha256Hex, canonicalizeOperatorsForHash, stableObjectKey, normalizeIds, 
 const { roleToSlot, isCompareLabel, isQuantifierLabel, chooseBestMentionForToken, buildAssertionWikiSignals, isSubjectRoleLabel } = require('./mentions');
 const { buildCoordinationGroups } = require('./projection');
 const { mergeOperator } = require('./diagnostics');
-const { canonicalizeRoleEntries } = require('./roles');
+const { argumentRolePriority, canonicalizeRoleEntries } = require('./roles');
 
 function isVerbPosTag(tag) {
   return typeof tag === 'string' && /^VB/.test(tag);
@@ -71,17 +71,6 @@ function roleBucketsAreSemanticallyEmpty(roleBuckets) {
     Array.isArray(roleBuckets.location) && roleBuckets.location.length === 0 &&
     Array.isArray(roleBuckets.other) && roleBuckets.other.length === 0
   );
-}
-
-function argumentRolePriority(role) {
-  const r = String(role || '');
-  if (r === 'actor') return 0;
-  if (r === 'patient') return 1;
-  if (r === 'location') return 2;
-  if (r === 'theme') return 3;
-  if (r === 'attribute') return 4;
-  if (r === 'topic') return 5;
-  return 10;
 }
 
 function modifierRolePriority(role) {
