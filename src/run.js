@@ -5,6 +5,7 @@ const { collectStep11Relations, buildProjectedRelations } = require("./core/proj
 const { buildAssertions } = require("./core/assertions");
 const { buildUnresolved, buildDiagnostics } = require("./core/diagnostics");
 const { buildWikiTitleEvidenceFromUpstream, buildCoverageDomainMentionIds, buildOutput } = require("./core/output");
+const { rejectLegacySlots } = require("./validate/schema");
 
 function normalizeOptionalString(value) {
   return typeof value === "string" ? value.trim() : "";
@@ -34,15 +35,6 @@ async function ensureWtiEndpointReachable(endpoint, timeoutMs) {
   }
 }
 
-function validateNoLegacySlots(doc) {
-  const assertions = Array.isArray(doc && doc.assertions) ? doc.assertions : [];
-  for (const assertion of assertions) {
-    if (assertion && Object.prototype.hasOwnProperty.call(assertion, "slots")) {
-      throw new Error("Invalid input: legacy assertions[*].slots is not supported.");
-    }
-  }
-}
-
 function validateRelationsInput(relationsDoc) {
   if (!relationsDoc || typeof relationsDoc !== "object") {
     throw new Error("runFromRelations requires an object input document.");
@@ -59,7 +51,7 @@ function validateRelationsInput(relationsDoc) {
   if (typeof relationsDoc.canonical_text !== "string") {
     throw new Error("runFromRelations input must include canonical_text.");
   }
-  validateNoLegacySlots(relationsDoc);
+  rejectLegacySlots(relationsDoc);
 }
 
 function schemaVersionFromRelations(relationsDoc) {

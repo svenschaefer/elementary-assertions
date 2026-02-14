@@ -1,13 +1,5 @@
 const { validateElementaryAssertions } = require("../validate");
-
-function rejectLegacySlots(doc) {
-  const assertions = Array.isArray(doc && doc.assertions) ? doc.assertions : [];
-  for (const assertion of assertions) {
-    if (assertion && Object.prototype.hasOwnProperty.call(assertion, "slots")) {
-      throw new Error("Invalid input: legacy assertions[*].slots is not supported.");
-    }
-  }
-}
+const { rejectLegacySlots } = require("../validate/schema");
 
 function normalizeRenderText(text) {
   if (typeof text !== 'string' || text.length === 0) return text;
