@@ -5,6 +5,7 @@ const { collectStep11Relations, buildProjectedRelations } = require("./core/proj
 const { buildAssertions } = require("./core/assertions");
 const { buildUnresolved, buildDiagnostics } = require("./core/diagnostics");
 const { buildWikiTitleEvidenceFromUpstream, buildCoverageDomainMentionIds, buildOutput } = require("./core/output");
+const { hasPositiveWikiSignal } = require("./core/mentions");
 const { normalizeOptionalString } = require("./core/strings");
 const { rejectLegacySlots } = require("./validate/schema");
 
@@ -97,6 +98,25 @@ function schemaVersionFromRelations(relationsDoc) {
   return typeof relationsDoc.schema_version === "string" && relationsDoc.schema_version.length > 0
     ? relationsDoc.schema_version
     : undefined;
+}
+
+function assertMandatoryWtiUpstreamEvidence(relationsSeed) {
+  const tokens = Array.isArray(relationsSeed && relationsSeed.tokens) ? relationsSeed.tokens : [];
+  let carrierCount = 0;
+  let positiveCount = 0;
+  for (const token of tokens) {
+    if (!token || !token.lexicon || typeof token.lexicon !== "object") continue;
+    if (!Object.prototype.hasOwnProperty.call(token.lexicon, "wikipedia_title_index")) continue;
+    const carrier = token.lexicon.wikipedia_title_index;
+    if (!carrier || typeof carrier !== "object" || Array.isArray(carrier)) {
+      throw new Error("WTI evidence missing: linguistic-enricher produced no positive wikipedia_title_index signals.");
+    }
+    carrierCount += 1;
+    if (hasPositiveWikiSignal(carrier)) positiveCount += 1;
+  }
+  if (carrierCount === 0 || positiveCount === 0) {
+    throw new Error("WTI evidence missing: linguistic-enricher produced no positive wikipedia_title_index signals.");
+  }
 }
 
 function buildRunPipelineTrace(relationsSeed, runOptions, wtiEndpoint) {
@@ -229,6 +249,7 @@ async function runElementaryAssertions(text, options = {}) {
   }
 
   const relationsSeed = await linguisticEnricher.runPipeline(text, runOptions);
+  assertMandatoryWtiUpstreamEvidence(relationsSeed);
 
   return runFromRelations(relationsSeed, {
     sourceInputs: [{ artifact: "seed.text.in_memory", digest: sha256Hex(text) }],
@@ -241,4 +262,5 @@ module.exports = {
   runElementaryAssertions,
   normalizeOptionalString,
   ensureWtiEndpointReachable,
+  assertMandatoryWtiUpstreamEvidence,
 };

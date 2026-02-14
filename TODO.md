@@ -6,7 +6,68 @@ This plan defines how to build the productized package described in `README.md`,
 
 It is execution-oriented, phase-gated, and contract-first.
 
-Status: Completed through Phase 8 and post-phase helper deduplication (as of 2026-02-14).
+Status: Completed through Phase 9 gap-closure (as of 2026-02-14).
+
+## Active Workstream (Phase 9 - Contract Hardening and Dev Workflow Productization)
+
+Objective: close remaining product-relevant gaps identified against prototype behavior, without expanding public API surface beyond approved contract.
+
+### Phase 9.1 - Validation Deepening
+
+- [x] Extend `validateElementaryAssertions` with deterministic integrity invariants:
+  - [x] duplicate id detection (`tokens`, `mentions`, `assertions`, suppressed assertions)
+  - [x] deterministic sorting checks (role/evidence arrays and related deterministic lists)
+  - [x] coverage/unresolved consistency checks
+  - [x] explicit fail-fast errors (no auto-repair)
+- [x] Port selective invariant logic from prototype `check-elementary-assertions` into `src/validate/*` (contract-valid subset only).
+- [x] Add focused unit/integration tests for each invariant family.
+
+Exit criteria:
+- `validate` enforces structural and deterministic integrity at runtime, not only via golden tests.
+
+### Phase 9.2 - CLI Relations Input Path
+
+- [x] Add `run --relations <path>` for offline/replay execution via `runFromRelations`.
+- [x] Enforce strict one-of input rule: exactly one of `--text` / `--in` / `--relations`.
+- [x] Ensure `--relations` path bypasses upstream execution and does not require WTI endpoint.
+- [x] Add CLI contract tests for mutual exclusivity and runtime routing.
+
+Exit criteria:
+- CLI can execute both upstream-running mode and relations-replay mode with explicit one-of semantics.
+
+### Phase 9.3 - WTI Evidence Sanity Guard
+
+- [x] Reinstate post-upstream WTI evidence presence check in `runElementaryAssertions`:
+  - [x] endpoint healthy but no positive WTI signal -> explicit failure
+  - [x] `runFromRelations` remains unaffected
+- [x] Add regression tests for both pass/fail cases.
+
+Exit criteria:
+- upstream-running path enforces both endpoint reachability and evidence presence.
+
+### Phase 9.4 - Dev-Only Quality Tooling (Non-Public)
+
+- [x] Productize useful prototype reporting intent as Node dev scripts (not public CLI contract):
+  - [x] baseline metrics snapshot
+  - [x] fragment hotspots report
+  - [x] maturity snapshot
+- [x] Place under `scripts/` with `npm run dev:*` script names.
+- [x] Keep tooling explicitly non-contractual and non-public in docs.
+
+Exit criteria:
+- repeatable, cross-platform dev diagnostics exist without polluting public package interface.
+
+### Phase 9.5 - Documentation Synchronization
+
+- [x] Update `README.md`:
+  - [x] determinism enforcement wording: validation + golden/regression tests
+  - [x] add CLI relations replay example
+  - [x] clarify WTI requirement includes evidence presence (not only health)
+- [x] Update `docs/OPERATIONAL.md` for new CLI one-of rule including `--relations`.
+- [x] Keep explicit boundary: dev scripts are non-public tooling.
+
+Exit criteria:
+- documentation matches implemented behavior and scope boundaries.
 
 ## Release Execution Snapshot (2026-02-14)
 
@@ -356,9 +417,9 @@ Exit criteria:
 - [x] `validate`
 - [x] `render`
 - [x] Enforce CLI input rules:
-  - [x] exactly one of `--text` / `--in`
-  - [x] both provided -> explicit error
-  - [x] neither provided -> explicit error
+  - [x] exactly one of `--text` / `--in` / `--relations`
+  - [x] multiple provided -> explicit error
+  - [x] none provided -> explicit error
 - [x] Enforce strict booleans: `true|false` (case-insensitive only).
 - [x] Add `--wti-timeout-ms` and endpoint precedence behavior.
 - [x] Keep prototype diagnostics non-public:
@@ -419,3 +480,4 @@ Exit criteria:
 5. Phase 6 CLI/tools.
 6. Phase 7 tests migration and tightening.
 7. Phase 8 release readiness.
+8. Phase 9 gap-closure (`validate` hardening -> CLI `--relations` -> WTI evidence guard -> dev scripts -> docs sync).

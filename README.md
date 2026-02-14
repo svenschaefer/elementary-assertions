@@ -46,7 +46,7 @@ Deterministic
 Determinism is mode-scoped:
 - `runFromRelations(...)`: byte-identical output for identical `relationsSeed` and options, within the same `elementary-assertions` version.
 - `runElementaryAssertions(...)`: byte-identical output only when all upstream inputs are fixed: identical text/options, pinned versions of `elementary-assertions` and `linguistic-enricher`, and stable WTI behavior for identical requests (service version, dataset state, and endpoint behavior).
-Determinism is enforced by canonical identifiers, fixed ordering, schema validation, integrity checks, and golden-run tests.
+Determinism is enforced by canonical identifiers, fixed ordering, schema validation, deterministic integrity validation, and golden/regression tests.
 
 Conservative  
 If a structure cannot be projected deterministically, it is emitted as unresolved with explicit evidence. No silent repair.
@@ -71,6 +71,7 @@ Runs the upstream linguistic pipeline and produces elementary assertions.
 
 WTI endpoint requirement  
 `runElementaryAssertions` requires a configured Wikipedia Title Index endpoint via `options.services["wikipedia-title-index"].endpoint`. If it is missing, execution fails explicitly.
+After upstream execution, at least one positive WTI signal must be present in upstream token evidence; otherwise execution fails explicitly.
 
 Example:
 
@@ -103,6 +104,12 @@ const { runFromRelations } = require("elementary-assertions");
 const doc = runFromRelations(relationsSeed, {});
 ```
 
+CLI replay mode (offline/deterministic input replay):
+
+```bash
+npx elementary-assertions run --relations relations.yaml --out out.yaml
+```
+
 ## Contract enforcement and view tooling
 
 These modules are consumers of the core model.
@@ -112,8 +119,7 @@ Validation (schema + integrity checks):
 const { validateElementaryAssertions } = require("elementary-assertions/validate");
 validateElementaryAssertions(doc);
 ```
-
-Determinism is enforced via regression and golden-reference tests.
+Validation includes deterministic integrity invariants; determinism is additionally locked by regression and golden-reference tests.
 
 Rendering (view-only, multiple layouts):
 ```js
@@ -143,6 +149,7 @@ const tools = require("elementary-assertions/tools");
 For full operational details (CLI commands, repo layout convenience, runner scripts, rendering defaults), see `docs/OPERATIONAL.md`.
 For repository-only workflow policies (not package contract), see `docs/REPO_WORKFLOWS.md`.
 For release and smoke-install workspace conventions (including `C:\code\elementary-assertions-smoke-test\`), see `docs/NPM_RELEASE.md`.
+For non-public developer quality tooling (`npm run dev:*`), see `docs/DEV_TOOLING.md`.
 
 ## Package entry points
 
@@ -158,6 +165,7 @@ For release and smoke-install workspace conventions (including `C:\code\elementa
 - Operational guide: `docs/OPERATIONAL.md`
 - Repository workflow policies: `docs/REPO_WORKFLOWS.md`
 - Release flow: `docs/NPM_RELEASE.md`
+- Developer tooling (non-public): `docs/DEV_TOOLING.md`
 - Release notes template: `docs/RELEASE_NOTES_TEMPLATE.md`
 - Changelog: `CHANGELOG.md`
 

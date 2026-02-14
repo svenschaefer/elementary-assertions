@@ -1,4 +1,4 @@
-const { runElementaryAssertions } = require("../run");
+const { runElementaryAssertions, runFromRelations } = require("../run");
 const { validateElementaryAssertions } = require("../validate");
 const { renderElementaryAssertions } = require("../render");
 const { arg, normalizeOptionalString, parseStrictBoolean, readUtf8, writeUtf8 } = require("./io");
@@ -14,7 +14,7 @@ function loadYaml() {
 function usage() {
   return [
     "Usage:",
-    "  elementary-assertions run --text <string> | --in <path> [--out <path>] [--timeout-ms <ms>] [--wti-endpoint <url>] [--wti-timeout-ms <ms]",
+    "  elementary-assertions run --text <string> | --in <path> | --relations <path> [--out <path>] [--timeout-ms <ms>] [--wti-endpoint <url>] [--wti-timeout-ms <ms]",
     "  elementary-assertions validate --in <path>",
     "  elementary-assertions render --in <path> [--out <path>] --format <txt|md> --layout <compact|readable|table|meaning>",
   ].join("\n");
@@ -39,22 +39,32 @@ function enforceDevFlagPolicy(args) {
 function parseRunInput(args) {
   const text = arg(args, "--text");
   const inPath = arg(args, "--in");
+  const relationsPath = arg(args, "--relations");
   const hasText = typeof text === "string";
   const hasIn = typeof inPath === "string";
-  if (hasText && hasIn) throw new Error("Exactly one of --text or --in is required; both provided.");
-  if (!hasText && !hasIn) throw new Error("Exactly one of --text or --in is required; neither provided.");
-  return { text, inPath };
+  const hasRelations = typeof relationsPath === "string";
+  const inputCount = Number(hasText) + Number(hasIn) + Number(hasRelations);
+  if (inputCount > 1) throw new Error("Exactly one of --text, --in, or --relations is required; multiple provided.");
+  if (inputCount < 1) throw new Error("Exactly one of --text, --in, or --relations is required; none provided.");
+  return { text, inPath, relationsPath };
 }
 
 async function runCommand(args) {
-  const { text, inPath } = parseRunInput(args);
+  const { text, inPath, relationsPath } = parseRunInput(args);
   const outPath = arg(args, "--out");
   const timeoutMs = Number(arg(args, "--timeout-ms") || 0) || undefined;
   const wtiTimeoutMs = Number(arg(args, "--wti-timeout-ms") || 0) || undefined;
   const endpoint = normalizeOptionalString(arg(args, "--wti-endpoint") || process.env.WIKIPEDIA_TITLE_INDEX_ENDPOINT || "");
 
   let doc;
-  if (typeof text === "string") {
+  if (typeof relationsPath === "string") {
+    const yaml = loadYaml();
+    const raw = readUtf8(relationsPath, "relations input file");
+    const relationsDoc = yaml.load(raw);
+    doc = runFromRelations(relationsDoc, {
+      wtiEndpoint: endpoint,
+    });
+  } else if (typeof text === "string") {
     doc = await runElementaryAssertions(text, {
       services: { "wikipedia-title-index": { endpoint } },
       timeoutMs,

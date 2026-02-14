@@ -16,10 +16,11 @@ Upstream linguistic pipeline (`linguistic-enricher`)
 The default run path executes `linguistic-enricher` up to accepted relations (typically `relations_extracted`).
 
 Wikipedia Title Index service (WTI)  
-A WTI endpoint is required for the default run path.
+A WTI endpoint is required for the default run path (`run --text` / `run --in`).
 
 - the endpoint is passed to the upstream pipeline as `services["wikipedia-title-index"].endpoint`
 - a fail-fast `GET /health` check is performed before execution
+- positive upstream WTI evidence is required after pipeline execution (endpoint health alone is insufficient)
 - elementary-assertions performs no Wikipedia lookups itself
 - all wiki title signals are consumed as upstream evidence
 
@@ -43,6 +44,7 @@ The CLI is a thin wrapper around the library plus tooling modules.
 ### Commands
 
 - `run` - produce `elementary_assertions` output from text or file input
+- `run` also supports offline/replay from relations input (`--relations`)
 - `validate` - schema + integrity + determinism checks
 - `render` - view-only rendering (txt or md) with layouts
 
@@ -51,6 +53,7 @@ Examples:
 ```bash
 npx elementary-assertions run --text "A webshop is an online store." --wti-endpoint http://localhost:3000 --wti-timeout-ms 2000 --out out.yaml
 npx elementary-assertions run --in input.txt --wti-endpoint http://localhost:3000 --out out.yaml
+npx elementary-assertions run --relations relations.yaml --out out.yaml
 npx elementary-assertions validate --in out.yaml
 npx elementary-assertions render --in out.yaml --format md --layout table --out out.md
 ```
@@ -58,10 +61,10 @@ npx elementary-assertions render --in out.yaml --format md --layout table --out 
 ### Generic I/O flags (preferred)
 
 Run:
-- exactly one of `--text <string>` or `--in <path>` is required; providing both is an explicit error, and providing neither is an explicit error
+- exactly one of `--text <string>`, `--in <path>`, or `--relations <path>` is required; providing multiple is an explicit error, and providing none is an explicit error
 - `--out <path>` (optional, defaults to stdout)
 - `--timeout-ms <ms>` (optional)
-- `--wti-endpoint <url>` (required unless env provides it)
+- `--wti-endpoint <url>` (required unless env provides it for `--text` / `--in`; not required for `--relations`)
 - `--wti-timeout-ms <ms>` (optional, default: 2000)
 
 Validate:

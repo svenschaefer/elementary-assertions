@@ -25,7 +25,10 @@
     "test": "node --test \"test/**/*.test.js\"",
     "test:unit": "node --test \"test/unit/**/*.test.js\"",
     "test:integration": "node --test \"test/integration/**/*.test.js\"",
-    "benchmark:core": "node scripts/benchmark-run-from-relations.js"
+    "benchmark:core": "node scripts/benchmark-run-from-relations.js",
+    "dev:report:metrics": "node scripts/dev-report-metrics.js",
+    "dev:report:hotspots": "node scripts/dev-report-fragment-hotspots.js",
+    "dev:report:maturity": "node scripts/dev-report-maturity.js"
   },
   "dependencies": {
     "ajv": "^8.17.1",
