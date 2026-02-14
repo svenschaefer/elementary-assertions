@@ -312,7 +312,7 @@ Exit criteria:
 
 ## Phase 8 - Release Readiness
 
-- [ ] Ensure docs and behavior are synchronized (`README.md`, `docs/OPERATIONAL.md`, `docs/NPM_RELEASE.md`).
+- [x] Ensure docs and behavior are synchronized (`README.md`, `docs/OPERATIONAL.md`, `docs/NPM_RELEASE.md`).
 - [x] Ensure `npm test` passes consistently.
 - [x] Ensure `npm pack --dry-run` is clean and deterministic.
 - [x] Ensure docs included in packlist (`package.json` `files` includes `docs/`).

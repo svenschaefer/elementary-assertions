@@ -2,7 +2,7 @@
 
 elementary-assertions is a deterministic, auditable assertion-construction layer for Node.js.
 
-It converts accepted Step-11 linguistic relations into the first formal, assertion-centric meaning representation:
+It converts accepted relations from `linguistic-enricher` into the first formal, assertion-centric meaning representation:
 
 - predicate
 - arguments (role-based)

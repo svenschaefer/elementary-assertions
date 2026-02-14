@@ -139,4 +139,4 @@ Tooling and core MUST NOT:
 - invent missing roles or attachments
 - use model calls or probabilistic filling
 
-Step 12 is the first formal meaning layer, not final semantic normalization.
+This package is the first formal meaning layer, not final semantic normalization.

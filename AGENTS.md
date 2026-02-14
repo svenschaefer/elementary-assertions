@@ -43,7 +43,7 @@ The package MUST expose two stable entry points:
 - If `wikipedia-title-index` signals are present in the upstream data, they are consumed as upstream evidence only.
 - `runElementaryAssertions` REQUIRES a configured `wikipedia-title-index` endpoint.
 - `runFromRelations` does not require a `wikipedia-title-index` endpoint.
-- For `runElementaryAssertions`, tooling MUST perform a fail-fast health check:
+- For `runElementaryAssertions`, the library runtime MUST perform a fail-fast health check:
   - Request: `GET /health`
   - Success: HTTP 200 only
   - Timeout: 2000 ms default (tooling option `--wti-timeout-ms` may override)
