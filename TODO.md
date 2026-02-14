@@ -294,7 +294,7 @@ Exit criteria:
 
 ### Phase 7A - Coverage Preservation
 
-- [ ] Port prototype tests with minimal surgery to new module paths.
+- [x] Port prototype tests with minimal surgery to new module paths.
 - [ ] Keep behavior parity where still contract-valid.
 - [x] Validate deterministic stability over repeated runs.
 
