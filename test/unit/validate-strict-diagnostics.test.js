@@ -204,3 +204,64 @@ test("strict diagnostics enforces subject_role_gaps evidence sorting", () => {
     (err) => err instanceof ValidationError && err.code === "EA_VALIDATE_STRICT_SUBJECT_GAP_EVIDENCE_ORDER"
   );
 });
+
+test("strict diagnostics enforces suppressed assertion host/target consistency", () => {
+  const doc = buildStrictValidDoc();
+  doc.diagnostics.suppressed_assertions = [
+    {
+      id: "a-sup-1",
+      segment_id: "s1",
+      predicate: { mention_id: "m2", head_token_id: "t2" },
+      diagnostics: {
+        suppressed_by: {
+          kind: "predicate_redirect",
+          target_assertion_id: "a1",
+          reason: "role_carrier_suppressed",
+          evidence: { token_ids: ["t2", "t3"], upstream_relation_ids: [] },
+        },
+      },
+      host_assertion_id: "a404",
+      reason: "role_carrier_suppressed",
+      predicate_class: "auxiliary",
+      transferred_buckets: [],
+      transferred_mention_ids: [],
+      evidence: { token_ids: ["t2", "t3"] },
+    },
+  ];
+  assert.throws(
+    () => validateElementaryAssertions(doc, { strict: true }),
+    (err) => err instanceof ValidationError && err.code === "EA_VALIDATE_STRICT_SUPPRESSED_SEMANTICS"
+  );
+});
+
+test("strict diagnostics enforces suppressed transfer mention presence on host assertion", () => {
+  const doc = buildStrictValidDoc();
+  doc.assertions[0].arguments = [
+    { role: "theme", mention_ids: ["m3"], evidence: { relation_ids: ["r2"], token_ids: ["t2", "t3"] } },
+  ];
+  doc.diagnostics.suppressed_assertions = [
+    {
+      id: "a-sup-2",
+      segment_id: "s1",
+      predicate: { mention_id: "m2", head_token_id: "t2" },
+      diagnostics: {
+        suppressed_by: {
+          kind: "predicate_redirect",
+          target_assertion_id: "a1",
+          reason: "role_carrier_suppressed_v2_nominal",
+          evidence: { token_ids: ["t2", "t3"], upstream_relation_ids: [] },
+        },
+      },
+      host_assertion_id: "a1",
+      reason: "role_carrier_suppressed_v2_nominal",
+      predicate_class: "nominal_head",
+      transferred_buckets: ["operator:compare_gt"],
+      transferred_mention_ids: ["m404"],
+      evidence: { token_ids: ["t2", "t3"] },
+    },
+  ];
+  assert.throws(
+    () => validateElementaryAssertions(doc, { strict: true }),
+    (err) => err instanceof ValidationError && err.code === "EA_VALIDATE_STRICT_SUPPRESSED_SEMANTICS"
+  );
+});

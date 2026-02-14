@@ -695,12 +695,12 @@ Objective: non-breaking hardening of strict/dev validation depth and release-smo
 
 ### 12.2 Suppressed-Assertion Semantic Validation
 
-- [ ] Add reason-specific invariants for suppressed assertions:
-  - [ ] required head/evidence presence
-  - [ ] host <-> suppressed assertion consistency
-  - [ ] transferred bucket/mention constraints
-- [ ] Runtime validation keeps minimal safety checks.
-- [ ] Strict/dev validation enforces full semantic coherence.
+- [x] Add reason-specific invariants for suppressed assertions:
+  - [x] required head/evidence presence
+  - [x] host <-> suppressed assertion consistency
+  - [x] transferred bucket/mention constraints
+- [x] Runtime validation keeps minimal safety checks.
+- [x] Strict/dev validation enforces full semantic coherence.
 
 ### 12.3 Coverage Primary-Set Integrity
 
