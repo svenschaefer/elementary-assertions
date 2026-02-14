@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+### Added
+- Integration coverage for non-public dev report scripts:
+  - `test/integration/dev-report-scripts.test.js`
+  - validates JSON output shape for:
+    - `scripts/dev-report-metrics.js`
+    - `scripts/dev-report-fragment-hotspots.js`
+    - `scripts/dev-report-maturity.js`
+
 ## v0.1.3 - 2026-02-14
 
 ### Added

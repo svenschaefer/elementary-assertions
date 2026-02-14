@@ -8,6 +8,16 @@ It is execution-oriented, phase-gated, and contract-first.
 
 Status: Completed through Phase 9 gap-closure (as of 2026-02-14).
 
+## Post-Phase 9 Snapshot (2026-02-14)
+
+- Added integration automation for dev report scripts JSON validity:
+  - `test/integration/dev-report-scripts.test.js`
+- Coverage now asserts report shape for:
+  - `scripts/dev-report-metrics.js`
+  - `scripts/dev-report-fragment-hotspots.js`
+  - `scripts/dev-report-maturity.js`
+- Current local suite status at head: `npm test` green (`87/87`)
+
 ## Active Workstream (Phase 9 - Contract Hardening and Dev Workflow Productization)
 
 Objective: close remaining product-relevant gaps identified against prototype behavior, without expanding public API surface beyond approved contract.
