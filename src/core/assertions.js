@@ -2,7 +2,13 @@ const { sha256Hex, canonicalizeOperatorsForHash, stableObjectKey, normalizeIds, 
 const { roleToSlot, isCompareLabel, isQuantifierLabel, chooseBestMentionForToken, buildAssertionWikiSignals, isSubjectRoleLabel } = require('./mentions');
 const { buildCoordinationGroups } = require('./projection');
 const { mergeOperator } = require('./diagnostics');
-const { argumentRolePriority, modifierRolePriority, collectEntryTokenIds, canonicalizeRoleEntries } = require('./roles');
+const {
+  argumentRolePriority,
+  modifierRolePriority,
+  collectEntryTokenIds,
+  canonicalizeRoleEntries,
+  collectAssertionMentionRefs,
+} = require('./roles');
 
 function isVerbPosTag(tag) {
   return typeof tag === 'string' && /^VB/.test(tag);
@@ -190,18 +196,6 @@ function assertionHasBlockingOperators(assertion) {
     const kind = String((op && op.kind) || '');
     return kind === 'modality' || kind === 'negation' || kind === 'coordination_group';
   });
-}
-
-function collectAssertionMentionRefs(assertion) {
-  const roleBuckets = assertionRoleBuckets(assertion);
-  const refs = new Set();
-  for (const key of ['actor', 'theme', 'attr', 'topic', 'location']) {
-    for (const id of roleBuckets[key] || []) refs.add(id);
-  }
-  for (const entry of roleBuckets.other || []) {
-    for (const id of entry.mention_ids || []) refs.add(id);
-  }
-  return refs;
 }
 
 function addToOtherSlot(host, role, mentionIds, mentionById) {
