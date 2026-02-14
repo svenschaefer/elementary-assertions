@@ -1,14 +1,8 @@
 const { deepCloneJson, sha256Hex, normalizeIds } = require('./determinism');
 const { chooseBestMentionForToken, compareMentionProjectionPriority, mentionHasLexiconEvidence } = require('./mentions');
 const { annotationHasSource, collectStep11Relations } = require('./upstream');
+const { getTokenWikipediaEvidence } = require('./tokens');
 const { getMweHeadEvidence, getMweLexiconEvidence } = require('./mention-materialization');
-
-function getTokenWikipediaEvidence(token) {
-  if (!token || !token.lexicon || typeof token.lexicon !== 'object') return null;
-  const ev = token.lexicon.wikipedia_title_index;
-  if (!ev || typeof ev !== 'object') return null;
-  return deepCloneJson(ev);
-}
 
 function buildTokenWikiById(relationsSeed) {
   const out = new Map();
