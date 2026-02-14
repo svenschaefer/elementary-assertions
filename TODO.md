@@ -8,6 +8,18 @@ It is execution-oriented, phase-gated, and contract-first.
 
 Status: Completed through Phase 8 and post-phase helper deduplication (as of 2026-02-14).
 
+## Release Execution Snapshot (2026-02-14)
+
+- Released version: `v0.1.0`
+- Release commit: `d7b9eff643e3c118d32b9c3571597dea2388f98e`
+- Annotated tag: `v0.1.0` (pushed)
+- Smoke workspaces (clean installs, version + reason naming):
+  - `C:\code\elementary-assertions-smoke-test\v0.1.0-pretag-smoke-20260214-155509`
+  - `C:\code\elementary-assertions-smoke-test\v0.1.0-posttag-smoke-20260214-155534`
+- Rendered smoke outputs were generated in both folders under:
+  - `rendered\*.compact.txt`
+  - `rendered\*.table.md`
+
 ## Scope and Goal
 
 Build a production Node.js package with stable CommonJS APIs:
