@@ -79,8 +79,13 @@ npm pack
 
 Create a clean workspace and install from the commit hash you intend to tag:
 
+Smoke workspace rule:
+- Use `C:\code\elementary-assertions-smoke-test\`.
+- Create one folder per clean install.
+- Folder name MUST include the target version and the reason for the install (for example `v1.2.3-pretag-smoke-20260214-113000`).
+
 ```powershell
-$SmokeRoot = "C:\code\elementary-assertions-smoke\pretag-$(Get-Date -Format yyyyMMdd-HHmmss)"
+$SmokeRoot = "C:\code\elementary-assertions-smoke-test\vX.Y.Z-pretag-smoke-$(Get-Date -Format yyyyMMdd-HHmmss)"
 New-Item -ItemType Directory -Path $SmokeRoot -Force | Out-Null
 Set-Location $SmokeRoot
 npm init -y | Out-Null
@@ -129,7 +134,7 @@ git push origin vX.Y.Z
 ## 8) Post-tag verification (install from tag)
 
 ```powershell
-$SmokeRoot = "C:\code\elementary-assertions-smoke\tag-$(Get-Date -Format yyyyMMdd-HHmmss)"
+$SmokeRoot = "C:\code\elementary-assertions-smoke-test\vX.Y.Z-posttag-smoke-$(Get-Date -Format yyyyMMdd-HHmmss)"
 New-Item -ItemType Directory -Path $SmokeRoot -Force | Out-Null
 Set-Location $SmokeRoot
 npm init -y | Out-Null
