@@ -1,4 +1,5 @@
 const crypto = require("crypto");
+const { normalizeIds } = require("./ids");
 
 function sha256Hex(text) {
   return crypto.createHash("sha256").update(Buffer.from(String(text || ""), "utf8")).digest("hex");
@@ -11,10 +12,6 @@ function findSelector(annotation, type) {
 
 function normalizeSpanKey(span) {
   return `${span.start}-${span.end}`;
-}
-
-function normalizeIds(ids) {
-  return Array.from(new Set(Array.isArray(ids) ? ids : [])).sort();
 }
 
 function canonicalizeSlotObject(slots) {
