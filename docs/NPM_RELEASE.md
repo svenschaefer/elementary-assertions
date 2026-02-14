@@ -25,6 +25,7 @@ A release is defined by:
 ## Packaging rule for Git dependencies
 
 Even though installs come from Git, the repository MUST remain a valid Node package.
+Golden baseline freeze metadata is maintained in `test/artifacts/README.md`.
 
 - `npm pack --dry-run` MUST succeed.
 - `package.json` `files` is the primary packlist control.
@@ -95,6 +96,10 @@ npm ls elementary-assertions
 If the smoke test exercises `runElementaryAssertions`, also ensure the environment provides whatever endpoint configuration your CLI/tooling expects for `wikipedia-title-index`.
 
 ## 6) Commit + merge to main
+
+Safeguard: `prototype/` is a junction. `git add -A` will stage changes from the junction target.
+For release commits, prefer explicit staging paths to avoid unintended additions, for example:
+`git add src docs test package.json`.
 
 ```powershell
 Set-Location C:\code\elementary-assertions

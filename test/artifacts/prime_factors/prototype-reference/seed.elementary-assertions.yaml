@@ -1,0 +1,7141 @@
+schema_version: 1.0.0
+seed_id: seed
+stage: elementary_assertions
+index_basis:
+  text_field: canonical_text
+  span_unit: utf16_code_units
+canonical_text: |
+  Prime factorization decomposes a positive integer into a set of prime numbers.
+  Each factor must be prime, and their product must equal the original number.
+  The process typically starts with the smallest prime factor and continues iteratively.
+  Prime factorization is commonly used in number theory and cryptography.
+segments:
+  - id: s1
+    span:
+      start: 0
+      end: 78
+    token_range:
+      start: 0
+      end: 13
+  - id: s2
+    span:
+      start: 79
+      end: 155
+    token_range:
+      start: 13
+      end: 28
+  - id: s3
+    span:
+      start: 156
+      end: 242
+    token_range:
+      start: 28
+      end: 41
+  - id: s4
+    span:
+      start: 243
+      end: 314
+    token_range:
+      start: 41
+      end: 52
+tokens:
+  - id: t1
+    i: 0
+    segment_id: s1
+    span:
+      start: 0
+      end: 5
+    surface: Prime
+    pos:
+      tag: NNP
+      coarse: NOUN
+    normalized: prime
+    flags:
+      is_punct: false
+      is_space: false
+      is_stop: false
+    joiner:
+      pre: ""
+      post: ""
+    lexicon:
+      wikipedia_title_index:
+        wiki_exact_match: true
+        wiki_prefix_count: 100
+        wiki_parenthetical_variant_count: 57
+        wiki_hyphen_space_variant_match: false
+        wiki_apostrophe_variant_match: false
+        wiki_singular_plural_variant_match: false
+        wiki_any_signal: true
+  - id: t2
+    i: 1
+    segment_id: s1
+    span:
+      start: 6
+      end: 19
+    surface: factorization
+    pos:
+      tag: NN
+      coarse: NOUN
+    normalized: factorization
+    flags:
+      is_punct: false
+      is_space: false
+      is_stop: false
+    joiner:
+      pre: ""
+      post: ""
+    lexicon:
+      wikipedia_title_index:
+        wiki_exact_match: true
+        wiki_prefix_count: 18
+        wiki_parenthetical_variant_count: 0
+        wiki_hyphen_space_variant_match: false
+        wiki_apostrophe_variant_match: false
+        wiki_singular_plural_variant_match: false
+        wiki_any_signal: true
+  - id: t3
+    i: 2
+    segment_id: s1
+    span:
+      start: 20
+      end: 30
+    surface: decomposes
+    pos:
+      tag: VBZ
+      coarse: VERB
+    normalized: decomposes
+    flags:
+      is_punct: false
+      is_space: false
+      is_stop: false
+    joiner:
+      pre: ""
+      post: ""
+  - id: t4
+    i: 3
+    segment_id: s1
+    span:
+      start: 31
+      end: 32
+    surface: a
+    pos:
+      tag: DT
+      coarse: DET
+    normalized: a
+    flags:
+      is_punct: false
+      is_space: false
+      is_stop: false
+    joiner:
+      pre: ""
+      post: ""
+    lexicon:
+      wikipedia_title_index:
+        wiki_exact_match: true
+        wiki_prefix_count: 100
+        wiki_parenthetical_variant_count: 33
+        wiki_hyphen_space_variant_match: false
+        wiki_apostrophe_variant_match: false
+        wiki_singular_plural_variant_match: false
+        wiki_any_signal: true
+  - id: t5
+    i: 4
+    segment_id: s1
+    span:
+      start: 33
+      end: 41
+    surface: positive
+    pos:
+      tag: JJ
+      coarse: ADJ
+    normalized: positive
+    flags:
+      is_punct: false
+      is_space: false
+      is_stop: false
+    joiner:
+      pre: ""
+      post: ""
+    lexicon:
+      wikipedia_title_index:
+        wiki_exact_match: true
+        wiki_prefix_count: 100
+        wiki_parenthetical_variant_count: 29
+        wiki_hyphen_space_variant_match: false
+        wiki_apostrophe_variant_match: false
+        wiki_singular_plural_variant_match: false
+        wiki_any_signal: true
+  - id: t6
+    i: 5
+    segment_id: s1
+    span:
+      start: 42
+      end: 49
+    surface: integer
+    pos:
+      tag: NN
+      coarse: NOUN
+    normalized: integer
+    flags:
+      is_punct: false
+      is_space: false
+      is_stop: false
+    joiner:
+      pre: ""
+      post: ""
+    lexicon:
+      wikipedia_title_index:
+        wiki_exact_match: true
+        wiki_prefix_count: 100
+        wiki_parenthetical_variant_count: 3
+        wiki_hyphen_space_variant_match: false
+        wiki_apostrophe_variant_match: false
+        wiki_singular_plural_variant_match: false
+        wiki_any_signal: true
+  - id: t7
+    i: 6
+    segment_id: s1
+    span:
+      start: 50
+      end: 54
+    surface: into
+    pos:
+      tag: IN
+      coarse: ADP
+    normalized: into
+    flags:
+      is_punct: false
+      is_space: false
+      is_stop: false
+    joiner:
+      pre: ""
+      post: ""
+    lexicon:
+      wikipedia_title_index:
+        wiki_exact_match: true
+        wiki_prefix_count: 100
+        wiki_parenthetical_variant_count: 34
+        wiki_hyphen_space_variant_match: false
+        wiki_apostrophe_variant_match: false
+        wiki_singular_plural_variant_match: false
+        wiki_any_signal: true
+  - id: t8
+    i: 7
+    segment_id: s1
+    span:
+      start: 55
+      end: 56
+    surface: a
+    pos:
+      tag: DT
+      coarse: DET
+    normalized: a
+    flags:
+      is_punct: false
+      is_space: false
+      is_stop: false
+    joiner:
+      pre: ""
+      post: ""
+    lexicon:
+      wikipedia_title_index:
+        wiki_exact_match: true
+        wiki_prefix_count: 100
+        wiki_parenthetical_variant_count: 33
+        wiki_hyphen_space_variant_match: false
+        wiki_apostrophe_variant_match: false
+        wiki_singular_plural_variant_match: false
+        wiki_any_signal: true
+  - id: t9
+    i: 8
+    segment_id: s1
+    span:
+      start: 57
+      end: 60
+    surface: set
+    pos:
+      tag: NN
+      coarse: NOUN
+    normalized: set
+    flags:
+      is_punct: false
+      is_space: false
+      is_stop: false
+    joiner:
+      pre: ""
+      post: ""
+    lexicon:
+      wikipedia_title_index:
+        wiki_exact_match: true
+        wiki_prefix_count: 100
+        wiki_parenthetical_variant_count: 20
+        wiki_hyphen_space_variant_match: false
+        wiki_apostrophe_variant_match: false
+        wiki_singular_plural_variant_match: false
+        wiki_any_signal: true
+  - id: t10
+    i: 9
+    segment_id: s1
+    span:
+      start: 61
+      end: 63
+    surface: of
+    pos:
+      tag: IN
+      coarse: ADP
+    normalized: of
+    flags:
+      is_punct: false
+      is_space: false
+      is_stop: false
+    joiner:
+      pre: ""
+      post: ""
+    lexicon:
+      wikipedia_title_index:
+        wiki_exact_match: true
+        wiki_prefix_count: 100
+        wiki_parenthetical_variant_count: 12
+        wiki_hyphen_space_variant_match: false
+        wiki_apostrophe_variant_match: false
+        wiki_singular_plural_variant_match: false
+        wiki_any_signal: true
+  - id: t11
+    i: 10
+    segment_id: s1
+    span:
+      start: 64
+      end: 69
+    surface: prime
+    pos:
+      tag: JJ
+      coarse: ADJ
+    normalized: prime
+    flags:
+      is_punct: false
+      is_space: false
+      is_stop: false
+    joiner:
+      pre: ""
+      post: ""
+    lexicon:
+      wikipedia_title_index:
+        wiki_exact_match: true
+        wiki_prefix_count: 100
+        wiki_parenthetical_variant_count: 57
+        wiki_hyphen_space_variant_match: false
+        wiki_apostrophe_variant_match: false
+        wiki_singular_plural_variant_match: false
+        wiki_any_signal: true
+  - id: t12
+    i: 11
+    segment_id: s1
+    span:
+      start: 70
+      end: 77
+    surface: numbers
+    pos:
+      tag: NNS
+      coarse: NOUN
+    normalized: numbers
+    flags:
+      is_punct: false
+      is_space: false
+      is_stop: false
+    joiner:
+      pre: ""
+      post: ""
+    lexicon:
+      wikipedia_title_index:
+        wiki_exact_match: true
+        wiki_prefix_count: 100
+        wiki_parenthetical_variant_count: 43
+        wiki_hyphen_space_variant_match: false
+        wiki_apostrophe_variant_match: false
+        wiki_singular_plural_variant_match: false
+        wiki_any_signal: true
+  - id: t13
+    i: 12
+    segment_id: s1
+    span:
+      start: 77
+      end: 78
+    surface: .
+    pos:
+      tag: .
+      coarse: PUNCT
+    normalized: .
+    flags:
+      is_punct: true
+      is_space: false
+      is_stop: false
+    joiner:
+      pre: ""
+      post: ""
+  - id: t14
+    i: 13
+    segment_id: s2
+    span:
+      start: 79
+      end: 83
+    surface: Each
+    pos:
+      tag: DT
+      coarse: DET
+    normalized: each
+    flags:
+      is_punct: false
+      is_space: false
+      is_stop: false
+    joiner:
+      pre: ""
+      post: ""
+    lexicon:
+      wikipedia_title_index:
+        wiki_exact_match: true
+        wiki_prefix_count: 100
+        wiki_parenthetical_variant_count: 23
+        wiki_hyphen_space_variant_match: false
+        wiki_apostrophe_variant_match: false
+        wiki_singular_plural_variant_match: false
+        wiki_any_signal: true
+  - id: t15
+    i: 14
+    segment_id: s2
+    span:
+      start: 84
+      end: 90
+    surface: factor
+    pos:
+      tag: NN
+      coarse: NOUN
+    normalized: factor
+    flags:
+      is_punct: false
+      is_space: false
+      is_stop: false
+    joiner:
+      pre: ""
+      post: ""
+    lexicon:
+      wikipedia_title_index:
+        wiki_exact_match: true
+        wiki_prefix_count: 100
+        wiki_parenthetical_variant_count: 27
+        wiki_hyphen_space_variant_match: false
+        wiki_apostrophe_variant_match: false
+        wiki_singular_plural_variant_match: false
+        wiki_any_signal: true
+  - id: t16
+    i: 15
+    segment_id: s2
+    span:
+      start: 91
+      end: 95
+    surface: must
+    pos:
+      tag: MD
+      coarse: VERB
+    normalized: must
+    flags:
+      is_punct: false
+      is_space: false
+      is_stop: false
+    joiner:
+      pre: ""
+      post: ""
+    lexicon:
+      wikipedia_title_index:
+        wiki_exact_match: true
+        wiki_prefix_count: 100
+        wiki_parenthetical_variant_count: 46
+        wiki_hyphen_space_variant_match: false
+        wiki_apostrophe_variant_match: false
+        wiki_singular_plural_variant_match: false
+        wiki_any_signal: true
+  - id: t17
+    i: 16
+    segment_id: s2
+    span:
+      start: 96
+      end: 98
+    surface: be
+    pos:
+      tag: VB
+      coarse: VERB
+    normalized: be
+    flags:
+      is_punct: false
+      is_space: false
+      is_stop: false
+    joiner:
+      pre: ""
+      post: ""
+    lexicon:
+      wikipedia_title_index:
+        wiki_exact_match: true
+        wiki_prefix_count: 100
+        wiki_parenthetical_variant_count: 13
+        wiki_hyphen_space_variant_match: false
+        wiki_apostrophe_variant_match: false
+        wiki_singular_plural_variant_match: false
+        wiki_any_signal: true
+  - id: t18
+    i: 17
+    segment_id: s2
+    span:
+      start: 99
+      end: 104
+    surface: prime
+    pos:
+      tag: JJ
+      coarse: ADJ
+    normalized: prime
+    flags:
+      is_punct: false
+      is_space: false
+      is_stop: false
+    joiner:
+      pre: ""
+      post: ""
+    lexicon:
+      wikipedia_title_index:
+        wiki_exact_match: true
+        wiki_prefix_count: 100
+        wiki_parenthetical_variant_count: 57
+        wiki_hyphen_space_variant_match: false
+        wiki_apostrophe_variant_match: false
+        wiki_singular_plural_variant_match: false
+        wiki_any_signal: true
+  - id: t19
+    i: 18
+    segment_id: s2
+    span:
+      start: 104
+      end: 105
+    surface: ","
+    pos:
+      tag: ","
+      coarse: PUNCT
+    normalized: ","
+    flags:
+      is_punct: true
+      is_space: false
+      is_stop: false
+    joiner:
+      pre: ""
+      post: ""
+  - id: t20
+    i: 19
+    segment_id: s2
+    span:
+      start: 106
+      end: 109
+    surface: and
+    pos:
+      tag: CC
+      coarse: CONJ
+    normalized: and
+    flags:
+      is_punct: false
+      is_space: false
+      is_stop: false
+    joiner:
+      pre: ""
+      post: ""
+    lexicon:
+      wikipedia_title_index:
+        wiki_exact_match: true
+        wiki_prefix_count: 100
+        wiki_parenthetical_variant_count: 20
+        wiki_hyphen_space_variant_match: false
+        wiki_apostrophe_variant_match: false
+        wiki_singular_plural_variant_match: false
+        wiki_any_signal: true
+  - id: t21
+    i: 20
+    segment_id: s2
+    span:
+      start: 110
+      end: 115
+    surface: their
+    pos:
+      tag: PRP$
+      coarse: PRON
+    normalized: their
+    flags:
+      is_punct: false
+      is_space: false
+      is_stop: false
+    joiner:
+      pre: ""
+      post: ""
+    lexicon:
+      wikipedia_title_index:
+        wiki_exact_match: true
+        wiki_prefix_count: 100
+        wiki_parenthetical_variant_count: 15
+        wiki_hyphen_space_variant_match: false
+        wiki_apostrophe_variant_match: false
+        wiki_singular_plural_variant_match: false
+        wiki_any_signal: true
+  - id: t22
+    i: 21
+    segment_id: s2
+    span:
+      start: 116
+      end: 123
+    surface: product
+    pos:
+      tag: NN
+      coarse: NOUN
+    normalized: product
+    flags:
+      is_punct: false
+      is_space: false
+      is_stop: false
+    joiner:
+      pre: ""
+      post: ""
+    lexicon:
+      wikipedia_title_index:
+        wiki_exact_match: true
+        wiki_prefix_count: 100
+        wiki_parenthetical_variant_count: 30
+        wiki_hyphen_space_variant_match: false
+        wiki_apostrophe_variant_match: false
+        wiki_singular_plural_variant_match: false
+        wiki_any_signal: true
+  - id: t23
+    i: 22
+    segment_id: s2
+    span:
+      start: 124
+      end: 128
+    surface: must
+    pos:
+      tag: MD
+      coarse: VERB
+    normalized: must
+    flags:
+      is_punct: false
+      is_space: false
+      is_stop: false
+    joiner:
+      pre: ""
+      post: ""
+    lexicon:
+      wikipedia_title_index:
+        wiki_exact_match: true
+        wiki_prefix_count: 100
+        wiki_parenthetical_variant_count: 46
+        wiki_hyphen_space_variant_match: false
+        wiki_apostrophe_variant_match: false
+        wiki_singular_plural_variant_match: false
+        wiki_any_signal: true
+  - id: t24
+    i: 23
+    segment_id: s2
+    span:
+      start: 129
+      end: 134
+    surface: equal
+    pos:
+      tag: VB
+      coarse: VERB
+    normalized: equal
+    flags:
+      is_punct: false
+      is_space: false
+      is_stop: false
+    joiner:
+      pre: ""
+      post: ""
+    lexicon:
+      wikipedia_title_index:
+        wiki_exact_match: true
+        wiki_prefix_count: 100
+        wiki_parenthetical_variant_count: 19
+        wiki_hyphen_space_variant_match: false
+        wiki_apostrophe_variant_match: false
+        wiki_singular_plural_variant_match: false
+        wiki_any_signal: true
+  - id: t25
+    i: 24
+    segment_id: s2
+    span:
+      start: 135
+      end: 138
+    surface: the
+    pos:
+      tag: DT
+      coarse: DET
+    normalized: the
+    flags:
+      is_punct: false
+      is_space: false
+      is_stop: false
+    joiner:
+      pre: ""
+      post: ""
+    lexicon:
+      wikipedia_title_index:
+        wiki_exact_match: true
+        wiki_prefix_count: 100
+        wiki_parenthetical_variant_count: 19
+        wiki_hyphen_space_variant_match: false
+        wiki_apostrophe_variant_match: false
+        wiki_singular_plural_variant_match: false
+        wiki_any_signal: true
+  - id: t26
+    i: 25
+    segment_id: s2
+    span:
+      start: 139
+      end: 147
+    surface: original
+    pos:
+      tag: JJ
+      coarse: ADJ
+    normalized: original
+    flags:
+      is_punct: false
+      is_space: false
+      is_stop: false
+    joiner:
+      pre: ""
+      post: ""
+    lexicon:
+      wikipedia_title_index:
+        wiki_exact_match: true
+        wiki_prefix_count: 100
+        wiki_parenthetical_variant_count: 30
+        wiki_hyphen_space_variant_match: false
+        wiki_apostrophe_variant_match: false
+        wiki_singular_plural_variant_match: false
+        wiki_any_signal: true
+  - id: t27
+    i: 26
+    segment_id: s2
+    span:
+      start: 148
+      end: 154
+    surface: number
+    pos:
+      tag: NN
+      coarse: NOUN
+    normalized: number
+    flags:
+      is_punct: false
+      is_space: false
+      is_stop: false
+    joiner:
+      pre: ""
+      post: ""
+    lexicon:
+      wikipedia_title_index:
+        wiki_exact_match: true
+        wiki_prefix_count: 100
+        wiki_parenthetical_variant_count: 42
+        wiki_hyphen_space_variant_match: false
+        wiki_apostrophe_variant_match: false
+        wiki_singular_plural_variant_match: false
+        wiki_any_signal: true
+  - id: t28
+    i: 27
+    segment_id: s2
+    span:
+      start: 154
+      end: 155
+    surface: .
+    pos:
+      tag: .
+      coarse: PUNCT
+    normalized: .
+    flags:
+      is_punct: true
+      is_space: false
+      is_stop: false
+    joiner:
+      pre: ""
+      post: ""
+  - id: t29
+    i: 28
+    segment_id: s3
+    span:
+      start: 156
+      end: 159
+    surface: The
+    pos:
+      tag: DT
+      coarse: DET
+    normalized: the
+    flags:
+      is_punct: false
+      is_space: false
+      is_stop: false
+    joiner:
+      pre: ""
+      post: ""
+    lexicon:
+      wikipedia_title_index:
+        wiki_exact_match: true
+        wiki_prefix_count: 100
+        wiki_parenthetical_variant_count: 19
+        wiki_hyphen_space_variant_match: false
+        wiki_apostrophe_variant_match: false
+        wiki_singular_plural_variant_match: false
+        wiki_any_signal: true
+  - id: t30
+    i: 29
+    segment_id: s3
+    span:
+      start: 160
+      end: 167
+    surface: process
+    pos:
+      tag: NN
+      coarse: NOUN
+    normalized: process
+    flags:
+      is_punct: false
+      is_space: false
+      is_stop: false
+    joiner:
+      pre: ""
+      post: ""
+    lexicon:
+      wikipedia_title_index:
+        wiki_exact_match: true
+        wiki_prefix_count: 100
+        wiki_parenthetical_variant_count: 45
+        wiki_hyphen_space_variant_match: false
+        wiki_apostrophe_variant_match: false
+        wiki_singular_plural_variant_match: false
+        wiki_any_signal: true
+  - id: t31
+    i: 30
+    segment_id: s3
+    span:
+      start: 168
+      end: 177
+    surface: typically
+    pos:
+      tag: RB
+      coarse: ADV
+    normalized: typically
+    flags:
+      is_punct: false
+      is_space: false
+      is_stop: false
+    joiner:
+      pre: ""
+      post: ""
+    lexicon:
+      wikipedia_title_index:
+        wiki_exact_match: true
+        wiki_prefix_count: 2
+        wiki_parenthetical_variant_count: 0
+        wiki_hyphen_space_variant_match: false
+        wiki_apostrophe_variant_match: false
+        wiki_singular_plural_variant_match: false
+        wiki_any_signal: true
+  - id: t32
+    i: 31
+    segment_id: s3
+    span:
+      start: 178
+      end: 184
+    surface: starts
+    pos:
+      tag: VBZ
+      coarse: VERB
+    normalized: starts
+    flags:
+      is_punct: false
+      is_space: false
+      is_stop: false
+    joiner:
+      pre: ""
+      post: ""
+    lexicon:
+      wikipedia_title_index:
+        wiki_exact_match: true
+        wiki_prefix_count: 22
+        wiki_parenthetical_variant_count: 2
+        wiki_hyphen_space_variant_match: false
+        wiki_apostrophe_variant_match: false
+        wiki_singular_plural_variant_match: false
+        wiki_any_signal: true
+  - id: t33
+    i: 32
+    segment_id: s3
+    span:
+      start: 185
+      end: 189
+    surface: with
+    pos:
+      tag: IN
+      coarse: ADP
+    normalized: with
+    flags:
+      is_punct: false
+      is_space: false
+      is_stop: false
+    joiner:
+      pre: ""
+      post: ""
+    lexicon:
+      wikipedia_title_index:
+        wiki_exact_match: true
+        wiki_prefix_count: 100
+        wiki_parenthetical_variant_count: 45
+        wiki_hyphen_space_variant_match: false
+        wiki_apostrophe_variant_match: false
+        wiki_singular_plural_variant_match: false
+        wiki_any_signal: true
+  - id: t34
+    i: 33
+    segment_id: s3
+    span:
+      start: 190
+      end: 193
+    surface: the
+    pos:
+      tag: DT
+      coarse: DET
+    normalized: the
+    flags:
+      is_punct: false
+      is_space: false
+      is_stop: false
+    joiner:
+      pre: ""
+      post: ""
+    lexicon:
+      wikipedia_title_index:
+        wiki_exact_match: true
+        wiki_prefix_count: 100
+        wiki_parenthetical_variant_count: 19
+        wiki_hyphen_space_variant_match: false
+        wiki_apostrophe_variant_match: false
+        wiki_singular_plural_variant_match: false
+        wiki_any_signal: true
+  - id: t35
+    i: 34
+    segment_id: s3
+    span:
+      start: 194
+      end: 202
+    surface: smallest
+    pos:
+      tag: JJS
+      coarse: ADJ
+    normalized: smallest
+    flags:
+      is_punct: false
+      is_space: false
+      is_stop: false
+    joiner:
+      pre: ""
+      post: ""
+    lexicon:
+      wikipedia_title_index:
+        wiki_exact_match: true
+        wiki_prefix_count: 77
+        wiki_parenthetical_variant_count: 3
+        wiki_hyphen_space_variant_match: false
+        wiki_apostrophe_variant_match: false
+        wiki_singular_plural_variant_match: false
+        wiki_any_signal: true
+  - id: t36
+    i: 35
+    segment_id: s3
+    span:
+      start: 203
+      end: 208
+    surface: prime
+    pos:
+      tag: JJ
+      coarse: ADJ
+    normalized: prime
+    flags:
+      is_punct: false
+      is_space: false
+      is_stop: false
+    joiner:
+      pre: ""
+      post: ""
+    lexicon:
+      wikipedia_title_index:
+        wiki_exact_match: true
+        wiki_prefix_count: 100
+        wiki_parenthetical_variant_count: 57
+        wiki_hyphen_space_variant_match: false
+        wiki_apostrophe_variant_match: false
+        wiki_singular_plural_variant_match: false
+        wiki_any_signal: true
+  - id: t37
+    i: 36
+    segment_id: s3
+    span:
+      start: 209
+      end: 215
+    surface: factor
+    pos:
+      tag: NN
+      coarse: NOUN
+    normalized: factor
+    flags:
+      is_punct: false
+      is_space: false
+      is_stop: false
+    joiner:
+      pre: ""
+      post: ""
+    lexicon:
+      wikipedia_title_index:
+        wiki_exact_match: true
+        wiki_prefix_count: 100
+        wiki_parenthetical_variant_count: 27
+        wiki_hyphen_space_variant_match: false
+        wiki_apostrophe_variant_match: false
+        wiki_singular_plural_variant_match: false
+        wiki_any_signal: true
+  - id: t38
+    i: 37
+    segment_id: s3
+    span:
+      start: 216
+      end: 219
+    surface: and
+    pos:
+      tag: CC
+      coarse: CONJ
+    normalized: and
+    flags:
+      is_punct: false
+      is_space: false
+      is_stop: false
+    joiner:
+      pre: ""
+      post: ""
+    lexicon:
+      wikipedia_title_index:
+        wiki_exact_match: true
+        wiki_prefix_count: 100
+        wiki_parenthetical_variant_count: 20
+        wiki_hyphen_space_variant_match: false
+        wiki_apostrophe_variant_match: false
+        wiki_singular_plural_variant_match: false
+        wiki_any_signal: true
+  - id: t39
+    i: 38
+    segment_id: s3
+    span:
+      start: 220
+      end: 229
+    surface: continues
+    pos:
+      tag: VBZ
+      coarse: VERB
+    normalized: continues
+    flags:
+      is_punct: false
+      is_space: false
+      is_stop: false
+    joiner:
+      pre: ""
+      post: ""
+    lexicon:
+      wikipedia_title_index:
+        wiki_exact_match: true
+        wiki_prefix_count: 4
+        wiki_parenthetical_variant_count: 2
+        wiki_hyphen_space_variant_match: false
+        wiki_apostrophe_variant_match: false
+        wiki_singular_plural_variant_match: false
+        wiki_any_signal: true
+  - id: t40
+    i: 39
+    segment_id: s3
+    span:
+      start: 230
+      end: 241
+    surface: iteratively
+    pos:
+      tag: NNP
+      coarse: NOUN
+    normalized: iteratively
+    flags:
+      is_punct: false
+      is_space: false
+      is_stop: false
+    joiner:
+      pre: ""
+      post: ""
+    lexicon:
+      wikipedia_title_index:
+        wiki_exact_match: true
+        wiki_prefix_count: 4
+        wiki_parenthetical_variant_count: 0
+        wiki_hyphen_space_variant_match: false
+        wiki_apostrophe_variant_match: false
+        wiki_singular_plural_variant_match: false
+        wiki_any_signal: true
+  - id: t41
+    i: 40
+    segment_id: s3
+    span:
+      start: 241
+      end: 242
+    surface: .
+    pos:
+      tag: .
+      coarse: PUNCT
+    normalized: .
+    flags:
+      is_punct: true
+      is_space: false
+      is_stop: false
+    joiner:
+      pre: ""
+      post: ""
+  - id: t42
+    i: 41
+    segment_id: s4
+    span:
+      start: 243
+      end: 248
+    surface: Prime
+    pos:
+      tag: NNP
+      coarse: NOUN
+    normalized: prime
+    flags:
+      is_punct: false
+      is_space: false
+      is_stop: false
+    joiner:
+      pre: ""
+      post: ""
+    lexicon:
+      wikipedia_title_index:
+        wiki_exact_match: true
+        wiki_prefix_count: 100
+        wiki_parenthetical_variant_count: 57
+        wiki_hyphen_space_variant_match: false
+        wiki_apostrophe_variant_match: false
+        wiki_singular_plural_variant_match: false
+        wiki_any_signal: true
+  - id: t43
+    i: 42
+    segment_id: s4
+    span:
+      start: 249
+      end: 262
+    surface: factorization
+    pos:
+      tag: NN
+      coarse: NOUN
+    normalized: factorization
+    flags:
+      is_punct: false
+      is_space: false
+      is_stop: false
+    joiner:
+      pre: ""
+      post: ""
+    lexicon:
+      wikipedia_title_index:
+        wiki_exact_match: true
+        wiki_prefix_count: 18
+        wiki_parenthetical_variant_count: 0
+        wiki_hyphen_space_variant_match: false
+        wiki_apostrophe_variant_match: false
+        wiki_singular_plural_variant_match: false
+        wiki_any_signal: true
+  - id: t44
+    i: 43
+    segment_id: s4
+    span:
+      start: 263
+      end: 265
+    surface: is
+    pos:
+      tag: VBZ
+      coarse: VERB
+    normalized: is
+    flags:
+      is_punct: false
+      is_space: false
+      is_stop: false
+    joiner:
+      pre: ""
+      post: ""
+    lexicon:
+      wikipedia_title_index:
+        wiki_exact_match: true
+        wiki_prefix_count: 100
+        wiki_parenthetical_variant_count: 5
+        wiki_hyphen_space_variant_match: false
+        wiki_apostrophe_variant_match: false
+        wiki_singular_plural_variant_match: false
+        wiki_any_signal: true
+  - id: t45
+    i: 44
+    segment_id: s4
+    span:
+      start: 266
+      end: 274
+    surface: commonly
+    pos:
+      tag: RB
+      coarse: ADV
+    normalized: commonly
+    flags:
+      is_punct: false
+      is_space: false
+      is_stop: false
+    joiner:
+      pre: ""
+      post: ""
+    lexicon:
+      wikipedia_title_index:
+        wiki_exact_match: true
+        wiki_prefix_count: 22
+        wiki_parenthetical_variant_count: 0
+        wiki_hyphen_space_variant_match: false
+        wiki_apostrophe_variant_match: false
+        wiki_singular_plural_variant_match: false
+        wiki_any_signal: true
+  - id: t46
+    i: 45
+    segment_id: s4
+    span:
+      start: 275
+      end: 279
+    surface: used
+    pos:
+      tag: VBN
+      coarse: VERB
+    normalized: used
+    flags:
+      is_punct: false
+      is_space: false
+      is_stop: false
+    joiner:
+      pre: ""
+      post: ""
+    lexicon:
+      wikipedia_title_index:
+        wiki_exact_match: true
+        wiki_prefix_count: 100
+        wiki_parenthetical_variant_count: 25
+        wiki_hyphen_space_variant_match: false
+        wiki_apostrophe_variant_match: false
+        wiki_singular_plural_variant_match: false
+        wiki_any_signal: true
+  - id: t47
+    i: 46
+    segment_id: s4
+    span:
+      start: 280
+      end: 282
+    surface: in
+    pos:
+      tag: IN
+      coarse: ADP
+    normalized: in
+    flags:
+      is_punct: false
+      is_space: false
+      is_stop: false
+    joiner:
+      pre: ""
+      post: ""
+    lexicon:
+      wikipedia_title_index:
+        wiki_exact_match: true
+        wiki_prefix_count: 100
+        wiki_parenthetical_variant_count: 14
+        wiki_hyphen_space_variant_match: false
+        wiki_apostrophe_variant_match: false
+        wiki_singular_plural_variant_match: false
+        wiki_any_signal: true
+  - id: t48
+    i: 47
+    segment_id: s4
+    span:
+      start: 283
+      end: 289
+    surface: number
+    pos:
+      tag: NN
+      coarse: NOUN
+    normalized: number
+    flags:
+      is_punct: false
+      is_space: false
+      is_stop: false
+    joiner:
+      pre: ""
+      post: ""
+    lexicon:
+      wikipedia_title_index:
+        wiki_exact_match: true
+        wiki_prefix_count: 100
+        wiki_parenthetical_variant_count: 42
+        wiki_hyphen_space_variant_match: false
+        wiki_apostrophe_variant_match: false
+        wiki_singular_plural_variant_match: false
+        wiki_any_signal: true
+  - id: t49
+    i: 48
+    segment_id: s4
+    span:
+      start: 290
+      end: 296
+    surface: theory
+    pos:
+      tag: NN
+      coarse: NOUN
+    normalized: theory
+    flags:
+      is_punct: false
+      is_space: false
+      is_stop: false
+    joiner:
+      pre: ""
+      post: ""
+    lexicon:
+      wikipedia_title_index:
+        wiki_exact_match: true
+        wiki_prefix_count: 100
+        wiki_parenthetical_variant_count: 25
+        wiki_hyphen_space_variant_match: false
+        wiki_apostrophe_variant_match: false
+        wiki_singular_plural_variant_match: false
+        wiki_any_signal: true
+  - id: t50
+    i: 49
+    segment_id: s4
+    span:
+      start: 297
+      end: 300
+    surface: and
+    pos:
+      tag: CC
+      coarse: CONJ
+    normalized: and
+    flags:
+      is_punct: false
+      is_space: false
+      is_stop: false
+    joiner:
+      pre: ""
+      post: ""
+    lexicon:
+      wikipedia_title_index:
+        wiki_exact_match: true
+        wiki_prefix_count: 100
+        wiki_parenthetical_variant_count: 20
+        wiki_hyphen_space_variant_match: false
+        wiki_apostrophe_variant_match: false
+        wiki_singular_plural_variant_match: false
+        wiki_any_signal: true
+  - id: t51
+    i: 50
+    segment_id: s4
+    span:
+      start: 301
+      end: 313
+    surface: cryptography
+    pos:
+      tag: NN
+      coarse: NOUN
+    normalized: cryptography
+    flags:
+      is_punct: false
+      is_space: false
+      is_stop: false
+    joiner:
+      pre: ""
+      post: ""
+    lexicon:
+      wikipedia_title_index:
+        wiki_exact_match: true
+        wiki_prefix_count: 26
+        wiki_parenthetical_variant_count: 1
+        wiki_hyphen_space_variant_match: false
+        wiki_apostrophe_variant_match: false
+        wiki_singular_plural_variant_match: false
+        wiki_any_signal: true
+  - id: t52
+    i: 51
+    segment_id: s4
+    span:
+      start: 313
+      end: 314
+    surface: .
+    pos:
+      tag: .
+      coarse: PUNCT
+    normalized: .
+    flags:
+      is_punct: true
+      is_space: false
+      is_stop: false
+    joiner:
+      pre: ""
+      post: ""
+mentions:
+  - id: m:s1:0-5:token_shadow
+    kind: token
+    priority: 4
+    token_ids:
+      - t1
+    head_token_id: t1
+    span:
+      start: 0
+      end: 5
+    segment_id: s1
+    is_primary: false
+    provenance:
+      source_kind: token_shadow
+      head_strategy: explicit
+      lexicon_source: wikipedia-title-index
+      lexicon_evidence:
+        tokens:
+          - token_id: t1
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 100
+              wiki_parenthetical_variant_count: 57
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+  - id: m:s1:0-19:chunk
+    kind: chunk
+    priority: 3
+    token_ids:
+      - t1
+      - t2
+    head_token_id: t1
+    span:
+      start: 0
+      end: 19
+    segment_id: s1
+    is_primary: false
+    provenance:
+      source_annotation_id: chunk-3a58b6fed439
+      source_kind: chunk_accepted
+      head_strategy: explicit
+      lexicon_source: wikipedia-title-index
+      lexicon_evidence:
+        tokens:
+          - token_id: t1
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 100
+              wiki_parenthetical_variant_count: 57
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+          - token_id: t2
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 18
+              wiki_parenthetical_variant_count: 0
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+  - id: m:s1:0-19:mwe
+    kind: mwe
+    priority: 0
+    token_ids:
+      - t1
+      - t2
+    head_token_id: t2
+    span:
+      start: 0
+      end: 19
+    segment_id: s1
+    is_primary: true
+    provenance:
+      source_annotation_id: mwe-e6b4de69a1d0
+      source_kind: mwe_materialized
+      head_strategy: explicit
+      lexicon_source: wikipedia-title-index
+      lexicon_evidence:
+        mwe:
+          wiki_exact_match: true
+          wiki_prefix_count: 5
+          wiki_parenthetical_variant_count: 0
+          wiki_hyphen_space_variant_match: false
+          wiki_apostrophe_variant_match: false
+          wiki_singular_plural_variant_match: false
+          wiki_any_signal: true
+        tokens:
+          - token_id: t1
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 100
+              wiki_parenthetical_variant_count: 57
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+          - token_id: t2
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 18
+              wiki_parenthetical_variant_count: 0
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+  - id: m:s1:6-19:token_shadow
+    kind: token
+    priority: 4
+    token_ids:
+      - t2
+    head_token_id: t2
+    span:
+      start: 6
+      end: 19
+    segment_id: s1
+    is_primary: false
+    provenance:
+      source_kind: token_shadow
+      head_strategy: explicit
+      lexicon_source: wikipedia-title-index
+      lexicon_evidence:
+        tokens:
+          - token_id: t2
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 18
+              wiki_parenthetical_variant_count: 0
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+  - id: m:s1:20-30:token
+    kind: token
+    priority: 1
+    token_ids:
+      - t3
+    head_token_id: t3
+    span:
+      start: 20
+      end: 30
+    segment_id: s1
+    is_primary: true
+    provenance:
+      source_kind: token_fallback
+      head_strategy: explicit
+  - id: m:s1:20-60:chunk
+    kind: chunk
+    priority: 3
+    token_ids:
+      - t3
+      - t4
+      - t5
+      - t6
+      - t7
+      - t8
+      - t9
+    head_token_id: t3
+    span:
+      start: 20
+      end: 60
+    segment_id: s1
+    is_primary: false
+    provenance:
+      source_annotation_id: chunk-683d09f63f01
+      source_kind: chunk_accepted
+      head_strategy: explicit
+      lexicon_source: wikipedia-title-index
+      lexicon_evidence:
+        tokens:
+          - token_id: t4
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 100
+              wiki_parenthetical_variant_count: 33
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+          - token_id: t5
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 100
+              wiki_parenthetical_variant_count: 29
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+          - token_id: t6
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 100
+              wiki_parenthetical_variant_count: 3
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+          - token_id: t7
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 100
+              wiki_parenthetical_variant_count: 34
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+          - token_id: t8
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 100
+              wiki_parenthetical_variant_count: 33
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+          - token_id: t9
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 100
+              wiki_parenthetical_variant_count: 20
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+  - id: m:s1:31-32:token
+    kind: token
+    priority: 1
+    token_ids:
+      - t4
+    head_token_id: t4
+    span:
+      start: 31
+      end: 32
+    segment_id: s1
+    is_primary: true
+    provenance:
+      source_kind: token_fallback
+      head_strategy: explicit
+      lexicon_source: wikipedia-title-index
+      lexicon_evidence:
+        tokens:
+          - token_id: t4
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 100
+              wiki_parenthetical_variant_count: 33
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+  - id: m:s1:33-41:token_shadow
+    kind: token
+    priority: 4
+    token_ids:
+      - t5
+    head_token_id: t5
+    span:
+      start: 33
+      end: 41
+    segment_id: s1
+    is_primary: false
+    provenance:
+      source_kind: token_shadow
+      head_strategy: explicit
+      lexicon_source: wikipedia-title-index
+      lexicon_evidence:
+        tokens:
+          - token_id: t5
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 100
+              wiki_parenthetical_variant_count: 29
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+  - id: m:s1:33-49:mwe
+    kind: mwe
+    priority: 0
+    token_ids:
+      - t5
+      - t6
+    head_token_id: t6
+    span:
+      start: 33
+      end: 49
+    segment_id: s1
+    is_primary: true
+    provenance:
+      source_annotation_id: mwe-e81d22e64601
+      source_kind: mwe_materialized
+      head_strategy: explicit
+      lexicon_source: wikipedia-title-index
+      lexicon_evidence:
+        mwe:
+          wiki_exact_match: true
+          wiki_prefix_count: 2
+          wiki_parenthetical_variant_count: 0
+          wiki_hyphen_space_variant_match: false
+          wiki_apostrophe_variant_match: false
+          wiki_singular_plural_variant_match: false
+          wiki_any_signal: true
+        tokens:
+          - token_id: t5
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 100
+              wiki_parenthetical_variant_count: 29
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+          - token_id: t6
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 100
+              wiki_parenthetical_variant_count: 3
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+  - id: m:s1:42-49:token_shadow
+    kind: token
+    priority: 4
+    token_ids:
+      - t6
+    head_token_id: t6
+    span:
+      start: 42
+      end: 49
+    segment_id: s1
+    is_primary: false
+    provenance:
+      source_kind: token_shadow
+      head_strategy: explicit
+      lexicon_source: wikipedia-title-index
+      lexicon_evidence:
+        tokens:
+          - token_id: t6
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 100
+              wiki_parenthetical_variant_count: 3
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+  - id: m:s1:50-54:token
+    kind: token
+    priority: 1
+    token_ids:
+      - t7
+    head_token_id: t7
+    span:
+      start: 50
+      end: 54
+    segment_id: s1
+    is_primary: true
+    provenance:
+      source_kind: token_fallback
+      head_strategy: explicit
+      lexicon_source: wikipedia-title-index
+      lexicon_evidence:
+        tokens:
+          - token_id: t7
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 100
+              wiki_parenthetical_variant_count: 34
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+  - id: m:s1:55-56:token
+    kind: token
+    priority: 1
+    token_ids:
+      - t8
+    head_token_id: t8
+    span:
+      start: 55
+      end: 56
+    segment_id: s1
+    is_primary: true
+    provenance:
+      source_kind: token_fallback
+      head_strategy: explicit
+      lexicon_source: wikipedia-title-index
+      lexicon_evidence:
+        tokens:
+          - token_id: t8
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 100
+              wiki_parenthetical_variant_count: 33
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+  - id: m:s1:57-60:token_shadow
+    kind: token
+    priority: 4
+    token_ids:
+      - t9
+    head_token_id: t9
+    span:
+      start: 57
+      end: 60
+    segment_id: s1
+    is_primary: false
+    provenance:
+      source_kind: token_shadow
+      head_strategy: explicit
+      lexicon_source: wikipedia-title-index
+      lexicon_evidence:
+        tokens:
+          - token_id: t9
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 100
+              wiki_parenthetical_variant_count: 20
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+  - id: m:s1:57-77:mwe
+    kind: mwe
+    priority: 0
+    token_ids:
+      - t10
+      - t11
+      - t12
+      - t9
+    head_token_id: t12
+    span:
+      start: 57
+      end: 77
+    segment_id: s1
+    is_primary: true
+    provenance:
+      source_annotation_id: mwe-0719682cc397
+      source_kind: mwe_materialized
+      head_strategy: explicit
+      lexicon_source: wikipedia-title-index
+      lexicon_evidence:
+        mwe:
+          wiki_exact_match: false
+          wiki_prefix_count: 0
+          wiki_parenthetical_variant_count: 0
+          wiki_hyphen_space_variant_match: false
+          wiki_apostrophe_variant_match: false
+          wiki_singular_plural_variant_match: false
+          wiki_any_signal: false
+        tokens:
+          - token_id: t10
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 100
+              wiki_parenthetical_variant_count: 12
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+          - token_id: t11
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 100
+              wiki_parenthetical_variant_count: 57
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+          - token_id: t12
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 100
+              wiki_parenthetical_variant_count: 43
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+          - token_id: t9
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 100
+              wiki_parenthetical_variant_count: 20
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+  - id: m:s1:61-63:token_shadow
+    kind: token
+    priority: 4
+    token_ids:
+      - t10
+    head_token_id: t10
+    span:
+      start: 61
+      end: 63
+    segment_id: s1
+    is_primary: false
+    provenance:
+      source_kind: token_shadow
+      head_strategy: explicit
+      lexicon_source: wikipedia-title-index
+      lexicon_evidence:
+        tokens:
+          - token_id: t10
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 100
+              wiki_parenthetical_variant_count: 12
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+  - id: m:s1:61-77:chunk
+    kind: chunk
+    priority: 3
+    token_ids:
+      - t10
+      - t11
+      - t12
+    head_token_id: t10
+    span:
+      start: 61
+      end: 77
+    segment_id: s1
+    is_primary: false
+    provenance:
+      source_annotation_id: chunk-2ebbdaa639df
+      source_kind: chunk_accepted
+      head_strategy: explicit
+      lexicon_source: wikipedia-title-index
+      lexicon_evidence:
+        tokens:
+          - token_id: t10
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 100
+              wiki_parenthetical_variant_count: 12
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+          - token_id: t11
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 100
+              wiki_parenthetical_variant_count: 57
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+          - token_id: t12
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 100
+              wiki_parenthetical_variant_count: 43
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+  - id: m:s1:64-69:token_shadow
+    kind: token
+    priority: 4
+    token_ids:
+      - t11
+    head_token_id: t11
+    span:
+      start: 64
+      end: 69
+    segment_id: s1
+    is_primary: false
+    provenance:
+      source_kind: token_shadow
+      head_strategy: explicit
+      lexicon_source: wikipedia-title-index
+      lexicon_evidence:
+        tokens:
+          - token_id: t11
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 100
+              wiki_parenthetical_variant_count: 57
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+  - id: m:s1:64-77:mwe_alt
+    kind: mwe
+    priority: 2
+    token_ids:
+      - t11
+      - t12
+    head_token_id: t12
+    span:
+      start: 64
+      end: 77
+    segment_id: s1
+    is_primary: false
+    provenance:
+      source_annotation_id: mwe-a7fb0594d28c
+      source_kind: mwe_alternative
+      head_strategy: explicit
+      lexicon_source: wikipedia-title-index
+      lexicon_evidence:
+        mwe:
+          wiki_exact_match: true
+          wiki_prefix_count: 5
+          wiki_parenthetical_variant_count: 0
+          wiki_hyphen_space_variant_match: false
+          wiki_apostrophe_variant_match: false
+          wiki_singular_plural_variant_match: false
+          wiki_any_signal: true
+        tokens:
+          - token_id: t11
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 100
+              wiki_parenthetical_variant_count: 57
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+          - token_id: t12
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 100
+              wiki_parenthetical_variant_count: 43
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+  - id: m:s1:70-77:token_shadow
+    kind: token
+    priority: 4
+    token_ids:
+      - t12
+    head_token_id: t12
+    span:
+      start: 70
+      end: 77
+    segment_id: s1
+    is_primary: false
+    provenance:
+      source_kind: token_shadow
+      head_strategy: explicit
+      lexicon_source: wikipedia-title-index
+      lexicon_evidence:
+        tokens:
+          - token_id: t12
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 100
+              wiki_parenthetical_variant_count: 43
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+  - id: m:s1:77-78:chunk
+    kind: chunk
+    priority: 3
+    token_ids:
+      - t13
+    head_token_id: t13
+    span:
+      start: 77
+      end: 78
+    segment_id: s1
+    is_primary: false
+    provenance:
+      source_annotation_id: chunk-3ce7fa54d23e
+      source_kind: chunk_accepted
+      head_strategy: explicit
+  - id: m:s1:77-78:token
+    kind: token
+    priority: 1
+    token_ids:
+      - t13
+    head_token_id: t13
+    span:
+      start: 77
+      end: 78
+    segment_id: s1
+    is_primary: true
+    provenance:
+      source_kind: token_fallback
+      head_strategy: explicit
+  - id: m:s2:79-83:token
+    kind: token
+    priority: 1
+    token_ids:
+      - t14
+    head_token_id: t14
+    span:
+      start: 79
+      end: 83
+    segment_id: s2
+    is_primary: true
+    provenance:
+      source_kind: token_fallback
+      head_strategy: explicit
+      lexicon_source: wikipedia-title-index
+      lexicon_evidence:
+        tokens:
+          - token_id: t14
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 100
+              wiki_parenthetical_variant_count: 23
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+  - id: m:s2:79-90:chunk
+    kind: chunk
+    priority: 3
+    token_ids:
+      - t14
+      - t15
+    head_token_id: t15
+    span:
+      start: 79
+      end: 90
+    segment_id: s2
+    is_primary: false
+    provenance:
+      source_annotation_id: chunk-d4a65840158d
+      source_kind: chunk_accepted
+      head_strategy: explicit
+      lexicon_source: wikipedia-title-index
+      lexicon_evidence:
+        tokens:
+          - token_id: t14
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 100
+              wiki_parenthetical_variant_count: 23
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+          - token_id: t15
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 100
+              wiki_parenthetical_variant_count: 27
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+  - id: m:s2:84-90:token
+    kind: token
+    priority: 1
+    token_ids:
+      - t15
+    head_token_id: t15
+    span:
+      start: 84
+      end: 90
+    segment_id: s2
+    is_primary: true
+    provenance:
+      source_kind: token_fallback
+      head_strategy: explicit
+      lexicon_source: wikipedia-title-index
+      lexicon_evidence:
+        tokens:
+          - token_id: t15
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 100
+              wiki_parenthetical_variant_count: 27
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+  - id: m:s2:91-95:chunk
+    kind: chunk
+    priority: 3
+    token_ids:
+      - t16
+    head_token_id: t16
+    span:
+      start: 91
+      end: 95
+    segment_id: s2
+    is_primary: false
+    provenance:
+      source_annotation_id: chunk-dc49d8649308
+      source_kind: chunk_accepted
+      head_strategy: explicit
+      lexicon_source: wikipedia-title-index
+      lexicon_evidence:
+        tokens:
+          - token_id: t16
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 100
+              wiki_parenthetical_variant_count: 46
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+  - id: m:s2:91-95:token
+    kind: token
+    priority: 1
+    token_ids:
+      - t16
+    head_token_id: t16
+    span:
+      start: 91
+      end: 95
+    segment_id: s2
+    is_primary: true
+    provenance:
+      source_kind: token_fallback
+      head_strategy: explicit
+      lexicon_source: wikipedia-title-index
+      lexicon_evidence:
+        tokens:
+          - token_id: t16
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 100
+              wiki_parenthetical_variant_count: 46
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+  - id: m:s2:96-98:chunk
+    kind: chunk
+    priority: 3
+    token_ids:
+      - t17
+    head_token_id: t17
+    span:
+      start: 96
+      end: 98
+    segment_id: s2
+    is_primary: false
+    provenance:
+      source_annotation_id: chunk-284d07e558ca
+      source_kind: chunk_accepted
+      head_strategy: explicit
+      lexicon_source: wikipedia-title-index
+      lexicon_evidence:
+        tokens:
+          - token_id: t17
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 100
+              wiki_parenthetical_variant_count: 13
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+  - id: m:s2:96-98:token
+    kind: token
+    priority: 1
+    token_ids:
+      - t17
+    head_token_id: t17
+    span:
+      start: 96
+      end: 98
+    segment_id: s2
+    is_primary: true
+    provenance:
+      source_kind: token_fallback
+      head_strategy: explicit
+      lexicon_source: wikipedia-title-index
+      lexicon_evidence:
+        tokens:
+          - token_id: t17
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 100
+              wiki_parenthetical_variant_count: 13
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+  - id: m:s2:99-104:chunk
+    kind: chunk
+    priority: 3
+    token_ids:
+      - t18
+    head_token_id: t18
+    span:
+      start: 99
+      end: 104
+    segment_id: s2
+    is_primary: false
+    provenance:
+      source_annotation_id: chunk-ce29503fef86
+      source_kind: chunk_accepted
+      head_strategy: explicit
+      lexicon_source: wikipedia-title-index
+      lexicon_evidence:
+        tokens:
+          - token_id: t18
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 100
+              wiki_parenthetical_variant_count: 57
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+  - id: m:s2:99-104:token
+    kind: token
+    priority: 1
+    token_ids:
+      - t18
+    head_token_id: t18
+    span:
+      start: 99
+      end: 104
+    segment_id: s2
+    is_primary: true
+    provenance:
+      source_kind: token_fallback
+      head_strategy: explicit
+      lexicon_source: wikipedia-title-index
+      lexicon_evidence:
+        tokens:
+          - token_id: t18
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 100
+              wiki_parenthetical_variant_count: 57
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+  - id: m:s2:104-105:chunk
+    kind: chunk
+    priority: 3
+    token_ids:
+      - t19
+    head_token_id: t19
+    span:
+      start: 104
+      end: 105
+    segment_id: s2
+    is_primary: false
+    provenance:
+      source_annotation_id: chunk-6ec323f8b053
+      source_kind: chunk_accepted
+      head_strategy: explicit
+  - id: m:s2:104-105:token
+    kind: token
+    priority: 1
+    token_ids:
+      - t19
+    head_token_id: t19
+    span:
+      start: 104
+      end: 105
+    segment_id: s2
+    is_primary: true
+    provenance:
+      source_kind: token_fallback
+      head_strategy: explicit
+  - id: m:s2:106-109:chunk
+    kind: chunk
+    priority: 3
+    token_ids:
+      - t20
+    head_token_id: t20
+    span:
+      start: 106
+      end: 109
+    segment_id: s2
+    is_primary: false
+    provenance:
+      source_annotation_id: chunk-b90306f8feca
+      source_kind: chunk_accepted
+      head_strategy: explicit
+      lexicon_source: wikipedia-title-index
+      lexicon_evidence:
+        tokens:
+          - token_id: t20
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 100
+              wiki_parenthetical_variant_count: 20
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+  - id: m:s2:106-109:token
+    kind: token
+    priority: 1
+    token_ids:
+      - t20
+    head_token_id: t20
+    span:
+      start: 106
+      end: 109
+    segment_id: s2
+    is_primary: true
+    provenance:
+      source_kind: token_fallback
+      head_strategy: explicit
+      lexicon_source: wikipedia-title-index
+      lexicon_evidence:
+        tokens:
+          - token_id: t20
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 100
+              wiki_parenthetical_variant_count: 20
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+  - id: m:s2:110-115:token
+    kind: token
+    priority: 1
+    token_ids:
+      - t21
+    head_token_id: t21
+    span: &a34
+      start: 110
+      end: 115
+    segment_id: s2
+    is_primary: true
+    provenance:
+      source_kind: token_fallback
+      head_strategy: explicit
+      lexicon_source: wikipedia-title-index
+      lexicon_evidence:
+        tokens:
+          - token_id: t21
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 100
+              wiki_parenthetical_variant_count: 15
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+  - id: m:s2:110-123:chunk
+    kind: chunk
+    priority: 3
+    token_ids:
+      - t21
+      - t22
+    head_token_id: t22
+    span:
+      start: 110
+      end: 123
+    segment_id: s2
+    is_primary: false
+    provenance:
+      source_annotation_id: chunk-e40f81f3e574
+      source_kind: chunk_accepted
+      head_strategy: explicit
+      lexicon_source: wikipedia-title-index
+      lexicon_evidence:
+        tokens:
+          - token_id: t21
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 100
+              wiki_parenthetical_variant_count: 15
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+          - token_id: t22
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 100
+              wiki_parenthetical_variant_count: 30
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+  - id: m:s2:116-123:token
+    kind: token
+    priority: 1
+    token_ids:
+      - t22
+    head_token_id: t22
+    span: &a35
+      start: 116
+      end: 123
+    segment_id: s2
+    is_primary: true
+    provenance:
+      source_kind: token_fallback
+      head_strategy: explicit
+      lexicon_source: wikipedia-title-index
+      lexicon_evidence:
+        tokens:
+          - token_id: t22
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 100
+              wiki_parenthetical_variant_count: 30
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+  - id: m:s2:124-128:token
+    kind: token
+    priority: 1
+    token_ids:
+      - t23
+    head_token_id: t23
+    span:
+      start: 124
+      end: 128
+    segment_id: s2
+    is_primary: true
+    provenance:
+      source_kind: token_fallback
+      head_strategy: explicit
+      lexicon_source: wikipedia-title-index
+      lexicon_evidence:
+        tokens:
+          - token_id: t23
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 100
+              wiki_parenthetical_variant_count: 46
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+  - id: m:s2:124-154:chunk
+    kind: chunk
+    priority: 3
+    token_ids:
+      - t23
+      - t24
+      - t25
+      - t26
+      - t27
+    head_token_id: t24
+    span:
+      start: 124
+      end: 154
+    segment_id: s2
+    is_primary: false
+    provenance:
+      source_annotation_id: chunk-879255314a01
+      source_kind: chunk_accepted
+      head_strategy: explicit
+      lexicon_source: wikipedia-title-index
+      lexicon_evidence:
+        tokens:
+          - token_id: t23
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 100
+              wiki_parenthetical_variant_count: 46
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+          - token_id: t24
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 100
+              wiki_parenthetical_variant_count: 19
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+          - token_id: t25
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 100
+              wiki_parenthetical_variant_count: 19
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+          - token_id: t26
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 100
+              wiki_parenthetical_variant_count: 30
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+          - token_id: t27
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 100
+              wiki_parenthetical_variant_count: 42
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+  - id: m:s2:129-134:token
+    kind: token
+    priority: 1
+    token_ids:
+      - t24
+    head_token_id: t24
+    span:
+      start: 129
+      end: 134
+    segment_id: s2
+    is_primary: true
+    provenance:
+      source_kind: token_fallback
+      head_strategy: explicit
+      lexicon_source: wikipedia-title-index
+      lexicon_evidence:
+        tokens:
+          - token_id: t24
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 100
+              wiki_parenthetical_variant_count: 19
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+  - id: m:s2:135-138:token
+    kind: token
+    priority: 1
+    token_ids:
+      - t25
+    head_token_id: t25
+    span:
+      start: 135
+      end: 138
+    segment_id: s2
+    is_primary: true
+    provenance:
+      source_kind: token_fallback
+      head_strategy: explicit
+      lexicon_source: wikipedia-title-index
+      lexicon_evidence:
+        tokens:
+          - token_id: t25
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 100
+              wiki_parenthetical_variant_count: 19
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+  - id: m:s2:139-147:token_shadow
+    kind: token
+    priority: 4
+    token_ids:
+      - t26
+    head_token_id: t26
+    span:
+      start: 139
+      end: 147
+    segment_id: s2
+    is_primary: false
+    provenance:
+      source_kind: token_shadow
+      head_strategy: explicit
+      lexicon_source: wikipedia-title-index
+      lexicon_evidence:
+        tokens:
+          - token_id: t26
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 100
+              wiki_parenthetical_variant_count: 30
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+  - id: m:s2:139-154:mwe
+    kind: mwe
+    priority: 0
+    token_ids:
+      - t26
+      - t27
+    head_token_id: t27
+    span:
+      start: 139
+      end: 154
+    segment_id: s2
+    is_primary: true
+    provenance:
+      source_annotation_id: mwe-1fbc4c194b51
+      source_kind: mwe_materialized
+      head_strategy: explicit
+      lexicon_source: wikipedia-title-index
+      lexicon_evidence:
+        mwe:
+          wiki_exact_match: false
+          wiki_prefix_count: 0
+          wiki_parenthetical_variant_count: 0
+          wiki_hyphen_space_variant_match: false
+          wiki_apostrophe_variant_match: false
+          wiki_singular_plural_variant_match: false
+          wiki_any_signal: false
+        tokens:
+          - token_id: t26
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 100
+              wiki_parenthetical_variant_count: 30
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+          - token_id: t27
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 100
+              wiki_parenthetical_variant_count: 42
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+  - id: m:s2:148-154:token_shadow
+    kind: token
+    priority: 4
+    token_ids:
+      - t27
+    head_token_id: t27
+    span:
+      start: 148
+      end: 154
+    segment_id: s2
+    is_primary: false
+    provenance:
+      source_kind: token_shadow
+      head_strategy: explicit
+      lexicon_source: wikipedia-title-index
+      lexicon_evidence:
+        tokens:
+          - token_id: t27
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 100
+              wiki_parenthetical_variant_count: 42
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+  - id: m:s2:154-155:chunk
+    kind: chunk
+    priority: 3
+    token_ids:
+      - t28
+    head_token_id: t28
+    span:
+      start: 154
+      end: 155
+    segment_id: s2
+    is_primary: false
+    provenance:
+      source_annotation_id: chunk-db46826c88c0
+      source_kind: chunk_accepted
+      head_strategy: explicit
+  - id: m:s2:154-155:token
+    kind: token
+    priority: 1
+    token_ids:
+      - t28
+    head_token_id: t28
+    span:
+      start: 154
+      end: 155
+    segment_id: s2
+    is_primary: true
+    provenance:
+      source_kind: token_fallback
+      head_strategy: explicit
+  - id: m:s3:156-159:token
+    kind: token
+    priority: 1
+    token_ids:
+      - t29
+    head_token_id: t29
+    span:
+      start: 156
+      end: 159
+    segment_id: s3
+    is_primary: true
+    provenance:
+      source_kind: token_fallback
+      head_strategy: explicit
+      lexicon_source: wikipedia-title-index
+      lexicon_evidence:
+        tokens:
+          - token_id: t29
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 100
+              wiki_parenthetical_variant_count: 19
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+  - id: m:s3:156-167:chunk
+    kind: chunk
+    priority: 3
+    token_ids:
+      - t29
+      - t30
+    head_token_id: t30
+    span:
+      start: 156
+      end: 167
+    segment_id: s3
+    is_primary: false
+    provenance:
+      source_annotation_id: chunk-ec45d3e01f03
+      source_kind: chunk_accepted
+      head_strategy: explicit
+      lexicon_source: wikipedia-title-index
+      lexicon_evidence:
+        tokens:
+          - token_id: t29
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 100
+              wiki_parenthetical_variant_count: 19
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+          - token_id: t30
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 100
+              wiki_parenthetical_variant_count: 45
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+  - id: m:s3:160-167:token
+    kind: token
+    priority: 1
+    token_ids:
+      - t30
+    head_token_id: t30
+    span: &a36
+      start: 160
+      end: 167
+    segment_id: s3
+    is_primary: true
+    provenance:
+      source_kind: token_fallback
+      head_strategy: explicit
+      lexicon_source: wikipedia-title-index
+      lexicon_evidence:
+        tokens:
+          - token_id: t30
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 100
+              wiki_parenthetical_variant_count: 45
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+  - id: m:s3:168-177:chunk
+    kind: chunk
+    priority: 3
+    token_ids:
+      - t31
+    head_token_id: t31
+    span:
+      start: 168
+      end: 177
+    segment_id: s3
+    is_primary: false
+    provenance:
+      source_annotation_id: chunk-7cb5b3e17ae6
+      source_kind: chunk_accepted
+      head_strategy: explicit
+      lexicon_source: wikipedia-title-index
+      lexicon_evidence:
+        tokens:
+          - token_id: t31
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 2
+              wiki_parenthetical_variant_count: 0
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+  - id: m:s3:168-177:token
+    kind: token
+    priority: 1
+    token_ids:
+      - t31
+    head_token_id: t31
+    span:
+      start: 168
+      end: 177
+    segment_id: s3
+    is_primary: true
+    provenance:
+      source_kind: token_fallback
+      head_strategy: explicit
+      lexicon_source: wikipedia-title-index
+      lexicon_evidence:
+        tokens:
+          - token_id: t31
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 2
+              wiki_parenthetical_variant_count: 0
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+  - id: m:s3:178-184:token
+    kind: token
+    priority: 1
+    token_ids:
+      - t32
+    head_token_id: t32
+    span:
+      start: 178
+      end: 184
+    segment_id: s3
+    is_primary: true
+    provenance:
+      source_kind: token_fallback
+      head_strategy: explicit
+      lexicon_source: wikipedia-title-index
+      lexicon_evidence:
+        tokens:
+          - token_id: t32
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 22
+              wiki_parenthetical_variant_count: 2
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+  - id: m:s3:178-215:chunk
+    kind: chunk
+    priority: 3
+    token_ids:
+      - t32
+      - t33
+      - t34
+      - t35
+      - t36
+      - t37
+    head_token_id: t32
+    span:
+      start: 178
+      end: 215
+    segment_id: s3
+    is_primary: false
+    provenance:
+      source_annotation_id: chunk-e89ac70004fc
+      source_kind: chunk_accepted
+      head_strategy: explicit
+      lexicon_source: wikipedia-title-index
+      lexicon_evidence:
+        tokens:
+          - token_id: t32
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 22
+              wiki_parenthetical_variant_count: 2
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+          - token_id: t33
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 100
+              wiki_parenthetical_variant_count: 45
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+          - token_id: t34
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 100
+              wiki_parenthetical_variant_count: 19
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+          - token_id: t35
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 77
+              wiki_parenthetical_variant_count: 3
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+          - token_id: t36
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 100
+              wiki_parenthetical_variant_count: 57
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+          - token_id: t37
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 100
+              wiki_parenthetical_variant_count: 27
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+  - id: m:s3:185-189:token
+    kind: token
+    priority: 1
+    token_ids:
+      - t33
+    head_token_id: t33
+    span:
+      start: 185
+      end: 189
+    segment_id: s3
+    is_primary: true
+    provenance:
+      source_kind: token_fallback
+      head_strategy: explicit
+      lexicon_source: wikipedia-title-index
+      lexicon_evidence:
+        tokens:
+          - token_id: t33
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 100
+              wiki_parenthetical_variant_count: 45
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+  - id: m:s3:190-193:token
+    kind: token
+    priority: 1
+    token_ids:
+      - t34
+    head_token_id: t34
+    span:
+      start: 190
+      end: 193
+    segment_id: s3
+    is_primary: true
+    provenance:
+      source_kind: token_fallback
+      head_strategy: explicit
+      lexicon_source: wikipedia-title-index
+      lexicon_evidence:
+        tokens:
+          - token_id: t34
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 100
+              wiki_parenthetical_variant_count: 19
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+  - id: m:s3:194-202:token
+    kind: token
+    priority: 1
+    token_ids:
+      - t35
+    head_token_id: t35
+    span:
+      start: 194
+      end: 202
+    segment_id: s3
+    is_primary: true
+    provenance:
+      source_kind: token_fallback
+      head_strategy: explicit
+      lexicon_source: wikipedia-title-index
+      lexicon_evidence:
+        tokens:
+          - token_id: t35
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 77
+              wiki_parenthetical_variant_count: 3
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+  - id: m:s3:203-208:token_shadow
+    kind: token
+    priority: 4
+    token_ids:
+      - t36
+    head_token_id: t36
+    span:
+      start: 203
+      end: 208
+    segment_id: s3
+    is_primary: false
+    provenance:
+      source_kind: token_shadow
+      head_strategy: explicit
+      lexicon_source: wikipedia-title-index
+      lexicon_evidence:
+        tokens:
+          - token_id: t36
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 100
+              wiki_parenthetical_variant_count: 57
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+  - id: m:s3:203-215:mwe
+    kind: mwe
+    priority: 0
+    token_ids:
+      - t36
+      - t37
+    head_token_id: t37
+    span:
+      start: 203
+      end: 215
+    segment_id: s3
+    is_primary: true
+    provenance:
+      source_annotation_id: mwe-3d2c717aef88
+      source_kind: mwe_materialized
+      head_strategy: explicit
+      lexicon_source: wikipedia-title-index
+      lexicon_evidence:
+        mwe:
+          wiki_exact_match: true
+          wiki_prefix_count: 13
+          wiki_parenthetical_variant_count: 3
+          wiki_hyphen_space_variant_match: false
+          wiki_apostrophe_variant_match: false
+          wiki_singular_plural_variant_match: false
+          wiki_any_signal: true
+        tokens:
+          - token_id: t36
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 100
+              wiki_parenthetical_variant_count: 57
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+          - token_id: t37
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 100
+              wiki_parenthetical_variant_count: 27
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+  - id: m:s3:209-215:token_shadow
+    kind: token
+    priority: 4
+    token_ids:
+      - t37
+    head_token_id: t37
+    span:
+      start: 209
+      end: 215
+    segment_id: s3
+    is_primary: false
+    provenance:
+      source_kind: token_shadow
+      head_strategy: explicit
+      lexicon_source: wikipedia-title-index
+      lexicon_evidence:
+        tokens:
+          - token_id: t37
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 100
+              wiki_parenthetical_variant_count: 27
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+  - id: m:s3:216-219:chunk
+    kind: chunk
+    priority: 3
+    token_ids:
+      - t38
+    head_token_id: t38
+    span:
+      start: 216
+      end: 219
+    segment_id: s3
+    is_primary: false
+    provenance:
+      source_annotation_id: chunk-e733719801b4
+      source_kind: chunk_accepted
+      head_strategy: explicit
+      lexicon_source: wikipedia-title-index
+      lexicon_evidence:
+        tokens:
+          - token_id: t38
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 100
+              wiki_parenthetical_variant_count: 20
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+  - id: m:s3:216-219:token
+    kind: token
+    priority: 1
+    token_ids:
+      - t38
+    head_token_id: t38
+    span:
+      start: 216
+      end: 219
+    segment_id: s3
+    is_primary: true
+    provenance:
+      source_kind: token_fallback
+      head_strategy: explicit
+      lexicon_source: wikipedia-title-index
+      lexicon_evidence:
+        tokens:
+          - token_id: t38
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 100
+              wiki_parenthetical_variant_count: 20
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+  - id: m:s3:220-229:token_shadow
+    kind: token
+    priority: 4
+    token_ids:
+      - t39
+    head_token_id: t39
+    span:
+      start: 220
+      end: 229
+    segment_id: s3
+    is_primary: false
+    provenance:
+      source_kind: token_shadow
+      head_strategy: explicit
+      lexicon_source: wikipedia-title-index
+      lexicon_evidence:
+        tokens:
+          - token_id: t39
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 4
+              wiki_parenthetical_variant_count: 2
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+  - id: m:s3:220-241:chunk
+    kind: chunk
+    priority: 3
+    token_ids:
+      - t39
+      - t40
+    head_token_id: t39
+    span:
+      start: 220
+      end: 241
+    segment_id: s3
+    is_primary: false
+    provenance:
+      source_annotation_id: chunk-7baead272cc2
+      source_kind: chunk_accepted
+      head_strategy: explicit
+      lexicon_source: wikipedia-title-index
+      lexicon_evidence:
+        tokens:
+          - token_id: t39
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 4
+              wiki_parenthetical_variant_count: 2
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+          - token_id: t40
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 4
+              wiki_parenthetical_variant_count: 0
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+  - id: m:s3:220-241:mwe
+    kind: mwe
+    priority: 0
+    token_ids:
+      - t39
+      - t40
+    head_token_id: t40
+    span:
+      start: 220
+      end: 241
+    segment_id: s3
+    is_primary: true
+    provenance:
+      source_annotation_id: mwe-9709deebe179
+      source_kind: mwe_materialized
+      head_strategy: explicit
+      lexicon_source: wikipedia-title-index
+      lexicon_evidence:
+        mwe:
+          wiki_exact_match: false
+          wiki_prefix_count: 0
+          wiki_parenthetical_variant_count: 0
+          wiki_hyphen_space_variant_match: false
+          wiki_apostrophe_variant_match: false
+          wiki_singular_plural_variant_match: false
+          wiki_any_signal: false
+        tokens:
+          - token_id: t39
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 4
+              wiki_parenthetical_variant_count: 2
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+          - token_id: t40
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 4
+              wiki_parenthetical_variant_count: 0
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+  - id: m:s3:230-241:token_shadow
+    kind: token
+    priority: 4
+    token_ids:
+      - t40
+    head_token_id: t40
+    span:
+      start: 230
+      end: 241
+    segment_id: s3
+    is_primary: false
+    provenance:
+      source_kind: token_shadow
+      head_strategy: explicit
+      lexicon_source: wikipedia-title-index
+      lexicon_evidence:
+        tokens:
+          - token_id: t40
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 4
+              wiki_parenthetical_variant_count: 0
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+  - id: m:s3:241-242:chunk
+    kind: chunk
+    priority: 3
+    token_ids:
+      - t41
+    head_token_id: t41
+    span:
+      start: 241
+      end: 242
+    segment_id: s3
+    is_primary: false
+    provenance:
+      source_annotation_id: chunk-c2bc620b30a3
+      source_kind: chunk_accepted
+      head_strategy: explicit
+  - id: m:s3:241-242:token
+    kind: token
+    priority: 1
+    token_ids:
+      - t41
+    head_token_id: t41
+    span:
+      start: 241
+      end: 242
+    segment_id: s3
+    is_primary: true
+    provenance:
+      source_kind: token_fallback
+      head_strategy: explicit
+  - id: m:s4:243-248:token_shadow
+    kind: token
+    priority: 4
+    token_ids:
+      - t42
+    head_token_id: t42
+    span:
+      start: 243
+      end: 248
+    segment_id: s4
+    is_primary: false
+    provenance:
+      source_kind: token_shadow
+      head_strategy: explicit
+      lexicon_source: wikipedia-title-index
+      lexicon_evidence:
+        tokens:
+          - token_id: t42
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 100
+              wiki_parenthetical_variant_count: 57
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+  - id: m:s4:243-262:chunk
+    kind: chunk
+    priority: 3
+    token_ids:
+      - t42
+      - t43
+    head_token_id: t43
+    span:
+      start: 243
+      end: 262
+    segment_id: s4
+    is_primary: false
+    provenance:
+      source_annotation_id: chunk-954ac4b449e5
+      source_kind: chunk_accepted
+      head_strategy: explicit
+      lexicon_source: wikipedia-title-index
+      lexicon_evidence:
+        tokens:
+          - token_id: t42
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 100
+              wiki_parenthetical_variant_count: 57
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+          - token_id: t43
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 18
+              wiki_parenthetical_variant_count: 0
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+  - id: m:s4:243-262:mwe
+    kind: mwe
+    priority: 0
+    token_ids:
+      - t42
+      - t43
+    head_token_id: t43
+    span:
+      start: 243
+      end: 262
+    segment_id: s4
+    is_primary: true
+    provenance:
+      source_annotation_id: mwe-f879aec70a9d
+      source_kind: mwe_materialized
+      head_strategy: explicit
+      lexicon_source: wikipedia-title-index
+      lexicon_evidence:
+        mwe:
+          wiki_exact_match: true
+          wiki_prefix_count: 5
+          wiki_parenthetical_variant_count: 0
+          wiki_hyphen_space_variant_match: false
+          wiki_apostrophe_variant_match: false
+          wiki_singular_plural_variant_match: false
+          wiki_any_signal: true
+        tokens:
+          - token_id: t42
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 100
+              wiki_parenthetical_variant_count: 57
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+          - token_id: t43
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 18
+              wiki_parenthetical_variant_count: 0
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+  - id: m:s4:249-262:token_shadow
+    kind: token
+    priority: 4
+    token_ids:
+      - t43
+    head_token_id: t43
+    span:
+      start: 249
+      end: 262
+    segment_id: s4
+    is_primary: false
+    provenance:
+      source_kind: token_shadow
+      head_strategy: explicit
+      lexicon_source: wikipedia-title-index
+      lexicon_evidence:
+        tokens:
+          - token_id: t43
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 18
+              wiki_parenthetical_variant_count: 0
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+  - id: m:s4:263-265:chunk
+    kind: chunk
+    priority: 3
+    token_ids:
+      - t44
+    head_token_id: t44
+    span:
+      start: 263
+      end: 265
+    segment_id: s4
+    is_primary: false
+    provenance:
+      source_annotation_id: chunk-4724400f2f70
+      source_kind: chunk_accepted
+      head_strategy: explicit
+      lexicon_source: wikipedia-title-index
+      lexicon_evidence:
+        tokens:
+          - token_id: t44
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 100
+              wiki_parenthetical_variant_count: 5
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+  - id: m:s4:263-265:token
+    kind: token
+    priority: 1
+    token_ids:
+      - t44
+    head_token_id: t44
+    span: &a37
+      start: 263
+      end: 265
+    segment_id: s4
+    is_primary: true
+    provenance:
+      source_kind: token_fallback
+      head_strategy: explicit
+      lexicon_source: wikipedia-title-index
+      lexicon_evidence:
+        tokens:
+          - token_id: t44
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 100
+              wiki_parenthetical_variant_count: 5
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+  - id: m:s4:266-274:chunk
+    kind: chunk
+    priority: 3
+    token_ids:
+      - t45
+    head_token_id: t45
+    span:
+      start: 266
+      end: 274
+    segment_id: s4
+    is_primary: false
+    provenance:
+      source_annotation_id: chunk-89db528e55ac
+      source_kind: chunk_accepted
+      head_strategy: explicit
+      lexicon_source: wikipedia-title-index
+      lexicon_evidence:
+        tokens:
+          - token_id: t45
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 22
+              wiki_parenthetical_variant_count: 0
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+  - id: m:s4:266-274:token
+    kind: token
+    priority: 1
+    token_ids:
+      - t45
+    head_token_id: t45
+    span:
+      start: 266
+      end: 274
+    segment_id: s4
+    is_primary: true
+    provenance:
+      source_kind: token_fallback
+      head_strategy: explicit
+      lexicon_source: wikipedia-title-index
+      lexicon_evidence:
+        tokens:
+          - token_id: t45
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 22
+              wiki_parenthetical_variant_count: 0
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+  - id: m:s4:275-279:chunk
+    kind: chunk
+    priority: 3
+    token_ids:
+      - t46
+    head_token_id: t46
+    span:
+      start: 275
+      end: 279
+    segment_id: s4
+    is_primary: false
+    provenance:
+      source_annotation_id: chunk-c7d66fc55efe
+      source_kind: chunk_accepted
+      head_strategy: explicit
+      lexicon_source: wikipedia-title-index
+      lexicon_evidence:
+        tokens:
+          - token_id: t46
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 100
+              wiki_parenthetical_variant_count: 25
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+  - id: m:s4:275-279:token
+    kind: token
+    priority: 1
+    token_ids:
+      - t46
+    head_token_id: t46
+    span:
+      start: 275
+      end: 279
+    segment_id: s4
+    is_primary: true
+    provenance:
+      source_kind: token_fallback
+      head_strategy: explicit
+      lexicon_source: wikipedia-title-index
+      lexicon_evidence:
+        tokens:
+          - token_id: t46
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 100
+              wiki_parenthetical_variant_count: 25
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+  - id: m:s4:280-282:token
+    kind: token
+    priority: 1
+    token_ids:
+      - t47
+    head_token_id: t47
+    span:
+      start: 280
+      end: 282
+    segment_id: s4
+    is_primary: true
+    provenance:
+      source_kind: token_fallback
+      head_strategy: explicit
+      lexicon_source: wikipedia-title-index
+      lexicon_evidence:
+        tokens:
+          - token_id: t47
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 100
+              wiki_parenthetical_variant_count: 14
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+  - id: m:s4:280-296:chunk
+    kind: chunk
+    priority: 3
+    token_ids:
+      - t47
+      - t48
+      - t49
+    head_token_id: t47
+    span:
+      start: 280
+      end: 296
+    segment_id: s4
+    is_primary: false
+    provenance:
+      source_annotation_id: chunk-ece2bb2586ef
+      source_kind: chunk_accepted
+      head_strategy: explicit
+      lexicon_source: wikipedia-title-index
+      lexicon_evidence:
+        tokens:
+          - token_id: t47
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 100
+              wiki_parenthetical_variant_count: 14
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+          - token_id: t48
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 100
+              wiki_parenthetical_variant_count: 42
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+          - token_id: t49
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 100
+              wiki_parenthetical_variant_count: 25
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+  - id: m:s4:283-289:token_shadow
+    kind: token
+    priority: 4
+    token_ids:
+      - t48
+    head_token_id: t48
+    span:
+      start: 283
+      end: 289
+    segment_id: s4
+    is_primary: false
+    provenance:
+      source_kind: token_shadow
+      head_strategy: explicit
+      lexicon_source: wikipedia-title-index
+      lexicon_evidence:
+        tokens:
+          - token_id: t48
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 100
+              wiki_parenthetical_variant_count: 42
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+  - id: m:s4:283-296:mwe
+    kind: mwe
+    priority: 0
+    token_ids:
+      - t48
+      - t49
+    head_token_id: t49
+    span: &a38
+      start: 283
+      end: 296
+    segment_id: s4
+    is_primary: true
+    provenance:
+      source_annotation_id: mwe-d3c25dffa619
+      source_kind: mwe_materialized
+      head_strategy: explicit
+      lexicon_source: wikipedia-title-index
+      lexicon_evidence:
+        mwe:
+          wiki_exact_match: true
+          wiki_prefix_count: 11
+          wiki_parenthetical_variant_count: 1
+          wiki_hyphen_space_variant_match: false
+          wiki_apostrophe_variant_match: false
+          wiki_singular_plural_variant_match: false
+          wiki_any_signal: true
+        tokens:
+          - token_id: t48
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 100
+              wiki_parenthetical_variant_count: 42
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+          - token_id: t49
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 100
+              wiki_parenthetical_variant_count: 25
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+  - id: m:s4:290-296:token_shadow
+    kind: token
+    priority: 4
+    token_ids:
+      - t49
+    head_token_id: t49
+    span:
+      start: 290
+      end: 296
+    segment_id: s4
+    is_primary: false
+    provenance:
+      source_kind: token_shadow
+      head_strategy: explicit
+      lexicon_source: wikipedia-title-index
+      lexicon_evidence:
+        tokens:
+          - token_id: t49
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 100
+              wiki_parenthetical_variant_count: 25
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+  - id: m:s4:297-300:chunk
+    kind: chunk
+    priority: 3
+    token_ids:
+      - t50
+    head_token_id: t50
+    span:
+      start: 297
+      end: 300
+    segment_id: s4
+    is_primary: false
+    provenance:
+      source_annotation_id: chunk-87116297fe9e
+      source_kind: chunk_accepted
+      head_strategy: explicit
+      lexicon_source: wikipedia-title-index
+      lexicon_evidence:
+        tokens:
+          - token_id: t50
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 100
+              wiki_parenthetical_variant_count: 20
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+  - id: m:s4:297-300:token
+    kind: token
+    priority: 1
+    token_ids:
+      - t50
+    head_token_id: t50
+    span:
+      start: 297
+      end: 300
+    segment_id: s4
+    is_primary: true
+    provenance:
+      source_kind: token_fallback
+      head_strategy: explicit
+      lexicon_source: wikipedia-title-index
+      lexicon_evidence:
+        tokens:
+          - token_id: t50
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 100
+              wiki_parenthetical_variant_count: 20
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+  - id: m:s4:301-313:chunk
+    kind: chunk
+    priority: 3
+    token_ids:
+      - t51
+    head_token_id: t51
+    span:
+      start: 301
+      end: 313
+    segment_id: s4
+    is_primary: false
+    provenance:
+      source_annotation_id: chunk-85e227c8c6dc
+      source_kind: chunk_accepted
+      head_strategy: explicit
+      lexicon_source: wikipedia-title-index
+      lexicon_evidence:
+        tokens:
+          - token_id: t51
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 26
+              wiki_parenthetical_variant_count: 1
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+  - id: m:s4:301-313:token
+    kind: token
+    priority: 1
+    token_ids:
+      - t51
+    head_token_id: t51
+    span:
+      start: 301
+      end: 313
+    segment_id: s4
+    is_primary: true
+    provenance:
+      source_kind: token_fallback
+      head_strategy: explicit
+      lexicon_source: wikipedia-title-index
+      lexicon_evidence:
+        tokens:
+          - token_id: t51
+            evidence:
+              wiki_exact_match: true
+              wiki_prefix_count: 26
+              wiki_parenthetical_variant_count: 1
+              wiki_hyphen_space_variant_match: false
+              wiki_apostrophe_variant_match: false
+              wiki_singular_plural_variant_match: false
+              wiki_any_signal: true
+  - id: m:s4:313-314:chunk
+    kind: chunk
+    priority: 3
+    token_ids:
+      - t52
+    head_token_id: t52
+    span:
+      start: 313
+      end: 314
+    segment_id: s4
+    is_primary: false
+    provenance:
+      source_annotation_id: chunk-71f7306cb8b8
+      source_kind: chunk_accepted
+      head_strategy: explicit
+  - id: m:s4:313-314:token
+    kind: token
+    priority: 1
+    token_ids:
+      - t52
+    head_token_id: t52
+    span:
+      start: 313
+      end: 314
+    segment_id: s4
+    is_primary: true
+    provenance:
+      source_kind: token_fallback
+      head_strategy: explicit
+assertions:
+  - id: a:s1:m:s1:20-30:token:6b39d83b0123
+    segment_id: s1
+    predicate:
+      mention_id: m:s1:20-30:token
+      head_token_id: t3
+    arguments:
+      - role: actor
+        mention_ids:
+          - m:s1:0-19:mwe
+        evidence:
+          relation_ids: []
+          token_ids:
+            - t1
+            - t2
+      - role: location
+        mention_ids:
+          - m:s1:57-77:mwe
+        evidence:
+          relation_ids: []
+          token_ids:
+            - t10
+            - t11
+            - t12
+            - t9
+      - role: theme
+        mention_ids:
+          - m:s1:33-49:mwe
+        evidence:
+          relation_ids: []
+          token_ids:
+            - t5
+            - t6
+    modifiers: []
+    operators: []
+    evidence:
+      relation_evidence:
+        - annotation_id: rel-96370540dd5d
+          from_token_id: t3
+          to_token_id: t1
+          label: actor
+        - annotation_id: rel-87f70cff4a39
+          from_token_id: t3
+          to_token_id: t12
+          label: topic
+        - annotation_id: rel-eb6223004f06
+          from_token_id: t3
+          to_token_id: t5
+          label: modifier
+        - annotation_id: rel-9e2becd51d1f
+          from_token_id: t3
+          to_token_id: t6
+          label: theme
+        - annotation_id: rel-349e6179c83f
+          from_token_id: t3
+          to_token_id: t9
+          label: location
+      token_ids:
+        - t1
+        - t10
+        - t11
+        - t12
+        - t2
+        - t3
+        - t5
+        - t6
+        - t9
+      wiki_signals:
+        mention_evidence:
+          - mention_id: m:s1:0-19:mwe
+            token_ids:
+              - t1
+              - t2
+            evidence:
+              mwe:
+                wiki_exact_match: true
+                wiki_prefix_count: 5
+                wiki_parenthetical_variant_count: 0
+                wiki_hyphen_space_variant_match: false
+                wiki_apostrophe_variant_match: false
+                wiki_singular_plural_variant_match: false
+                wiki_any_signal: true
+              tokens:
+                - token_id: t1
+                  evidence:
+                    wiki_exact_match: true
+                    wiki_prefix_count: 100
+                    wiki_parenthetical_variant_count: 57
+                    wiki_hyphen_space_variant_match: false
+                    wiki_apostrophe_variant_match: false
+                    wiki_singular_plural_variant_match: false
+                    wiki_any_signal: true
+                - token_id: t2
+                  evidence:
+                    wiki_exact_match: true
+                    wiki_prefix_count: 18
+                    wiki_parenthetical_variant_count: 0
+                    wiki_hyphen_space_variant_match: false
+                    wiki_apostrophe_variant_match: false
+                    wiki_singular_plural_variant_match: false
+                    wiki_any_signal: true
+          - mention_id: m:s1:33-49:mwe
+            token_ids:
+              - t5
+              - t6
+            evidence:
+              mwe:
+                wiki_exact_match: true
+                wiki_prefix_count: 2
+                wiki_parenthetical_variant_count: 0
+                wiki_hyphen_space_variant_match: false
+                wiki_apostrophe_variant_match: false
+                wiki_singular_plural_variant_match: false
+                wiki_any_signal: true
+              tokens:
+                - token_id: t5
+                  evidence:
+                    wiki_exact_match: true
+                    wiki_prefix_count: 100
+                    wiki_parenthetical_variant_count: 29
+                    wiki_hyphen_space_variant_match: false
+                    wiki_apostrophe_variant_match: false
+                    wiki_singular_plural_variant_match: false
+                    wiki_any_signal: true
+                - token_id: t6
+                  evidence:
+                    wiki_exact_match: true
+                    wiki_prefix_count: 100
+                    wiki_parenthetical_variant_count: 3
+                    wiki_hyphen_space_variant_match: false
+                    wiki_apostrophe_variant_match: false
+                    wiki_singular_plural_variant_match: false
+                    wiki_any_signal: true
+          - mention_id: m:s1:57-77:mwe
+            token_ids:
+              - t10
+              - t11
+              - t12
+              - t9
+            evidence:
+              mwe:
+                wiki_exact_match: false
+                wiki_prefix_count: 0
+                wiki_parenthetical_variant_count: 0
+                wiki_hyphen_space_variant_match: false
+                wiki_apostrophe_variant_match: false
+                wiki_singular_plural_variant_match: false
+                wiki_any_signal: false
+              tokens:
+                - token_id: t10
+                  evidence:
+                    wiki_exact_match: true
+                    wiki_prefix_count: 100
+                    wiki_parenthetical_variant_count: 12
+                    wiki_hyphen_space_variant_match: false
+                    wiki_apostrophe_variant_match: false
+                    wiki_singular_plural_variant_match: false
+                    wiki_any_signal: true
+                - token_id: t11
+                  evidence:
+                    wiki_exact_match: true
+                    wiki_prefix_count: 100
+                    wiki_parenthetical_variant_count: 57
+                    wiki_hyphen_space_variant_match: false
+                    wiki_apostrophe_variant_match: false
+                    wiki_singular_plural_variant_match: false
+                    wiki_any_signal: true
+                - token_id: t12
+                  evidence:
+                    wiki_exact_match: true
+                    wiki_prefix_count: 100
+                    wiki_parenthetical_variant_count: 43
+                    wiki_hyphen_space_variant_match: false
+                    wiki_apostrophe_variant_match: false
+                    wiki_singular_plural_variant_match: false
+                    wiki_any_signal: true
+                - token_id: t9
+                  evidence:
+                    wiki_exact_match: true
+                    wiki_prefix_count: 100
+                    wiki_parenthetical_variant_count: 20
+                    wiki_hyphen_space_variant_match: false
+                    wiki_apostrophe_variant_match: false
+                    wiki_singular_plural_variant_match: false
+                    wiki_any_signal: true
+    diagnostics:
+      predicate_quality: ok
+      slot_projection_choice:
+        candidate_count: 3
+        chosen_mention_id: m:s1:0-19:mwe
+      predicate_class: lexical_verb
+      structural_fragment: false
+  - id: a:s2:m:s2:84-90:token:bf4a4406b943
+    segment_id: s2
+    predicate:
+      mention_id: m:s2:84-90:token
+      head_token_id: t15
+    arguments: []
+    modifiers: []
+    operators:
+      - kind: coordination_group
+        group_id: cg:cc06689f5bae
+        evidence:
+          - annotation_id: rel-825f3e80752a
+            from_token_id: t15
+            to_token_id: t21
+            label: coordination
+      - kind: coordination_group
+        group_id: cg:cc06689f5bae
+        value: and
+        evidence:
+          - &a2
+            annotation_id: rel-825f3e80752a
+            from_token_id: t15
+            to_token_id: t21
+            label: coordination
+      - kind: quantifier
+        token_id: t14
+        value: each
+        evidence:
+          - &a1
+            annotation_id: rel-806b5389a4ab
+            from_token_id: t15
+            to_token_id: t14
+            label: quantifier
+    evidence:
+      relation_evidence:
+        - *a1
+        - *a2
+      token_ids:
+        - t14
+        - t15
+        - t21
+        - t22
+      wiki_signals:
+        mention_evidence:
+          - mention_id: m:s2:110-115:token
+            token_ids:
+              - t21
+            evidence:
+              tokens:
+                - token_id: t21
+                  evidence:
+                    wiki_exact_match: true
+                    wiki_prefix_count: 100
+                    wiki_parenthetical_variant_count: 15
+                    wiki_hyphen_space_variant_match: false
+                    wiki_apostrophe_variant_match: false
+                    wiki_singular_plural_variant_match: false
+                    wiki_any_signal: true
+          - mention_id: m:s2:79-83:token
+            token_ids:
+              - t14
+            evidence:
+              tokens:
+                - token_id: t14
+                  evidence:
+                    wiki_exact_match: true
+                    wiki_prefix_count: 100
+                    wiki_parenthetical_variant_count: 23
+                    wiki_hyphen_space_variant_match: false
+                    wiki_apostrophe_variant_match: false
+                    wiki_singular_plural_variant_match: false
+                    wiki_any_signal: true
+          - mention_id: m:s2:84-90:token
+            token_ids:
+              - t15
+            evidence:
+              tokens:
+                - token_id: t15
+                  evidence:
+                    wiki_exact_match: true
+                    wiki_prefix_count: 100
+                    wiki_parenthetical_variant_count: 27
+                    wiki_hyphen_space_variant_match: false
+                    wiki_apostrophe_variant_match: false
+                    wiki_singular_plural_variant_match: false
+                    wiki_any_signal: true
+    diagnostics:
+      predicate_quality: ok
+      predicate_class: nominal_head
+      structural_fragment: true
+      suppression_eligibility:
+        eligible: true
+        failure_reason: null
+        candidate_class: nominal_head
+        segment_id: s2
+        assertion_id: a:s2:m:s2:84-90:token:bf4a4406b943
+        chosen_host_assertion_id: a:s2:m:s2:129-134:token:631ab2faf725
+        chosen_host_predicate: equal
+        chosen_host_predicate_class: lexical_verb
+        source_non_operator_token_ids:
+          - t15
+          - t21
+          - t22
+        chosen_host_token_ids:
+          - t21
+          - t22
+          - t23
+          - t24
+          - t26
+          - t27
+        missing_in_host_token_ids:
+          - t15
+  - id: a:s2:m:s2:96-98:token:21a4157a46ba
+    segment_id: s2
+    predicate:
+      mention_id: m:s2:96-98:token
+      head_token_id: t17
+    arguments:
+      - role: actor
+        mention_ids:
+          - m:s2:79-90:chunk
+        evidence:
+          relation_ids: []
+          token_ids:
+            - t14
+            - t15
+      - role: attribute
+        mention_ids:
+          - m:s2:99-104:token
+        evidence:
+          relation_ids: []
+          token_ids:
+            - t18
+    modifiers: []
+    operators: []
+    evidence:
+      relation_evidence:
+        - annotation_id: rel-9ddebfae9840
+          from_token_id: t17
+          to_token_id: t15
+          label: actor
+        - annotation_id: rel-ab1c4252e9b1
+          from_token_id: t17
+          to_token_id: t18
+          label: attribute
+        - annotation_id: rel-bb48261aedcc
+          from_token_id: t17
+          to_token_id: t18
+          label: copula
+      token_ids:
+        - t14
+        - t15
+        - t17
+        - t18
+      wiki_signals:
+        mention_evidence:
+          - mention_id: m:s2:84-90:token
+            token_ids:
+              - t15
+            evidence:
+              tokens:
+                - token_id: t15
+                  evidence:
+                    wiki_exact_match: true
+                    wiki_prefix_count: 100
+                    wiki_parenthetical_variant_count: 27
+                    wiki_hyphen_space_variant_match: false
+                    wiki_apostrophe_variant_match: false
+                    wiki_singular_plural_variant_match: false
+                    wiki_any_signal: true
+          - mention_id: m:s2:96-98:token
+            token_ids:
+              - t17
+            evidence:
+              tokens:
+                - token_id: t17
+                  evidence:
+                    wiki_exact_match: true
+                    wiki_prefix_count: 100
+                    wiki_parenthetical_variant_count: 13
+                    wiki_hyphen_space_variant_match: false
+                    wiki_apostrophe_variant_match: false
+                    wiki_singular_plural_variant_match: false
+                    wiki_any_signal: true
+          - mention_id: m:s2:99-104:token
+            token_ids:
+              - t18
+            evidence:
+              tokens:
+                - token_id: t18
+                  evidence:
+                    wiki_exact_match: true
+                    wiki_prefix_count: 100
+                    wiki_parenthetical_variant_count: 57
+                    wiki_hyphen_space_variant_match: false
+                    wiki_apostrophe_variant_match: false
+                    wiki_singular_plural_variant_match: false
+                    wiki_any_signal: true
+    diagnostics:
+      predicate_quality: low
+      slot_projection_choice:
+        candidate_count: 2
+        chosen_mention_id: m:s2:99-104:token
+      predicate_class: copula
+      structural_fragment: false
+  - id: a:s2:m:s2:129-134:token:631ab2faf725
+    segment_id: s2
+    predicate:
+      mention_id: m:s2:129-134:token
+      head_token_id: t24
+    arguments:
+      - role: actor
+        mention_ids:
+          - m:s2:110-123:chunk
+        evidence:
+          relation_ids: []
+          token_ids:
+            - t21
+            - t22
+      - role: theme
+        mention_ids:
+          - m:s2:139-154:mwe
+        evidence:
+          relation_ids: []
+          token_ids:
+            - t26
+            - t27
+    modifiers: []
+    operators:
+      - kind: modality
+        value: must
+        evidence:
+          - &a3
+            annotation_id: rel-5ec9b3aded59
+            from_token_id: t24
+            to_token_id: t23
+            label: modality
+    evidence:
+      relation_evidence:
+        - annotation_id: rel-625776bcbfb1
+          from_token_id: t24
+          to_token_id: t22
+          label: actor
+        - *a3
+        - annotation_id: rel-ffafec8fac85
+          from_token_id: t24
+          to_token_id: t26
+          label: modifier
+        - annotation_id: rel-fe7214f60bcc
+          from_token_id: t24
+          to_token_id: t27
+          label: theme
+      token_ids:
+        - t21
+        - t22
+        - t23
+        - t24
+        - t26
+        - t27
+      wiki_signals:
+        mention_evidence:
+          - mention_id: m:s2:116-123:token
+            token_ids:
+              - t22
+            evidence:
+              tokens:
+                - token_id: t22
+                  evidence:
+                    wiki_exact_match: true
+                    wiki_prefix_count: 100
+                    wiki_parenthetical_variant_count: 30
+                    wiki_hyphen_space_variant_match: false
+                    wiki_apostrophe_variant_match: false
+                    wiki_singular_plural_variant_match: false
+                    wiki_any_signal: true
+          - mention_id: m:s2:124-128:token
+            token_ids:
+              - t23
+            evidence:
+              tokens:
+                - token_id: t23
+                  evidence:
+                    wiki_exact_match: true
+                    wiki_prefix_count: 100
+                    wiki_parenthetical_variant_count: 46
+                    wiki_hyphen_space_variant_match: false
+                    wiki_apostrophe_variant_match: false
+                    wiki_singular_plural_variant_match: false
+                    wiki_any_signal: true
+          - mention_id: m:s2:129-134:token
+            token_ids:
+              - t24
+            evidence:
+              tokens:
+                - token_id: t24
+                  evidence:
+                    wiki_exact_match: true
+                    wiki_prefix_count: 100
+                    wiki_parenthetical_variant_count: 19
+                    wiki_hyphen_space_variant_match: false
+                    wiki_apostrophe_variant_match: false
+                    wiki_singular_plural_variant_match: false
+                    wiki_any_signal: true
+          - mention_id: m:s2:139-154:mwe
+            token_ids:
+              - t26
+              - t27
+            evidence:
+              mwe:
+                wiki_exact_match: false
+                wiki_prefix_count: 0
+                wiki_parenthetical_variant_count: 0
+                wiki_hyphen_space_variant_match: false
+                wiki_apostrophe_variant_match: false
+                wiki_singular_plural_variant_match: false
+                wiki_any_signal: false
+              tokens:
+                - token_id: t26
+                  evidence:
+                    wiki_exact_match: true
+                    wiki_prefix_count: 100
+                    wiki_parenthetical_variant_count: 30
+                    wiki_hyphen_space_variant_match: false
+                    wiki_apostrophe_variant_match: false
+                    wiki_singular_plural_variant_match: false
+                    wiki_any_signal: true
+                - token_id: t27
+                  evidence:
+                    wiki_exact_match: true
+                    wiki_prefix_count: 100
+                    wiki_parenthetical_variant_count: 42
+                    wiki_hyphen_space_variant_match: false
+                    wiki_apostrophe_variant_match: false
+                    wiki_singular_plural_variant_match: false
+                    wiki_any_signal: true
+    diagnostics:
+      predicate_quality: ok
+      slot_projection_choice:
+        candidate_count: 2
+        chosen_mention_id: m:s2:139-154:mwe
+      predicate_class: lexical_verb
+      structural_fragment: false
+  - id: a:s3:m:s3:178-184:token:f85f3d53daaa
+    segment_id: s3
+    predicate:
+      mention_id: m:s3:178-184:token
+      head_token_id: t32
+    arguments:
+      - role: actor
+        mention_ids:
+          - m:s3:156-167:chunk
+        evidence:
+          relation_ids: []
+          token_ids:
+            - t29
+            - t30
+      - role: theme
+        mention_ids:
+          - m:s3:203-215:mwe
+        evidence:
+          relation_ids: []
+          token_ids:
+            - t36
+            - t37
+    modifiers:
+      - role: modifier
+        mention_ids:
+          - m:s3:168-177:token
+          - m:s3:194-202:token
+        evidence:
+          relation_ids: []
+          token_ids:
+            - t31
+            - t35
+    operators:
+      - kind: coordination_group
+        group_id: cg:8d8920912124
+        evidence:
+          - &a5
+            annotation_id: rel-b6ff90437d08
+            from_token_id: t32
+            to_token_id: t39
+            label: coordination
+      - kind: coordination_group
+        group_id: cg:8d8920912124
+        value: and
+        evidence:
+          - &a4
+            annotation_id: rel-b6ff90437d08
+            from_token_id: t32
+            to_token_id: t39
+            label: coordination
+    evidence:
+      relation_evidence:
+        - annotation_id: rel-ba75c989a90c
+          from_token_id: t32
+          to_token_id: t30
+          label: actor
+        - annotation_id: rel-71d9b8652a46
+          from_token_id: t32
+          to_token_id: t31
+          label: modifier
+        - annotation_id: rel-467c7b7a609d
+          from_token_id: t32
+          to_token_id: t35
+          label: modifier
+        - annotation_id: rel-7cf4344abea4
+          from_token_id: t32
+          to_token_id: t36
+          label: modifier
+        - annotation_id: rel-a259382ab6dc
+          from_token_id: t32
+          to_token_id: t37
+          label: instrument
+        - annotation_id: rel-fb17a1373910
+          from_token_id: t32
+          to_token_id: t37
+          label: theme
+        - *a4
+      token_ids:
+        - t29
+        - t30
+        - t31
+        - t32
+        - t35
+        - t36
+        - t37
+        - t39
+        - t40
+      wiki_signals:
+        mention_evidence:
+          - mention_id: m:s3:160-167:token
+            token_ids:
+              - t30
+            evidence:
+              tokens:
+                - token_id: t30
+                  evidence:
+                    wiki_exact_match: true
+                    wiki_prefix_count: 100
+                    wiki_parenthetical_variant_count: 45
+                    wiki_hyphen_space_variant_match: false
+                    wiki_apostrophe_variant_match: false
+                    wiki_singular_plural_variant_match: false
+                    wiki_any_signal: true
+          - mention_id: m:s3:168-177:token
+            token_ids:
+              - t31
+            evidence:
+              tokens:
+                - token_id: t31
+                  evidence:
+                    wiki_exact_match: true
+                    wiki_prefix_count: 2
+                    wiki_parenthetical_variant_count: 0
+                    wiki_hyphen_space_variant_match: false
+                    wiki_apostrophe_variant_match: false
+                    wiki_singular_plural_variant_match: false
+                    wiki_any_signal: true
+          - mention_id: m:s3:178-184:token
+            token_ids:
+              - t32
+            evidence:
+              tokens:
+                - token_id: t32
+                  evidence:
+                    wiki_exact_match: true
+                    wiki_prefix_count: 22
+                    wiki_parenthetical_variant_count: 2
+                    wiki_hyphen_space_variant_match: false
+                    wiki_apostrophe_variant_match: false
+                    wiki_singular_plural_variant_match: false
+                    wiki_any_signal: true
+          - mention_id: m:s3:194-202:token
+            token_ids:
+              - t35
+            evidence:
+              tokens:
+                - token_id: t35
+                  evidence:
+                    wiki_exact_match: true
+                    wiki_prefix_count: 77
+                    wiki_parenthetical_variant_count: 3
+                    wiki_hyphen_space_variant_match: false
+                    wiki_apostrophe_variant_match: false
+                    wiki_singular_plural_variant_match: false
+                    wiki_any_signal: true
+          - mention_id: m:s3:203-215:mwe
+            token_ids:
+              - t36
+              - t37
+            evidence:
+              mwe:
+                wiki_exact_match: true
+                wiki_prefix_count: 13
+                wiki_parenthetical_variant_count: 3
+                wiki_hyphen_space_variant_match: false
+                wiki_apostrophe_variant_match: false
+                wiki_singular_plural_variant_match: false
+                wiki_any_signal: true
+              tokens:
+                - token_id: t36
+                  evidence:
+                    wiki_exact_match: true
+                    wiki_prefix_count: 100
+                    wiki_parenthetical_variant_count: 57
+                    wiki_hyphen_space_variant_match: false
+                    wiki_apostrophe_variant_match: false
+                    wiki_singular_plural_variant_match: false
+                    wiki_any_signal: true
+                - token_id: t37
+                  evidence:
+                    wiki_exact_match: true
+                    wiki_prefix_count: 100
+                    wiki_parenthetical_variant_count: 27
+                    wiki_hyphen_space_variant_match: false
+                    wiki_apostrophe_variant_match: false
+                    wiki_singular_plural_variant_match: false
+                    wiki_any_signal: true
+          - mention_id: m:s3:220-241:mwe
+            token_ids:
+              - t39
+              - t40
+            evidence:
+              mwe:
+                wiki_exact_match: false
+                wiki_prefix_count: 0
+                wiki_parenthetical_variant_count: 0
+                wiki_hyphen_space_variant_match: false
+                wiki_apostrophe_variant_match: false
+                wiki_singular_plural_variant_match: false
+                wiki_any_signal: false
+              tokens:
+                - token_id: t39
+                  evidence:
+                    wiki_exact_match: true
+                    wiki_prefix_count: 4
+                    wiki_parenthetical_variant_count: 2
+                    wiki_hyphen_space_variant_match: false
+                    wiki_apostrophe_variant_match: false
+                    wiki_singular_plural_variant_match: false
+                    wiki_any_signal: true
+                - token_id: t40
+                  evidence:
+                    wiki_exact_match: true
+                    wiki_prefix_count: 4
+                    wiki_parenthetical_variant_count: 0
+                    wiki_hyphen_space_variant_match: false
+                    wiki_apostrophe_variant_match: false
+                    wiki_singular_plural_variant_match: false
+                    wiki_any_signal: true
+    diagnostics:
+      predicate_quality: ok
+      slot_projection_choice:
+        candidate_count: 2
+        chosen_mention_id: m:s3:168-177:token
+      predicate_class: lexical_verb
+      structural_fragment: false
+  - id: a:s3:m:s3:220-241:mwe:8c2eb09890de
+    segment_id: s3
+    predicate:
+      mention_id: m:s3:220-241:mwe
+      head_token_id: t40
+    arguments:
+      - role: actor
+        mention_ids:
+          - m:s3:156-167:chunk
+        evidence:
+          relation_ids: []
+          token_ids:
+            - t29
+            - t30
+    modifiers: []
+    operators:
+      - kind: coordination_group
+        group_id: cg:8d8920912124
+        evidence:
+          - *a5
+    evidence:
+      relation_evidence:
+        - annotation_id: rel-84c1d853b8e1
+          from_token_id: t39
+          to_token_id: t30
+          label: actor
+        - annotation_id: rel-6066e46bcd87
+          from_token_id: t39
+          to_token_id: t40
+          label: theme
+      token_ids:
+        - t29
+        - t30
+        - t39
+        - t40
+      wiki_signals:
+        mention_evidence:
+          - mention_id: m:s3:160-167:token
+            token_ids:
+              - t30
+            evidence:
+              tokens:
+                - token_id: t30
+                  evidence:
+                    wiki_exact_match: true
+                    wiki_prefix_count: 100
+                    wiki_parenthetical_variant_count: 45
+                    wiki_hyphen_space_variant_match: false
+                    wiki_apostrophe_variant_match: false
+                    wiki_singular_plural_variant_match: false
+                    wiki_any_signal: true
+          - mention_id: m:s3:220-241:mwe
+            token_ids:
+              - t39
+              - t40
+            evidence:
+              mwe:
+                wiki_exact_match: false
+                wiki_prefix_count: 0
+                wiki_parenthetical_variant_count: 0
+                wiki_hyphen_space_variant_match: false
+                wiki_apostrophe_variant_match: false
+                wiki_singular_plural_variant_match: false
+                wiki_any_signal: false
+              tokens:
+                - token_id: t39
+                  evidence:
+                    wiki_exact_match: true
+                    wiki_prefix_count: 4
+                    wiki_parenthetical_variant_count: 2
+                    wiki_hyphen_space_variant_match: false
+                    wiki_apostrophe_variant_match: false
+                    wiki_singular_plural_variant_match: false
+                    wiki_any_signal: true
+                - token_id: t40
+                  evidence:
+                    wiki_exact_match: true
+                    wiki_prefix_count: 4
+                    wiki_parenthetical_variant_count: 0
+                    wiki_hyphen_space_variant_match: false
+                    wiki_apostrophe_variant_match: false
+                    wiki_singular_plural_variant_match: false
+                    wiki_any_signal: true
+          - mention_id: m:s3:230-241:token_shadow
+            token_ids:
+              - t40
+            evidence:
+              tokens:
+                - token_id: t40
+                  evidence:
+                    wiki_exact_match: true
+                    wiki_prefix_count: 4
+                    wiki_parenthetical_variant_count: 0
+                    wiki_hyphen_space_variant_match: false
+                    wiki_apostrophe_variant_match: false
+                    wiki_singular_plural_variant_match: false
+                    wiki_any_signal: true
+    diagnostics:
+      predicate_quality: ok
+      predicate_class: nominal_head
+      structural_fragment: true
+      suppression_eligibility:
+        eligible: false
+        failure_reason: has_core_slots
+        candidate_class: nominal_head
+        segment_id: s3
+        assertion_id: a:s3:m:s3:220-241:mwe:8c2eb09890de
+        chosen_host_assertion_id: a:s3:m:s3:178-184:token:f85f3d53daaa
+        chosen_host_predicate: starts
+        chosen_host_predicate_class: lexical_verb
+        source_non_operator_token_ids:
+          - t29
+          - t30
+          - t39
+          - t40
+        chosen_host_token_ids:
+          - t29
+          - t30
+          - t31
+          - t32
+          - t35
+          - t36
+          - t37
+          - t39
+          - t40
+        missing_in_host_token_ids: []
+  - id: a:s4:m:s4:275-279:token:67b3c00c534d
+    segment_id: s4
+    predicate:
+      mention_id: m:s4:275-279:token
+      head_token_id: t46
+    arguments:
+      - role: location
+        mention_ids:
+          - m:s4:280-296:chunk
+        evidence:
+          relation_ids: []
+          token_ids:
+            - t47
+            - t48
+            - t49
+      - role: theme
+        mention_ids:
+          - m:s4:243-262:mwe
+        evidence:
+          relation_ids: []
+          token_ids:
+            - t42
+            - t43
+    modifiers:
+      - role: modifier
+        mention_ids:
+          - m:s4:266-274:token
+        evidence:
+          relation_ids: []
+          token_ids:
+            - t45
+    operators: []
+    evidence:
+      relation_evidence:
+        - annotation_id: rel-8f67bd515358
+          from_token_id: t46
+          to_token_id: t43
+          label: patient
+        - annotation_id: rel-32a7193453fb
+          from_token_id: t46
+          to_token_id: t45
+          label: modifier
+        - annotation_id: rel-38d033bdabe4
+          from_token_id: t46
+          to_token_id: t48
+          label: location
+        - annotation_id: rel-d89eb065c3b6
+          from_token_id: t46
+          to_token_id: t49
+          label: location
+      token_ids:
+        - t42
+        - t43
+        - t45
+        - t46
+        - t47
+        - t48
+        - t49
+      wiki_signals:
+        mention_evidence:
+          - mention_id: m:s4:243-262:mwe
+            token_ids:
+              - t42
+              - t43
+            evidence:
+              mwe:
+                wiki_exact_match: true
+                wiki_prefix_count: 5
+                wiki_parenthetical_variant_count: 0
+                wiki_hyphen_space_variant_match: false
+                wiki_apostrophe_variant_match: false
+                wiki_singular_plural_variant_match: false
+                wiki_any_signal: true
+              tokens:
+                - token_id: t42
+                  evidence:
+                    wiki_exact_match: true
+                    wiki_prefix_count: 100
+                    wiki_parenthetical_variant_count: 57
+                    wiki_hyphen_space_variant_match: false
+                    wiki_apostrophe_variant_match: false
+                    wiki_singular_plural_variant_match: false
+                    wiki_any_signal: true
+                - token_id: t43
+                  evidence:
+                    wiki_exact_match: true
+                    wiki_prefix_count: 18
+                    wiki_parenthetical_variant_count: 0
+                    wiki_hyphen_space_variant_match: false
+                    wiki_apostrophe_variant_match: false
+                    wiki_singular_plural_variant_match: false
+                    wiki_any_signal: true
+          - mention_id: m:s4:266-274:token
+            token_ids:
+              - t45
+            evidence:
+              tokens:
+                - token_id: t45
+                  evidence:
+                    wiki_exact_match: true
+                    wiki_prefix_count: 22
+                    wiki_parenthetical_variant_count: 0
+                    wiki_hyphen_space_variant_match: false
+                    wiki_apostrophe_variant_match: false
+                    wiki_singular_plural_variant_match: false
+                    wiki_any_signal: true
+          - mention_id: m:s4:275-279:token
+            token_ids:
+              - t46
+            evidence:
+              tokens:
+                - token_id: t46
+                  evidence:
+                    wiki_exact_match: true
+                    wiki_prefix_count: 100
+                    wiki_parenthetical_variant_count: 25
+                    wiki_hyphen_space_variant_match: false
+                    wiki_apostrophe_variant_match: false
+                    wiki_singular_plural_variant_match: false
+                    wiki_any_signal: true
+          - mention_id: m:s4:283-296:mwe
+            token_ids:
+              - t48
+              - t49
+            evidence:
+              mwe:
+                wiki_exact_match: true
+                wiki_prefix_count: 11
+                wiki_parenthetical_variant_count: 1
+                wiki_hyphen_space_variant_match: false
+                wiki_apostrophe_variant_match: false
+                wiki_singular_plural_variant_match: false
+                wiki_any_signal: true
+              tokens:
+                - token_id: t48
+                  evidence:
+                    wiki_exact_match: true
+                    wiki_prefix_count: 100
+                    wiki_parenthetical_variant_count: 42
+                    wiki_hyphen_space_variant_match: false
+                    wiki_apostrophe_variant_match: false
+                    wiki_singular_plural_variant_match: false
+                    wiki_any_signal: true
+                - token_id: t49
+                  evidence:
+                    wiki_exact_match: true
+                    wiki_prefix_count: 100
+                    wiki_parenthetical_variant_count: 25
+                    wiki_hyphen_space_variant_match: false
+                    wiki_apostrophe_variant_match: false
+                    wiki_singular_plural_variant_match: false
+                    wiki_any_signal: true
+    diagnostics:
+      predicate_quality: ok
+      slot_projection_choice:
+        candidate_count: 3
+        chosen_mention_id: m:s4:243-262:mwe
+      predicate_class: lexical_verb
+      structural_fragment: false
+relation_projection:
+  all_relations:
+    - relation_id: rel-3f9e1a2417cd
+      label: modifier
+      segment_id: s1
+      head_token_id: t1
+      dep_token_id: t2
+      head_primary_mention_id: m:s1:0-19:mwe
+      dep_primary_mention_id: m:s1:6-19:token_shadow
+      head_mention_ids: &a6
+        - m:s1:0-19:chunk
+        - m:s1:0-19:mwe
+        - m:s1:0-5:token_shadow
+      dep_mention_ids:
+        - m:s1:0-19:chunk
+        - m:s1:0-19:mwe
+        - m:s1:6-19:token_shadow
+    - relation_id: rel-a289aebcacb6
+      label: modifier
+      segment_id: s1
+      head_token_id: t12
+      dep_token_id: t11
+      head_primary_mention_id: m:s1:57-77:mwe
+      dep_primary_mention_id: m:s1:64-69:token_shadow
+      head_mention_ids: &a8
+        - m:s1:57-77:mwe
+        - m:s1:61-77:chunk
+        - m:s1:64-77:mwe_alt
+        - m:s1:70-77:token_shadow
+      dep_mention_ids:
+        - m:s1:57-77:mwe
+        - m:s1:61-77:chunk
+        - m:s1:64-69:token_shadow
+        - m:s1:64-77:mwe_alt
+    - relation_id: rel-96370540dd5d
+      label: actor
+      segment_id: s1
+      head_token_id: t3
+      dep_token_id: t1
+      head_primary_mention_id: m:s1:20-30:token
+      dep_primary_mention_id: m:s1:0-19:mwe
+      head_mention_ids: &a7
+        - m:s1:20-30:token
+        - m:s1:20-60:chunk
+      dep_mention_ids: *a6
+    - relation_id: rel-87f70cff4a39
+      label: topic
+      segment_id: s1
+      head_token_id: t3
+      dep_token_id: t12
+      head_primary_mention_id: m:s1:20-30:token
+      dep_primary_mention_id: m:s1:57-77:mwe
+      head_mention_ids: *a7
+      dep_mention_ids: *a8
+    - relation_id: rel-eb6223004f06
+      label: modifier
+      segment_id: s1
+      head_token_id: t3
+      dep_token_id: t5
+      head_primary_mention_id: m:s1:20-30:token
+      dep_primary_mention_id: m:s1:33-49:mwe
+      head_mention_ids: *a7
+      dep_mention_ids:
+        - m:s1:20-60:chunk
+        - m:s1:33-41:token_shadow
+        - m:s1:33-49:mwe
+    - relation_id: rel-9e2becd51d1f
+      label: theme
+      segment_id: s1
+      head_token_id: t3
+      dep_token_id: t6
+      head_primary_mention_id: m:s1:20-30:token
+      dep_primary_mention_id: m:s1:33-49:mwe
+      head_mention_ids: *a7
+      dep_mention_ids:
+        - m:s1:20-60:chunk
+        - m:s1:33-49:mwe
+        - m:s1:42-49:token_shadow
+    - relation_id: rel-349e6179c83f
+      label: location
+      segment_id: s1
+      head_token_id: t3
+      dep_token_id: t9
+      head_primary_mention_id: m:s1:20-30:token
+      dep_primary_mention_id: m:s1:57-77:mwe
+      head_mention_ids: *a7
+      dep_mention_ids:
+        - m:s1:20-60:chunk
+        - m:s1:57-60:token_shadow
+        - m:s1:57-77:mwe
+    - relation_id: rel-806b5389a4ab
+      label: quantifier
+      segment_id: s2
+      head_token_id: t15
+      dep_token_id: t14
+      head_primary_mention_id: m:s2:84-90:token
+      dep_primary_mention_id: m:s2:79-83:token
+      head_mention_ids: &a9
+        - m:s2:79-90:chunk
+        - m:s2:84-90:token
+      dep_mention_ids:
+        - m:s2:79-83:token
+        - m:s2:79-90:chunk
+    - relation_id: rel-825f3e80752a
+      label: coordination
+      segment_id: s2
+      head_token_id: t15
+      dep_token_id: t21
+      head_primary_mention_id: m:s2:84-90:token
+      dep_primary_mention_id: m:s2:110-115:token
+      head_mention_ids: *a9
+      dep_mention_ids:
+        - m:s2:110-115:token
+        - m:s2:110-123:chunk
+    - relation_id: rel-9ddebfae9840
+      label: actor
+      segment_id: s2
+      head_token_id: t17
+      dep_token_id: t15
+      head_primary_mention_id: m:s2:96-98:token
+      dep_primary_mention_id: m:s2:84-90:token
+      head_mention_ids: &a10
+        - m:s2:96-98:chunk
+        - m:s2:96-98:token
+      dep_mention_ids: *a9
+    - relation_id: rel-ab1c4252e9b1
+      label: attribute
+      segment_id: s2
+      head_token_id: t17
+      dep_token_id: t18
+      head_primary_mention_id: m:s2:96-98:token
+      dep_primary_mention_id: m:s2:99-104:token
+      head_mention_ids: *a10
+      dep_mention_ids: &a11
+        - m:s2:99-104:chunk
+        - m:s2:99-104:token
+    - relation_id: rel-bb48261aedcc
+      label: copula
+      segment_id: s2
+      head_token_id: t17
+      dep_token_id: t18
+      head_primary_mention_id: m:s2:96-98:token
+      dep_primary_mention_id: m:s2:99-104:token
+      head_mention_ids: *a10
+      dep_mention_ids: *a11
+    - relation_id: rel-625776bcbfb1
+      label: actor
+      segment_id: s2
+      head_token_id: t24
+      dep_token_id: t22
+      head_primary_mention_id: m:s2:129-134:token
+      dep_primary_mention_id: m:s2:116-123:token
+      head_mention_ids: &a12
+        - m:s2:124-154:chunk
+        - m:s2:129-134:token
+      dep_mention_ids:
+        - m:s2:110-123:chunk
+        - m:s2:116-123:token
+    - relation_id: rel-5ec9b3aded59
+      label: modality
+      segment_id: s2
+      head_token_id: t24
+      dep_token_id: t23
+      head_primary_mention_id: m:s2:129-134:token
+      dep_primary_mention_id: m:s2:124-128:token
+      head_mention_ids: *a12
+      dep_mention_ids:
+        - m:s2:124-128:token
+        - m:s2:124-154:chunk
+    - relation_id: rel-ffafec8fac85
+      label: modifier
+      segment_id: s2
+      head_token_id: t24
+      dep_token_id: t26
+      head_primary_mention_id: m:s2:129-134:token
+      dep_primary_mention_id: m:s2:139-154:mwe
+      head_mention_ids: *a12
+      dep_mention_ids:
+        - m:s2:124-154:chunk
+        - m:s2:139-147:token_shadow
+        - m:s2:139-154:mwe
+    - relation_id: rel-fe7214f60bcc
+      label: theme
+      segment_id: s2
+      head_token_id: t24
+      dep_token_id: t27
+      head_primary_mention_id: m:s2:129-134:token
+      dep_primary_mention_id: m:s2:139-154:mwe
+      head_mention_ids: *a12
+      dep_mention_ids:
+        - m:s2:124-154:chunk
+        - m:s2:139-154:mwe
+        - m:s2:148-154:token_shadow
+    - relation_id: rel-ba75c989a90c
+      label: actor
+      segment_id: s3
+      head_token_id: t32
+      dep_token_id: t30
+      head_primary_mention_id: m:s3:178-184:token
+      dep_primary_mention_id: m:s3:160-167:token
+      head_mention_ids: &a13
+        - m:s3:178-184:token
+        - m:s3:178-215:chunk
+      dep_mention_ids: &a16
+        - m:s3:156-167:chunk
+        - m:s3:160-167:token
+    - relation_id: rel-71d9b8652a46
+      label: modifier
+      segment_id: s3
+      head_token_id: t32
+      dep_token_id: t31
+      head_primary_mention_id: m:s3:178-184:token
+      dep_primary_mention_id: m:s3:168-177:token
+      head_mention_ids: *a13
+      dep_mention_ids:
+        - m:s3:168-177:chunk
+        - m:s3:168-177:token
+    - relation_id: rel-467c7b7a609d
+      label: modifier
+      segment_id: s3
+      head_token_id: t32
+      dep_token_id: t35
+      head_primary_mention_id: m:s3:178-184:token
+      dep_primary_mention_id: m:s3:194-202:token
+      head_mention_ids: *a13
+      dep_mention_ids:
+        - m:s3:178-215:chunk
+        - m:s3:194-202:token
+    - relation_id: rel-7cf4344abea4
+      label: modifier
+      segment_id: s3
+      head_token_id: t32
+      dep_token_id: t36
+      head_primary_mention_id: m:s3:178-184:token
+      dep_primary_mention_id: m:s3:203-215:mwe
+      head_mention_ids: *a13
+      dep_mention_ids:
+        - m:s3:178-215:chunk
+        - m:s3:203-208:token_shadow
+        - m:s3:203-215:mwe
+    - relation_id: rel-a259382ab6dc
+      label: instrument
+      segment_id: s3
+      head_token_id: t32
+      dep_token_id: t37
+      head_primary_mention_id: m:s3:178-184:token
+      dep_primary_mention_id: m:s3:203-215:mwe
+      head_mention_ids: *a13
+      dep_mention_ids: &a14
+        - m:s3:178-215:chunk
+        - m:s3:203-215:mwe
+        - m:s3:209-215:token_shadow
+    - relation_id: rel-fb17a1373910
+      label: theme
+      segment_id: s3
+      head_token_id: t32
+      dep_token_id: t37
+      head_primary_mention_id: m:s3:178-184:token
+      dep_primary_mention_id: m:s3:203-215:mwe
+      head_mention_ids: *a13
+      dep_mention_ids: *a14
+    - relation_id: rel-b6ff90437d08
+      label: coordination
+      segment_id: s3
+      head_token_id: t32
+      dep_token_id: t39
+      head_primary_mention_id: m:s3:178-184:token
+      dep_primary_mention_id: m:s3:220-241:mwe
+      head_mention_ids: *a13
+      dep_mention_ids: &a15
+        - m:s3:220-229:token_shadow
+        - m:s3:220-241:chunk
+        - m:s3:220-241:mwe
+    - relation_id: rel-84c1d853b8e1
+      label: actor
+      segment_id: s3
+      head_token_id: t39
+      dep_token_id: t30
+      head_primary_mention_id: m:s3:220-241:mwe
+      dep_primary_mention_id: m:s3:160-167:token
+      head_mention_ids: *a15
+      dep_mention_ids: *a16
+    - relation_id: rel-6066e46bcd87
+      label: theme
+      segment_id: s3
+      head_token_id: t39
+      dep_token_id: t40
+      head_primary_mention_id: m:s3:220-241:mwe
+      dep_primary_mention_id: m:s3:230-241:token_shadow
+      head_mention_ids: *a15
+      dep_mention_ids:
+        - m:s3:220-241:chunk
+        - m:s3:220-241:mwe
+        - m:s3:230-241:token_shadow
+    - relation_id: rel-be6e08638097
+      label: modifier
+      segment_id: s4
+      head_token_id: t43
+      dep_token_id: t42
+      head_primary_mention_id: m:s4:243-262:mwe
+      dep_primary_mention_id: m:s4:243-248:token_shadow
+      head_mention_ids: &a17
+        - m:s4:243-262:chunk
+        - m:s4:243-262:mwe
+        - m:s4:249-262:token_shadow
+      dep_mention_ids:
+        - m:s4:243-248:token_shadow
+        - m:s4:243-262:chunk
+        - m:s4:243-262:mwe
+    - relation_id: rel-8f67bd515358
+      label: patient
+      segment_id: s4
+      head_token_id: t46
+      dep_token_id: t43
+      head_primary_mention_id: m:s4:275-279:token
+      dep_primary_mention_id: m:s4:243-262:mwe
+      head_mention_ids: &a18
+        - m:s4:275-279:chunk
+        - m:s4:275-279:token
+      dep_mention_ids: *a17
+    - relation_id: rel-32a7193453fb
+      label: modifier
+      segment_id: s4
+      head_token_id: t46
+      dep_token_id: t45
+      head_primary_mention_id: m:s4:275-279:token
+      dep_primary_mention_id: m:s4:266-274:token
+      head_mention_ids: *a18
+      dep_mention_ids:
+        - m:s4:266-274:chunk
+        - m:s4:266-274:token
+    - relation_id: rel-38d033bdabe4
+      label: location
+      segment_id: s4
+      head_token_id: t46
+      dep_token_id: t48
+      head_primary_mention_id: m:s4:275-279:token
+      dep_primary_mention_id: m:s4:283-296:mwe
+      head_mention_ids: *a18
+      dep_mention_ids:
+        - m:s4:280-296:chunk
+        - m:s4:283-289:token_shadow
+        - m:s4:283-296:mwe
+    - relation_id: rel-d89eb065c3b6
+      label: location
+      segment_id: s4
+      head_token_id: t46
+      dep_token_id: t49
+      head_primary_mention_id: m:s4:275-279:token
+      dep_primary_mention_id: m:s4:283-296:mwe
+      head_mention_ids: *a18
+      dep_mention_ids: &a19
+        - m:s4:280-296:chunk
+        - m:s4:283-296:mwe
+        - m:s4:290-296:token_shadow
+    - relation_id: rel-795836c68f0d
+      label: coordination
+      segment_id: s4
+      head_token_id: t49
+      dep_token_id: t51
+      head_primary_mention_id: m:s4:283-296:mwe
+      dep_primary_mention_id: m:s4:301-313:token
+      head_mention_ids: *a19
+      dep_mention_ids:
+        - m:s4:301-313:chunk
+        - m:s4:301-313:token
+  projected_relations:
+    - relation_id: rel-3f9e1a2417cd
+      label: modifier
+      segment_id: s1
+      head_token_id: t1
+      dep_token_id: t2
+      head_mention_id: m:s1:0-19:mwe
+      dep_mention_id: m:s1:6-19:token_shadow
+    - relation_id: rel-96370540dd5d
+      label: actor
+      segment_id: s1
+      head_token_id: t3
+      dep_token_id: t1
+      head_mention_id: m:s1:20-30:token
+      dep_mention_id: m:s1:0-19:mwe
+    - relation_id: rel-eb6223004f06
+      label: modifier
+      segment_id: s1
+      head_token_id: t3
+      dep_token_id: t5
+      head_mention_id: m:s1:20-30:token
+      dep_mention_id: m:s1:33-49:mwe
+    - relation_id: rel-9e2becd51d1f
+      label: theme
+      segment_id: s1
+      head_token_id: t3
+      dep_token_id: t6
+      head_mention_id: m:s1:20-30:token
+      dep_mention_id: m:s1:33-49:mwe
+    - relation_id: rel-349e6179c83f
+      label: location
+      segment_id: s1
+      head_token_id: t3
+      dep_token_id: t9
+      head_mention_id: m:s1:20-30:token
+      dep_mention_id: m:s1:57-77:mwe
+    - relation_id: rel-87f70cff4a39
+      label: topic
+      segment_id: s1
+      head_token_id: t3
+      dep_token_id: t12
+      head_mention_id: m:s1:20-30:token
+      dep_mention_id: m:s1:57-77:mwe
+    - relation_id: rel-a289aebcacb6
+      label: modifier
+      segment_id: s1
+      head_token_id: t12
+      dep_token_id: t11
+      head_mention_id: m:s1:57-77:mwe
+      dep_mention_id: m:s1:64-69:token_shadow
+    - relation_id: rel-806b5389a4ab
+      label: quantifier
+      segment_id: s2
+      head_token_id: t15
+      dep_token_id: t14
+      head_mention_id: m:s2:84-90:token
+      dep_mention_id: m:s2:79-83:token
+    - relation_id: rel-825f3e80752a
+      label: coordination
+      segment_id: s2
+      head_token_id: t15
+      dep_token_id: t21
+      head_mention_id: m:s2:84-90:token
+      dep_mention_id: m:s2:110-115:token
+    - relation_id: rel-9ddebfae9840
+      label: actor
+      segment_id: s2
+      head_token_id: t17
+      dep_token_id: t15
+      head_mention_id: m:s2:96-98:token
+      dep_mention_id: m:s2:84-90:token
+    - relation_id: rel-ab1c4252e9b1
+      label: attribute
+      segment_id: s2
+      head_token_id: t17
+      dep_token_id: t18
+      head_mention_id: m:s2:96-98:token
+      dep_mention_id: m:s2:99-104:token
+    - relation_id: rel-bb48261aedcc
+      label: copula
+      segment_id: s2
+      head_token_id: t17
+      dep_token_id: t18
+      head_mention_id: m:s2:96-98:token
+      dep_mention_id: m:s2:99-104:token
+    - relation_id: rel-625776bcbfb1
+      label: actor
+      segment_id: s2
+      head_token_id: t24
+      dep_token_id: t22
+      head_mention_id: m:s2:129-134:token
+      dep_mention_id: m:s2:116-123:token
+    - relation_id: rel-5ec9b3aded59
+      label: modality
+      segment_id: s2
+      head_token_id: t24
+      dep_token_id: t23
+      head_mention_id: m:s2:129-134:token
+      dep_mention_id: m:s2:124-128:token
+    - relation_id: rel-ffafec8fac85
+      label: modifier
+      segment_id: s2
+      head_token_id: t24
+      dep_token_id: t26
+      head_mention_id: m:s2:129-134:token
+      dep_mention_id: m:s2:139-154:mwe
+    - relation_id: rel-fe7214f60bcc
+      label: theme
+      segment_id: s2
+      head_token_id: t24
+      dep_token_id: t27
+      head_mention_id: m:s2:129-134:token
+      dep_mention_id: m:s2:139-154:mwe
+    - relation_id: rel-ba75c989a90c
+      label: actor
+      segment_id: s3
+      head_token_id: t32
+      dep_token_id: t30
+      head_mention_id: m:s3:178-184:token
+      dep_mention_id: m:s3:160-167:token
+    - relation_id: rel-71d9b8652a46
+      label: modifier
+      segment_id: s3
+      head_token_id: t32
+      dep_token_id: t31
+      head_mention_id: m:s3:178-184:token
+      dep_mention_id: m:s3:168-177:token
+    - relation_id: rel-467c7b7a609d
+      label: modifier
+      segment_id: s3
+      head_token_id: t32
+      dep_token_id: t35
+      head_mention_id: m:s3:178-184:token
+      dep_mention_id: m:s3:194-202:token
+    - relation_id: rel-7cf4344abea4
+      label: modifier
+      segment_id: s3
+      head_token_id: t32
+      dep_token_id: t36
+      head_mention_id: m:s3:178-184:token
+      dep_mention_id: m:s3:203-215:mwe
+    - relation_id: rel-a259382ab6dc
+      label: instrument
+      segment_id: s3
+      head_token_id: t32
+      dep_token_id: t37
+      head_mention_id: m:s3:178-184:token
+      dep_mention_id: m:s3:203-215:mwe
+    - relation_id: rel-fb17a1373910
+      label: theme
+      segment_id: s3
+      head_token_id: t32
+      dep_token_id: t37
+      head_mention_id: m:s3:178-184:token
+      dep_mention_id: m:s3:203-215:mwe
+    - relation_id: rel-b6ff90437d08
+      label: coordination
+      segment_id: s3
+      head_token_id: t32
+      dep_token_id: t39
+      head_mention_id: m:s3:178-184:token
+      dep_mention_id: m:s3:220-241:mwe
+    - relation_id: rel-84c1d853b8e1
+      label: actor
+      segment_id: s3
+      head_token_id: t39
+      dep_token_id: t30
+      head_mention_id: m:s3:220-241:mwe
+      dep_mention_id: m:s3:160-167:token
+    - relation_id: rel-6066e46bcd87
+      label: theme
+      segment_id: s3
+      head_token_id: t39
+      dep_token_id: t40
+      head_mention_id: m:s3:220-241:mwe
+      dep_mention_id: m:s3:230-241:token_shadow
+    - relation_id: rel-be6e08638097
+      label: modifier
+      segment_id: s4
+      head_token_id: t43
+      dep_token_id: t42
+      head_mention_id: m:s4:243-262:mwe
+      dep_mention_id: m:s4:243-248:token_shadow
+    - relation_id: rel-8f67bd515358
+      label: patient
+      segment_id: s4
+      head_token_id: t46
+      dep_token_id: t43
+      head_mention_id: m:s4:275-279:token
+      dep_mention_id: m:s4:243-262:mwe
+    - relation_id: rel-32a7193453fb
+      label: modifier
+      segment_id: s4
+      head_token_id: t46
+      dep_token_id: t45
+      head_mention_id: m:s4:275-279:token
+      dep_mention_id: m:s4:266-274:token
+    - relation_id: rel-38d033bdabe4
+      label: location
+      segment_id: s4
+      head_token_id: t46
+      dep_token_id: t48
+      head_mention_id: m:s4:275-279:token
+      dep_mention_id: m:s4:283-296:mwe
+    - relation_id: rel-d89eb065c3b6
+      label: location
+      segment_id: s4
+      head_token_id: t46
+      dep_token_id: t49
+      head_mention_id: m:s4:275-279:token
+      dep_mention_id: m:s4:283-296:mwe
+    - relation_id: rel-795836c68f0d
+      label: coordination
+      segment_id: s4
+      head_token_id: t49
+      dep_token_id: t51
+      head_mention_id: m:s4:283-296:mwe
+      dep_mention_id: m:s4:301-313:token
+  dropped_relations: []
+accepted_annotations:
+  - id: chunk-3a58b6fed439
+    kind: chunk
+    status: accepted
+    label: Prime factorization
+    token_ids:
+      - t1
+      - t2
+    span:
+      start: 0
+      end: 19
+    source_names:
+      - chunking-pos-fsm
+  - id: chunk-683d09f63f01
+    kind: chunk
+    status: accepted
+    label: decomposes a positive integer into a set
+    token_ids:
+      - t3
+      - t4
+      - t5
+      - t6
+      - t7
+      - t8
+      - t9
+    span:
+      start: 20
+      end: 60
+    source_names:
+      - chunking-pos-fsm
+  - id: chunk-2ebbdaa639df
+    kind: chunk
+    status: accepted
+    label: of prime numbers
+    token_ids:
+      - t10
+      - t11
+      - t12
+    span:
+      start: 61
+      end: 77
+    source_names:
+      - chunking-pos-fsm
+  - id: chunk-3ce7fa54d23e
+    kind: chunk
+    status: accepted
+    label: .
+    token_ids:
+      - t13
+    span:
+      start: 77
+      end: 78
+    source_names:
+      - chunking-pos-fsm
+  - id: chunk-d4a65840158d
+    kind: chunk
+    status: accepted
+    label: Each factor
+    token_ids:
+      - t14
+      - t15
+    span:
+      start: 79
+      end: 90
+    source_names:
+      - chunking-pos-fsm
+  - id: chunk-dc49d8649308
+    kind: chunk
+    status: accepted
+    label: must
+    token_ids:
+      - t16
+    span:
+      start: 91
+      end: 95
+    source_names:
+      - chunking-pos-fsm
+  - id: chunk-284d07e558ca
+    kind: chunk
+    status: accepted
+    label: be
+    token_ids:
+      - t17
+    span:
+      start: 96
+      end: 98
+    source_names:
+      - chunking-pos-fsm
+  - id: chunk-ce29503fef86
+    kind: chunk
+    status: accepted
+    label: prime
+    token_ids:
+      - t18
+    span:
+      start: 99
+      end: 104
+    source_names:
+      - chunking-pos-fsm
+  - id: chunk-6ec323f8b053
+    kind: chunk
+    status: accepted
+    label: ","
+    token_ids:
+      - t19
+    span:
+      start: 104
+      end: 105
+    source_names:
+      - chunking-pos-fsm
+  - id: chunk-b90306f8feca
+    kind: chunk
+    status: accepted
+    label: and
+    token_ids:
+      - t20
+    span:
+      start: 106
+      end: 109
+    source_names:
+      - chunking-pos-fsm
+  - id: chunk-e40f81f3e574
+    kind: chunk
+    status: accepted
+    label: their product
+    token_ids:
+      - t21
+      - t22
+    span:
+      start: 110
+      end: 123
+    source_names:
+      - chunking-pos-fsm
+  - id: chunk-879255314a01
+    kind: chunk
+    status: accepted
+    label: must equal the original number
+    token_ids:
+      - t23
+      - t24
+      - t25
+      - t26
+      - t27
+    span:
+      start: 124
+      end: 154
+    source_names:
+      - chunking-pos-fsm
+  - id: chunk-db46826c88c0
+    kind: chunk
+    status: accepted
+    label: .
+    token_ids:
+      - t28
+    span:
+      start: 154
+      end: 155
+    source_names:
+      - chunking-pos-fsm
+  - id: chunk-ec45d3e01f03
+    kind: chunk
+    status: accepted
+    label: The process
+    token_ids:
+      - t29
+      - t30
+    span:
+      start: 156
+      end: 167
+    source_names:
+      - chunking-pos-fsm
+  - id: chunk-7cb5b3e17ae6
+    kind: chunk
+    status: accepted
+    label: typically
+    token_ids:
+      - t31
+    span:
+      start: 168
+      end: 177
+    source_names:
+      - chunking-pos-fsm
+  - id: chunk-e89ac70004fc
+    kind: chunk
+    status: accepted
+    label: starts with the smallest prime factor
+    token_ids:
+      - t32
+      - t33
+      - t34
+      - t35
+      - t36
+      - t37
+    span:
+      start: 178
+      end: 215
+    source_names:
+      - chunking-pos-fsm
+  - id: chunk-e733719801b4
+    kind: chunk
+    status: accepted
+    label: and
+    token_ids:
+      - t38
+    span:
+      start: 216
+      end: 219
+    source_names:
+      - chunking-pos-fsm
+  - id: chunk-7baead272cc2
+    kind: chunk
+    status: accepted
+    label: continues iteratively
+    token_ids:
+      - t39
+      - t40
+    span:
+      start: 220
+      end: 241
+    source_names:
+      - chunking-pos-fsm
+  - id: chunk-c2bc620b30a3
+    kind: chunk
+    status: accepted
+    label: .
+    token_ids:
+      - t41
+    span:
+      start: 241
+      end: 242
+    source_names:
+      - chunking-pos-fsm
+  - id: chunk-954ac4b449e5
+    kind: chunk
+    status: accepted
+    label: Prime factorization
+    token_ids:
+      - t42
+      - t43
+    span:
+      start: 243
+      end: 262
+    source_names:
+      - chunking-pos-fsm
+  - id: chunk-4724400f2f70
+    kind: chunk
+    status: accepted
+    label: is
+    token_ids:
+      - t44
+    span:
+      start: 263
+      end: 265
+    source_names:
+      - chunking-pos-fsm
+  - id: chunk-89db528e55ac
+    kind: chunk
+    status: accepted
+    label: commonly
+    token_ids:
+      - t45
+    span:
+      start: 266
+      end: 274
+    source_names:
+      - chunking-pos-fsm
+  - id: chunk-c7d66fc55efe
+    kind: chunk
+    status: accepted
+    label: used
+    token_ids:
+      - t46
+    span:
+      start: 275
+      end: 279
+    source_names:
+      - chunking-pos-fsm
+  - id: chunk-ece2bb2586ef
+    kind: chunk
+    status: accepted
+    label: in number theory
+    token_ids:
+      - t47
+      - t48
+      - t49
+    span:
+      start: 280
+      end: 296
+    source_names:
+      - chunking-pos-fsm
+  - id: chunk-87116297fe9e
+    kind: chunk
+    status: accepted
+    label: and
+    token_ids:
+      - t50
+    span:
+      start: 297
+      end: 300
+    source_names:
+      - chunking-pos-fsm
+  - id: chunk-85e227c8c6dc
+    kind: chunk
+    status: accepted
+    label: cryptography
+    token_ids:
+      - t51
+    span:
+      start: 301
+      end: 313
+    source_names:
+      - chunking-pos-fsm
+  - id: chunk-71f7306cb8b8
+    kind: chunk
+    status: accepted
+    label: .
+    token_ids:
+      - t52
+    span:
+      start: 313
+      end: 314
+    source_names:
+      - chunking-pos-fsm
+  - id: chunk-head-52a112de116c
+    kind: chunk_head
+    status: accepted
+    label: Prime
+    token_ids:
+      - t1
+    span:
+      start: 0
+      end: 5
+    source_names:
+      - head-identification
+  - id: chunk-head-96ecb3760d4f
+    kind: chunk_head
+    status: accepted
+    label: decomposes
+    token_ids:
+      - t3
+    span:
+      start: 20
+      end: 30
+    source_names:
+      - head-identification
+  - id: chunk-head-6e83265c0b9f
+    kind: chunk_head
+    status: accepted
+    label: of
+    token_ids:
+      - t10
+    span:
+      start: 61
+      end: 63
+    source_names:
+      - head-identification
+  - id: chunk-head-2906cb2dddc4
+    kind: chunk_head
+    status: accepted
+    label: .
+    token_ids:
+      - t13
+    span:
+      start: 77
+      end: 78
+    source_names:
+      - head-identification
+  - id: chunk-head-49c64b995246
+    kind: chunk_head
+    status: accepted
+    label: factor
+    token_ids:
+      - t15
+    span:
+      start: 84
+      end: 90
+    source_names:
+      - head-identification
+  - id: chunk-head-5256727f4830
+    kind: chunk_head
+    status: accepted
+    label: must
+    token_ids:
+      - t16
+    span:
+      start: 91
+      end: 95
+    source_names:
+      - head-identification
+  - id: chunk-head-30d42bbdba5f
+    kind: chunk_head
+    status: accepted
+    label: be
+    token_ids:
+      - t17
+    span:
+      start: 96
+      end: 98
+    source_names:
+      - head-identification
+  - id: chunk-head-722ecfca92ee
+    kind: chunk_head
+    status: accepted
+    label: prime
+    token_ids:
+      - t18
+    span:
+      start: 99
+      end: 104
+    source_names:
+      - head-identification
+  - id: chunk-head-c4243f8d421b
+    kind: chunk_head
+    status: accepted
+    label: ","
+    token_ids:
+      - t19
+    span:
+      start: 104
+      end: 105
+    source_names:
+      - head-identification
+  - id: chunk-head-e6f65471577c
+    kind: chunk_head
+    status: accepted
+    label: and
+    token_ids:
+      - t20
+    span:
+      start: 106
+      end: 109
+    source_names:
+      - head-identification
+  - id: chunk-head-7bc7ddfeffe9
+    kind: chunk_head
+    status: accepted
+    label: product
+    token_ids:
+      - t22
+    span:
+      start: 116
+      end: 123
+    source_names:
+      - head-identification
+  - id: chunk-head-630189c627a5
+    kind: chunk_head
+    status: accepted
+    label: equal
+    token_ids:
+      - t24
+    span:
+      start: 129
+      end: 134
+    source_names:
+      - head-identification
+  - id: chunk-head-700c448ee8a6
+    kind: chunk_head
+    status: accepted
+    label: .
+    token_ids:
+      - t28
+    span:
+      start: 154
+      end: 155
+    source_names:
+      - head-identification
+  - id: chunk-head-8e94fd0f8322
+    kind: chunk_head
+    status: accepted
+    label: process
+    token_ids:
+      - t30
+    span:
+      start: 160
+      end: 167
+    source_names:
+      - head-identification
+  - id: chunk-head-f3b268cc6580
+    kind: chunk_head
+    status: accepted
+    label: typically
+    token_ids:
+      - t31
+    span:
+      start: 168
+      end: 177
+    source_names:
+      - head-identification
+  - id: chunk-head-9f0876cb981c
+    kind: chunk_head
+    status: accepted
+    label: starts
+    token_ids:
+      - t32
+    span:
+      start: 178
+      end: 184
+    source_names:
+      - head-identification
+  - id: chunk-head-7c0525e314d5
+    kind: chunk_head
+    status: accepted
+    label: and
+    token_ids:
+      - t38
+    span:
+      start: 216
+      end: 219
+    source_names:
+      - head-identification
+  - id: chunk-head-bcbe55ae0018
+    kind: chunk_head
+    status: accepted
+    label: continues
+    token_ids:
+      - t39
+    span:
+      start: 220
+      end: 229
+    source_names:
+      - head-identification
+  - id: chunk-head-26601642aa9b
+    kind: chunk_head
+    status: accepted
+    label: .
+    token_ids:
+      - t41
+    span:
+      start: 241
+      end: 242
+    source_names:
+      - head-identification
+  - id: chunk-head-d65950cad70c
+    kind: chunk_head
+    status: accepted
+    label: factorization
+    token_ids:
+      - t43
+    span:
+      start: 249
+      end: 262
+    source_names:
+      - head-identification
+  - id: chunk-head-626316271d86
+    kind: chunk_head
+    status: accepted
+    label: is
+    token_ids:
+      - t44
+    span:
+      start: 263
+      end: 265
+    source_names:
+      - head-identification
+  - id: chunk-head-932913845f48
+    kind: chunk_head
+    status: accepted
+    label: commonly
+    token_ids:
+      - t45
+    span:
+      start: 266
+      end: 274
+    source_names:
+      - head-identification
+  - id: chunk-head-12af6f2336bb
+    kind: chunk_head
+    status: accepted
+    label: used
+    token_ids:
+      - t46
+    span:
+      start: 275
+      end: 279
+    source_names:
+      - head-identification
+  - id: chunk-head-f6bdfe73042d
+    kind: chunk_head
+    status: accepted
+    label: in
+    token_ids:
+      - t47
+    span:
+      start: 280
+      end: 282
+    source_names:
+      - head-identification
+  - id: chunk-head-6a574f120d57
+    kind: chunk_head
+    status: accepted
+    label: and
+    token_ids:
+      - t50
+    span:
+      start: 297
+      end: 300
+    source_names:
+      - head-identification
+  - id: chunk-head-e0c7923ee59a
+    kind: chunk_head
+    status: accepted
+    label: cryptography
+    token_ids:
+      - t51
+    span:
+      start: 301
+      end: 313
+    source_names:
+      - head-identification
+  - id: chunk-head-83ee971fa0ef
+    kind: chunk_head
+    status: accepted
+    label: .
+    token_ids:
+      - t52
+    span:
+      start: 313
+      end: 314
+    source_names:
+      - head-identification
+  - id: rel-96370540dd5d
+    kind: dependency
+    status: accepted
+    label: actor
+    token_ids:
+      - t1
+      - t3
+    span:
+      start: 0
+      end: 5
+    source_names:
+      - relation-extraction
+  - id: rel-3f9e1a2417cd
+    kind: dependency
+    status: accepted
+    label: modifier
+    token_ids:
+      - t1
+      - t2
+    span:
+      start: 6
+      end: 19
+    source_names:
+      - relation-extraction
+  - id: rel-eb6223004f06
+    kind: dependency
+    status: accepted
+    label: modifier
+    token_ids:
+      - t3
+      - t5
+    span:
+      start: 33
+      end: 41
+    source_names:
+      - relation-extraction
+  - id: rel-9e2becd51d1f
+    kind: dependency
+    status: accepted
+    label: theme
+    token_ids:
+      - t3
+      - t6
+    span:
+      start: 42
+      end: 49
+    source_names:
+      - relation-extraction
+  - id: rel-349e6179c83f
+    kind: dependency
+    status: accepted
+    label: location
+    token_ids:
+      - t3
+      - t9
+    span:
+      start: 57
+      end: 60
+    source_names:
+      - relation-extraction
+  - id: rel-a289aebcacb6
+    kind: dependency
+    status: accepted
+    label: modifier
+    token_ids:
+      - t11
+      - t12
+    span:
+      start: 64
+      end: 69
+    source_names:
+      - relation-extraction
+  - id: rel-87f70cff4a39
+    kind: dependency
+    status: accepted
+    label: topic
+    token_ids:
+      - t12
+      - t3
+    span:
+      start: 70
+      end: 77
+    source_names:
+      - relation-extraction
+  - id: rel-806b5389a4ab
+    kind: dependency
+    status: accepted
+    label: quantifier
+    token_ids:
+      - t14
+      - t15
+    span:
+      start: 79
+      end: 83
+    source_names:
+      - relation-extraction
+  - id: rel-9ddebfae9840
+    kind: dependency
+    status: accepted
+    label: actor
+    token_ids:
+      - t15
+      - t17
+    span:
+      start: 84
+      end: 90
+    source_names:
+      - relation-extraction
+  - id: rel-ab1c4252e9b1
+    kind: dependency
+    status: accepted
+    label: attribute
+    token_ids:
+      - t17
+      - t18
+    span:
+      start: 99
+      end: 104
+    source_names:
+      - relation-extraction
+  - id: rel-bb48261aedcc
+    kind: dependency
+    status: accepted
+    label: copula
+    token_ids:
+      - t17
+      - t18
+    span:
+      start: 99
+      end: 104
+    source_names:
+      - relation-extraction
+  - id: rel-825f3e80752a
+    kind: dependency
+    status: accepted
+    label: coordination
+    token_ids:
+      - t15
+      - t21
+    span:
+      start: 110
+      end: 115
+    source_names:
+      - relation-extraction
+  - id: rel-625776bcbfb1
+    kind: dependency
+    status: accepted
+    label: actor
+    token_ids:
+      - t22
+      - t24
+    span:
+      start: 116
+      end: 123
+    source_names:
+      - relation-extraction
+  - id: rel-5ec9b3aded59
+    kind: dependency
+    status: accepted
+    label: modality
+    token_ids:
+      - t23
+      - t24
+    span:
+      start: 124
+      end: 128
+    source_names:
+      - relation-extraction
+  - id: rel-ffafec8fac85
+    kind: dependency
+    status: accepted
+    label: modifier
+    token_ids:
+      - t24
+      - t26
+    span:
+      start: 139
+      end: 147
+    source_names:
+      - relation-extraction
+  - id: rel-fe7214f60bcc
+    kind: dependency
+    status: accepted
+    label: theme
+    token_ids:
+      - t24
+      - t27
+    span:
+      start: 148
+      end: 154
+    source_names:
+      - relation-extraction
+  - id: rel-84c1d853b8e1
+    kind: dependency
+    status: accepted
+    label: actor
+    token_ids:
+      - t30
+      - t39
+    span:
+      start: 160
+      end: 167
+    source_names:
+      - relation-extraction
+  - id: rel-ba75c989a90c
+    kind: dependency
+    status: accepted
+    label: actor
+    token_ids:
+      - t30
+      - t32
+    span:
+      start: 160
+      end: 167
+    source_names:
+      - relation-extraction
+  - id: rel-71d9b8652a46
+    kind: dependency
+    status: accepted
+    label: modifier
+    token_ids:
+      - t31
+      - t32
+    span:
+      start: 168
+      end: 177
+    source_names:
+      - relation-extraction
+  - id: rel-467c7b7a609d
+    kind: dependency
+    status: accepted
+    label: modifier
+    token_ids:
+      - t32
+      - t35
+    span:
+      start: 194
+      end: 202
+    source_names:
+      - relation-extraction
+  - id: rel-7cf4344abea4
+    kind: dependency
+    status: accepted
+    label: modifier
+    token_ids:
+      - t32
+      - t36
+    span:
+      start: 203
+      end: 208
+    source_names:
+      - relation-extraction
+  - id: rel-a259382ab6dc
+    kind: dependency
+    status: accepted
+    label: instrument
+    token_ids:
+      - t32
+      - t37
+    span:
+      start: 209
+      end: 215
+    source_names:
+      - relation-extraction
+  - id: rel-fb17a1373910
+    kind: dependency
+    status: accepted
+    label: theme
+    token_ids:
+      - t32
+      - t37
+    span:
+      start: 209
+      end: 215
+    source_names:
+      - relation-extraction
+  - id: rel-b6ff90437d08
+    kind: dependency
+    status: accepted
+    label: coordination
+    token_ids:
+      - t32
+      - t39
+    span:
+      start: 220
+      end: 229
+    source_names:
+      - relation-extraction
+  - id: rel-6066e46bcd87
+    kind: dependency
+    status: accepted
+    label: theme
+    token_ids:
+      - t39
+      - t40
+    span:
+      start: 230
+      end: 241
+    source_names:
+      - relation-extraction
+  - id: rel-be6e08638097
+    kind: dependency
+    status: accepted
+    label: modifier
+    token_ids:
+      - t42
+      - t43
+    span:
+      start: 243
+      end: 248
+    source_names:
+      - relation-extraction
+  - id: rel-8f67bd515358
+    kind: dependency
+    status: accepted
+    label: patient
+    token_ids:
+      - t43
+      - t46
+    span:
+      start: 249
+      end: 262
+    source_names:
+      - relation-extraction
+  - id: rel-32a7193453fb
+    kind: dependency
+    status: accepted
+    label: modifier
+    token_ids:
+      - t45
+      - t46
+    span:
+      start: 266
+      end: 274
+    source_names:
+      - relation-extraction
+  - id: rel-38d033bdabe4
+    kind: dependency
+    status: accepted
+    label: location
+    token_ids:
+      - t46
+      - t48
+    span:
+      start: 283
+      end: 289
+    source_names:
+      - relation-extraction
+  - id: rel-d89eb065c3b6
+    kind: dependency
+    status: accepted
+    label: location
+    token_ids:
+      - t46
+      - t49
+    span:
+      start: 290
+      end: 296
+    source_names:
+      - relation-extraction
+  - id: rel-795836c68f0d
+    kind: dependency
+    status: accepted
+    label: coordination
+    token_ids:
+      - t49
+      - t51
+    span:
+      start: 301
+      end: 313
+    source_names:
+      - relation-extraction
+  - id: mwe-e6b4de69a1d0
+    kind: mwe
+    status: accepted
+    label: Prime factorization
+    token_ids:
+      - t1
+      - t2
+    span:
+      start: 0
+      end: 19
+    source_names:
+      - candidate-construction
+      - mwe-materialization
+      - spacy:matcher/noun_noun
+      - wikipedia-title-index
+  - id: mwe-e81d22e64601
+    kind: mwe
+    status: accepted
+    label: positive integer
+    token_ids:
+      - t5
+      - t6
+    span:
+      start: 33
+      end: 49
+    source_names:
+      - candidate-construction
+      - mwe-materialization
+      - spacy:matcher/adj_noun
+      - wikipedia-title-index
+  - id: mwe-0719682cc397
+    kind: mwe
+    status: accepted
+    label: set of prime numbers
+    token_ids:
+      - t10
+      - t11
+      - t12
+      - t9
+    span:
+      start: 57
+      end: 77
+    source_names:
+      - candidate-construction
+      - mwe-materialization
+      - spacy:matcher/noun_prep_of_np
+      - wikipedia-title-index
+  - id: mwe-a7fb0594d28c
+    kind: mwe
+    status: accepted
+    label: prime numbers
+    token_ids:
+      - t11
+      - t12
+    span:
+      start: 64
+      end: 77
+    source_names:
+      - candidate-construction
+      - mwe-materialization
+      - spacy:matcher/adj_noun
+      - wikipedia-title-index
+  - id: mwe-1fbc4c194b51
+    kind: mwe
+    status: accepted
+    label: original number
+    token_ids:
+      - t26
+      - t27
+    span:
+      start: 139
+      end: 154
+    source_names:
+      - candidate-construction
+      - mwe-materialization
+      - spacy:matcher/adj_noun
+      - wikipedia-title-index
+  - id: mwe-3d2c717aef88
+    kind: mwe
+    status: accepted
+    label: prime factor
+    token_ids:
+      - t36
+      - t37
+    span:
+      start: 203
+      end: 215
+    source_names:
+      - candidate-construction
+      - mwe-materialization
+      - spacy:matcher/adj_noun
+      - wikipedia-title-index
+  - id: mwe-9709deebe179
+    kind: mwe
+    status: accepted
+    label: continues iteratively
+    token_ids:
+      - t39
+      - t40
+    span:
+      start: 220
+      end: 241
+    source_names:
+      - candidate-construction
+      - mwe-materialization
+      - spacy:matcher/verb_noun
+      - wikipedia-title-index
+  - id: mwe-f879aec70a9d
+    kind: mwe
+    status: accepted
+    label: Prime factorization
+    token_ids:
+      - t42
+      - t43
+    span:
+      start: 243
+      end: 262
+    source_names:
+      - candidate-construction
+      - mwe-materialization
+      - spacy:matcher/noun_noun
+      - wikipedia-title-index
+  - id: mwe-d3c25dffa619
+    kind: mwe
+    status: accepted
+    label: number theory
+    token_ids:
+      - t48
+      - t49
+    span:
+      start: 283
+      end: 296
+    source_names:
+      - candidate-construction
+      - mwe-materialization
+      - spacy:matcher/noun_noun
+      - wikipedia-title-index
+wiki_title_evidence:
+  normalization:
+    unicode_form: NFKC
+    punctuation_map:
+      apostrophes: "['\\u2018\\u2019\\u02bc]->'"
+      dashes: "[\\u2010-\\u2015]->-"
+    whitespace: collapse_spaces_trim
+    casefold: toLowerCase
+  mention_matches:
+    - mention_id: m:s1:0-19:mwe
+      normalized_surface: prime factorization
+      exact_titles: []
+      prefix_titles: []
+    - mention_id: m:s1:20-30:token
+      normalized_surface: decomposes
+      exact_titles: &a20 []
+      prefix_titles: &a21 []
+    - mention_id: m:s1:31-32:token
+      normalized_surface: a
+      exact_titles: []
+      prefix_titles: []
+    - mention_id: m:s1:33-49:mwe
+      normalized_surface: positive integer
+      exact_titles: []
+      prefix_titles: []
+    - mention_id: m:s1:50-54:token
+      normalized_surface: into
+      exact_titles: []
+      prefix_titles: []
+    - mention_id: m:s1:55-56:token
+      normalized_surface: a
+      exact_titles: []
+      prefix_titles: []
+    - mention_id: m:s1:57-77:mwe
+      normalized_surface: set of prime numbers
+      exact_titles: []
+      prefix_titles: []
+    - mention_id: m:s1:77-78:token
+      normalized_surface: .
+      exact_titles: []
+      prefix_titles: []
+    - mention_id: m:s2:104-105:token
+      normalized_surface: ","
+      exact_titles: []
+      prefix_titles: []
+    - mention_id: m:s2:106-109:token
+      normalized_surface: and
+      exact_titles: []
+      prefix_titles: []
+    - mention_id: m:s2:110-115:token
+      normalized_surface: their
+      exact_titles: []
+      prefix_titles: []
+    - mention_id: m:s2:116-123:token
+      normalized_surface: product
+      exact_titles: []
+      prefix_titles: []
+    - mention_id: m:s2:124-128:token
+      normalized_surface: must
+      exact_titles: []
+      prefix_titles: []
+    - mention_id: m:s2:129-134:token
+      normalized_surface: equal
+      exact_titles: &a22 []
+      prefix_titles: &a23 []
+    - mention_id: m:s2:135-138:token
+      normalized_surface: the
+      exact_titles: []
+      prefix_titles: []
+    - mention_id: m:s2:139-154:mwe
+      normalized_surface: original number
+      exact_titles: []
+      prefix_titles: []
+    - mention_id: m:s2:154-155:token
+      normalized_surface: .
+      exact_titles: []
+      prefix_titles: []
+    - mention_id: m:s2:79-83:token
+      normalized_surface: each
+      exact_titles: []
+      prefix_titles: []
+    - mention_id: m:s2:84-90:token
+      normalized_surface: factor
+      exact_titles: &a24 []
+      prefix_titles: &a25 []
+    - mention_id: m:s2:91-95:token
+      normalized_surface: must
+      exact_titles: []
+      prefix_titles: []
+    - mention_id: m:s2:96-98:token
+      normalized_surface: be
+      exact_titles: &a26 []
+      prefix_titles: &a27 []
+    - mention_id: m:s2:99-104:token
+      normalized_surface: prime
+      exact_titles: []
+      prefix_titles: []
+    - mention_id: m:s3:156-159:token
+      normalized_surface: the
+      exact_titles: []
+      prefix_titles: []
+    - mention_id: m:s3:160-167:token
+      normalized_surface: process
+      exact_titles: []
+      prefix_titles: []
+    - mention_id: m:s3:168-177:token
+      normalized_surface: typically
+      exact_titles: []
+      prefix_titles: []
+    - mention_id: m:s3:178-184:token
+      normalized_surface: starts
+      exact_titles: &a28 []
+      prefix_titles: &a29 []
+    - mention_id: m:s3:185-189:token
+      normalized_surface: with
+      exact_titles: []
+      prefix_titles: []
+    - mention_id: m:s3:190-193:token
+      normalized_surface: the
+      exact_titles: []
+      prefix_titles: []
+    - mention_id: m:s3:194-202:token
+      normalized_surface: smallest
+      exact_titles: []
+      prefix_titles: []
+    - mention_id: m:s3:203-215:mwe
+      normalized_surface: prime factor
+      exact_titles: []
+      prefix_titles: []
+    - mention_id: m:s3:216-219:token
+      normalized_surface: and
+      exact_titles: []
+      prefix_titles: []
+    - mention_id: m:s3:220-241:mwe
+      normalized_surface: continues iteratively
+      exact_titles: &a30 []
+      prefix_titles: &a31 []
+    - mention_id: m:s3:241-242:token
+      normalized_surface: .
+      exact_titles: []
+      prefix_titles: []
+    - mention_id: m:s4:243-262:mwe
+      normalized_surface: prime factorization
+      exact_titles: []
+      prefix_titles: []
+    - mention_id: m:s4:263-265:token
+      normalized_surface: is
+      exact_titles: []
+      prefix_titles: []
+    - mention_id: m:s4:266-274:token
+      normalized_surface: commonly
+      exact_titles: []
+      prefix_titles: []
+    - mention_id: m:s4:275-279:token
+      normalized_surface: used
+      exact_titles: &a32 []
+      prefix_titles: &a33 []
+    - mention_id: m:s4:280-282:token
+      normalized_surface: in
+      exact_titles: []
+      prefix_titles: []
+    - mention_id: m:s4:283-296:mwe
+      normalized_surface: number theory
+      exact_titles: []
+      prefix_titles: []
+    - mention_id: m:s4:297-300:token
+      normalized_surface: and
+      exact_titles: []
+      prefix_titles: []
+    - mention_id: m:s4:301-313:token
+      normalized_surface: cryptography
+      exact_titles: []
+      prefix_titles: []
+    - mention_id: m:s4:313-314:token
+      normalized_surface: .
+      exact_titles: []
+      prefix_titles: []
+  assertion_predicate_matches:
+    - assertion_id: a:s1:m:s1:20-30:token:6b39d83b0123
+      predicate_mention_id: m:s1:20-30:token
+      exact_titles: *a20
+      prefix_titles: *a21
+    - assertion_id: a:s2:m:s2:129-134:token:631ab2faf725
+      predicate_mention_id: m:s2:129-134:token
+      exact_titles: *a22
+      prefix_titles: *a23
+    - assertion_id: a:s2:m:s2:84-90:token:bf4a4406b943
+      predicate_mention_id: m:s2:84-90:token
+      exact_titles: *a24
+      prefix_titles: *a25
+    - assertion_id: a:s2:m:s2:96-98:token:21a4157a46ba
+      predicate_mention_id: m:s2:96-98:token
+      exact_titles: *a26
+      prefix_titles: *a27
+    - assertion_id: a:s3:m:s3:178-184:token:f85f3d53daaa
+      predicate_mention_id: m:s3:178-184:token
+      exact_titles: *a28
+      prefix_titles: *a29
+    - assertion_id: a:s3:m:s3:220-241:mwe:8c2eb09890de
+      predicate_mention_id: m:s3:220-241:mwe
+      exact_titles: *a30
+      prefix_titles: *a31
+    - assertion_id: a:s4:m:s4:275-279:token:67b3c00c534d
+      predicate_mention_id: m:s4:275-279:token
+      exact_titles: *a32
+      prefix_titles: *a33
+diagnostics:
+  token_wiki_signal_count: 46
+  mentions_with_lexicon_evidence: 77
+  assertions_with_wiki_signals: 7
+  projected_relation_count: 31
+  dropped_relation_count: 0
+  fragmentation:
+    structural_fragment_count: 2
+    predicate_noise_index: 0.285714
+    per_segment:
+      - segment_id: s1
+        predicate_assertion_count: 1
+        lexical_verb_count: 1
+        tolerated_auxiliary_count: 0
+        structural_fragment_count: 0
+        clause_fragmentation_warning: false
+      - segment_id: s2
+        predicate_assertion_count: 3
+        lexical_verb_count: 1
+        tolerated_auxiliary_count: 1
+        structural_fragment_count: 1
+        clause_fragmentation_warning: true
+      - segment_id: s3
+        predicate_assertion_count: 2
+        lexical_verb_count: 1
+        tolerated_auxiliary_count: 0
+        structural_fragment_count: 1
+        clause_fragmentation_warning: true
+      - segment_id: s4
+        predicate_assertion_count: 1
+        lexical_verb_count: 1
+        tolerated_auxiliary_count: 0
+        structural_fragment_count: 0
+        clause_fragmentation_warning: false
+  gap_signals:
+    coordination_type_missing: false
+    comparative_gap: false
+    quantifier_scope_gap: false
+  coordination_groups:
+    - id: cg:8d8920912124
+      type: and
+      member_assertion_ids:
+        - a:s3:m:s3:178-184:token:f85f3d53daaa
+        - a:s3:m:s3:220-241:mwe:8c2eb09890de
+    - id: cg:cc06689f5bae
+      type: and
+      member_assertion_ids:
+        - a:s2:m:s2:84-90:token:bf4a4406b943
+  subject_role_gaps:
+    - segment_id: s4
+      assertion_id: a:s4:m:s4:275-279:token:67b3c00c534d
+      predicate_mention_id: m:s4:275-279:token
+      predicate_head_token_id: t46
+      reason: missing_subject_role
+      evidence:
+        token_ids:
+          - t46
+        upstream_relation_ids: []
+  suppressed_assertions: []
+  warnings: []
+coverage:
+  primary_mention_ids:
+    - m:s1:0-19:mwe
+    - m:s1:20-30:token
+    - m:s1:33-49:mwe
+    - m:s1:57-77:mwe
+    - m:s2:110-115:token
+    - m:s2:116-123:token
+    - m:s2:129-134:token
+    - m:s2:139-154:mwe
+    - m:s2:84-90:token
+    - m:s2:96-98:token
+    - m:s2:99-104:token
+    - m:s3:160-167:token
+    - m:s3:168-177:token
+    - m:s3:178-184:token
+    - m:s3:194-202:token
+    - m:s3:203-215:mwe
+    - m:s3:220-241:mwe
+    - m:s4:243-262:mwe
+    - m:s4:263-265:token
+    - m:s4:266-274:token
+    - m:s4:275-279:token
+    - m:s4:283-296:mwe
+    - m:s4:301-313:token
+  covered_primary_mention_ids:
+    - m:s1:0-19:mwe
+    - m:s1:20-30:token
+    - m:s1:33-49:mwe
+    - m:s1:57-77:mwe
+    - m:s2:129-134:token
+    - m:s2:139-154:mwe
+    - m:s2:84-90:token
+    - m:s2:96-98:token
+    - m:s2:99-104:token
+    - m:s3:168-177:token
+    - m:s3:178-184:token
+    - m:s3:194-202:token
+    - m:s3:203-215:mwe
+    - m:s3:220-241:mwe
+    - m:s4:243-262:mwe
+    - m:s4:266-274:token
+    - m:s4:275-279:token
+    - m:s4:301-313:token
+  uncovered_primary_mention_ids:
+    - m:s2:110-115:token
+    - m:s2:116-123:token
+    - m:s3:160-167:token
+    - m:s4:263-265:token
+    - m:s4:283-296:mwe
+  unresolved:
+    - kind: unresolved_attachment
+      segment_id: s2
+      mention_id: m:s2:110-115:token
+      mention_ids:
+        - m:s2:110-115:token
+      reason: missing_relation
+      evidence:
+        token_ids:
+          - t21
+        upstream_relation_ids: []
+        span: *a34
+    - kind: unresolved_attachment
+      segment_id: s2
+      mention_id: m:s2:116-123:token
+      mention_ids:
+        - m:s2:116-123:token
+      reason: missing_relation
+      evidence:
+        token_ids:
+          - t22
+        upstream_relation_ids: []
+        span: *a35
+    - kind: unresolved_attachment
+      segment_id: s3
+      mention_id: m:s3:160-167:token
+      mention_ids:
+        - m:s3:160-167:token
+      reason: missing_relation
+      evidence:
+        token_ids:
+          - t30
+        upstream_relation_ids: []
+        span: *a36
+    - kind: unresolved_attachment
+      segment_id: s4
+      mention_id: m:s4:263-265:token
+      mention_ids:
+        - m:s4:263-265:token
+      reason: missing_relation
+      evidence:
+        token_ids:
+          - t44
+        upstream_relation_ids: []
+        span: *a37
+    - kind: unresolved_attachment
+      segment_id: s4
+      mention_id: m:s4:283-296:mwe
+      mention_ids:
+        - m:s4:283-296:mwe
+      reason: operator_scope_open
+      evidence:
+        token_ids:
+          - t48
+          - t49
+        upstream_relation_ids: []
+        span: *a38
+sources:
+  inputs:
+    - artifact: seed.txt
+      digest: ed048ff24704c45a1b9bd213c93f01ef39bf169dda7340c68f99efdea15d21f6
+    - artifact: relations_extracted.in_memory
+      digest: df70126a3ef6c91c2ad62157e5388cd98d24cc2ad64e89aa58a4b7038f42706e
+  pipeline:
+    target: relations_extracted
+    relations_extracted_digest: df70126a3ef6c91c2ad62157e5388cd98d24cc2ad64e89aa58a4b7038f42706e
+    token_count: 52
+    annotation_count: 216
+    wikipedia_title_index_configured: true
