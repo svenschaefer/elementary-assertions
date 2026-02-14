@@ -9,6 +9,10 @@
 - New contract tests for validation error typing/codes:
   - `test/unit/validate-errors.contract.test.js`
 - Docs consistency now enforces explicit release commit staging command in `docs/NPM_RELEASE.md`.
+- Golden-reference contract coverage expanded with YAML-parsed structural checks for:
+  - role arrays always present (`arguments`, `modifiers`, `operators`)
+  - legacy `assertions[*].slots` absence
+  - required coverage arrays
 
 ## v0.1.5 - 2026-02-14
 

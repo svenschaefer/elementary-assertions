@@ -2,6 +2,7 @@ const test = require("node:test");
 const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const path = require("node:path");
+const yaml = require("js-yaml");
 
 const { listSeedIds, getSeedArtifactPaths, readGoldenYamlText } = require("../helpers/artifacts");
 
@@ -43,5 +44,36 @@ test("golden render artifacts are non-empty files", () => {
       const content = fs.readFileSync(filePath, "utf8");
       assert.ok(content.length > 0, `${seedId}: empty render artifact ${path.basename(filePath)}`);
     }
+  }
+});
+
+test("golden YAML parsed structure matches product contract essentials", () => {
+  const seedIds = listSeedIds();
+
+  for (const seedId of seedIds) {
+    const parsed = yaml.load(readGoldenYamlText(seedId));
+    assert.ok(parsed && typeof parsed === "object", `${seedId}: yaml must parse to object`);
+    assert.equal(parsed.stage, "elementary_assertions", `${seedId}: stage mismatch`);
+
+    assert.ok(Array.isArray(parsed.tokens), `${seedId}: tokens[] required`);
+    assert.ok(Array.isArray(parsed.mentions), `${seedId}: mentions[] required`);
+    assert.ok(Array.isArray(parsed.assertions), `${seedId}: assertions[] required`);
+
+    for (const assertion of parsed.assertions) {
+      assert.ok(Array.isArray(assertion.arguments), `${seedId}: assertion ${assertion.id} missing arguments[]`);
+      assert.ok(Array.isArray(assertion.modifiers), `${seedId}: assertion ${assertion.id} missing modifiers[]`);
+      assert.ok(Array.isArray(assertion.operators), `${seedId}: assertion ${assertion.id} missing operators[]`);
+      assert.equal(
+        Object.prototype.hasOwnProperty.call(assertion, "slots"),
+        false,
+        `${seedId}: assertion ${assertion.id} must not include legacy slots`
+      );
+    }
+
+    assert.ok(parsed.coverage && typeof parsed.coverage === "object", `${seedId}: coverage object required`);
+    assert.ok(Array.isArray(parsed.coverage.primary_mention_ids), `${seedId}: coverage.primary_mention_ids[] required`);
+    assert.ok(Array.isArray(parsed.coverage.covered_primary_mention_ids), `${seedId}: coverage.covered_primary_mention_ids[] required`);
+    assert.ok(Array.isArray(parsed.coverage.uncovered_primary_mention_ids), `${seedId}: coverage.uncovered_primary_mention_ids[] required`);
+    assert.ok(Array.isArray(parsed.coverage.unresolved), `${seedId}: coverage.unresolved[] required`);
   }
 });

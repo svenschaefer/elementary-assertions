@@ -27,6 +27,15 @@ Status: Completed through Phase 9 gap-closure (as of 2026-02-14).
 - Re-ran full suite after hardening:
   - `npm test` green (`95/95`)
 
+## Phase 10.2 Snapshot (2026-02-14)
+
+- Expanded golden-reference integration checks with YAML structural parsing:
+  - assertions must include `arguments[]`, `modifiers[]`, `operators[]`
+  - legacy `assertions[*].slots` must be absent
+  - coverage arrays must be present
+- Added test coverage in:
+  - `test/integration/golden-reference-contract.test.js`
+
 ## Post-Phase 9 Snapshot (2026-02-14)
 
 - Added integration automation for dev report scripts JSON validity:
