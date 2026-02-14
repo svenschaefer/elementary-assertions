@@ -1,7 +1,32 @@
 const { ensureSortedStrings } = require("./determinism");
 const { failValidation } = require("./errors");
 
-function validateCoverage(doc, mentionById) {
+function isContentPosTag(tag) {
+  if (typeof tag !== "string" || tag.length === 0) return false;
+  return /^(NN|NNS|NNP|NNPS|VB|VBD|VBG|VBN|VBP|VBZ|JJ|JJR|JJS|RB|RBR|RBS|CD|PRP|PRP\$|FW|UH)$/.test(tag);
+}
+
+function isPunctuationSurface(surface) {
+  if (typeof surface !== "string" || surface.length === 0) return false;
+  return /^[\p{P}\p{S}]+$/u.test(surface);
+}
+
+function buildExpectedCoveragePrimarySet(doc) {
+  const tokenById = new Map((doc.tokens || []).map((token) => [token.id, token]));
+  const expected = new Set();
+  for (const mention of doc.mentions || []) {
+    if (!mention || mention.is_primary !== true || typeof mention.id !== "string" || mention.id.length === 0) continue;
+    const headToken = tokenById.get(mention.head_token_id);
+    if (!headToken) continue;
+    const tag = headToken.pos && typeof headToken.pos.tag === "string" ? headToken.pos.tag : "";
+    if (!isContentPosTag(tag)) continue;
+    if (isPunctuationSurface(headToken.surface)) continue;
+    expected.add(mention.id);
+  }
+  return expected;
+}
+
+function validateCoverage(doc, mentionById, options = {}) {
   const coverage = doc.coverage || {};
   const primary = Array.isArray(coverage.primary_mention_ids) ? coverage.primary_mention_ids : [];
   const covered = Array.isArray(coverage.covered_primary_mention_ids) ? coverage.covered_primary_mention_ids : [];
@@ -50,6 +75,24 @@ function validateCoverage(doc, mentionById) {
   for (const mentionId of unresolvedMentionIds) {
     if (!uncoveredSet.has(mentionId)) {
       failValidation("EA_VALIDATE_COVERAGE_UNRESOLVED_MEMBERSHIP", `Integrity error: coverage.unresolved mention ${mentionId} must be in uncovered_primary_mention_ids.`);
+    }
+  }
+
+  if (options && options.strict) {
+    const expectedPrimary = buildExpectedCoveragePrimarySet(doc);
+    if (expectedPrimary.size !== primarySet.size) {
+      failValidation(
+        "EA_VALIDATE_STRICT_COVERAGE_PRIMARY_SET",
+        "Strict validation error: coverage.primary_mention_ids must equal the derived domain-primary mention set."
+      );
+    }
+    for (const mentionId of expectedPrimary) {
+      if (!primarySet.has(mentionId)) {
+        failValidation(
+          "EA_VALIDATE_STRICT_COVERAGE_PRIMARY_SET",
+          "Strict validation error: coverage.primary_mention_ids must equal the derived domain-primary mention set."
+        );
+      }
     }
   }
 }

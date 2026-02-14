@@ -704,10 +704,10 @@ Objective: non-breaking hardening of strict/dev validation depth and release-smo
 
 ### 12.3 Coverage Primary-Set Integrity
 
-- [ ] Enforce equality between:
-  - [ ] `coverage.primary_mention_ids`
-  - [ ] `mentions[*].is_primary === true`
-- [ ] Fail fast in strict mode on mismatch.
+- [x] Enforce equality between:
+  - [x] `coverage.primary_mention_ids`
+  - [x] derived domain-primary mentions (`mentions[*].is_primary` filtered by coverage-domain head rules)
+- [x] Fail fast in strict mode on mismatch.
 
 ### 12.4 Subject-Role-Gap Deep Coherence
 

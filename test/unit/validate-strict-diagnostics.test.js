@@ -103,6 +103,20 @@ test("strict diagnostics checks are opt-in", () => {
   assert.doesNotThrow(() => validateElementaryAssertions(doc));
 });
 
+test("strict validation enforces coverage primary-set equality", () => {
+  const doc = buildStrictValidDoc();
+  doc.tokens[2].pos.tag = "IN";
+  assert.throws(
+    () => validateElementaryAssertions(doc, { strict: true }),
+    (err) => err instanceof ValidationError && err.code === "EA_VALIDATE_STRICT_COVERAGE_PRIMARY_SET"
+  );
+});
+
+test("strict validation accepts matching coverage primary-set", () => {
+  const doc = buildStrictValidDoc();
+  assert.doesNotThrow(() => validateElementaryAssertions(doc, { strict: true }));
+});
+
 test("strict diagnostics enforces warning ordering", () => {
   const doc = buildStrictValidDoc();
   doc.diagnostics.warnings = ["z-last", "a-first"];

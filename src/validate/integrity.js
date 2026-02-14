@@ -14,7 +14,7 @@ const {
   validateSuppressedReferences,
 } = require("./references");
 
-function validateIntegrity(doc) {
+function validateIntegrity(doc, options = {}) {
   ensureUniqueIds(doc.tokens, "token");
   ensureUniqueIds(doc.mentions, "mention");
   ensureUniqueIds(doc.assertions, "assertion");
@@ -33,7 +33,7 @@ function validateIntegrity(doc) {
   }
 
   validateSuppressedReferences(doc, assertionById);
-  validateCoverage(doc, mentionById);
+  validateCoverage(doc, mentionById, options);
 }
 
 module.exports = {

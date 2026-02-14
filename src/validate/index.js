@@ -7,7 +7,7 @@ function validateElementaryAssertions(doc, options = {}) {
   rejectLegacySlots(doc);
   validateSchemaShape(doc);
   validateSchemaContract(doc, options);
-  validateIntegrity(doc);
+  validateIntegrity(doc, options);
   if (options && options.strict) {
     validateDiagnosticsStrict(doc);
   }
