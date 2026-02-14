@@ -23,6 +23,16 @@
   - `--relations` replay path
   - WTI evidence-presence requirement
 
+### Release Evidence
+- Release commit: `d2bb91a16c40b60f1652c1477ec35f5fb736540f`
+- Tag: `v0.1.3`
+- Smoke roots:
+  - `C:\code\elementary-assertions-smoke-test\v0.1.3-pretag-smoke-20260214-174438`
+  - `C:\code\elementary-assertions-smoke-test\v0.1.3-posttag-smoke-20260214-174516`
+- Rendered smoke output roots:
+  - `C:\code\elementary-assertions-smoke-test\v0.1.3-pretag-smoke-20260214-174438\rendered`
+  - `C:\code\elementary-assertions-smoke-test\v0.1.3-posttag-smoke-20260214-174516\rendered`
+
 ## v0.1.2 - 2026-02-14
 
 ### Added
