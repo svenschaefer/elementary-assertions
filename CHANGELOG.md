@@ -1,5 +1,14 @@
 # Changelog
 
+## Unreleased
+
+### Added
+- Shared release smoke script: `scripts/release-smoke-check.js`.
+
+### Changed
+- CI smoke step now enforces render generation and txt/md golden parity in addition to API/CLI checks.
+- Release guide (`docs/NPM_RELEASE.md`) now uses the shared smoke script for pre-tag and post-tag verification.
+
 ## v0.1.1 - 2026-02-14
 
 ### Added

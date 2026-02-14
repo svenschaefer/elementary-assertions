@@ -104,7 +104,7 @@ If the smoke test exercises `runElementaryAssertions`, also ensure the environme
 
 Safeguard: `prototype/` is a junction. `git add -A` will stage changes from the junction target.
 For release commits, prefer explicit staging paths to avoid unintended additions, for example:
-`git add src docs test package.json`.
+`git add src docs test scripts package.json README.md CHANGELOG.md`.
 
 ```powershell
 Set-Location C:\code\elementary-assertions
