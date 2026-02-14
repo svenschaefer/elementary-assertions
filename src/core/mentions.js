@@ -2,6 +2,7 @@ const { findSelector, normalizeSpanKey, normalizeIds, deepCloneJson } = require(
 const { annotationHasSource, collectStep11Relations } = require('./upstream');
 const { buildTokenIndex, getTokenWikipediaEvidence, buildTokenWikiById, getTokenMetadataProjection } = require('./tokens');
 const { getMweHeadEvidence, getMweLexiconEvidence } = require('./mention-materialization');
+const { toAnnotationSummary } = require('./accepted-annotations');
 
 function normalizeWikiSurface(surface) {
   if (typeof surface !== 'string') return '';
@@ -118,27 +119,6 @@ function chooseBestMentionForToken({ tokenId, segmentId, mentionById, candidateM
     mention_id: chosenId,
     candidate_count: filteredIds.length,
     chosen_was_first: sourceIds.length > 0 ? sourceIds[0] === chosenId : true,
-  };
-}
-
-function toAnnotationSummary(annotation) {
-  const tokenSelector = findSelector(annotation, 'TokenSelector');
-  const textPos = findSelector(annotation, 'TextPositionSelector');
-  return {
-    id: typeof annotation.id === 'string' ? annotation.id : '',
-    kind: String(annotation.kind || ''),
-    status: String(annotation.status || ''),
-    label: typeof annotation.label === 'string' ? annotation.label : undefined,
-    token_ids: tokenSelector && Array.isArray(tokenSelector.token_ids) ? normalizeIds(tokenSelector.token_ids) : [],
-    span:
-      textPos && textPos.span && typeof textPos.span.start === 'number' && typeof textPos.span.end === 'number'
-        ? { start: textPos.span.start, end: textPos.span.end }
-        : undefined,
-    source_names: normalizeIds(
-      (Array.isArray(annotation.sources) ? annotation.sources : [])
-        .map((s) => (s && typeof s.name === 'string' ? s.name : ''))
-        .filter(Boolean)
-    ),
   };
 }
 
