@@ -678,3 +678,50 @@ Objective: non-breaking product hardening for validation depth, provenance fidel
 
 Exit criteria:
 - product guarantees stronger correctness, traceability, and reproducibility without expanding assertion semantics.
+
+## Phase 12 - Diagnostics, Suppression, and Coverage Hardening (Planned)
+
+Objective: non-breaking hardening of strict/dev validation depth and release-smoke reproducibility checks, without changing core assertion construction behavior.
+
+### 12.1 Expand Strict Diagnostics Invariants
+
+- [ ] Enforce full ordering, reference, and content rules for:
+  - [ ] `suppression_eligibility`
+  - [ ] `fragmentation`
+  - [ ] `gap_signals`
+  - [ ] `subject_role_gaps`
+- [ ] Align strict-mode diagnostics checks with prototype checker depth where contract-valid.
+- [ ] Keep enforcement behind strict/dev tooling path (not default runtime path).
+
+### 12.2 Suppressed-Assertion Semantic Validation
+
+- [ ] Add reason-specific invariants for suppressed assertions:
+  - [ ] required head/evidence presence
+  - [ ] host <-> suppressed assertion consistency
+  - [ ] transferred bucket/mention constraints
+- [ ] Runtime validation keeps minimal safety checks.
+- [ ] Strict/dev validation enforces full semantic coherence.
+
+### 12.3 Coverage Primary-Set Integrity
+
+- [ ] Enforce equality between:
+  - [ ] `coverage.primary_mention_ids`
+  - [ ] `mentions[*].is_primary === true`
+- [ ] Fail fast in strict mode on mismatch.
+
+### 12.4 Subject-Role-Gap Deep Coherence
+
+- [ ] Validate:
+  - [ ] sorted gap entries
+  - [ ] sorted evidence arrays
+  - [ ] consistency with actor-empty assertions
+- [ ] Strict-mode only.
+
+### 12.5 Release Smoke Parity Expansion
+
+- [ ] Extend release smoke checks to include `md/meaning` renderer outputs.
+- [ ] Keep parity tests as ground truth; smoke checks verify install-time wiring.
+
+Exit criteria:
+- strict/dev guarantees are expanded for diagnostics/suppression/coverage coherence.
+- release smoke verifies all contract-locked renderer outputs.

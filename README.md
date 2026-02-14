@@ -124,7 +124,7 @@ Validation failures throw a `ValidationError` with a stable `code` field for con
 
 Validation scope distinction:
 - Runtime validation: default library/CLI checks for shape, references, and deterministic integrity.
-- Strict dev validation: deeper diagnostics/coherence checks are tracked as dev/strict tooling work (see `TODO.md`), not part of the current default runtime contract.
+- Strict dev validation: deeper semantic invariants than runtime validation, including diagnostics coherence and suppressed-assertion semantic consistency; this strict surface is extended through planned hardening in `TODO.md`.
 
 Rendering (view-only, multiple layouts):
 ```js
@@ -137,6 +137,9 @@ Renderer contract scope:
   - table markdown (`format: "md", layout: "table"`)
   - meaning markdown (`format: "md", layout: "meaning"`)
 - Other renderer combinations are currently best-effort and may evolve without contract change.
+Release smoke renderer scope (install-time wiring checks):
+- currently verified in smoke: `txt/compact`, `md/table`
+- parity/golden suite remains the broader contract lock source (`txt/compact`, `md/table`, `md/meaning`)
 
 Tooling (file I/O and CLI wiring):
 ```js
