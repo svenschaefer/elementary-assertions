@@ -186,6 +186,21 @@ Exit criteria:
   - `C:\code\elementary-assertions-smoke-test\v0.1.4-posttag-smoke-20260214-175210\rendered\*.compact.txt`
   - `C:\code\elementary-assertions-smoke-test\v0.1.4-posttag-smoke-20260214-175210\rendered\*.table.md`
 
+## Release Execution Snapshot (v0.1.5, 2026-02-14)
+
+- Released version: `v0.1.5`
+- Release commit: `a6698b31cadc1d9dbb9e5f4e1bb51df73a84edf9`
+- Annotated tag: `v0.1.5` (pushed)
+- CI run: `22024304301` (success)
+- Smoke workspaces (clean installs, version + reason naming):
+  - `C:\code\elementary-assertions-smoke-test\v0.1.5-pretag-smoke-20260214-220932`
+  - `C:\code\elementary-assertions-smoke-test\v0.1.5-posttag-smoke-20260214-221001`
+- Rendered smoke outputs were generated in both folders under:
+  - `C:\code\elementary-assertions-smoke-test\v0.1.5-pretag-smoke-20260214-220932\rendered\*.compact.txt`
+  - `C:\code\elementary-assertions-smoke-test\v0.1.5-pretag-smoke-20260214-220932\rendered\*.table.md`
+  - `C:\code\elementary-assertions-smoke-test\v0.1.5-posttag-smoke-20260214-221001\rendered\*.compact.txt`
+  - `C:\code\elementary-assertions-smoke-test\v0.1.5-posttag-smoke-20260214-221001\rendered\*.table.md`
+
 ## Scope and Goal
 
 Build a production Node.js package with stable CommonJS APIs:

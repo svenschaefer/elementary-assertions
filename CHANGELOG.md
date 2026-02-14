@@ -13,6 +13,17 @@
 - `v0.1.4` release evidence now includes CI run `22020914080` (success) in docs.
 - Release guide now documents local tarball cleanup after `npm pack`.
 
+### Release Evidence
+- Release commit: `a6698b31cadc1d9dbb9e5f4e1bb51df73a84edf9`
+- Tag: `v0.1.5`
+- CI run: `22024304301` (success)
+- Smoke roots:
+  - `C:\code\elementary-assertions-smoke-test\v0.1.5-pretag-smoke-20260214-220932`
+  - `C:\code\elementary-assertions-smoke-test\v0.1.5-posttag-smoke-20260214-221001`
+- Rendered smoke output roots:
+  - `C:\code\elementary-assertions-smoke-test\v0.1.5-pretag-smoke-20260214-220932\rendered`
+  - `C:\code\elementary-assertions-smoke-test\v0.1.5-posttag-smoke-20260214-221001\rendered`
+
 ## v0.1.4 - 2026-02-14
 
 ### Added
