@@ -1,6 +1,12 @@
 const { validateAssertionDeterminism } = require("./determinism");
 const { validateCoverage } = require("./coverage");
 const {
+  buildSegmentMap,
+  validateTokenSegmentAlignment,
+  validateMentionSegmentAlignment,
+  validateAssertionCrossFieldAlignment,
+} = require("./invariants");
+const {
   ensureUniqueIds,
   buildReferenceMaps,
   validateMentionReferences,
@@ -13,8 +19,12 @@ function validateIntegrity(doc) {
   ensureUniqueIds(doc.mentions, "mention");
   ensureUniqueIds(doc.assertions, "assertion");
 
+  const segmentById = buildSegmentMap(doc);
   const { tokenById, mentionById, assertionById } = buildReferenceMaps(doc);
+  validateTokenSegmentAlignment(doc, segmentById);
   validateMentionReferences(doc, tokenById);
+  validateMentionSegmentAlignment(doc, segmentById, tokenById);
+  validateAssertionCrossFieldAlignment(doc, segmentById, mentionById, tokenById);
 
   for (const assertion of doc.assertions || []) {
     const assertionId = (assertion && assertion.id) || "<unknown>";

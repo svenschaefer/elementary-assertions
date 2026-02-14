@@ -631,11 +631,11 @@ Objective: non-breaking product hardening for validation depth, provenance fidel
 
 ### 11.2 Cross-Field Integrity Invariants
 
-- [ ] Enforce structural relationships beyond existence checks:
-  - [ ] segment-token-mention alignment
-  - [ ] predicate head consistency
-  - [ ] predicate/argument and related cross-field alignment invariants
-- [ ] Enumerate invariants explicitly in tests and keep stable `ValidationError.code` coverage.
+- [x] Enforce structural relationships beyond existence checks:
+  - [x] segment-token-mention alignment
+  - [x] predicate head consistency
+  - [x] predicate/argument and related cross-field alignment invariants
+- [x] Enumerate invariants explicitly in tests and keep stable `ValidationError.code` coverage.
 
 ### 11.3 Strict Diagnostics Integrity Mode
 

@@ -365,3 +365,46 @@ test("strict validation exposes schema issue details", () => {
       err.details.some((d) => typeof d.instancePath === "string")
   );
 });
+
+test("unknown segment references have stable validation error code", () => {
+  const doc = buildValidDoc({
+    tokens: [
+      { id: "t1", i: 0, segment_id: "s404", span: { start: 0, end: 5 }, surface: "Alpha", pos: { tag: "NNP", coarse: "NOUN" } },
+      { id: "t2", i: 1, segment_id: "s1", span: { start: 6, end: 12 }, surface: "builds", pos: { tag: "VBZ", coarse: "VERB" } },
+      { id: "t3", i: 2, segment_id: "s1", span: { start: 13, end: 18 }, surface: "carts", pos: { tag: "NNS", coarse: "NOUN" } },
+    ],
+  });
+  assert.throws(
+    () => validateElementaryAssertions(doc),
+    (err) => err instanceof ValidationError && err.code === "EA_VALIDATE_UNKNOWN_SEGMENT_REFERENCE"
+  );
+});
+
+test("predicate head mismatch has stable validation error code", () => {
+  const doc = buildValidDoc({
+    assertions: [
+      {
+        id: "a1",
+        segment_id: "s1",
+        predicate: { mention_id: "m2", head_token_id: "t1" },
+        arguments: [
+          { role: "actor", mention_ids: ["m1"], evidence: { relation_ids: ["r1"], token_ids: ["t1", "t2"] } },
+          { role: "theme", mention_ids: ["m3"], evidence: { relation_ids: ["r2"], token_ids: ["t2", "t3"] } },
+        ],
+        modifiers: [],
+        operators: [],
+        evidence: {
+          relation_evidence: [
+            { annotation_id: "r1", from_token_id: "t2", to_token_id: "t1", label: "nsubj" },
+            { annotation_id: "r2", from_token_id: "t2", to_token_id: "t3", label: "obj" },
+          ],
+          token_ids: ["t1", "t2", "t3"],
+        },
+      },
+    ],
+  });
+  assert.throws(
+    () => validateElementaryAssertions(doc),
+    (err) => err instanceof ValidationError && err.code === "EA_VALIDATE_PREDICATE_HEAD_MISMATCH"
+  );
+});
