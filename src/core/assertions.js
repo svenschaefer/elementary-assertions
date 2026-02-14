@@ -2,7 +2,7 @@ const { sha256Hex, canonicalizeOperatorsForHash, stableObjectKey, normalizeIds, 
 const { roleToSlot, isCompareLabel, isQuantifierLabel, chooseBestMentionForToken, buildAssertionWikiSignals, isSubjectRoleLabel } = require('./mentions');
 const { buildCoordinationGroups } = require('./projection');
 const { mergeOperator } = require('./diagnostics');
-const { argumentRolePriority, canonicalizeRoleEntries } = require('./roles');
+const { argumentRolePriority, modifierRolePriority, canonicalizeRoleEntries } = require('./roles');
 
 function isVerbPosTag(tag) {
   return typeof tag === 'string' && /^VB/.test(tag);
@@ -71,13 +71,6 @@ function roleBucketsAreSemanticallyEmpty(roleBuckets) {
     Array.isArray(roleBuckets.location) && roleBuckets.location.length === 0 &&
     Array.isArray(roleBuckets.other) && roleBuckets.other.length === 0
   );
-}
-
-function modifierRolePriority(role) {
-  const r = String(role || '');
-  if (r === 'recipient') return 0;
-  if (r === 'modifier') return 1;
-  return 10;
 }
 
 function collectEntryTokenIds(mentionIds, mentionById) {

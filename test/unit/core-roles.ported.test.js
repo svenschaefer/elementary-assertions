@@ -3,6 +3,7 @@ const assert = require("node:assert/strict");
 
 const {
   argumentRolePriority,
+  modifierRolePriority,
   canonicalizeRoleEntries,
   slotToRoleEntries,
   collectAssertionMentionRefs,
@@ -18,6 +19,12 @@ test("argumentRolePriority ordering is stable", () => {
   assert.equal(argumentRolePriority("attribute"), 4);
   assert.equal(argumentRolePriority("topic"), 5);
   assert.equal(argumentRolePriority("unknown"), 10);
+});
+
+test("modifierRolePriority ordering is stable", () => {
+  assert.equal(modifierRolePriority("recipient"), 0);
+  assert.equal(modifierRolePriority("modifier"), 1);
+  assert.equal(modifierRolePriority("unknown"), 10);
 });
 
 test("canonicalizeRoleEntries is deterministic and drops empty entries", () => {
