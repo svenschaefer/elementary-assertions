@@ -1,0 +1,11 @@
+{
+  "name": "secos-step12-elementary-assertions",
+  "private": true,
+  "type": "commonjs",
+  "scripts": {
+    "test": "node ./elementary-assertions.test.js && node ./render-elementary-assertions.test.js && node ./report-baseline-metrics.test.js && node ./report-maturity.test.js && node ./report-fragment-hotspots.test.js",
+    "report:baseline": "node ./report-baseline-metrics.js",
+    "report:maturity": "node ./report-maturity.js",
+    "report:fragments": "node ./report-fragment-hotspots.js"
+  }
+}

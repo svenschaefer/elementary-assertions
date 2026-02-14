@@ -1,0 +1,19 @@
+The Incident Reporting System (IRS) is used by employees to submit reports about safety issues,
+policy violations, or operational incidents.
+
+Reports may include structured fields (category, severity, location) as well as free-form descriptions.
+Employees can attach photos, documents, or reference related incidents.
+
+Before a report is accepted, the system must verify that:
+ - the reporter is authenticated,
+ - the selected category is valid,
+ - mandatory fields are present.
+
+Once submitted, reports are reviewed by supervisors.
+Supervisors may:
+ - request clarification,
+ - change the severity level,
+ - assign corrective actions.
+
+All actions must be logged for audit purposes.
+The system must retain reports for at least 10 years, even if an employee leaves the company.

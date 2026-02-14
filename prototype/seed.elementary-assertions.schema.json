@@ -1,0 +1,1703 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://secos.rocks/schemas/seed.elementary-assertions.schema.json",
+  "title": "Secos Seed - Elementary Assertions (Step 12)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "seed_id",
+    "stage",
+    "index_basis",
+    "canonical_text",
+    "segments",
+    "tokens",
+    "mentions",
+    "assertions",
+    "relation_projection",
+    "accepted_annotations",
+    "wiki_title_evidence",
+    "diagnostics",
+    "coverage",
+    "sources"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "seed_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "stage": {
+      "type": "string",
+      "const": "elementary_assertions"
+    },
+    "index_basis": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "text_field",
+        "span_unit"
+      ],
+      "properties": {
+        "text_field": {
+          "type": "string",
+          "const": "canonical_text"
+        },
+        "span_unit": {
+          "type": "string",
+          "enum": [
+            "utf16_code_units"
+          ]
+        }
+      }
+    },
+    "canonical_text": {
+      "type": "string"
+    },
+    "segments": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/segment"
+      }
+    },
+    "tokens": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/token"
+      }
+    },
+    "mentions": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/mention"
+      }
+    },
+    "assertions": {
+      "type": "array",
+      "minItems": 0,
+      "items": {
+        "$ref": "#/$defs/assertion"
+      }
+    },
+    "relation_projection": {
+      "$ref": "#/$defs/relation_projection"
+    },
+    "accepted_annotations": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/accepted_annotation_summary"
+      }
+    },
+    "wiki_title_evidence": {
+      "$ref": "#/$defs/wiki_title_evidence"
+    },
+    "diagnostics": {
+      "$ref": "#/$defs/diagnostics"
+    },
+    "coverage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "primary_mention_ids",
+        "covered_primary_mention_ids",
+        "uncovered_primary_mention_ids",
+        "unresolved"
+      ],
+      "properties": {
+        "primary_mention_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "covered_primary_mention_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "uncovered_primary_mention_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "unresolved": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/unresolved_item"
+          }
+        }
+      }
+    },
+    "sources": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "inputs",
+        "pipeline"
+      ],
+      "properties": {
+        "inputs": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/source_input"
+          }
+        },
+        "pipeline": {
+          "$ref": "#/$defs/source_pipeline"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "span": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "start",
+        "end"
+      ],
+      "properties": {
+        "start": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "end": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "segment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "span",
+        "token_range"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "span": {
+          "$ref": "#/$defs/span"
+        },
+        "token_range": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "start",
+            "end"
+          ],
+          "properties": {
+            "start": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "end": {
+              "type": "integer",
+              "minimum": 0
+            }
+          }
+        }
+      }
+    },
+    "token": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "i",
+        "segment_id",
+        "span",
+        "surface"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "i": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "segment_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "span": {
+          "$ref": "#/$defs/span"
+        },
+        "surface": {
+          "type": "string"
+        },
+        "normalized": {
+          "type": "string"
+        },
+        "flags": {
+          "type": "object",
+          "additionalProperties": true
+        },
+        "joiner": {
+          "type": "object",
+          "additionalProperties": true
+        },
+        "pos": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "tag"
+          ],
+          "properties": {
+            "tag": {
+              "type": "string",
+              "minLength": 1
+            },
+            "coarse": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "lexicon": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "wikipedia_title_index": {
+              "type": "object",
+              "additionalProperties": true
+            }
+          }
+        }
+      }
+    },
+    "mention": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "kind",
+        "priority",
+        "token_ids",
+        "head_token_id",
+        "span",
+        "segment_id",
+        "is_primary"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "kind": {
+          "type": "string",
+          "enum": [
+            "token",
+            "mwe",
+            "chunk"
+          ]
+        },
+        "priority": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "token_ids": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "head_token_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "span": {
+          "$ref": "#/$defs/span"
+        },
+        "segment_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "is_primary": {
+          "type": "boolean"
+        },
+        "provenance": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "source_annotation_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "source_kind": {
+              "type": "string",
+              "enum": [
+                "mwe_materialized",
+                "token_fallback",
+                "mwe_alternative",
+                "chunk_accepted",
+                "token_shadow"
+              ]
+            },
+            "head_strategy": {
+              "type": "string",
+              "enum": [
+                "explicit",
+                "chunk_head",
+                "dependency_head",
+                "pos_fallback",
+                "unresolved"
+              ]
+            },
+            "lexicon_source": {
+              "type": "string",
+              "enum": [
+                "wikipedia-title-index"
+              ]
+            },
+            "lexicon_evidence": {
+              "type": "object",
+              "additionalProperties": true
+            }
+          }
+        }
+      }
+    },
+    "assertion": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "segment_id",
+        "predicate",
+        "arguments",
+        "modifiers",
+        "operators",
+        "evidence"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "segment_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "predicate": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "mention_id",
+            "head_token_id"
+          ],
+          "properties": {
+            "mention_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "head_token_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "lemma": {
+              "type": "string"
+            }
+          }
+        },
+        "operators": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/operator"
+          }
+        },
+        "evidence": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "relation_evidence",
+            "token_ids"
+          ],
+          "properties": {
+            "relation_evidence": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/$defs/relation_evidence_item"
+              }
+            },
+            "token_ids": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "wiki_signals": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "mention_evidence"
+              ],
+              "properties": {
+                "mention_evidence": {
+                  "type": "array",
+                  "minItems": 1,
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "mention_id",
+                      "token_ids",
+                      "evidence"
+                    ],
+                    "properties": {
+                      "mention_id": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "token_ids": {
+                        "type": "array",
+                        "minItems": 1,
+                        "items": {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      },
+                      "evidence": {
+                        "type": "object",
+                        "additionalProperties": true
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "diagnostics": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "predicate_quality": {
+              "type": "string",
+              "enum": [
+                "ok",
+                "low"
+              ]
+            },
+            "predicate_class": {
+              "type": "string",
+              "enum": [
+                "lexical_verb",
+                "copula",
+                "auxiliary",
+                "preposition",
+                "nominal_head"
+              ]
+            },
+            "structural_fragment": {
+              "type": "boolean"
+            },
+            "slot_projection_choice": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "candidate_count",
+                "chosen_mention_id"
+              ],
+              "properties": {
+                "candidate_count": {
+                  "type": "integer",
+                  "minimum": 2
+                },
+                "chosen_mention_id": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            },
+            "suppression_eligibility": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "eligible",
+                "failure_reason",
+                "candidate_class",
+                "segment_id",
+                "assertion_id",
+                "chosen_host_assertion_id",
+                "chosen_host_predicate",
+                "chosen_host_predicate_class",
+                "source_non_operator_token_ids",
+                "chosen_host_token_ids",
+                "missing_in_host_token_ids"
+              ],
+              "properties": {
+                "eligible": {
+                  "type": "boolean"
+                },
+                "failure_reason": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "enum": [
+                    "no_host",
+                    "no_containment",
+                    "has_core_slots",
+                    null
+                  ]
+                },
+                "candidate_class": {
+                  "type": "string",
+                  "enum": [
+                    "preposition",
+                    "nominal_head",
+                    "auxiliary"
+                  ]
+                },
+                "segment_id": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "assertion_id": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "chosen_host_assertion_id": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "chosen_host_predicate": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "chosen_host_predicate_class": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "source_non_operator_token_ids": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "chosen_host_token_ids": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "missing_in_host_token_ids": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              }
+            },
+            "suppressed_by": {
+              "$ref": "#/$defs/suppressed_by"
+            }
+          }
+        },
+        "arguments": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/role_entry"
+          }
+        },
+        "modifiers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/role_entry"
+          }
+        }
+      }
+    },
+    "mention_id_list": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "slot_pair": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "role",
+        "mention_ids"
+      ],
+      "properties": {
+        "role": {
+          "type": "string",
+          "minLength": 1
+        },
+        "mention_ids": {
+          "$ref": "#/$defs/mention_id_list"
+        }
+      }
+    },
+    "operator": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind"
+      ],
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": [
+            "modality",
+            "negation",
+            "coordination_group",
+            "compare",
+            "compare_gt",
+            "compare_lt",
+            "quantifier",
+            "control_inherit_subject",
+            "control_propagation"
+          ]
+        },
+        "value": {
+          "type": "string"
+        },
+        "token_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "group_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/relation_evidence_item"
+          }
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "modality"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "value"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "negation"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "token_id"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "coordination_group"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "group_id"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "enum": [
+                  "compare",
+                  "compare_gt",
+                  "compare_lt",
+                  "quantifier"
+                ]
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "token_id"
+            ]
+          }
+        }
+      ]
+    },
+    "relation_projection": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "all_relations",
+        "projected_relations",
+        "dropped_relations"
+      ],
+      "properties": {
+        "all_relations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/relation_projection_all_item"
+          }
+        },
+        "projected_relations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/relation_projection_projected_item"
+          }
+        },
+        "dropped_relations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/relation_projection_dropped_item"
+          }
+        }
+      }
+    },
+    "relation_projection_all_item": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "relation_id",
+        "label",
+        "segment_id",
+        "head_token_id",
+        "dep_token_id",
+        "head_primary_mention_id",
+        "dep_primary_mention_id",
+        "head_mention_ids",
+        "dep_mention_ids"
+      ],
+      "properties": {
+        "relation_id": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1
+        },
+        "segment_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "head_token_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "dep_token_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "head_primary_mention_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "dep_primary_mention_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "head_mention_ids": {
+          "$ref": "#/$defs/mention_id_list"
+        },
+        "dep_mention_ids": {
+          "$ref": "#/$defs/mention_id_list"
+        }
+      }
+    },
+    "relation_projection_projected_item": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "relation_id",
+        "label",
+        "segment_id",
+        "head_token_id",
+        "dep_token_id",
+        "head_mention_id",
+        "dep_mention_id"
+      ],
+      "properties": {
+        "relation_id": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1
+        },
+        "segment_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "head_token_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "dep_token_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "head_mention_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "dep_mention_id": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "relation_projection_dropped_item": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "relation_id",
+        "label",
+        "segment_id",
+        "reason",
+        "head_token_id",
+        "dep_token_id",
+        "head_primary_mention_id",
+        "dep_primary_mention_id"
+      ],
+      "properties": {
+        "relation_id": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1
+        },
+        "segment_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1
+        },
+        "head_token_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "dep_token_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "head_primary_mention_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "dep_primary_mention_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "accepted_annotation_summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "kind",
+        "status",
+        "token_ids",
+        "source_names"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "kind": {
+          "type": "string",
+          "minLength": 1
+        },
+        "status": {
+          "type": "string",
+          "minLength": 1
+        },
+        "label": {
+          "type": "string"
+        },
+        "token_ids": {
+          "$ref": "#/$defs/mention_id_list"
+        },
+        "span": {
+          "$ref": "#/$defs/span"
+        },
+        "source_names": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "diagnostics": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "token_wiki_signal_count",
+        "mentions_with_lexicon_evidence",
+        "assertions_with_wiki_signals",
+        "projected_relation_count",
+        "dropped_relation_count",
+        "subject_role_gaps",
+        "warnings"
+      ],
+      "properties": {
+        "token_wiki_signal_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "mentions_with_lexicon_evidence": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "assertions_with_wiki_signals": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "projected_relation_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "dropped_relation_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "fragmentation": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "structural_fragment_count",
+            "predicate_noise_index",
+            "per_segment"
+          ],
+          "properties": {
+            "structural_fragment_count": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "predicate_noise_index": {
+              "type": "number",
+              "minimum": 0
+            },
+            "per_segment": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "segment_id",
+                  "predicate_assertion_count",
+                  "lexical_verb_count",
+                  "tolerated_auxiliary_count",
+                  "structural_fragment_count",
+                  "clause_fragmentation_warning"
+                ],
+                "properties": {
+                  "segment_id": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "predicate_assertion_count": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "lexical_verb_count": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "tolerated_auxiliary_count": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "structural_fragment_count": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "clause_fragmentation_warning": {
+                    "type": "boolean"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "gap_signals": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "coordination_type_missing",
+            "comparative_gap",
+            "quantifier_scope_gap"
+          ],
+          "properties": {
+            "coordination_type_missing": {
+              "type": "boolean"
+            },
+            "comparative_gap": {
+              "type": "boolean"
+            },
+            "quantifier_scope_gap": {
+              "type": "boolean"
+            }
+          }
+        },
+        "coordination_groups": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "id",
+              "member_assertion_ids"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "type": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "member_assertion_ids": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            }
+          }
+        },
+        "subject_role_gaps": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "segment_id",
+              "assertion_id",
+              "predicate_mention_id",
+              "predicate_head_token_id",
+              "reason",
+              "evidence"
+            ],
+            "properties": {
+              "segment_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "assertion_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "predicate_mention_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "predicate_head_token_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "reason": {
+                "type": "string",
+                "enum": [
+                  "missing_subject_role"
+                ]
+              },
+              "evidence": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "token_ids",
+                  "upstream_relation_ids"
+                ],
+                "properties": {
+                  "token_ids": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  },
+                  "upstream_relation_ids": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "warnings": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "suppressed_assertions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/suppressed_assertion_trace"
+          }
+        }
+      }
+    },
+    "suppressed_by": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "target_assertion_id",
+        "reason"
+      ],
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": [
+            "predicate_redirect"
+          ]
+        },
+        "target_assertion_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "reason": {
+          "type": "string",
+          "enum": [
+            "predicate_upgraded_to_lexical",
+            "modality_moved_to_lexical",
+            "role_carrier_suppressed",
+            "role_carrier_suppressed_v2_nominal",
+            "copula_bucket_sink_suppressed"
+          ]
+        },
+        "evidence": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "upstream_relation_ids": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "token_ids": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    "suppressed_assertion_trace": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "segment_id",
+        "predicate",
+        "diagnostics"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "suppressed_assertion_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "host_assertion_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "reason": {
+          "type": "string",
+          "enum": [
+            "role_carrier_suppressed",
+            "role_carrier_suppressed_v2_nominal",
+            "copula_bucket_sink_suppressed"
+          ]
+        },
+        "predicate_class": {
+          "type": "string",
+          "enum": [
+            "lexical_verb",
+            "copula",
+            "auxiliary",
+            "preposition",
+            "nominal_head"
+          ]
+        },
+        "transferred_buckets": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "anyOf": [
+              {
+                "enum": [
+                  "actor",
+                  "theme",
+                  "attr",
+                  "topic",
+                  "location",
+                  "other"
+                ]
+              },
+              {
+                "pattern": "^operator:[a-z_]+$"
+              }
+            ]
+          }
+        },
+        "transferred_mention_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "evidence": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "token_ids": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        },
+        "segment_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "predicate": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "mention_id",
+            "head_token_id"
+          ],
+          "properties": {
+            "mention_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "head_token_id": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "diagnostics": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "suppressed_by"
+          ],
+          "properties": {
+            "predicate_quality": {
+              "type": "string",
+              "enum": [
+                "ok",
+                "low"
+              ]
+            },
+            "suppressed_by": {
+              "$ref": "#/$defs/suppressed_by"
+            }
+          }
+        }
+      }
+    },
+    "wiki_title_evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "normalization",
+        "mention_matches",
+        "assertion_predicate_matches"
+      ],
+      "properties": {
+        "normalization": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "unicode_form",
+            "punctuation_map",
+            "whitespace",
+            "casefold"
+          ],
+          "properties": {
+            "unicode_form": {
+              "type": "string",
+              "minLength": 1
+            },
+            "punctuation_map": {
+              "type": "object",
+              "additionalProperties": true
+            },
+            "whitespace": {
+              "type": "string",
+              "minLength": 1
+            },
+            "casefold": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "mention_matches": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/wiki_mention_match"
+          }
+        },
+        "assertion_predicate_matches": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/wiki_assertion_match"
+          }
+        }
+      }
+    },
+    "wiki_mention_match": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mention_id",
+        "normalized_surface",
+        "exact_titles",
+        "prefix_titles"
+      ],
+      "properties": {
+        "mention_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "normalized_surface": {
+          "type": "string"
+        },
+        "exact_titles": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "prefix_titles": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "wiki_assertion_match": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "assertion_id",
+        "predicate_mention_id",
+        "exact_titles",
+        "prefix_titles"
+      ],
+      "properties": {
+        "assertion_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "predicate_mention_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "exact_titles": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "prefix_titles": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "relation_evidence_item": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "from_token_id",
+        "to_token_id",
+        "label",
+        "annotation_id"
+      ],
+      "properties": {
+        "annotation_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "from_token_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "to_token_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "unresolved_item": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "segment_id",
+        "mention_id",
+        "reason",
+        "evidence"
+      ],
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": [
+            "unresolved_attachment",
+            "unresolved_head"
+          ]
+        },
+        "segment_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "mention_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "mention_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "reason": {
+          "type": "string",
+          "enum": [
+            "missing_relation",
+            "projection_failed",
+            "predicate_invalid",
+            "operator_scope_open",
+            "coord_type_missing"
+          ]
+        },
+        "evidence": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "token_ids"
+          ],
+          "properties": {
+            "token_ids": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "upstream_relation_ids": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "span": {
+              "$ref": "#/$defs/span"
+            }
+          }
+        }
+      }
+    },
+    "source_input": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "artifact",
+        "digest"
+      ],
+      "properties": {
+        "artifact": {
+          "type": "string",
+          "enum": [
+            "seed.txt",
+            "relations_extracted.in_memory",
+            "seed.relations.yaml",
+            "seed.mwe.materialized.yaml",
+            "seed.chunks.yaml",
+            "seed.heads.yaml",
+            "seed.tokens.yaml",
+            "seed.pos.yaml"
+          ]
+        },
+        "digest": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "source_pipeline": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "target",
+        "relations_extracted_digest",
+        "token_count",
+        "annotation_count",
+        "wikipedia_title_index_configured"
+      ],
+      "properties": {
+        "target": {
+          "type": "string",
+          "minLength": 1
+        },
+        "relations_extracted_digest": {
+          "type": "string",
+          "minLength": 1
+        },
+        "token_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "annotation_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "wikipedia_title_index_configured": {
+          "type": "boolean"
+        }
+      }
+    },
+    "role_entry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "role",
+        "mention_ids",
+        "evidence"
+      ],
+      "properties": {
+        "role": {
+          "type": "string",
+          "minLength": 1
+        },
+        "mention_ids": {
+          "$ref": "#/$defs/mention_id_list"
+        },
+        "evidence": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "relation_ids",
+            "token_ids"
+          ],
+          "properties": {
+            "relation_ids": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "token_ids": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+

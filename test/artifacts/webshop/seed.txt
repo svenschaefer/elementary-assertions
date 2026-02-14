@@ -1,0 +1,3 @@
+A WebShop is an online store where people can pick products they want to buy, put them into a shopping cart, and then complete the purchase by placing an order.
+
+While doing that, the shop needs to make sure the items are actually available, take the customer’s payment, and keep a reliable record of the order.

@@ -1,0 +1,5 @@
+An access control system regulates who may perform specific actions on protected resources.
+Users authenticate using credentials and are assigned one or more roles.
+Each role grants permissions such as read, write, or administer.
+Before an action is executed, the system must verify that the user holds the required permission.
+All access decisions should be recorded for auditing and security analysis.

@@ -1,0 +1,34 @@
+{
+  "name": "elementary-assertions",
+  "version": "0.0.0",
+  "private": true,
+  "type": "commonjs",
+  "main": "./src/index.js",
+  "exports": {
+    ".": "./src/index.js",
+    "./validate": "./src/validate/index.js",
+    "./render": "./src/render/index.js",
+    "./tools": "./src/tools/index.js",
+    "./schema": "./src/schema/seed.elementary-assertions.schema.json"
+  },
+  "bin": {
+    "elementary-assertions": "./bin/elementary-assertions.js"
+  },
+  "files": [
+    "bin/",
+    "src/",
+    "docs/",
+    "README.md"
+  ],
+  "scripts": {
+    "test": "node --test \"test/**/*.test.js\"",
+    "test:unit": "node --test \"test/unit/**/*.test.js\"",
+    "test:integration": "node --test \"test/integration/**/*.test.js\""
+  },
+  "dependencies": {
+    "ajv": "^8.17.1",
+    "ajv-formats": "^3.0.1",
+    "js-yaml": "^4.1.1",
+    "linguistic-enricher": "^1.1.29"
+  }
+}

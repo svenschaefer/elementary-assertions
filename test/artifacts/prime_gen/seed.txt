@@ -1,0 +1,4 @@
+A prime number generator produces prime numbers in ascending order.
+It starts at a given minimum value and tests each successive integer for primality.
+The generator must ensure that only numbers greater than 1 are considered.
+Generated primes may be used for educational purposes or basic numerical experiments.

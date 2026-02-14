@@ -1,0 +1,4 @@
+Prime factorization decomposes a positive integer into a set of prime numbers.
+Each factor must be prime, and their product must equal the original number.
+The process typically starts with the smallest prime factor and continues iteratively.
+Prime factorization is commonly used in number theory and cryptography.
