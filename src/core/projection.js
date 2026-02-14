@@ -4,7 +4,7 @@ const { annotationHasSource, collectStep11Relations } = require('./upstream');
 const { getTokenWikipediaEvidence, buildTokenWikiById, getTokenMetadataProjection } = require('./tokens');
 const { getMweHeadEvidence, getMweLexiconEvidence } = require('./mention-materialization');
 const { toAnnotationSummary, buildAcceptedAnnotationsInventory } = require('./accepted-annotations');
-const { buildChunkHeadMaps, buildDependencyObservationMaps } = require('./mention-head-resolution');
+const { buildChunkHeadMaps, buildDependencyObservationMaps, posFallbackHead } = require('./mention-head-resolution');
 
 function buildMentionLexiconEvidence({ tokenIds, tokenWikiById, mweLexiconEvidence }) {
   const tokenEvidence = normalizeIds(tokenIds || [])
@@ -50,15 +50,6 @@ function buildAssertionWikiSignals({ predicateMentionId, relations, mentionById 
 
   if (mentionEvidence.length === 0) return null;
   return { mention_evidence: mentionEvidence };
-}
-
-function posFallbackHead(tokenIds, tokenById) {
-  const toks = tokenIds.map((id) => tokenById.get(id)).filter(Boolean).sort((a, b) => a.i - b.i);
-  const nouns = toks.filter((t) => /^(NN|NNS|NNP|NNPS|PRP|CD)/.test(t.pos.tag));
-  if (nouns.length > 0) return nouns[nouns.length - 1].id;
-  const verbs = toks.filter((t) => /^VB/.test(t.pos.tag));
-  if (verbs.length > 0) return verbs[0].id;
-  return toks.length > 0 ? toks[toks.length - 1].id : null;
 }
 
 function resolveMentionHead({

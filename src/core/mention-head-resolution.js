@@ -39,7 +39,17 @@ function buildDependencyObservationMaps(relationsSeed, tokenById) {
   return { incomingInside, outgoingInside };
 }
 
+function posFallbackHead(tokenIds, tokenById) {
+  const tokens = (tokenIds || []).map((id) => tokenById.get(id)).filter(Boolean).sort((a, b) => a.i - b.i);
+  const nouns = tokens.filter((token) => /^(NN|NNS|NNP|NNPS|PRP|CD)/.test(token.pos.tag));
+  if (nouns.length > 0) return nouns[nouns.length - 1].id;
+  const verbs = tokens.filter((token) => /^VB/.test(token.pos.tag));
+  if (verbs.length > 0) return verbs[0].id;
+  return tokens.length > 0 ? tokens[tokens.length - 1].id : null;
+}
+
 module.exports = {
   buildChunkHeadMaps,
   buildDependencyObservationMaps,
+  posFallbackHead,
 };

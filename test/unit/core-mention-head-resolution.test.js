@@ -4,6 +4,7 @@ const assert = require("node:assert/strict");
 const {
   buildChunkHeadMaps,
   buildDependencyObservationMaps,
+  posFallbackHead,
 } = require("../../src/core/mention-head-resolution");
 
 test("buildChunkHeadMaps indexes accepted chunks and chunk heads", () => {
@@ -38,4 +39,19 @@ test("buildDependencyObservationMaps indexes non-root dependency observations", 
   assert.deepEqual(maps.incomingInside.get("t2"), ["t1"]);
   assert.deepEqual(maps.outgoingInside.get("t1"), ["t2"]);
   assert.equal(maps.incomingInside.has("t3"), false);
+});
+
+test("posFallbackHead prefers noun tail then verb head", () => {
+  const tokenById = new Map([
+    ["t1", { id: "t1", i: 0, pos: { tag: "VB" } }],
+    ["t2", { id: "t2", i: 1, pos: { tag: "NN" } }],
+    ["t3", { id: "t3", i: 2, pos: { tag: "NNS" } }],
+  ]);
+  assert.equal(posFallbackHead(["t1", "t2", "t3"], tokenById), "t3");
+
+  const noNoun = new Map([
+    ["t1", { id: "t1", i: 0, pos: { tag: "VBZ" } }],
+    ["t2", { id: "t2", i: 1, pos: { tag: "VBD" } }],
+  ]);
+  assert.equal(posFallbackHead(["t1", "t2"], noNoun), "t1");
 });
