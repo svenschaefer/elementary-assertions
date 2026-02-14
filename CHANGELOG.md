@@ -2,19 +2,21 @@
 
 ## Unreleased
 
+## v0.1.6 - 2026-02-14
+
 ### Added
 - Stable validation diagnostics contract:
   - validator failures now throw `ValidationError` with deterministic `err.code`
   - coded failures are wired across schema + integrity validation paths
-- New contract tests for validation error typing/codes:
+- Expanded validation error-code contract tests:
   - `test/unit/validate-errors.contract.test.js`
-  - includes coverage and determinism error-code assertions
-  - includes unknown token/mention refs, invalid head token, unresolved coverage, and suppressed target reference assertions
-- Docs consistency now enforces explicit release commit staging command in `docs/NPM_RELEASE.md`.
-- Docs consistency now also enforces:
+  - coverage and determinism error-code assertions
+  - unknown token/mention refs, invalid head token, unresolved coverage, and suppressed target reference assertions
+- Docs consistency enforcement expanded:
+  - explicit release commit staging command in `docs/NPM_RELEASE.md`
   - README includes `docs/DEV_TOOLING.md` in documentation links
-  - README documents `ValidationError` with stable `code` field semantics
-- Golden-reference contract coverage expanded with YAML-parsed structural checks for:
+  - README documents `ValidationError` stable `code` semantics
+- Golden-reference contract coverage expanded with YAML-parsed structural checks:
   - role arrays always present (`arguments`, `modifiers`, `operators`)
   - legacy `assertions[*].slots` absence
   - required coverage arrays
@@ -23,6 +25,17 @@
 - `docs/OPERATIONAL.md` now documents the validation error contract:
   - `ValidationError` usage
   - stable `ValidationError.code` semantics for consumer branching
+
+### Release Evidence
+- Release commit: `087e5b8f86b9d897da61d7b8107140a55baaf26b`
+- Tag: `v0.1.6`
+- CI run: `22024520208` (success)
+- Smoke roots:
+  - `C:\code\elementary-assertions-smoke-test\v0.1.6-pretag-smoke-20260214-222607`
+  - `C:\code\elementary-assertions-smoke-test\v0.1.6-posttag-smoke-20260214-222642`
+- Rendered smoke output roots:
+  - `C:\code\elementary-assertions-smoke-test\v0.1.6-pretag-smoke-20260214-222607\rendered`
+  - `C:\code\elementary-assertions-smoke-test\v0.1.6-posttag-smoke-20260214-222642\rendered`
 
 ## v0.1.5 - 2026-02-14
 

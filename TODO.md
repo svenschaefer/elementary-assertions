@@ -69,6 +69,21 @@ Status: Completed through Phase 9 gap-closure (as of 2026-02-14).
   - `ValidationError` is thrown for contract violations
   - `ValidationError.code` is stable and should be used for consumer branching
 
+## Release Execution Snapshot (v0.1.6, 2026-02-14)
+
+- Released version: `v0.1.6`
+- Release commit: `087e5b8f86b9d897da61d7b8107140a55baaf26b`
+- Annotated tag: `v0.1.6` (pushed)
+- CI run: `22024520208` (success)
+- Smoke workspaces (clean installs, version + reason naming):
+  - `C:\code\elementary-assertions-smoke-test\v0.1.6-pretag-smoke-20260214-222607`
+  - `C:\code\elementary-assertions-smoke-test\v0.1.6-posttag-smoke-20260214-222642`
+- Rendered smoke outputs were generated in both folders under:
+  - `C:\code\elementary-assertions-smoke-test\v0.1.6-pretag-smoke-20260214-222607\rendered\*.compact.txt`
+  - `C:\code\elementary-assertions-smoke-test\v0.1.6-pretag-smoke-20260214-222607\rendered\*.table.md`
+  - `C:\code\elementary-assertions-smoke-test\v0.1.6-posttag-smoke-20260214-222642\rendered\*.compact.txt`
+  - `C:\code\elementary-assertions-smoke-test\v0.1.6-posttag-smoke-20260214-222642\rendered\*.table.md`
+
 ## Post-Phase 9 Snapshot (2026-02-14)
 
 - Added integration automation for dev report scripts JSON validity:
