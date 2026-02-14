@@ -267,5 +267,6 @@ function buildMentions({ relationsSeed, mweSeed, headsSeed, tokenById, tokenWiki
 }
 
 module.exports = {
+  mentionSortKey,
   buildMentions,
 };

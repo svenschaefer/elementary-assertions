@@ -5,7 +5,7 @@ const { getMweHeadEvidence, getMweLexiconEvidence } = require('./mention-materia
 const { toAnnotationSummary, buildAcceptedAnnotationsInventory } = require('./accepted-annotations');
 const { buildChunkHeadMaps, buildDependencyObservationMaps, posFallbackHead, resolveMentionHead } = require('./mention-head-resolution');
 const { buildMentionLexiconEvidence, buildAssertionWikiSignals } = require('./mention-evidence');
-const { buildMentions } = require('./mention-builder');
+const { mentionSortKey, buildMentions } = require('./mention-builder');
 
 function normalizeWikiSurface(surface) {
   if (typeof surface !== 'string') return '';
@@ -33,10 +33,6 @@ function hasPositiveWikiSignal(evidence) {
   if (evidence.wiki_singular_plural_variant_match === true) return true;
   if (evidence.wiki_any_signal === true) return true;
   return false;
-}
-
-function mentionSortKey(mention) {
-  return `${mention.segment_id}|${String(mention.span.start).padStart(8, '0')}|${String(mention.span.end).padStart(8, '0')}|${mention.kind}|${mention.id}`;
 }
 
 const SUBJECT_ROLE_LABELS = new Set([
