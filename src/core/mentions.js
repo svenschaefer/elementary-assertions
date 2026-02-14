@@ -1,5 +1,6 @@
 const { findSelector, normalizeSpanKey, normalizeIds, deepCloneJson } = require('./determinism');
 const { annotationHasSource, collectStep11Relations } = require('./upstream');
+const { buildTokenIndex } = require('./tokens');
 
 function normalizeWikiSurface(surface) {
   if (typeof surface !== 'string') return '';
@@ -117,22 +118,6 @@ function chooseBestMentionForToken({ tokenId, segmentId, mentionById, candidateM
     candidate_count: filteredIds.length,
     chosen_was_first: sourceIds.length > 0 ? sourceIds[0] === chosenId : true,
   };
-}
-
-function buildTokenIndex(seed) {
-  if (!Array.isArray(seed.tokens) || seed.tokens.length === 0) throw new Error('relations seed missing tokens');
-  const byId = new Map();
-  for (const t of seed.tokens) {
-    if (!t || typeof t.id !== 'string') throw new Error('token missing id');
-    if (typeof t.segment_id !== 'string') throw new Error(`token ${t.id} missing segment_id`);
-    if (!t.span || typeof t.span.start !== 'number' || typeof t.span.end !== 'number') {
-      throw new Error(`token ${t.id} missing span`);
-    }
-    if (typeof t.i !== 'number') throw new Error(`token ${t.id} missing i`);
-    if (!t.pos || typeof t.pos.tag !== 'string') throw new Error(`token ${t.id} missing pos.tag`);
-    byId.set(t.id, t);
-  }
-  return byId;
 }
 
 function getMweHeadEvidence(mwe) {
