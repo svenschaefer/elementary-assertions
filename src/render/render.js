@@ -1,5 +1,6 @@
 const { validateElementaryAssertions } = require("../validate");
 const { rejectLegacySlots } = require("../validate/schema");
+const { normalizeIds } = require("../core/ids");
 
 function normalizeRenderText(text) {
   if (typeof text !== 'string' || text.length === 0) return text;
@@ -79,10 +80,6 @@ const ROLE_TO_DISPLAY_COLUMN = new Map([
   ['topic', 'topic'],
   ['location', 'location'],
 ]);
-
-function normalizeIds(ids) {
-  return Array.from(new Set((ids || []).filter((id) => typeof id === 'string' && id.length > 0))).sort((a, b) => a.localeCompare(b));
-}
 
 function toViewSlotsFromRoles(assertion) {
   const slots = { actor: [], theme: [], attr: [], topic: [], location: [], other: [] };
