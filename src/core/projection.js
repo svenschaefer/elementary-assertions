@@ -1,25 +1,6 @@
 const { deepCloneJson, sha256Hex, normalizeIds } = require('./determinism');
 const { chooseBestMentionForToken, compareMentionProjectionPriority, mentionHasLexiconEvidence } = require('./mentions');
-const { annotationHasSource } = require('./upstream');
-
-function collectStep11Relations(relationsSeed, tokenById) {
-  const out = [];
-  const annotations = Array.isArray(relationsSeed.annotations) ? relationsSeed.annotations : [];
-  for (const a of annotations) {
-    if (!a || a.kind !== 'dependency' || a.status !== 'accepted') continue;
-    if (!annotationHasSource(a, 'relation-extraction')) continue;
-    if (!a.head || typeof a.head.id !== 'string' || !tokenById.has(a.head.id)) continue;
-    if (!a.dep || typeof a.dep.id !== 'string' || !tokenById.has(a.dep.id)) continue;
-    out.push({
-      id: typeof a.id === 'string' ? a.id : '',
-      label: String(a.label || ''),
-      head_token_id: a.head.id,
-      dep_token_id: a.dep.id,
-      evidence: (Array.isArray(a.sources) ? a.sources.find((s) => s && s.name === 'relation-extraction') : null)?.evidence || {},
-    });
-  }
-  return out;
-}
+const { annotationHasSource, collectStep11Relations } = require('./upstream');
 
 function getMweHeadEvidence(mwe) {
   if (!Array.isArray(mwe.sources)) return null;
