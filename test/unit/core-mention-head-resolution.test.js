@@ -5,6 +5,7 @@ const {
   buildChunkHeadMaps,
   buildDependencyObservationMaps,
   posFallbackHead,
+  resolveMentionHead,
 } = require("../../src/core/mention-head-resolution");
 
 test("buildChunkHeadMaps indexes accepted chunks and chunk heads", () => {
@@ -54,4 +55,43 @@ test("posFallbackHead prefers noun tail then verb head", () => {
     ["t2", { id: "t2", i: 1, pos: { tag: "VBD" } }],
   ]);
   assert.equal(posFallbackHead(["t1", "t2"], noNoun), "t1");
+});
+
+test("resolveMentionHead prefers explicit then chunk head then dependency root", () => {
+  const findSelector = (annotation, type) =>
+    (annotation.anchor && Array.isArray(annotation.anchor.selectors)
+      ? annotation.anchor.selectors.find((s) => s && s.type === type)
+      : null) || null;
+
+  const tokenById = new Map([
+    ["t1", { id: "t1", i: 0, pos: { tag: "NN" } }],
+    ["t2", { id: "t2", i: 1, pos: { tag: "VB" } }],
+  ]);
+
+  const explicit = resolveMentionHead({
+    tokenIds: ["t1", "t2"],
+    explicitHead: "t2",
+    chunkById: new Map(),
+    headByChunkId: new Map(),
+    incomingInsideMap: new Map(),
+    tokenById,
+    findSelector,
+  });
+  assert.equal(explicit.head, "t2");
+  assert.equal(explicit.strategy, "explicit");
+
+  const chunk = {
+    anchor: { selectors: [{ type: "TokenSelector", token_ids: ["t1", "t2"] }] },
+  };
+  const chunkHead = resolveMentionHead({
+    tokenIds: ["t1", "t2"],
+    explicitHead: null,
+    chunkById: new Map([["c1", chunk]]),
+    headByChunkId: new Map([["c1", "t1"]]),
+    incomingInsideMap: new Map(),
+    tokenById,
+    findSelector,
+  });
+  assert.equal(chunkHead.head, "t1");
+  assert.equal(chunkHead.strategy, "chunk_head");
 });

@@ -48,8 +48,61 @@ function posFallbackHead(tokenIds, tokenById) {
   return tokens.length > 0 ? tokens[tokens.length - 1].id : null;
 }
 
+function resolveMentionHead({
+  tokenIds,
+  explicitHead,
+  chunkById,
+  headByChunkId,
+  incomingInsideMap,
+  tokenById,
+  findSelector,
+}) {
+  const tokenSet = new Set(tokenIds);
+  if (explicitHead && tokenSet.has(explicitHead)) {
+    return { head: explicitHead, strategy: "explicit", unresolved: null };
+  }
+
+  for (const [chunkId, chunk] of chunkById.entries()) {
+    const tokenSelector = findSelector(chunk, "TokenSelector");
+    if (!tokenSelector || !Array.isArray(tokenSelector.token_ids)) continue;
+    const ids = tokenSelector.token_ids;
+    if (ids.length !== tokenIds.length) continue;
+    let same = true;
+    for (const id of ids) {
+      if (!tokenSet.has(id)) {
+        same = false;
+        break;
+      }
+    }
+    if (!same) continue;
+    const head = headByChunkId.get(chunkId);
+    if (head && tokenSet.has(head)) return { head, strategy: "chunk_head", unresolved: null };
+  }
+
+  const rootCandidates = tokenIds.filter((id) => {
+    const incoming = incomingInsideMap.get(id) || [];
+    const insideIncoming = incoming.filter((headId) => tokenSet.has(headId));
+    return insideIncoming.length === 0;
+  });
+  if (rootCandidates.length === 1) return { head: rootCandidates[0], strategy: "dependency_head", unresolved: null };
+
+  const fallback = posFallbackHead(tokenIds, tokenById);
+  if (fallback) {
+    return {
+      head: fallback,
+      strategy: "pos_fallback",
+      unresolved:
+        rootCandidates.length === 0
+          ? "no_dependency_head_in_mention"
+          : "multiple_dependency_head_candidates",
+    };
+  }
+  return { head: tokenIds[0], strategy: "unresolved", unresolved: "empty_mention_tokens" };
+}
+
 module.exports = {
   buildChunkHeadMaps,
   buildDependencyObservationMaps,
   posFallbackHead,
+  resolveMentionHead,
 };

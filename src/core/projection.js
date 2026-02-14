@@ -4,7 +4,7 @@ const { annotationHasSource, collectStep11Relations } = require('./upstream');
 const { getTokenWikipediaEvidence, buildTokenWikiById, getTokenMetadataProjection } = require('./tokens');
 const { getMweHeadEvidence, getMweLexiconEvidence } = require('./mention-materialization');
 const { toAnnotationSummary, buildAcceptedAnnotationsInventory } = require('./accepted-annotations');
-const { buildChunkHeadMaps, buildDependencyObservationMaps, posFallbackHead } = require('./mention-head-resolution');
+const { buildChunkHeadMaps, buildDependencyObservationMaps, posFallbackHead, resolveMentionHead } = require('./mention-head-resolution');
 
 function buildMentionLexiconEvidence({ tokenIds, tokenWikiById, mweLexiconEvidence }) {
   const tokenEvidence = normalizeIds(tokenIds || [])
@@ -50,55 +50,6 @@ function buildAssertionWikiSignals({ predicateMentionId, relations, mentionById 
 
   if (mentionEvidence.length === 0) return null;
   return { mention_evidence: mentionEvidence };
-}
-
-function resolveMentionHead({
-  tokenIds,
-  explicitHead,
-  chunkById,
-  headByChunkId,
-  incomingInsideMap,
-  tokenById,
-}) {
-  const tokenSet = new Set(tokenIds);
-  if (explicitHead && tokenSet.has(explicitHead)) return { head: explicitHead, strategy: 'explicit', unresolved: null };
-
-  for (const [chunkId, chunk] of chunkById.entries()) {
-    const ts = findSelector(chunk, 'TokenSelector');
-    if (!ts || !Array.isArray(ts.token_ids)) continue;
-    const ids = ts.token_ids;
-    if (ids.length !== tokenIds.length) continue;
-    let same = true;
-    for (const id of ids) {
-      if (!tokenSet.has(id)) {
-        same = false;
-        break;
-      }
-    }
-    if (!same) continue;
-    const head = headByChunkId.get(chunkId);
-    if (head && tokenSet.has(head)) return { head, strategy: 'chunk_head', unresolved: null };
-  }
-
-  const rootCandidates = tokenIds.filter((id) => {
-    const incoming = incomingInsideMap.get(id) || [];
-    const insideIncoming = incoming.filter((h) => tokenSet.has(h));
-    return insideIncoming.length === 0;
-  });
-  if (rootCandidates.length === 1) return { head: rootCandidates[0], strategy: 'dependency_head', unresolved: null };
-
-  const fallback = posFallbackHead(tokenIds, tokenById);
-  if (fallback) {
-    return {
-      head: fallback,
-      strategy: 'pos_fallback',
-      unresolved:
-        rootCandidates.length === 0
-          ? 'no_dependency_head_in_mention'
-          : 'multiple_dependency_head_candidates',
-    };
-  }
-  return { head: tokenIds[0], strategy: 'unresolved', unresolved: 'empty_mention_tokens' };
 }
 
 function buildMentions({ relationsSeed, mweSeed, headsSeed, tokenById, tokenWikiById }) {
@@ -160,6 +111,7 @@ function buildMentions({ relationsSeed, mweSeed, headsSeed, tokenById, tokenWiki
       headByChunkId,
       incomingInsideMap: incomingInside,
       tokenById,
+      findSelector,
     });
     const mentionLexiconEvidence = buildMentionLexiconEvidence({
       tokenIds: w.token_ids,
@@ -195,6 +147,7 @@ function buildMentions({ relationsSeed, mweSeed, headsSeed, tokenById, tokenWiki
       headByChunkId,
       incomingInsideMap: incomingInside,
       tokenById,
+      findSelector,
     });
     const mentionLexiconEvidence = buildMentionLexiconEvidence({
       tokenIds: w.token_ids,
@@ -292,6 +245,7 @@ function buildMentions({ relationsSeed, mweSeed, headsSeed, tokenById, tokenWiki
       headByChunkId,
       incomingInsideMap: incomingInside,
       tokenById,
+      findSelector,
     });
     const mentionLexiconEvidence = buildMentionLexiconEvidence({
       tokenIds,
