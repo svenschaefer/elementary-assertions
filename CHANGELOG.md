@@ -2,6 +2,40 @@
 
 ## Unreleased
 
+## v0.1.7 - 2026-02-14
+
+### Added
+- Full AJV-backed schema contract enforcement in runtime validation.
+- Cross-field integrity invariants:
+  - segment/token/mention alignment checks
+  - predicate head consistency checks
+  - assertion segment-consistency checks
+- Strict diagnostics integrity mode (`validateElementaryAssertions(doc, { strict: true })`).
+- Dedicated strict checker workflow:
+  - `npm run dev:check`
+  - strict validation over a single input (`--in`) or all golden artifacts.
+- File-origin provenance fidelity for CLI file inputs:
+  - `--in` and `--relations` now persist file-origin metadata in `sources.inputs[]`.
+- Renderer contract lock expansion:
+  - added parity locks for `md/meaning`.
+
+### Changed
+- `README.md` and `docs/OPERATIONAL.md` now explicitly document:
+  - runtime vs strict/dev validation scope
+  - provenance levels (`in_memory` vs `file`)
+  - contract-locked renderer combinations (`txt/compact`, `md/table`, `md/meaning`).
+
+### Release Evidence
+- Release commit: `PENDING`
+- Tag: `v0.1.7`
+- CI run: `PENDING`
+- Smoke roots:
+  - `PENDING`
+  - `PENDING`
+- Rendered smoke output roots:
+  - `PENDING`
+  - `PENDING`
+
 ## v0.1.6 - 2026-02-14
 
 ### Added

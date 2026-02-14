@@ -8,6 +8,19 @@ It is execution-oriented, phase-gated, and contract-first.
 
 Status: Completed through Phase 11 hardening (as of 2026-02-14).
 
+## Release Execution Snapshot (v0.1.7, 2026-02-14)
+
+- Released version: `v0.1.7`
+- Release commit: `PENDING`
+- Annotated tag: `v0.1.7` (pushed)
+- CI run: `PENDING`
+- Smoke workspaces (clean installs, version + reason naming):
+  - `PENDING`
+  - `PENDING`
+- Rendered smoke outputs were generated in both folders under:
+  - `PENDING`
+  - `PENDING`
+
 ## Phase 10 Kickoff Snapshot (2026-02-14)
 
 - Added docs-regression guard for release staging command consistency:
