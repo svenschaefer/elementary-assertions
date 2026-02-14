@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+### Added
+- Strict coverage primary-set invariant in strict/dev validation, aligned to derived domain-primary mentions.
+- Release smoke contract lock expansion to include `md/meaning` parity checks.
+
+### Changed
+- Release smoke and operational docs now state install-time renderer verification for `txt/compact`, `md/table`, and `md/meaning`.
+
 ## v0.1.7 - 2026-02-14
 
 ### Added

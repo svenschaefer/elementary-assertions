@@ -99,8 +99,10 @@ function main() {
     const inYaml = path.join(base, "seed.elementary-assertions.yaml");
     const goldenTxt = path.join(base, "seed.elementary-assertions.txt");
     const goldenMd = path.join(base, "seed.elementary-assertions.md");
+    const goldenMeaningMd = path.join(base, "seed.elementary-assertions.meaning.md");
     const outTxt = path.join(outRoot, `${seedId}.compact.txt`);
     const outMd = path.join(outRoot, `${seedId}.table.md`);
+    const outMeaningMd = path.join(outRoot, `${seedId}.meaning.md`);
 
     run(
       process.execPath,
@@ -112,17 +114,27 @@ function main() {
       [cliPath, "render", "--in", inYaml, "--out", outMd, "--format", "md", "--layout", "table"],
       smokeRoot
     );
+    run(
+      process.execPath,
+      [cliPath, "render", "--in", inYaml, "--out", outMeaningMd, "--format", "md", "--layout", "meaning"],
+      smokeRoot
+    );
 
     const txtRendered = fs.readFileSync(outTxt, "utf8");
     const txtGolden = fs.readFileSync(goldenTxt, "utf8");
     const mdRendered = fs.readFileSync(outMd, "utf8");
     const mdGolden = fs.readFileSync(goldenMd, "utf8");
+    const meaningRendered = fs.readFileSync(outMeaningMd, "utf8");
+    const meaningGolden = fs.readFileSync(goldenMeaningMd, "utf8");
 
     if (txtRendered !== txtGolden) {
       throw new Error(`Render parity mismatch (txt/compact) for seed: ${seedId}`);
     }
     if (mdRendered !== mdGolden) {
       throw new Error(`Render parity mismatch (md/table) for seed: ${seedId}`);
+    }
+    if (meaningRendered !== meaningGolden) {
+      throw new Error(`Render parity mismatch (md/meaning) for seed: ${seedId}`);
     }
   }
 

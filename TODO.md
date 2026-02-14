@@ -719,8 +719,8 @@ Objective: non-breaking hardening of strict/dev validation depth and release-smo
 
 ### 12.5 Release Smoke Parity Expansion
 
-- [ ] Extend release smoke checks to include `md/meaning` renderer outputs.
-- [ ] Keep parity tests as ground truth; smoke checks verify install-time wiring.
+- [x] Extend release smoke checks to include `md/meaning` renderer outputs.
+- [x] Keep parity tests as ground truth; smoke checks verify install-time wiring.
 
 Exit criteria:
 - strict/dev guarantees are expanded for diagnostics/suppression/coverage coherence.

@@ -138,7 +138,7 @@ Renderer contract scope:
   - meaning markdown (`format: "md", layout: "meaning"`)
 - Other renderer combinations are currently best-effort and may evolve without contract change.
 Release smoke renderer scope (install-time wiring checks):
-- currently verified in smoke: `txt/compact`, `md/table`
+- currently verified in smoke: `txt/compact`, `md/table`, `md/meaning`
 - parity/golden suite remains the broader contract lock source (`txt/compact`, `md/table`, `md/meaning`)
 
 Tooling (file I/O and CLI wiring):

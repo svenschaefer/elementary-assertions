@@ -85,6 +85,7 @@ Remove-Item -Force .\elementary-assertions-*.tgz
 
 Create a clean workspace and install from the commit hash you intend to tag.
 Use the shared smoke script so API/CLI checks and render parity are enforced together.
+The smoke script verifies parity for `txt/compact`, `md/table`, and `md/meaning`.
 
 Smoke workspace rule:
 - Use `C:\code\elementary-assertions-smoke-test\`.

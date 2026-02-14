@@ -122,6 +122,7 @@ Layouts:
 Renderer contract-lock scope:
 - Contract-locked by parity tests: `txt/compact`, `md/table`, `md/meaning`.
 - Other layout/format combinations are best-effort and may evolve.
+- Release smoke currently verifies install-time wiring for: `txt/compact`, `md/table`, `md/meaning`.
 
 Renderer integrity validation (before emitting output):
 - tokens must exist for all mentions
