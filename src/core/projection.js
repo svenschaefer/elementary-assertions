@@ -4,6 +4,7 @@ const { annotationHasSource, collectStep11Relations } = require('./upstream');
 const { getTokenWikipediaEvidence, buildTokenWikiById, getTokenMetadataProjection } = require('./tokens');
 const { getMweHeadEvidence, getMweLexiconEvidence } = require('./mention-materialization');
 const { toAnnotationSummary, buildAcceptedAnnotationsInventory } = require('./accepted-annotations');
+const { buildChunkHeadMaps } = require('./mention-head-resolution');
 
 function buildMentionLexiconEvidence({ tokenIds, tokenWikiById, mweLexiconEvidence }) {
   const tokenEvidence = normalizeIds(tokenIds || [])
@@ -49,20 +50,6 @@ function buildAssertionWikiSignals({ predicateMentionId, relations, mentionById 
 
   if (mentionEvidence.length === 0) return null;
   return { mention_evidence: mentionEvidence };
-}
-
-function buildChunkHeadMaps(headsSeed) {
-  const chunkById = new Map();
-  const headByChunkId = new Map();
-  if (!headsSeed || !Array.isArray(headsSeed.annotations)) return { chunkById, headByChunkId };
-  for (const a of headsSeed.annotations) {
-    if (!a || a.status !== 'accepted') continue;
-    if (a.kind === 'chunk' && typeof a.id === 'string') chunkById.set(a.id, a);
-    if (a.kind === 'chunk_head' && typeof a.chunk_id === 'string' && a.head && typeof a.head.id === 'string') {
-      headByChunkId.set(a.chunk_id, a.head.id);
-    }
-  }
-  return { chunkById, headByChunkId };
 }
 
 function buildDependencyObservationMaps(relationsSeed, tokenById) {
