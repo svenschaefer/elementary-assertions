@@ -25,4 +25,10 @@ Optional iterations override:
 npm run benchmark:core -- 1000
 ```
 
+Optional dense scenario override:
+
+```powershell
+npm run benchmark:core -- 1000 dense
+```
+
 This benchmark is advisory for repo workflow only (trend watching) and is not a package contract gate.

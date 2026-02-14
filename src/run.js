@@ -48,6 +48,48 @@ function validateRelationsInput(relationsDoc) {
   if (typeof relationsDoc.canonical_text !== "string") {
     throw new Error("runFromRelations input must include canonical_text.");
   }
+  const tokenIds = new Set();
+  for (const token of relationsDoc.tokens) {
+    if (token && typeof token.id === "string" && token.id.length > 0) tokenIds.add(token.id);
+  }
+  for (const annotation of relationsDoc.annotations) {
+    if (!annotation || typeof annotation !== "object") continue;
+    if (annotation.status !== "accepted") continue;
+
+    if (annotation.kind === "dependency") {
+      const headId = annotation && annotation.head && typeof annotation.head.id === "string" ? annotation.head.id : "";
+      const depId = annotation && annotation.dep && typeof annotation.dep.id === "string" ? annotation.dep.id : "";
+      if (!headId || !depId) {
+        throw new Error("runFromRelations accepted dependency annotation is missing head.id or dep.id.");
+      }
+      if (!tokenIds.has(headId) || !tokenIds.has(depId)) {
+        throw new Error("runFromRelations accepted dependency annotation references unknown token id.");
+      }
+    }
+
+    const selectors =
+      annotation &&
+      annotation.anchor &&
+      Array.isArray(annotation.anchor.selectors)
+        ? annotation.anchor.selectors
+        : [];
+    for (const selector of selectors) {
+      if (!selector || typeof selector !== "object") continue;
+      if (selector.type === "TokenSelector" && Array.isArray(selector.token_ids)) {
+        for (const tokenId of selector.token_ids) {
+          if (!tokenIds.has(tokenId)) {
+            throw new Error("runFromRelations accepted annotation TokenSelector references unknown token id.");
+          }
+        }
+      }
+      if (selector.type === "TextPositionSelector" && selector.span && typeof selector.span === "object") {
+        const { start, end } = selector.span;
+        if (typeof start !== "number" || typeof end !== "number" || start > end) {
+          throw new Error("runFromRelations accepted annotation TextPositionSelector has invalid span.");
+        }
+      }
+    }
+  }
   rejectLegacySlots(relationsDoc);
 }
 

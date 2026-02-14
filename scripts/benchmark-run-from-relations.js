@@ -35,6 +35,45 @@ function minimalRelationsDoc() {
   };
 }
 
+function denseRelationsDoc() {
+  const tokenCount = 40;
+  const tokens = [];
+  for (let i = 0; i < tokenCount; i += 1) {
+    const id = `t${i + 1}`;
+    const isVerb = i % 5 === 1;
+    tokens.push({
+      id,
+      i,
+      segment_id: "s1",
+      span: { start: i * 2, end: i * 2 + 1 },
+      surface: isVerb ? "runs" : `w${i + 1}`,
+      pos: isVerb ? { tag: "VBZ", coarse: "VERB" } : { tag: "NN", coarse: "NOUN" },
+    });
+  }
+
+  const annotations = [];
+  for (let i = 1; i < tokenCount; i += 1) {
+    annotations.push({
+      id: `ann:dep:${i}`,
+      kind: "dependency",
+      status: "accepted",
+      label: i % 5 === 0 ? "modifier" : "nsubj",
+      head: { id: `t${Math.max(2, i)}` },
+      dep: { id: `t${i}` },
+      sources: [{ name: "relation-extraction", evidence: {} }],
+    });
+  }
+
+  return {
+    seed_id: "seed-dense",
+    canonical_text: tokens.map((t) => t.surface).join(" "),
+    stage: "relations_extracted",
+    segments: [{ id: "s1", span: { start: 0, end: tokenCount * 2 }, token_range: { start: 0, end: tokenCount } }],
+    tokens,
+    annotations,
+  };
+}
+
 function measure(iterations, input) {
   const t0 = performance.now();
   for (let i = 0; i < iterations; i += 1) {
@@ -45,13 +84,15 @@ function measure(iterations, input) {
 }
 
 const iterations = Number.isFinite(Number(process.argv[2])) ? Number(process.argv[2]) : 250;
-const input = minimalRelationsDoc();
+const scenario = String(process.argv[3] || "minimal").toLowerCase();
+const input = scenario === "dense" ? denseRelationsDoc() : minimalRelationsDoc();
 
 runFromRelations(input);
 const totalMs = measure(iterations, input);
 const perRunMs = totalMs / iterations;
 
 console.log(`benchmark: runFromRelations`);
+console.log(`scenario: ${scenario}`);
 console.log(`iterations: ${iterations}`);
 console.log(`total_ms: ${totalMs.toFixed(3)}`);
 console.log(`avg_ms_per_run: ${perRunMs.toFixed(3)}`);

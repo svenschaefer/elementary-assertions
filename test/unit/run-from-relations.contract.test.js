@@ -48,6 +48,65 @@ test("runFromRelations rejects malformed upstream input shapes explicitly", () =
   }
 });
 
+test("runFromRelations rejects malformed accepted annotation internals", () => {
+  const badDependencyRef = minimalRelationsDoc({
+    annotations: [
+      {
+        id: "ann:dep:bad",
+        kind: "dependency",
+        status: "accepted",
+        label: "nsubj",
+        head: { id: "t2" },
+        dep: { id: "t999" },
+      },
+    ],
+  });
+  assert.throws(
+    () => runFromRelations(badDependencyRef),
+    /dependency.*unknown token id/i
+  );
+
+  const badTokenSelectorRef = minimalRelationsDoc({
+    annotations: [
+      {
+        id: "ann:mwe:bad",
+        kind: "mwe",
+        status: "accepted",
+        anchor: {
+          selectors: [
+            { type: "TokenSelector", token_ids: ["t1", "t999"] },
+            { type: "TextPositionSelector", span: { start: 0, end: 5 } },
+          ],
+        },
+      },
+    ],
+  });
+  assert.throws(
+    () => runFromRelations(badTokenSelectorRef),
+    /TokenSelector.*unknown token id/i
+  );
+
+  const badTextSpan = minimalRelationsDoc({
+    annotations: [
+      {
+        id: "ann:mwe:badspan",
+        kind: "mwe",
+        status: "accepted",
+        anchor: {
+          selectors: [
+            { type: "TokenSelector", token_ids: ["t1"] },
+            { type: "TextPositionSelector", span: { start: 9, end: 1 } },
+          ],
+        },
+      },
+    ],
+  });
+  assert.throws(
+    () => runFromRelations(badTextSpan),
+    /TextPositionSelector.*invalid span/i
+  );
+});
+
 test("runFromRelations ignores stage label and tolerates unrelated extra fields", () => {
   const input = minimalRelationsDoc({
     stage: "rich_upstream_stage",
