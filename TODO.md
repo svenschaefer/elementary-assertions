@@ -20,6 +20,21 @@ Status: Completed through Phase 8 and post-phase helper deduplication (as of 202
   - `rendered\*.compact.txt`
   - `rendered\*.table.md`
 
+## Post-Release Hardening Snapshot (2026-02-14)
+
+- Added `CHANGELOG.md` with `v0.1.0` contract and release evidence.
+- Added CI workflow (`.github/workflows/ci.yml`) for:
+  - `npm install`
+  - `npm test`
+  - `npm pack --dry-run`
+  - clean-install API + CLI smoke check from packed tarball
+- Added README cross-link to release/smoke workspace convention in `docs/NPM_RELEASE.md`.
+- Added malformed upstream input negative tests for `runFromRelations` in `test/unit/run-from-relations.contract.test.js`.
+- Added manual performance baseline helper:
+  - script: `scripts/benchmark-run-from-relations.js`
+  - npm script: `npm run benchmark:core`
+  - repo workflow note in `docs/REPO_WORKFLOWS.md`
+
 ## Scope and Goal
 
 Build a production Node.js package with stable CommonJS APIs:

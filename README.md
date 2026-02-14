@@ -142,6 +142,7 @@ const tools = require("elementary-assertions/tools");
 
 For full operational details (CLI commands, repo layout convenience, runner scripts, rendering defaults), see `docs/OPERATIONAL.md`.
 For repository-only workflow policies (not package contract), see `docs/REPO_WORKFLOWS.md`.
+For release and smoke-install workspace conventions (including `C:\code\elementary-assertions-smoke-test\`), see `docs/NPM_RELEASE.md`.
 
 ## Package entry points
 
@@ -157,6 +158,7 @@ For repository-only workflow policies (not package contract), see `docs/REPO_WOR
 - Operational guide: `docs/OPERATIONAL.md`
 - Repository workflow policies: `docs/REPO_WORKFLOWS.md`
 - Release flow: `docs/NPM_RELEASE.md`
+- Changelog: `CHANGELOG.md`
 
 ## License
 

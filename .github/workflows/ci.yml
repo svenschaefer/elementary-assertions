@@ -1,0 +1,41 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test-and-pack:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install
+        run: npm install
+
+      - name: Test
+        run: npm test
+
+      - name: Pack Dry Run
+        run: npm pack --dry-run
+
+      - name: Create Tarball
+        run: npm pack
+
+      - name: Smoke Install (API + CLI)
+        shell: bash
+        run: |
+          PKG_TGZ="$(ls -1 elementary-assertions-*.tgz | head -n 1)"
+          SMOKE_DIR="$(mktemp -d)"
+          cd "$SMOKE_DIR"
+          npm init -y >/dev/null
+          npm install "$GITHUB_WORKSPACE/$PKG_TGZ"
+          node -e "const api=require('elementary-assertions'); console.log(Object.keys(api))"
+          npx elementary-assertions --help

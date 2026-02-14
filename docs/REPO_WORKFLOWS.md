@@ -10,3 +10,19 @@ When workflow automation writes rendered artifacts next to the YAML output, enfo
 - `seed.elementary-assertions.txt` newer than `seed.elementary-assertions.yaml`
 
 These constraints apply to the Secos repository workflow only and do not define runtime behavior of `elementary-assertions` as a package.
+
+## Performance baseline (manual repo workflow)
+
+Use the benchmark helper to keep a coarse local baseline for `runFromRelations` performance:
+
+```powershell
+npm run benchmark:core
+```
+
+Optional iterations override:
+
+```powershell
+npm run benchmark:core -- 1000
+```
+
+This benchmark is advisory for repo workflow only (trend watching) and is not a package contract gate.

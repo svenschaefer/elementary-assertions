@@ -30,6 +30,24 @@ test("runFromRelations rejects legacy assertions[*].slots immediately", () => {
   );
 });
 
+test("runFromRelations rejects malformed upstream input shapes explicitly", () => {
+  const cases = [
+    { name: "non-object input", input: null, pattern: /object input/i },
+    { name: "missing tokens", input: minimalRelationsDoc({ tokens: undefined }), pattern: /tokens\[\]/i },
+    { name: "missing annotations", input: minimalRelationsDoc({ annotations: undefined }), pattern: /annotations\[\]/i },
+    { name: "missing segments", input: minimalRelationsDoc({ segments: undefined }), pattern: /segments\[\]/i },
+    { name: "missing canonical_text", input: minimalRelationsDoc({ canonical_text: undefined }), pattern: /canonical_text/i },
+  ];
+
+  for (const c of cases) {
+    assert.throws(
+      () => runFromRelations(c.input),
+      c.pattern,
+      `runFromRelations should reject ${c.name}`
+    );
+  }
+});
+
 test("runFromRelations ignores stage label and tolerates unrelated extra fields", () => {
   const input = minimalRelationsDoc({
     stage: "rich_upstream_stage",
