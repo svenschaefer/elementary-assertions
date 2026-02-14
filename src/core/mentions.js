@@ -3,7 +3,7 @@ const { annotationHasSource, collectStep11Relations } = require('./upstream');
 const { buildTokenIndex, getTokenWikipediaEvidence, buildTokenWikiById, getTokenMetadataProjection } = require('./tokens');
 const { getMweHeadEvidence, getMweLexiconEvidence } = require('./mention-materialization');
 const { toAnnotationSummary, buildAcceptedAnnotationsInventory } = require('./accepted-annotations');
-const { buildChunkHeadMaps } = require('./mention-head-resolution');
+const { buildChunkHeadMaps, buildDependencyObservationMaps } = require('./mention-head-resolution');
 
 function normalizeWikiSurface(surface) {
   if (typeof surface !== 'string') return '';
@@ -167,24 +167,6 @@ function buildAssertionWikiSignals({ predicateMentionId, relations, mentionById 
 
   if (mentionEvidence.length === 0) return null;
   return { mention_evidence: mentionEvidence };
-}
-
-function buildDependencyObservationMaps(relationsSeed, tokenById) {
-  const incomingInside = new Map();
-  const outgoingInside = new Map();
-  const annotations = Array.isArray(relationsSeed.annotations) ? relationsSeed.annotations : [];
-  for (const a of annotations) {
-    if (!a || a.kind !== 'dependency' || a.status !== 'observation') continue;
-    if (!a.dep || typeof a.dep.id !== 'string' || !tokenById.has(a.dep.id)) continue;
-    if (a.is_root || !a.head || typeof a.head.id !== 'string' || !tokenById.has(a.head.id)) continue;
-    const dep = a.dep.id;
-    const head = a.head.id;
-    if (!incomingInside.has(dep)) incomingInside.set(dep, []);
-    if (!outgoingInside.has(head)) outgoingInside.set(head, []);
-    incomingInside.get(dep).push(head);
-    outgoingInside.get(head).push(dep);
-  }
-  return { incomingInside, outgoingInside };
 }
 
 function posFallbackHead(tokenIds, tokenById) {
