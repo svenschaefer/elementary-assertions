@@ -77,7 +77,8 @@ npm pack
 
 ## 5) Smoke install checks (pre-tag)
 
-Create a clean workspace and install from the commit hash you intend to tag:
+Create a clean workspace and install from the commit hash you intend to tag.
+Use the shared smoke script so API/CLI checks and render parity are enforced together.
 
 Smoke workspace rule:
 - Use `C:\code\elementary-assertions-smoke-test\`.
@@ -93,8 +94,7 @@ npm init -y | Out-Null
 # Replace <COMMIT> with the commit you intend to tag
 npm install "git+ssh://git@github.com:svenschaefer/elementary-assertions.git#<COMMIT>"
 
-node -e "const api=require('elementary-assertions'); console.log(Object.keys(api))"
-npx elementary-assertions --help
+node C:\code\elementary-assertions\scripts\release-smoke-check.js --repo-root C:\code\elementary-assertions --smoke-root $SmokeRoot --out-root (Join-Path $SmokeRoot "rendered")
 npm ls elementary-assertions
 ```
 
@@ -140,8 +140,7 @@ Set-Location $SmokeRoot
 npm init -y | Out-Null
 
 npm install "git+ssh://git@github.com:svenschaefer/elementary-assertions.git#vX.Y.Z"
-node -e "const api=require('elementary-assertions'); console.log(Object.keys(api))"
-npx elementary-assertions --help
+node C:\code\elementary-assertions\scripts\release-smoke-check.js --repo-root C:\code\elementary-assertions --smoke-root $SmokeRoot --out-root (Join-Path $SmokeRoot "rendered")
 npm ls elementary-assertions
 ```
 

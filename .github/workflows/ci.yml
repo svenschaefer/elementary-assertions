@@ -29,7 +29,7 @@ jobs:
       - name: Create Tarball
         run: npm pack
 
-      - name: Smoke Install (API + CLI)
+      - name: Smoke Install (API + CLI + Render Parity)
         shell: bash
         run: |
           PKG_TGZ="$(ls -1 elementary-assertions-*.tgz | head -n 1)"
@@ -37,5 +37,4 @@ jobs:
           cd "$SMOKE_DIR"
           npm init -y >/dev/null
           npm install "$GITHUB_WORKSPACE/$PKG_TGZ"
-          node -e "const api=require('elementary-assertions'); console.log(Object.keys(api))"
-          npx elementary-assertions --help
+          node "$GITHUB_WORKSPACE/scripts/release-smoke-check.js" --repo-root "$GITHUB_WORKSPACE" --smoke-root "$SMOKE_DIR" --out-root "$SMOKE_DIR/rendered"
