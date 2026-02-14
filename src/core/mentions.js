@@ -1,7 +1,7 @@
 const { findSelector, normalizeSpanKey, normalizeIds, deepCloneJson } = require('./determinism');
 const { annotationHasSource, collectStep11Relations } = require('./upstream');
 const { buildTokenIndex } = require('./tokens');
-const { getMweHeadEvidence } = require('./mention-materialization');
+const { getMweHeadEvidence, getMweLexiconEvidence } = require('./mention-materialization');
 
 function normalizeWikiSurface(surface) {
   if (typeof surface !== 'string') return '';
@@ -119,19 +119,6 @@ function chooseBestMentionForToken({ tokenId, segmentId, mentionById, candidateM
     candidate_count: filteredIds.length,
     chosen_was_first: sourceIds.length > 0 ? sourceIds[0] === chosenId : true,
   };
-}
-
-function getMweLexiconEvidence(mwe) {
-  if (!Array.isArray(mwe.sources)) return null;
-  const src = mwe.sources.find(
-    (s) =>
-      s &&
-      s.name === 'wikipedia-title-index' &&
-      s.evidence &&
-      typeof s.evidence === 'object'
-  );
-  if (!src) return null;
-  return deepCloneJson(src.evidence);
 }
 
 function getTokenWikipediaEvidence(token) {
