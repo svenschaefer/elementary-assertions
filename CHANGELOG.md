@@ -2,6 +2,27 @@
 
 ## Unreleased
 
+## v0.1.3 - 2026-02-14
+
+### Added
+- CLI relations replay mode: `run --relations <path>` (routes to `runFromRelations`).
+- Non-public developer report scripts:
+  - `npm run dev:report:metrics`
+  - `npm run dev:report:hotspots`
+  - `npm run dev:report:maturity`
+- Developer tooling scope document: `docs/DEV_TOOLING.md`.
+
+### Changed
+- Validation now enforces deeper deterministic integrity invariants at runtime:
+  - duplicate id detection
+  - sorted deterministic arrays/evidence checks
+  - coverage/unresolved consistency checks
+- `runElementaryAssertions` now requires positive upstream WTI evidence in addition to health-check success.
+- `README.md` and `docs/OPERATIONAL.md` now document:
+  - determinism enforcement via validation plus golden/regression tests
+  - `--relations` replay path
+  - WTI evidence-presence requirement
+
 ## v0.1.2 - 2026-02-14
 
 ### Added
