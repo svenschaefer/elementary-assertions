@@ -1,0 +1,342 @@
+# TODO - Productize `elementary-assertions`
+
+This plan defines how to build the productized package described in `README.md`, using:
+- `prototype/elementary-assertions.js`
+- `prototype/elementary-assertions/*.js`
+
+It is execution-oriented, phase-gated, and contract-first.
+
+## Scope and Goal
+
+Build a production Node.js package with stable CommonJS APIs:
+- `runFromRelations(relationsDoc, options)`
+- `runElementaryAssertions(text, options)`
+
+and stable package entry points:
+- `require("elementary-assertions")`
+- `require("elementary-assertions/validate")`
+- `require("elementary-assertions/render")`
+- `require("elementary-assertions/tools")`
+- `require("elementary-assertions/schema")`
+
+while enforcing product docs and constraints in:
+- `README.md`
+- `docs/OPERATIONAL.md`
+- `AGENTS.md`
+
+## Non-Negotiable Decisions (Locked)
+
+1. Legacy `assertions[*].slots` backward-read support: **REMOVE COMPLETELY**
+- Core MUST NOT emit `slots`.
+- Renderer MUST NOT accept `slots`.
+- Tooling MUST NOT tolerate `slots`.
+- Inputs containing `slots` are invalid and MUST fail validation with explicit errors.
+- All prototype compatibility code paths for `slots` must be removed during port.
+- Prototype tests expecting `slots` must be rewritten or deleted.
+
+2. Prototype diagnostic flags are **NON-PUBLIC DEV TOOLING**
+- `--diagnose-wiki-upstream`, `--diagnose-wti-wiring`, `--diagnose-coverage-audit` are not public API.
+- They MUST NOT appear in public CLI docs.
+- If retained, expose only behind a global `--dev` gate in the default CLI.
+- Dev diagnostic flags MUST be rejected unless `--dev` is present.
+
+3. `runFromRelations` strictness model
+- Accept richer upstream documents (extra fields allowed).
+- Do not require a specific input `stage` label.
+- Perform strict structural validation of required fields/invariants.
+- Never key logic on stage-string matching.
+
+4. Tests migration strategy: **Two phases with golden anchors**
+- Phase 1: port prototype tests as-is where feasible (boundary adaptations only).
+- Phase 2: tighten tests to product contract; remove legacy expectations.
+- Golden anchors are authoritative in `test/artifacts/` (including frozen prototype references).
+
+## Current State Snapshot
+
+- `src/` product modules are placeholders and need full implementation.
+- Prototype has comprehensive logic in:
+  - `prototype/elementary-assertions.js`
+  - `prototype/elementary-assertions/assertions.js`
+  - `prototype/elementary-assertions/determinism.js`
+  - `prototype/elementary-assertions/diagnostics.js`
+  - `prototype/elementary-assertions/io.js`
+  - `prototype/elementary-assertions/mentions.js`
+  - `prototype/elementary-assertions/output.js`
+  - `prototype/elementary-assertions/projection.js`
+  - `prototype/elementary-assertions/roles.js`
+  - `prototype/elementary-assertions/tokens.js`
+- Golden baseline references are committed under:
+  - `test/artifacts/*/prototype-reference/`
+  - `test/artifacts/README.md` (freeze metadata)
+
+## Target Architecture
+
+### Core (library-authoritative)
+
+- `src/core/determinism.js`
+  - hashing, canonical sorting, stable keying, evidence dedupe/sort
+  - remove unrelated I/O/runtime loader functions
+
+- `src/core/tokens.js`
+  - token index validation/projection helpers
+
+- `src/core/mentions.js`
+  - mention construction
+  - mention head resolution
+  - lexicon evidence propagation
+  - role label helpers (`roleToSlot`, subject-role classification)
+
+- `src/core/projection.js`
+  - accepted relations extraction from `linguistic-enricher`
+  - mention projection
+  - dropped/unresolved projection tracking
+  - coordination grouping
+
+- `src/core/roles.js`
+  - canonical role-entry construction/sorting
+  - role-array normalization helpers
+  - no slot projection compatibility layer
+
+- `src/core/assertions.js`
+  - predicate selection and upgrades
+  - role assignment
+  - operator construction/merge
+  - suppression rules and traces
+  - deterministic ID generation
+  - output strictly as `arguments[]`, `modifiers[]`, `operators[]`
+
+- `src/core/diagnostics.js`
+  - unresolved classification and precedence
+  - coverage/gap/fragmentation diagnostics
+  - suppression diagnostics
+
+- `src/core/output.js`
+  - final document assembly
+  - index_basis + coverage + sources + relation projection + diagnostics
+  - `schema_version` carry-if-present-else-omit rule
+  - no CLI/orchestration logic in this module
+
+### Runtime/API
+
+- `src/run.js`
+  - `runFromRelations(relationsDoc, options)`:
+    - strict structural validation
+    - ignore extra unrelated fields
+    - no stage label dependence
+    - reject legacy `assertions[*].slots` immediately (earliest fail)
+  - `runElementaryAssertions(text, options)`:
+    - call upstream `linguistic-enricher`
+    - require WTI endpoint
+    - perform health check contract (`GET /health`, `200` only, timeout default 2000, no retries, no auth by default)
+    - health-check policy is library behavior; CLI is pass-through only
+
+- `src/index.js`
+  - export stable API surface
+
+### Tooling / CLI / Render / Validate
+
+- `src/tools/io.js`
+  - file I/O wrappers
+  - strict parse helpers for booleans and required one-of flags
+
+- `src/tools/cli.js`
+  - public commands: `run`, `validate`, `render`
+  - public behavior from `docs/OPERATIONAL.md`
+  - dev diagnostics allowed only when global `--dev` is present
+
+- `src/validate/schema.js`, `src/validate/integrity.js`, `src/validate/index.js`
+  - schema + integrity + determinism checks
+  - explicit failure on legacy `assertions[*].slots`
+
+- `src/render/render.js`, `src/render/layouts/*.js`, `src/render/index.js`
+  - view-only renderer
+  - strict contract input only
+  - explicit failure on legacy `slots`
+
+## Prototype-to-Product Mapping
+
+- `prototype/elementary-assertions/assertions.js` -> `src/core/assertions.js`
+- `prototype/elementary-assertions/determinism.js` -> `src/core/determinism.js` (trim dead/leaky code)
+- `prototype/elementary-assertions/diagnostics.js` -> `src/core/diagnostics.js`
+- `prototype/elementary-assertions/mentions.js` -> `src/core/mentions.js` (dedupe overlaps with projection)
+- `prototype/elementary-assertions/output.js` -> `src/core/output.js` (remove embedded orchestration block)
+- `prototype/elementary-assertions/projection.js` -> `src/core/projection.js`
+- `prototype/elementary-assertions/roles.js` -> `src/core/roles.js` (remove slot-compat projections)
+- `prototype/elementary-assertions/tokens.js` -> `src/core/tokens.js`
+- `prototype/elementary-assertions/io.js` -> split between `src/run.js` and `src/tools/io.js`
+- `prototype/elementary-assertions.js` -> split between `src/run.js` and `src/tools/cli.js`
+
+## Phase Plan
+
+## Phase 0 - Baseline and Safety
+
+- [x] Add baseline integration smoke tests for currently committed golden references.
+- [x] Add failing tests for legacy slot rejection in validate + render.
+- [x] Add test utility for loading `test/artifacts/*/seed.txt` and golden refs.
+- [x] Verify `package.json` remains pinned to exact `linguistic-enricher@1.1.34`.
+
+### Golden Reference Contract
+
+- Golden input set:
+  - `test/artifacts/<seed>/seed.txt`
+- Golden output set (authoritative baseline outputs):
+  - `test/artifacts/<seed>/prototype-reference/seed.elementary-assertions.yaml`
+  - `test/artifacts/<seed>/prototype-reference/seed.elementary-assertions.md`
+  - `test/artifacts/<seed>/prototype-reference/seed.elementary-assertions.meaning.md`
+  - `test/artifacts/<seed>/prototype-reference/seed.elementary-assertions.txt`
+- Comparison rules:
+  - YAML: parsed structural equality for contract-relevant fields, plus deterministic serialization check for byte stability.
+  - Rendered txt/md: byte comparison against golden files.
+  - Validation tests: explicit failure messages for invalid contract inputs (including legacy `slots`).
+- Versioning rules for intentional contract changes:
+  - create a new baseline directory `test/artifacts/<seed>/product-reference/<version-or-date>/`
+  - keep previous baseline set for historical diffing until explicitly deprecated
+  - update `test/artifacts/README.md` with reason, date, and dependency freeze metadata
+
+Exit criteria:
+- test harness ready for porting without semantic drift.
+
+## Phase 1 - Port Core Modules (No CLI yet)
+
+- [ ] Implement `src/core/determinism.js`.
+- [ ] Implement `src/core/tokens.js`.
+- [ ] Implement `src/core/mentions.js`.
+- [ ] Implement `src/core/projection.js`.
+- [ ] Implement `src/core/roles.js`.
+- [ ] Implement `src/core/assertions.js`.
+- [ ] Implement `src/core/diagnostics.js`.
+- [ ] Implement `src/core/output.js`.
+
+Required refactors during port:
+- [ ] Remove duplicated helpers across modules (single owner per helper).
+- [ ] Delete dead code and undefined-reference code paths from prototype carry-over.
+- [ ] Remove all slot compatibility code from core path.
+- [ ] Ensure all role arrays are always present (empty allowed).
+- [ ] Ensure deterministic ordering and canonical IDs are preserved.
+
+Exit criteria:
+- `runFromRelations` pipeline can be wired purely from `src/core/*`.
+
+## Phase 2 - API Runtime Layer
+
+- [ ] Implement `src/run.js` with:
+  - [ ] `runFromRelations(relationsDoc, options)`
+  - [ ] `runElementaryAssertions(text, options)`
+- [ ] Implement strict structural input validation for `runFromRelations`.
+- [ ] Enforce earliest-fail slot rejection in `runFromRelations` (inputs containing `assertions[*].slots` must error before further processing).
+- [ ] Implement WTI policy in `runElementaryAssertions`:
+  - [ ] endpoint required
+  - [ ] `GET /health`
+  - [ ] HTTP 200 only
+  - [ ] timeout default 2000ms
+  - [ ] no retries
+  - [ ] no implicit auth headers
+- [ ] Ensure CLI uses library-runner behavior and does not implement an independent health-check path.
+- [ ] Ensure schema_version behavior:
+  - [ ] present upstream -> carry verbatim
+  - [ ] absent upstream -> omit
+
+Exit criteria:
+- API-level contract in `README.md` is executable and tested.
+
+## Phase 3 - Package Entry and Schema Export
+
+- [ ] Implement `src/index.js` exports.
+- [ ] Implement/verify `exports` map targets in `package.json`.
+- [ ] Ensure `require("elementary-assertions/schema")` is stable and resolves correctly.
+- [ ] Add unit tests for package exports.
+
+Exit criteria:
+- all package entry points function as documented.
+
+## Phase 4 - Validation Layer
+
+- [ ] Implement schema validator (`src/validate/schema.js`).
+- [ ] Implement integrity + determinism checks (`src/validate/integrity.js`).
+- [ ] Implement wrapper API (`src/validate/index.js`).
+- [ ] Add explicit invalidation rule for legacy `assertions[*].slots`.
+
+Exit criteria:
+- `validate` catches schema/integrity violations and rejects legacy slots explicitly.
+
+## Phase 5 - Renderer
+
+- [ ] Implement renderer core (`src/render/render.js`) and layout modules.
+- [ ] Keep renderer view-only and deterministic.
+- [ ] Reject legacy slot-shaped inputs explicitly.
+- [ ] Preserve documented layout options and formatting toggles.
+
+Exit criteria:
+- render path matches `docs/OPERATIONAL.md` contract and passes deterministic tests.
+
+## Phase 6 - Tooling and CLI
+
+- [ ] Implement `src/tools/io.js` for strict parsing and I/O.
+- [ ] Implement `src/tools/cli.js` with public commands:
+  - [ ] `run`
+  - [ ] `validate`
+  - [ ] `render`
+- [ ] Enforce CLI input rules:
+  - [ ] exactly one of `--text` / `--in`
+  - [ ] both provided -> explicit error
+  - [ ] neither provided -> explicit error
+- [ ] Enforce strict booleans: `true|false` (case-insensitive only).
+- [ ] Add `--wti-timeout-ms` and endpoint precedence behavior.
+- [ ] Keep prototype diagnostics non-public:
+  - [ ] require global `--dev` flag
+  - [ ] reject diagnostic flags when `--dev` is absent
+  - [ ] do not document diagnostics in public CLI docs
+
+Exit criteria:
+- CLI behavior fully aligned with `docs/OPERATIONAL.md`.
+
+## Phase 7 - Tests Migration
+
+### Phase 7A - Coverage Preservation
+
+- [ ] Port prototype tests with minimal surgery to new module paths.
+- [ ] Keep behavior parity where still contract-valid.
+- [ ] Validate deterministic stability over repeated runs.
+
+### Phase 7B - Contract Tightening
+
+- [ ] Remove/rewrite all tests that rely on legacy `slots`.
+- [ ] Add explicit tests for invalid `slots` rejection in validate/render.
+- [ ] Add tests for schema_version omission behavior.
+- [ ] Add tests for strict CLI boolean parsing and one-of input enforcement.
+- [ ] Add tests for WTI health-check strictness and timeout default.
+- [ ] Add tests against frozen golden references in `test/artifacts/*/prototype-reference`.
+
+Exit criteria:
+- test suite asserts current product contract, not prototype internals.
+
+## Phase 8 - Release Readiness
+
+- [ ] Ensure docs and behavior are synchronized (`README.md`, `docs/OPERATIONAL.md`, `docs/NPM_RELEASE.md`).
+- [ ] Ensure `npm test` passes consistently.
+- [ ] Ensure `npm pack --dry-run` is clean and deterministic.
+- [ ] Ensure docs included in packlist (`package.json` `files` includes `docs/`).
+
+Exit criteria:
+- release flow in `docs/NPM_RELEASE.md` can be executed without contract drift.
+
+## Acceptance Checklist (Definition of Done)
+
+- [ ] `runFromRelations` and `runElementaryAssertions` implemented and tested.
+- [ ] Determinism guarantees implemented per scoped rules in docs.
+- [ ] Legacy `slots` fully removed and explicitly rejected.
+- [ ] Public CLI stable and minimal; dev diagnostics not public.
+- [ ] Validation and rendering enforce strict current contract.
+- [ ] Golden artifact regression checks in place and green.
+- [ ] Package exports stable, including schema export.
+- [ ] Documentation and implementation fully aligned.
+
+## Initial Execution Order (Recommended)
+
+1. Phase 0 baseline tests and slot-rejection tests.
+2. Phase 1 core module port (`determinism` -> `tokens` -> `mentions` -> `projection` -> `roles` -> `assertions` -> `diagnostics` -> `output`).
+3. Phase 2 runtime API and policy enforcement.
+4. Phase 4 validate, then Phase 5 render.
+5. Phase 6 CLI/tools.
+6. Phase 7 tests migration and tightening.
+7. Phase 8 release readiness.
