@@ -1,6 +1,6 @@
 const { findSelector, normalizeSpanKey, normalizeIds, deepCloneJson } = require('./determinism');
 const { annotationHasSource, collectStep11Relations } = require('./upstream');
-const { buildTokenIndex, getTokenWikipediaEvidence } = require('./tokens');
+const { buildTokenIndex, getTokenWikipediaEvidence, buildTokenWikiById } = require('./tokens');
 const { getMweHeadEvidence, getMweLexiconEvidence } = require('./mention-materialization');
 
 function normalizeWikiSurface(surface) {
@@ -119,18 +119,6 @@ function chooseBestMentionForToken({ tokenId, segmentId, mentionById, candidateM
     candidate_count: filteredIds.length,
     chosen_was_first: sourceIds.length > 0 ? sourceIds[0] === chosenId : true,
   };
-}
-
-function buildTokenWikiById(relationsSeed) {
-  const out = new Map();
-  const tokens = Array.isArray(relationsSeed && relationsSeed.tokens) ? relationsSeed.tokens : [];
-  for (const token of tokens) {
-    if (!token || typeof token.id !== 'string') continue;
-    const ev = getTokenWikipediaEvidence(token);
-    if (!ev) continue;
-    out.set(token.id, ev);
-  }
-  return out;
 }
 
 function getTokenMetadataProjection(token) {

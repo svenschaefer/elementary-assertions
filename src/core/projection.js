@@ -1,20 +1,8 @@
 const { deepCloneJson, sha256Hex, normalizeIds } = require('./determinism');
 const { chooseBestMentionForToken, compareMentionProjectionPriority, mentionHasLexiconEvidence } = require('./mentions');
 const { annotationHasSource, collectStep11Relations } = require('./upstream');
-const { getTokenWikipediaEvidence } = require('./tokens');
+const { getTokenWikipediaEvidence, buildTokenWikiById } = require('./tokens');
 const { getMweHeadEvidence, getMweLexiconEvidence } = require('./mention-materialization');
-
-function buildTokenWikiById(relationsSeed) {
-  const out = new Map();
-  const tokens = Array.isArray(relationsSeed && relationsSeed.tokens) ? relationsSeed.tokens : [];
-  for (const token of tokens) {
-    if (!token || typeof token.id !== 'string') continue;
-    const ev = getTokenWikipediaEvidence(token);
-    if (!ev) continue;
-    out.set(token.id, ev);
-  }
-  return out;
-}
 
 function getTokenMetadataProjection(token) {
   const out = {};

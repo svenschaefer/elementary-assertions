@@ -1,7 +1,11 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
 
-const { buildTokenIndex, getTokenWikipediaEvidence } = require("../../src/core/tokens");
+const {
+  buildTokenIndex,
+  getTokenWikipediaEvidence,
+  buildTokenWikiById,
+} = require("../../src/core/tokens");
 
 test("buildTokenIndex validates and indexes tokens by id", () => {
   const byId = buildTokenIndex({
@@ -24,4 +28,17 @@ test("getTokenWikipediaEvidence returns cloned wikipedia_title_index payload", (
   assert.deepEqual(out, { wiki_any_signal: true, exact_titles: ["X"] });
   out.exact_titles.push("Y");
   assert.deepEqual(getTokenWikipediaEvidence(token), { wiki_any_signal: true, exact_titles: ["X"] });
+});
+
+test("buildTokenWikiById indexes only tokens with wiki evidence", () => {
+  const out = buildTokenWikiById({
+    tokens: [
+      { id: "t1", lexicon: { wikipedia_title_index: { wiki_any_signal: true } } },
+      { id: "t2" },
+      { id: "t3", lexicon: { wikipedia_title_index: { wiki_prefix_count: 2 } } },
+    ],
+  });
+  assert.equal(out.size, 2);
+  assert.deepEqual(out.get("t1"), { wiki_any_signal: true });
+  assert.deepEqual(out.get("t3"), { wiki_prefix_count: 2 });
 });
