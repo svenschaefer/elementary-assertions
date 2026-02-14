@@ -1,7 +1,7 @@
 const { runElementaryAssertions, runFromRelations } = require("../run");
 const { validateElementaryAssertions } = require("../validate");
 const { renderElementaryAssertions } = require("../render");
-const { arg, normalizeOptionalString, parseStrictBoolean, readUtf8, writeUtf8 } = require("./io");
+const { arg, normalizeOptionalString, parseStrictBoolean, readUtf8, readUtf8WithFileSource, writeUtf8 } = require("./io");
 
 function loadYaml() {
   try {
@@ -59,10 +59,12 @@ async function runCommand(args) {
   let doc;
   if (typeof relationsPath === "string") {
     const yaml = loadYaml();
-    const raw = readUtf8(relationsPath, "relations input file");
+    const { text: raw, sourceInput } = readUtf8WithFileSource(relationsPath, "relations input file", "seed.relations.yaml");
     const relationsDoc = yaml.load(raw);
     doc = runFromRelations(relationsDoc, {
       wtiEndpoint: endpoint,
+      sourceInputs: [sourceInput],
+      suppressDefaultRelationsSource: true,
     });
   } else if (typeof text === "string") {
     doc = await runElementaryAssertions(text, {
@@ -71,11 +73,12 @@ async function runCommand(args) {
       wtiTimeoutMs,
     });
   } else {
-    const source = readUtf8(inPath, "input file");
+    const { text: source, sourceInput } = readUtf8WithFileSource(inPath, "input file", "seed.txt");
     doc = await runElementaryAssertions(source, {
       services: { "wikipedia-title-index": { endpoint } },
       timeoutMs,
       wtiTimeoutMs,
+      sourceInputs: [sourceInput],
     });
   }
 

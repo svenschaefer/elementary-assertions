@@ -1621,8 +1621,56 @@
         "digest": {
           "type": "string",
           "minLength": 1
+        },
+        "origin": {
+          "$ref": "#/$defs/source_input_origin"
         }
       }
+    },
+    "source_input_origin": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind"
+      ],
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": [
+            "in_memory",
+            "file"
+          ]
+        },
+        "path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "mtime_ms": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "read_at": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "file"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "path",
+              "mtime_ms"
+            ]
+          }
+        }
+      ]
     },
     "source_pipeline": {
       "type": "object",

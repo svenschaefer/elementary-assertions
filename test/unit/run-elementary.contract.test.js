@@ -150,3 +150,71 @@ test("runElementaryAssertions fails when endpoint is healthy but upstream has no
     await closeServer(ok.server);
   }
 });
+
+test("runElementaryAssertions preserves caller-provided file-origin source input", async () => {
+  const ok = await startServer((req, res) => {
+    if (req.url === "/health") {
+      res.statusCode = 200;
+      res.end("ok");
+      return;
+    }
+    res.statusCode = 404;
+    res.end("not found");
+  });
+
+  const linguisticEnricherPath = require.resolve("linguistic-enricher");
+  const previous = require.cache[linguisticEnricherPath];
+  require.cache[linguisticEnricherPath] = {
+    id: linguisticEnricherPath,
+    filename: linguisticEnricherPath,
+    loaded: true,
+    exports: {
+      runPipeline: async () => ({
+        seed_id: "seed",
+        canonical_text: "Alpha runs.",
+        stage: "relations_extracted",
+        segments: [{ id: "s1", span: { start: 0, end: 11 }, token_range: { start: 0, end: 2 } }],
+        tokens: [
+          {
+            id: "t1",
+            i: 0,
+            segment_id: "s1",
+            span: { start: 0, end: 5 },
+            surface: "Alpha",
+            pos: { tag: "NNP", coarse: "NOUN" },
+            lexicon: { wikipedia_title_index: { wiki_exact_match: true, wiki_prefix_count: 1 } },
+          },
+          { id: "t2", i: 1, segment_id: "s1", span: { start: 6, end: 10 }, surface: "runs", pos: { tag: "VBZ", coarse: "VERB" } },
+        ],
+        annotations: [],
+      }),
+    },
+  };
+
+  try {
+    const out = await runElementaryAssertions("Alpha runs.", {
+      services: { "wikipedia-title-index": { endpoint: ok.endpoint } },
+      sourceInputs: [
+        {
+          artifact: "seed.txt",
+          digest: "digest-seed-file",
+          origin: {
+            kind: "file",
+            path: "C:\\code\\example\\seed.txt",
+            mtime_ms: 1,
+            read_at: "2026-02-14T00:00:00.000Z",
+          },
+        },
+      ],
+    });
+    assert.equal(out.sources.inputs[0].artifact, "seed.txt");
+    assert.equal(out.sources.inputs[0].origin.kind, "file");
+  } finally {
+    if (previous) {
+      require.cache[linguisticEnricherPath] = previous;
+    } else {
+      delete require.cache[linguisticEnricherPath];
+    }
+    await closeServer(ok.server);
+  }
+});

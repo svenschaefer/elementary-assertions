@@ -40,6 +40,9 @@ WTI health-check contract (default run path):
 ## CLI
 
 The CLI is a thin wrapper around the library plus tooling modules.
+CLI file-origin inputs preserve provenance metadata in output `sources.inputs[]`:
+- `--in` -> `artifact: "seed.txt"` with `origin.kind: "file"`
+- `--relations` -> `artifact: "seed.relations.yaml"` with `origin.kind: "file"`
 
 ### Commands
 

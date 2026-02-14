@@ -129,6 +129,14 @@ function buildRunPipelineTrace(relationsSeed, runOptions, wtiEndpoint) {
   };
 }
 
+function inMemorySourceInput(artifact, digest) {
+  return {
+    artifact,
+    digest,
+    origin: { kind: "in_memory" },
+  };
+}
+
 function runFromRelations(relationsDoc, options = {}) {
   validateRelationsInput(relationsDoc);
 
@@ -181,7 +189,9 @@ function runFromRelations(relationsDoc, options = {}) {
   });
 
   const sourceInputs = Array.isArray(options.sourceInputs) ? options.sourceInputs.slice() : [];
-  sourceInputs.push({ artifact: "relations_extracted.in_memory", digest: sha256Hex(JSON.stringify(relationsSeed || {})) });
+  if (!options.suppressDefaultRelationsSource) {
+    sourceInputs.push(inMemorySourceInput("relations_extracted.in_memory", sha256Hex(JSON.stringify(relationsSeed || {}))));
+  }
 
   const wikiTitleEvidence = buildWikiTitleEvidenceFromUpstream({
     mentions: mentionBuild.mentions,
@@ -252,7 +262,9 @@ async function runElementaryAssertions(text, options = {}) {
   assertMandatoryWtiUpstreamEvidence(relationsSeed);
 
   return runFromRelations(relationsSeed, {
-    sourceInputs: [{ artifact: "seed.text.in_memory", digest: sha256Hex(text) }],
+    sourceInputs: Array.isArray(options.sourceInputs) && options.sourceInputs.length > 0
+      ? options.sourceInputs.slice()
+      : [inMemorySourceInput("seed.text.in_memory", sha256Hex(text))],
     wtiEndpoint,
   });
 }

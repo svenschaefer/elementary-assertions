@@ -652,9 +652,9 @@ Objective: non-breaking product hardening for validation depth, provenance fidel
 
 ### 11.5 Provenance Fidelity for File-Origin Runs
 
-- [ ] Preserve file-origin provenance for CLI `--in` and `--relations` inputs (paths, digests, timestamps).
-- [ ] Keep in-memory runs explicitly marked as in-memory artifacts.
-- [ ] Ensure output metadata clearly distinguishes file-origin vs in-memory provenance.
+- [x] Preserve file-origin provenance for CLI `--in` and `--relations` inputs (paths, digests, timestamps).
+- [x] Keep in-memory runs explicitly marked as in-memory artifacts.
+- [x] Ensure output metadata clearly distinguishes file-origin vs in-memory provenance.
 
 ### 11.6 Renderer Contract Expansion
 

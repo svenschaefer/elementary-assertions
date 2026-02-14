@@ -156,8 +156,10 @@ const tools = require("elementary-assertions/tools");
 
 Source provenance representation:
 - Output includes `sources.inputs[]` and `sources.pipeline`.
-- Current runtime always records in-memory artifacts (`seed.text.in_memory`, `relations_extracted.in_memory`).
-- File-origin provenance fidelity hardening for CLI file inputs is tracked in `TODO.md` as planned work.
+- In-memory runs record `origin.kind: "in_memory"` artifacts (`seed.text.in_memory`, `relations_extracted.in_memory`).
+- CLI file-origin runs (`--in`, `--relations`) preserve file provenance in `sources.inputs[]`:
+  - `artifact` reflects file input kind (`seed.txt` or `seed.relations.yaml`)
+  - `origin.kind: "file"` with absolute `origin.path` and source `origin.mtime_ms`
 
 For full operational details (CLI commands, repo layout convenience, runner scripts, rendering defaults), see `docs/OPERATIONAL.md`.
 For repository-only workflow policies (not package contract), see `docs/REPO_WORKFLOWS.md`.

@@ -152,3 +152,33 @@ test("CLI run --relations rejects non-object parsed input", async () => {
 
   fs.rmSync(tmpRoot, { recursive: true, force: true });
 });
+
+test("CLI run --relations preserves file-origin provenance metadata", async () => {
+  const tmpRoot = fs.mkdtempSync(path.join(os.tmpdir(), "ea-cli-relations-provenance-"));
+  const inPath = path.join(tmpRoot, "relations.yaml");
+  const outPath = path.join(tmpRoot, "out.yaml");
+
+  const relationsDoc = {
+    seed_id: "seed",
+    canonical_text: "Alpha runs.",
+    stage: "relations_extracted",
+    segments: [{ id: "s1", span: { start: 0, end: 11 }, token_range: { start: 0, end: 2 } }],
+    tokens: [
+      { id: "t1", i: 0, segment_id: "s1", span: { start: 0, end: 5 }, surface: "Alpha", pos: { tag: "NNP", coarse: "NOUN" } },
+      { id: "t2", i: 1, segment_id: "s1", span: { start: 6, end: 10 }, surface: "runs", pos: { tag: "VBZ", coarse: "VERB" } },
+    ],
+    annotations: [],
+  };
+
+  fs.writeFileSync(inPath, yaml.dump(relationsDoc), "utf8");
+  await runCli(["run", "--relations", inPath, "--out", outPath]);
+
+  const out = yaml.load(fs.readFileSync(outPath, "utf8"));
+  assert.ok(Array.isArray(out.sources.inputs));
+  const source = out.sources.inputs[0];
+  assert.equal(source.artifact, "seed.relations.yaml");
+  assert.equal(source.origin.kind, "file");
+  assert.equal(path.resolve(source.origin.path), path.resolve(inPath));
+
+  fs.rmSync(tmpRoot, { recursive: true, force: true });
+});
