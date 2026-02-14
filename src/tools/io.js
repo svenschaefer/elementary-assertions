@@ -1,8 +1,5 @@
 const fs = require("node:fs");
-
-function normalizeOptionalString(value) {
-  return typeof value === "string" ? value.trim() : "";
-}
+const { normalizeOptionalString } = require("../core/strings");
 
 function parseStrictBoolean(raw, name) {
   const v = String(raw || "").trim().toLowerCase();

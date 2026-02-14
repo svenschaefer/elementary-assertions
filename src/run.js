@@ -5,11 +5,8 @@ const { collectStep11Relations, buildProjectedRelations } = require("./core/proj
 const { buildAssertions } = require("./core/assertions");
 const { buildUnresolved, buildDiagnostics } = require("./core/diagnostics");
 const { buildWikiTitleEvidenceFromUpstream, buildCoverageDomainMentionIds, buildOutput } = require("./core/output");
+const { normalizeOptionalString } = require("./core/strings");
 const { rejectLegacySlots } = require("./validate/schema");
-
-function normalizeOptionalString(value) {
-  return typeof value === "string" ? value.trim() : "";
-}
 
 function effectiveWtiTimeoutMs(timeoutMs) {
   return Number.isFinite(timeoutMs) && timeoutMs > 0 ? timeoutMs : 2000;

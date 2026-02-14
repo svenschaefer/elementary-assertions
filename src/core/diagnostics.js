@@ -1,10 +1,7 @@
 const { UNRESOLVED_REASON_PRECEDENCE, stableObjectKey, normalizeIds, findSelector } = require('./determinism');
 const { hasPositiveWikiSignal, isSubjectRoleLabel, isCompareLabel, isQuantifierLabel } = require('./mentions');
+const { normalizeOptionalString } = require('./strings');
 const { annotationHasSource } = require('./projection');
-
-function normalizeOptionalString(value) {
-  return typeof value === 'string' ? value.trim() : '';
-}
 
 function operatorIdentityKey(op) {
   return `${op.kind || ''}|${op.value || ''}|${op.group_id || ''}|${op.role || ''}`;
