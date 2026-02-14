@@ -119,14 +119,21 @@ Validation (schema + integrity checks):
 const { validateElementaryAssertions } = require("elementary-assertions/validate");
 validateElementaryAssertions(doc);
 ```
-Validation includes deterministic integrity invariants; determinism is additionally locked by regression and golden-reference tests.
+Runtime validation currently enforces contract shape checks plus deterministic integrity invariants; determinism is additionally locked by regression and golden-reference tests.
 Validation failures throw a `ValidationError` with a stable `code` field for contract-level error handling.
+
+Validation scope distinction:
+- Runtime validation: default library/CLI checks for shape, references, and deterministic integrity.
+- Strict dev validation: deeper diagnostics/coherence checks are tracked as dev/strict tooling work (see `TODO.md`), not part of the current default runtime contract.
 
 Rendering (view-only, multiple layouts):
 ```js
 const { renderElementaryAssertions } = require("elementary-assertions/render");
 const md = renderElementaryAssertions(doc, { format: "md", layout: "table" });
 ```
+Renderer contract scope:
+- Contract-locked today: compact text (`format: "txt", layout: "compact"`) and table markdown (`format: "md", layout: "table"`) via golden/parity tests.
+- Other renderer combinations are currently best-effort and may evolve without contract change.
 
 Tooling (file I/O and CLI wiring):
 ```js
@@ -146,6 +153,11 @@ const tools = require("elementary-assertions/tools");
   - `operators[]` (always present, empty allowed)
 - persisted assertions MUST NOT include legacy view-shaped fields:
   - `assertions[*].slots`
+
+Source provenance representation:
+- Output includes `sources.inputs[]` and `sources.pipeline`.
+- Current runtime always records in-memory artifacts (`seed.text.in_memory`, `relations_extracted.in_memory`).
+- File-origin provenance fidelity hardening for CLI file inputs is tracked in `TODO.md` as planned work.
 
 For full operational details (CLI commands, repo layout convenience, runner scripts, rendering defaults), see `docs/OPERATIONAL.md`.
 For repository-only workflow policies (not package contract), see `docs/REPO_WORKFLOWS.md`.

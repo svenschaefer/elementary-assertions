@@ -618,3 +618,48 @@ Exit criteria:
 6. Phase 7 tests migration and tightening.
 7. Phase 8 release readiness.
 8. Phase 9 gap-closure (`validate` hardening -> CLI `--relations` -> WTI evidence guard -> dev scripts -> docs sync).
+
+## Phase 11 - Validation, Provenance, and Contract Hardening (Planned)
+
+Objective: non-breaking product hardening for validation depth, provenance fidelity, and renderer contract locks, without changing core assertion semantics.
+
+### 11.1 Full JSON Schema Enforcement (Runtime + Dev)
+
+- [ ] Add AJV-based validation against packaged schema (`src/schema/seed.elementary-assertions.schema.json`).
+- [ ] Runtime path: fail fast on schema violations.
+- [ ] Dev/strict path: include full error reporting with schema paths for CI diagnostics.
+
+### 11.2 Cross-Field Integrity Invariants
+
+- [ ] Enforce structural relationships beyond existence checks:
+  - [ ] segment-token-mention alignment
+  - [ ] predicate head consistency
+  - [ ] predicate/argument and related cross-field alignment invariants
+- [ ] Enumerate invariants explicitly in tests and keep stable `ValidationError.code` coverage.
+
+### 11.3 Strict Diagnostics Integrity Mode
+
+- [ ] Add deep diagnostics coherence checks (ordering, references, suppression eligibility, coordination groups).
+- [ ] Gate these checks behind dev/strict mode (not part of minimal runtime validation path).
+
+### 11.4 Dedicated Strict Checker Entry Point
+
+- [ ] Add single checker command (for example `npm run dev:check`) aggregating:
+  - [ ] full schema validation
+  - [ ] cross-field integrity invariants
+  - [ ] deep diagnostics checks
+- [ ] Position checker for CI and golden-reference verification workflows.
+
+### 11.5 Provenance Fidelity for File-Origin Runs
+
+- [ ] Preserve file-origin provenance for CLI `--in` and `--relations` inputs (paths, digests, timestamps).
+- [ ] Keep in-memory runs explicitly marked as in-memory artifacts.
+- [ ] Ensure output metadata clearly distinguishes file-origin vs in-memory provenance.
+
+### 11.6 Renderer Contract Expansion
+
+- [ ] Extend parity/contract locks beyond compact/table where renderer behavior is stable.
+- [ ] Explicitly document renderer behaviors that are contract-locked vs best-effort.
+
+Exit criteria:
+- product guarantees stronger correctness, traceability, and reproducibility without expanding assertion semantics.
