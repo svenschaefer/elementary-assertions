@@ -8,6 +8,14 @@ It is execution-oriented, phase-gated, and contract-first.
 
 Status: Completed through Phase 9 gap-closure (as of 2026-02-14).
 
+## Phase 10 Kickoff Snapshot (2026-02-14)
+
+- Added docs-regression guard for release staging command consistency:
+  - `test/integration/docs-consistency.test.js` now enforces explicit staging paths in `docs/NPM_RELEASE.md`.
+- Local quality gates re-validated at head:
+  - `npm test` green (`90/90`)
+  - `npm pack --dry-run` green
+
 ## Post-Phase 9 Snapshot (2026-02-14)
 
 - Added integration automation for dev report scripts JSON validity:

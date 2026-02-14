@@ -23,6 +23,15 @@ test("release guide references shared smoke script", () => {
   assert.match(releaseGuide, /scripts[\\/]+release-smoke-check\.js/);
 });
 
+test("release guide uses explicit staging paths for release commits", () => {
+  const releaseGuide = read("docs/NPM_RELEASE.md");
+  assert.match(
+    releaseGuide,
+    /git add src docs test scripts package\.json README\.md CHANGELOG\.md/
+  );
+  assert.doesNotMatch(releaseGuide, /\ngit add -A\n/);
+});
+
 test("README documentation links reference existing files", () => {
   const readme = read("README.md");
   const requiredDocs = [
