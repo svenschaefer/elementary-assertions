@@ -36,6 +36,13 @@ Status: Completed through Phase 9 gap-closure (as of 2026-02-14).
 - Added test coverage in:
   - `test/integration/golden-reference-contract.test.js`
 
+## Phase 10.3 Snapshot (2026-02-14)
+
+- Extended validation error-code contract tests to cover:
+  - coverage partition failures (`EA_VALIDATE_COVERAGE_PARTITION`)
+  - determinism sort failures (`EA_VALIDATE_DETERMINISM_SORT`)
+- Updated changelog Unreleased notes for expanded validation code coverage.
+
 ## Post-Phase 9 Snapshot (2026-02-14)
 
 - Added integration automation for dev report scripts JSON validity:

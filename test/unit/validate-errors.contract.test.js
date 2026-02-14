@@ -84,3 +84,41 @@ test("duplicate mention ids have stable validation error code", () => {
     (err) => err instanceof ValidationError && err.code === "EA_VALIDATE_DUPLICATE_IDS"
   );
 });
+
+test("coverage partition violations have stable validation error code", () => {
+  const doc = buildValidDoc({
+    coverage: {
+      primary_mention_ids: ["m1", "m2", "m3"],
+      covered_primary_mention_ids: ["m1", "m2", "m3"],
+      uncovered_primary_mention_ids: ["m1"],
+      unresolved: [{ mention_id: "m1", reason: "test" }],
+    },
+  });
+  assert.throws(
+    () => validateElementaryAssertions(doc),
+    (err) => err instanceof ValidationError && err.code === "EA_VALIDATE_COVERAGE_PARTITION"
+  );
+});
+
+test("determinism sort violations have stable validation error code", () => {
+  const doc = buildValidDoc({
+    assertions: [
+      {
+        id: "a1",
+        segment_id: "s1",
+        predicate: { mention_id: "m2", head_token_id: "t2" },
+        arguments: [
+          { role: "actor", mention_ids: ["m1"], evidence: { relation_ids: ["r1"], token_ids: ["t1", "t2"] } },
+          { role: "theme", mention_ids: ["m3"], evidence: { relation_ids: ["r2"], token_ids: ["t2", "t3"] } },
+        ],
+        modifiers: [],
+        operators: [],
+        evidence: { token_ids: ["t2", "t1", "t3"] },
+      },
+    ],
+  });
+  assert.throws(
+    () => validateElementaryAssertions(doc),
+    (err) => err instanceof ValidationError && err.code === "EA_VALIDATE_DETERMINISM_SORT"
+  );
+});
