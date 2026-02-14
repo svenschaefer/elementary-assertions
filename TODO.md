@@ -296,7 +296,7 @@ Exit criteria:
 
 - [ ] Port prototype tests with minimal surgery to new module paths.
 - [ ] Keep behavior parity where still contract-valid.
-- [ ] Validate deterministic stability over repeated runs.
+- [x] Validate deterministic stability over repeated runs.
 
 ### Phase 7B - Contract Tightening
 
