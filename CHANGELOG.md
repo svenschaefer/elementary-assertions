@@ -10,6 +10,7 @@
 - `scripts/smoke-release.js` and `npm run smoke:release` for local tarball-based smoke execution.
 - baseline lint setup (`.eslintrc.cjs`, `npm run lint`, ESLint dev dependency).
 - package engine floor metadata (`"engines": { "node": ">=24.0.0" }`) plus contract test coverage.
+- additional governance/quality docs: `docs/GUARANTEES.md`, `docs/BASELINE_TEST_RUN.md`, `docs/STATUSQUO.md`.
 
 ### Changed
 - CI install step now uses `npm ci` for deterministic dependency installation.
@@ -18,6 +19,7 @@
 - `npm run ci:check` now includes lint before test/report/pack checks.
 - CI workflow now uses concurrency cancellation, npm cache, and explicit lint gate.
 - `README.md`, `CONTRIBUTING.md`, `docs/NPM_RELEASE.md`, and `docs/REPO_WORKFLOWS.md` now align on Node.js `>=24`.
+- `README.md` documentation index now includes guarantees, baseline-test, and status snapshot docs.
 
 ## v1.0.1 - 2026-02-15
 

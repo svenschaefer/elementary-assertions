@@ -208,6 +208,9 @@ For non-public developer quality tooling (`npm run dev:*`), see `docs/DEV_TOOLIN
 - Repository workflow policies: `docs/REPO_WORKFLOWS.md`
 - Release flow: `docs/NPM_RELEASE.md`
 - Developer tooling (non-public): `docs/DEV_TOOLING.md`
+- Guarantees: `docs/GUARANTEES.md`
+- Baseline test run: `docs/BASELINE_TEST_RUN.md`
+- Status snapshot guide: `docs/STATUSQUO.md`
 - Release notes template: `docs/RELEASE_NOTES_TEMPLATE.md`
 - Changelog: `CHANGELOG.md`
 - Contributing guide: `CONTRIBUTING.md`
