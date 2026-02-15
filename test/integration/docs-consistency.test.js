@@ -22,6 +22,8 @@ test("release guide references shared smoke script", () => {
   const releaseGuide = read("docs/NPM_RELEASE.md");
   assert.match(releaseGuide, /scripts[\\/]+release-smoke-check\.js/);
   assert.match(releaseGuide, /md\/meaning/);
+  assert.match(releaseGuide, /vX\.Y\.Z-git-smoke-/);
+  assert.match(releaseGuide, /vX\.Y\.Z-npmjs-smoke-/);
 });
 
 test("release guide uses explicit staging paths for release commits", () => {

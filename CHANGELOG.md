@@ -24,6 +24,9 @@
 - npmjs verification:
   - `npm view elementary-assertions version` -> `1.0.1`
   - `npm view elementary-assertions dist-tags.latest` -> `1.0.1`
+- Smoke roots:
+  - `C:\code\elementary-assertions-smoke-test\v1.0.1-git-smoke-20260215-174021`
+  - `C:\code\elementary-assertions-smoke-test\v1.0.1-npmjs-smoke-20260215-174021`
 
 ## v0.1.12 - 2026-02-15
 

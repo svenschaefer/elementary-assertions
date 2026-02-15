@@ -81,7 +81,7 @@ Cleanup after local pack steps:
 Remove-Item -Force .\elementary-assertions-*.tgz
 ```
 
-## 5) Smoke install checks (pre-tag)
+## 5) Smoke install checks (pre-tag, Git install path)
 
 Create a clean workspace and install from the commit hash you intend to tag.
 Use the shared smoke script so API/CLI checks and render parity are enforced together.
@@ -137,7 +137,7 @@ git tag -a vX.Y.Z -m "vX.Y.Z"
 git push origin vX.Y.Z
 ```
 
-## 8) Post-tag verification (install from tag)
+## 8) Post-tag verification (install from tag, Git path)
 
 ```powershell
 $SmokeRoot = "C:\code\elementary-assertions-smoke-test\vX.Y.Z-posttag-smoke-$(Get-Date -Format yyyyMMdd-HHmmss)"
@@ -164,7 +164,22 @@ npm view elementary-assertions version
 npm view elementary-assertions dist-tags.latest
 ```
 
-- Run a clean-install smoke check from npmjs package after publish (same smoke-root naming convention).
+- For every newly published release, run a clean-install smoke check from npmjs package (same smoke-root naming convention):
+
+```powershell
+$SmokeRoot = "C:\code\elementary-assertions-smoke-test\vX.Y.Z-npmjs-smoke-$(Get-Date -Format yyyyMMdd-HHmmss)"
+New-Item -ItemType Directory -Path $SmokeRoot -Force | Out-Null
+Set-Location $SmokeRoot
+npm init -y | Out-Null
+
+npm i elementary-assertions@X.Y.Z
+node C:\code\elementary-assertions\scripts\release-smoke-check.js --repo-root C:\code\elementary-assertions --smoke-root $SmokeRoot --out-root (Join-Path $SmokeRoot "rendered")
+npm ls elementary-assertions
+```
+
+- Mandatory release evidence for each published version:
+  - one Git-install smoke root (`vX.Y.Z-git-smoke-*`)
+  - one npmjs-install smoke root (`vX.Y.Z-npmjs-smoke-*`)
 
 ## Failure rule
 

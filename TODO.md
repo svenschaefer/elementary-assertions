@@ -25,6 +25,12 @@ Status: Completed through Phase 17 publication hardening; npmjs release publishe
 - Validation evidence at release head:
   - `npm test` green (`152/152`)
   - `npm pack --dry-run` green
+- Smoke workspaces (clean installs, version + channel naming):
+  - `C:\code\elementary-assertions-smoke-test\v1.0.1-git-smoke-20260215-174021`
+  - `C:\code\elementary-assertions-smoke-test\v1.0.1-npmjs-smoke-20260215-174021`
+- Rendered smoke output roots:
+  - `C:\code\elementary-assertions-smoke-test\v1.0.1-git-smoke-20260215-174021\rendered`
+  - `C:\code\elementary-assertions-smoke-test\v1.0.1-npmjs-smoke-20260215-174021\rendered`
 
 ## Release Execution Snapshot (v0.1.12, 2026-02-15)
 
