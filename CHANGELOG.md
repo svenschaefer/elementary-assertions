@@ -8,11 +8,13 @@
 - `scripts/ensure-clean-worktree.js` plus release-check npm scripts for safer local release gating.
 - `.github/workflows/release.yml` manual release-check workflow with optional npm publish gate.
 - `scripts/smoke-release.js` and `npm run smoke:release` for local tarball-based smoke execution.
+- baseline lint setup (`.eslintrc.cjs`, `npm run lint`, ESLint dev dependency).
 
 ### Changed
 - CI install step now uses `npm ci` for deterministic dependency installation.
 - `README.md` documentation index now links `CONTRIBUTING.md` and `SECURITY.md`.
 - Release/workflow docs now reference local smoke helper and optional CI-assisted release checks.
+- `npm run ci:check` now includes lint before test/report/pack checks.
 
 ## v1.0.1 - 2026-02-15
 
