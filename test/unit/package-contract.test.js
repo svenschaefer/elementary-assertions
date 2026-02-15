@@ -37,6 +37,12 @@ test("package metadata pins MIT license and ships LICENSE file", () => {
   assert.match(licenseText, /^MIT License/m);
 });
 
+test("package metadata defines Node 24+ engine floor", () => {
+  const pkg = JSON.parse(fs.readFileSync(packageJsonPath, "utf8"));
+  assert.equal(typeof pkg.engines, "object");
+  assert.equal(pkg.engines.node, ">=24.0.0");
+});
+
 test("exported schema JSON is non-empty and parseable", () => {
   const pkg = JSON.parse(fs.readFileSync(packageJsonPath, "utf8"));
   const schemaPath = path.join(repoRoot, pkg.exports["./schema"]);

@@ -19,6 +19,9 @@
   },
   "homepage": "https://github.com/svenschaefer/elementary-assertions#readme",
   "license": "MIT",
+  "engines": {
+    "node": ">=24.0.0"
+  },
   "private": false,
   "type": "commonjs",
   "main": "./src/index.js",

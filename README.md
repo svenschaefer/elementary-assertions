@@ -18,6 +18,11 @@ The library is conservative by design:
 
 Its authoritative boundary ends at elementary assertions. Anything beyond this layer (concept models, norms, governance, domain interpretation) is explicitly downstream.
 
+## Requirements
+
+- Node.js `>=24`
+- npm
+
 ## What this package is
 
 elementary-assertions is an assertion compiler that sits directly after linguistic relation extraction.

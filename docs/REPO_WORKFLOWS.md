@@ -36,7 +36,8 @@ This benchmark is advisory for repo workflow only (trend watching) and is not a 
 ## CI gates (repo workflow)
 
 Current CI workflow gates on:
-- `npm install`
+- `npm ci`
+- `npm run lint`
 - `npm test`
 - dev report script execution:
   - `npm run dev:report:metrics`

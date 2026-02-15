@@ -2,8 +2,7 @@
 
 This document defines the release flow for `elementary-assertions`.
 
-Current distribution status (until npmjs publish is executed): consumers install as a Git dependency pinned to a tag (or commit).
-After npmjs publication: publish to npmjs while keeping Git-tag installs supported.
+Current distribution status: published to npmjs; Git-tag installs remain supported.
 `files` is used to keep both Git installs and npm tarballs deterministic.
 
 Examples (consumer `package.json`):
@@ -34,6 +33,7 @@ Golden baseline freeze metadata is maintained in `test/artifacts/README.md`.
 ## 0) Preconditions
 
 - Working tree clean.
+- Node.js `>=24`.
 - `npm test` passes.
 - If `runElementaryAssertions` is used in smoke tests, ensure any required `wikipedia-title-index` endpoint is reachable.
 
