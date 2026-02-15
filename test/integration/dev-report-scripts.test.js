@@ -54,6 +54,16 @@ test("dev-diagnose-wti-wiring emits valid JSON report", () => {
 test("dev-diagnose-coverage-audit emits valid JSON report", () => {
   const raw = runNodeScript("scripts/dev-diagnose-coverage-audit.js");
   assertReportShape(raw, "dev-diagnose-coverage-audit");
+  const data = JSON.parse(raw);
+  for (const seedRow of data.seeds) {
+    assert.equal(Array.isArray(seedRow.per_mention), true, "coverage-audit must include per_mention rows");
+    if (seedRow.per_mention.length === 0) continue;
+    const row = seedRow.per_mention[0];
+    assert.equal(typeof row.mention_id, "string");
+    assert.equal(typeof row.segment_id, "string");
+    assert.equal(typeof row.covered, "boolean");
+    assert.equal(Array.isArray(row.candidate_host_assertion_ids), true);
+  }
 });
 
 test("dev:reports aggregate emits valid JSON report map", () => {

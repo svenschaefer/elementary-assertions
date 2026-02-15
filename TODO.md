@@ -844,11 +844,11 @@ Exit criteria:
 
 ### 14.4 Coverage-Audit Diagnostics: Per-Mention Detail
 
-- [ ] Extend coverage-audit developer diagnostics with per-mention rows:
-  - [ ] `mention_id`
-  - [ ] uncovered reason classification
-  - [ ] missing edge / host-candidate context where available
-- [ ] Keep aggregate summaries as top-level report fields.
+- [x] Extend coverage-audit developer diagnostics with per-mention rows:
+  - [x] `mention_id`
+  - [x] uncovered reason classification
+  - [x] missing edge / host-candidate context where available
+- [x] Keep aggregate summaries as top-level report fields.
 
 Exit criteria:
 - coverage audit output supports per-mention triage, not only aggregate counts.
