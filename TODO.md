@@ -10,7 +10,21 @@ Note:
 - Prototype mapping in this document is historical provenance for review/diff context.
 - The product repository no longer requires a local `prototype/` workspace link.
 
-Status: Completed through Phase 16 hardening; release snapshot updated to v0.1.12 baseline (as of 2026-02-15).
+Status: Completed through Phase 17 publication hardening; npmjs release published as `v1.0.1` (as of 2026-02-15).
+
+## Release Execution Snapshot (v1.0.1, 2026-02-15)
+
+- Released version: `v1.0.1`
+- Release intent: first npmjs publication with publish-safe manifest after `v1.0.0` prepublish tag baseline.
+- Release commit: `b1883933e29132c4c0bc11818a921db053facda2`
+- Annotated tag: `v1.0.1` (pushed)
+- npmjs verification:
+  - `npm view elementary-assertions version` -> `1.0.1`
+  - `npm view elementary-assertions dist-tags.latest` -> `1.0.1`
+  - npm publish timestamp (registry UTC): `2026-02-15T16:36:41.712Z`
+- Validation evidence at release head:
+  - `npm test` green (`152/152`)
+  - `npm pack --dry-run` green
 
 ## Release Execution Snapshot (v0.1.12, 2026-02-15)
 
@@ -1015,9 +1029,9 @@ Exit criteria:
 - Verification at completion head:
   - `node --test "test/integration/dev-report-scripts.test.js"` green (`12/12`)
 
-## Phase 17 - 1.0.0 Publication Readiness (Planned)
+## Phase 17 - 1.0.x Publication Readiness (Completed)
 
-Objective: finalize non-breaking packaging/release hardening so `v1.0.0` can be published to npmjs once all gates are green.
+Objective: finalize non-breaking packaging/release hardening for npmjs publication on the `v1.0.x` line.
 
 ### 17.1 npmjs Release Path Documentation
 
@@ -1033,14 +1047,14 @@ Objective: finalize non-breaking packaging/release hardening so `v1.0.0` can be 
   - [x] packaged `LICENSE` inclusion in `files`
   - [x] repository `LICENSE` presence and header validity
 
-### 17.3 Publish-Ready Metadata Finalization (`v1.0.0` release cycle)
+### 17.3 Publish-Ready Metadata Finalization (`v1.0.x` release cycle)
 
 - [x] Flip `package.json` from `"private": true` to `"private": false` in the `v1.0.0` release commit.
 - [x] Run full release gates (`npm test`, `npm pack --dry-run`, pre/post smoke roots) after metadata flip.
-- [ ] Publish `v1.0.0` to npmjs and record verification evidence in docs/changelog.
+- [x] Publish to npmjs and record verification evidence in docs/changelog (`v1.0.1`).
 
 Exit criteria:
-- documentation, tests, and package metadata support deterministic Git installs now and npmjs publication at `v1.0.0`.
+- documentation, tests, and package metadata support deterministic Git installs and npmjs publication for `v1.0.x+`.
 
 ## Phase 17.3 Execution Snapshot (2026-02-15)
 
@@ -1051,3 +1065,6 @@ Exit criteria:
 - Clean-install smoke roots (local prepublish checks):
   - `C:\code\elementary-assertions\test\_smoke\v1.0.0-prepublish-local-20260215-172840`
   - `C:\code\elementary-assertions\test\_smoke\v1.0.0-prepublish-tarball-20260215-172857`
+- npmjs publication completion:
+  - initial `v1.0.0` publish attempt surfaced manifest normalization warning for `bin` path formatting; fixed before release publication.
+  - release discipline applied (no retagging): patch release `v1.0.1` published to npmjs.
