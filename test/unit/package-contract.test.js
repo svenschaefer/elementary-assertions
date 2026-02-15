@@ -25,6 +25,18 @@ test("package.json packlist includes docs for linked README references", () => {
   assert.ok(pkg.files.includes("README.md"));
 });
 
+test("package metadata pins MIT license and ships LICENSE file", () => {
+  const pkg = JSON.parse(fs.readFileSync(packageJsonPath, "utf8"));
+
+  assert.equal(pkg.license, "MIT");
+  assert.ok(Array.isArray(pkg.files));
+  assert.ok(pkg.files.includes("LICENSE"));
+
+  const licensePath = path.join(repoRoot, "LICENSE");
+  const licenseText = fs.readFileSync(licensePath, "utf8");
+  assert.match(licenseText, /^MIT License/m);
+});
+
 test("exported schema JSON is non-empty and parseable", () => {
   const pkg = JSON.parse(fs.readFileSync(packageJsonPath, "utf8"));
   const schemaPath = path.join(repoRoot, pkg.exports["./schema"]);

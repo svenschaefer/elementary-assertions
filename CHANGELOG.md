@@ -3,10 +3,11 @@
 ## Unreleased
 
 ### Added
-- (none)
+- package-contract lock for MIT licensing and packaged `LICENSE` file.
 
 ### Changed
-- (none)
+- `docs/NPM_RELEASE.md` now defines both pre-`1.0.0` Git-tag installs and `1.0.0+` npmjs publication steps.
+- `TODO.md` now includes Phase 17 (`1.0.0` publication readiness).
 
 ## v0.1.12 - 2026-02-15
 

@@ -1014,3 +1014,30 @@ Exit criteria:
   - `test/integration/dev-report-scripts.test.js`
 - Verification at completion head:
   - `node --test "test/integration/dev-report-scripts.test.js"` green (`12/12`)
+
+## Phase 17 - 1.0.0 Publication Readiness (Planned)
+
+Objective: finalize non-breaking packaging/release hardening so `v1.0.0` can be published to npmjs once all gates are green.
+
+### 17.1 npmjs Release Path Documentation
+
+- [x] Update `docs/NPM_RELEASE.md` to define both modes clearly:
+  - [x] pre-`1.0.0` Git-tag install flow
+  - [x] `1.0.0+` npmjs publication flow
+- [x] Add explicit npmjs publish step (`npm publish --access public`) with post-publish verification commands.
+
+### 17.2 License and Packlist Contract Locks
+
+- [x] Add contract tests that lock:
+  - [x] `package.json` license metadata (`MIT`)
+  - [x] packaged `LICENSE` inclusion in `files`
+  - [x] repository `LICENSE` presence and header validity
+
+### 17.3 Publish-Ready Metadata Finalization (`v1.0.0` release cycle)
+
+- [ ] Flip `package.json` from `"private": true` to `"private": false` in the `v1.0.0` release commit.
+- [ ] Run full release gates (`npm test`, `npm pack --dry-run`, pre/post smoke roots) after metadata flip.
+- [ ] Publish `v1.0.0` to npmjs and record verification evidence in docs/changelog.
+
+Exit criteria:
+- documentation, tests, and package metadata support deterministic Git installs now and npmjs publication at `v1.0.0`.

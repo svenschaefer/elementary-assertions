@@ -2,9 +2,9 @@
 
 This document defines the release flow for `elementary-assertions`.
 
-Important: This project is not published to npmjs.
-Consumers install it as a Git dependency pinned to a tag (or commit).
-`files` is used to keep Git installs and `npm pack` deterministic; it does not imply publication to npmjs.
+Current status (pre-`1.0.0`): consumers install as a Git dependency pinned to a tag (or commit).
+Target status (`1.0.0` and later): publish to npmjs, while keeping Git-tag installs supported.
+`files` is used to keep both Git installs and npm tarballs deterministic.
 
 Examples (consumer `package.json`):
 
@@ -149,6 +149,22 @@ npm install "git+ssh://git@github.com:svenschaefer/elementary-assertions.git#vX.
 node C:\code\elementary-assertions\scripts\release-smoke-check.js --repo-root C:\code\elementary-assertions --smoke-root $SmokeRoot --out-root (Join-Path $SmokeRoot "rendered")
 npm ls elementary-assertions
 ```
+
+## 9) npmjs publication step (`1.0.0+` only)
+
+When shipping `1.0.0` (or later) to npmjs:
+
+- Ensure `package.json` is publishable (`"private": false`).
+- Keep `license`, `files`, and `exports` consistent with package contract tests.
+- Publish from the release commit already tagged on `main`:
+
+```powershell
+npm publish --access public
+npm view elementary-assertions version
+npm view elementary-assertions dist-tags.latest
+```
+
+- Run a clean-install smoke check from npmjs package after publish (same smoke-root naming convention).
 
 ## Failure rule
 
