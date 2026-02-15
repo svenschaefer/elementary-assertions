@@ -2,8 +2,8 @@
 
 This document defines the release flow for `elementary-assertions`.
 
-Current status (pre-`1.0.0`): consumers install as a Git dependency pinned to a tag (or commit).
-Target status (`1.0.0` and later): publish to npmjs, while keeping Git-tag installs supported.
+Current distribution status (until npmjs publish is executed): consumers install as a Git dependency pinned to a tag (or commit).
+After npmjs publication: publish to npmjs while keeping Git-tag installs supported.
 `files` is used to keep both Git installs and npm tarballs deterministic.
 
 Examples (consumer `package.json`):

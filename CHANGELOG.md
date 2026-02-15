@@ -4,10 +4,12 @@
 
 ### Added
 - package-contract lock for MIT licensing and packaged `LICENSE` file.
+- `v1.0.0` metadata-flip release-gate evidence recorded in TODO (tests, pack dry-run, clean-install smoke roots).
 
 ### Changed
 - `docs/NPM_RELEASE.md` now defines both pre-`1.0.0` Git-tag installs and `1.0.0+` npmjs publication steps.
 - `TODO.md` now includes Phase 17 (`1.0.0` publication readiness).
+- package metadata moved to `version: 1.0.0` with `"private": false` for npmjs publication readiness.
 
 ## v0.1.12 - 2026-02-15
 

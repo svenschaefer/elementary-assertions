@@ -1035,9 +1035,19 @@ Objective: finalize non-breaking packaging/release hardening so `v1.0.0` can be 
 
 ### 17.3 Publish-Ready Metadata Finalization (`v1.0.0` release cycle)
 
-- [ ] Flip `package.json` from `"private": true` to `"private": false` in the `v1.0.0` release commit.
-- [ ] Run full release gates (`npm test`, `npm pack --dry-run`, pre/post smoke roots) after metadata flip.
+- [x] Flip `package.json` from `"private": true` to `"private": false` in the `v1.0.0` release commit.
+- [x] Run full release gates (`npm test`, `npm pack --dry-run`, pre/post smoke roots) after metadata flip.
 - [ ] Publish `v1.0.0` to npmjs and record verification evidence in docs/changelog.
 
 Exit criteria:
 - documentation, tests, and package metadata support deterministic Git installs now and npmjs publication at `v1.0.0`.
+
+## Phase 17.3 Execution Snapshot (2026-02-15)
+
+- `package.json` updated to `version: 1.0.0` with `"private": false`.
+- Release gates at metadata-flip head:
+  - `npm test` green (`152/152`)
+  - `npm pack --dry-run` green
+- Clean-install smoke roots (local prepublish checks):
+  - `C:\code\elementary-assertions\test\_smoke\v1.0.0-prepublish-local-20260215-172840`
+  - `C:\code\elementary-assertions\test\_smoke\v1.0.0-prepublish-tarball-20260215-172857`
