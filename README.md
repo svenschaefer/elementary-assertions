@@ -124,7 +124,12 @@ Validation failures throw a `ValidationError` with a stable `code` field for con
 
 Validation scope distinction:
 - Runtime validation: default library/CLI checks for shape, references, and deterministic integrity.
-- Strict dev validation: deeper semantic invariants than runtime validation, including diagnostics coherence and suppressed-assertion semantic consistency; this strict surface is extended through planned hardening in `TODO.md`.
+- Strict/dev validation: deeper semantic invariants than runtime validation, including diagnostics coherence and suppressed-assertion semantic consistency.
+- Strict/dev diagnostics guarantees currently include:
+  - ordering/reference/coherence checks for diagnostics payloads
+  - suppressed-assertion semantic consistency checks
+  - coverage primary-set equality checks
+- Additional diagnostics completeness hardening is tracked in `TODO.md` (strict/dev only, non-public tooling surface).
 
 Rendering (view-only, multiple layouts):
 ```js
@@ -145,6 +150,7 @@ Tooling (file I/O and CLI wiring):
 ```js
 const tools = require("elementary-assertions/tools");
 ```
+Advanced diagnostics tooling is intentionally non-public and exposed only via maintainer `npm run dev:*` workflows (not via public CLI flags).
 
 ## Output contract (summary)
 

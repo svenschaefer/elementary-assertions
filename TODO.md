@@ -745,3 +745,44 @@ Exit criteria:
 Exit criteria:
 - strict/dev guarantees are expanded for diagnostics/suppression/coverage coherence.
 - release smoke verifies all contract-locked renderer outputs.
+
+## Phase 13 - Diagnostics Completeness and Dev Tooling Parity (Planned)
+
+Objective: close remaining diagnostics-depth gaps against prototype rigor without expanding public API/CLI surface.
+
+### 13.1 Deep Integrity for `coverage.unresolved[*]` (Strict/Dev)
+
+- [ ] Enforce strict/dev invariants:
+  - [ ] sorted, unique `mention_ids`
+  - [ ] sorted `evidence.token_ids`
+  - [ ] sorted and type-checked `evidence.upstream_relation_ids`
+- [ ] Keep runtime validation permissive; fail these checks only in strict/dev mode.
+
+### 13.2 Determinism for `diagnostics.suppressed_assertions` Lists (Strict/Dev)
+
+- [ ] Enforce strict/dev list determinism:
+  - [ ] sorted-by-id order
+  - [ ] duplicate-id rejection
+- [ ] Keep this as a complement to existing per-item semantic checks.
+
+### 13.3 Re-Expose Prototype Diagnostics as Dev-Only Tooling
+
+- [ ] Provide non-public developer equivalents for:
+  - [ ] wiki-upstream diagnostics
+  - [ ] WTI wiring diagnostics
+  - [ ] coverage audit diagnostics
+- [ ] Expose only via `npm run dev:*` and/or `tools/dev/*`.
+- [ ] Keep public CLI contract minimal; no new public diagnostic flags.
+
+### 13.4 Single Aggregated Dev Report Command
+
+- [ ] Add cross-platform `npm run dev:reports` that aggregates:
+  - [ ] metrics
+  - [ ] hotspots
+  - [ ] maturity
+  - [ ] coverage/diagnostics audits
+- [ ] Position this command as maintainer/CI diagnostics only (non-public contract).
+
+Exit criteria:
+- strict/dev diagnostics invariants cover unresolved and suppressed list determinism gaps.
+- developer diagnostics parity is available through non-public `dev:*` tooling only.
