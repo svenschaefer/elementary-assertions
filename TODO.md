@@ -465,7 +465,7 @@ while enforcing product docs and constraints in:
 - [x] Add baseline integration smoke tests for currently committed golden references.
 - [x] Add failing tests for legacy slot rejection in validate + render.
 - [x] Add test utility for loading `test/artifacts/*/seed.txt` and golden refs.
-- [x] Verify `package.json` remains pinned to exact `linguistic-enricher@1.1.34`.
+- [x] Verify `package.json` remains pinned to exact `linguistic-enricher@1.1.35`.
 
 ### Golden Reference Contract
 

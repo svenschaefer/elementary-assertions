@@ -6,8 +6,7 @@ const path = require("node:path");
 const repoRoot = path.resolve(__dirname, "..", "..");
 const packageJsonPath = path.join(repoRoot, "package.json");
 
-test("dependency freeze pins linguistic-enricher to exact 1.1.34", () => {
+test("dependency freeze pins linguistic-enricher to exact 1.1.35", () => {
   const pkg = JSON.parse(fs.readFileSync(packageJsonPath, "utf8"));
-  assert.equal(pkg.dependencies?.["linguistic-enricher"], "1.1.34");
+  assert.equal(pkg.dependencies?.["linguistic-enricher"], "1.1.35");
 });
-

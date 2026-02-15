@@ -27,4 +27,8 @@ Seed:
 
 This baseline is explicitly generated from `elementary-assertions@0.1.7` output and is not a prototype-derived reference.
 
+Current package dependency freeze:
+- upstream freeze: `linguistic-enricher@1.1.35`
+- reference: `https://www.npmjs.com/package/linguistic-enricher/v/1.1.35`
+
 These baselines are intended for stable comparison and review of output deltas over time.
