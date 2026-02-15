@@ -800,3 +800,65 @@ Objective: close remaining diagnostics-depth gaps against prototype rigor withou
 Exit criteria:
 - strict/dev diagnostics invariants cover unresolved and suppressed list determinism gaps.
 - developer diagnostics parity is available through non-public `dev:*` tooling only.
+
+## Phase 14 - Validation and Diagnostics Depth Hardening (Planned)
+
+Objective: close remaining prototype-aligned validation/diagnostics depth gaps without changing public API or core assertion-construction semantics.
+
+### 14.1 Coverage/Unresolved Strict Validation Hardening
+
+- [ ] Extend strict validation for `coverage.unresolved[*]` to enforce:
+  - [ ] every `mention_ids[*]` reference resolves to an existing mention
+  - [ ] `segment_id` matches the segment of each referenced mention
+  - [ ] `evidence.token_ids[*]` resolve to known tokens and stay segment-consistent
+  - [ ] determinism ordering for `mention_ids`, `evidence.token_ids`, and `evidence.upstream_relation_ids`
+- [ ] Add regression tests for malformed unresolved references and segment mismatches.
+
+Exit criteria:
+- strict validation rejects unresolved structures previously only caught by prototype checker depth.
+- targeted regression tests lock invalid unresolved-reference cases.
+
+### 14.2 Dev Wiki-Upstream Diagnostics: Upstream Context Recovery
+
+- [ ] Extend dev diagnostics to optionally ingest upstream accepted relations/annotations in addition to final EA output.
+- [ ] Add correlation reporting between:
+  - [ ] upstream accepted relations
+  - [ ] projected assertions/unresolved entries
+- [ ] Classify debug outcomes into:
+  - [ ] missing upstream acceptance
+  - [ ] present upstream evidence but not projected by EA logic
+
+Exit criteria:
+- dev diagnostics can distinguish upstream absence from EA projection behavior.
+
+### 14.3 Dev WTI Wiring Diagnostics: Runtime Verification
+
+- [ ] Add runtime-level dev diagnostics for WTI wiring that verifies:
+  - [ ] endpoint configuration was effective
+  - [ ] health-check execution path was used
+  - [ ] positive signal pass-through is evidenced in runtime output context
+- [ ] Fail diagnostics explicitly on wiring-contract violations, even if output shape is superficially valid.
+
+Exit criteria:
+- misconfigured or bypassed WTI wiring is caught by dev diagnostics with explicit context.
+
+### 14.4 Coverage-Audit Diagnostics: Per-Mention Detail
+
+- [ ] Extend coverage-audit developer diagnostics with per-mention rows:
+  - [ ] `mention_id`
+  - [ ] uncovered reason classification
+  - [ ] missing edge / host-candidate context where available
+- [ ] Keep aggregate summaries as top-level report fields.
+
+Exit criteria:
+- coverage audit output supports per-mention triage, not only aggregate counts.
+
+### 14.5 Seed-Scoped Dev Ergonomics
+
+- [ ] Add seed-scoped options across dev diagnostics scripts:
+  - [ ] `--seed <name>`
+  - [ ] optional artifacts-root override
+- [ ] Ensure single-seed execution works without script edits.
+
+Exit criteria:
+- all non-public `dev:*` diagnostics can run on a single seed directly from CLI arguments.

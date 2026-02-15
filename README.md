@@ -131,6 +131,11 @@ Validation scope distinction:
   - coverage primary-set equality checks
 - Additional diagnostics completeness hardening is tracked in `TODO.md` (strict/dev only, non-public tooling surface).
 
+Dev/strict tooling boundary:
+- Runtime guarantees are defined by the public API + runtime validation contract.
+- Non-public `npm run dev:*` tooling is for maintainer triage and quality investigation.
+- Upstream-context diagnostics expansion is planned in `TODO.md`; current dev tooling primarily inspects committed EA artifact references.
+
 Rendering (view-only, multiple layouts):
 ```js
 const { renderElementaryAssertions } = require("elementary-assertions/render");
