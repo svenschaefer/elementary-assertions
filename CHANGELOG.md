@@ -3,11 +3,17 @@
 ## Unreleased
 
 ### Added
-- Strict coverage primary-set invariant in strict/dev validation, aligned to derived domain-primary mentions.
-- Release smoke contract lock expansion to include `md/meaning` parity checks.
+- (none)
 
 ### Changed
-- Release smoke and operational docs now state install-time renderer verification for `txt/compact`, `md/table`, and `md/meaning`.
+- (none)
+
+## v0.1.8 - 2026-02-15
+
+### Changed
+- Upstream dependency freeze is now pinned to exact `linguistic-enricher@1.1.35`.
+- SaaS golden result-reference baseline was refreshed to capture the upstream acceptance fix for `s1` (`centered` now carries `location=Organization`).
+- Scoped SaaS regression fixtures/tests were updated to lock the new accepted-dependency behavior (`centered -> Organization` as `location`).
 
 ## v0.1.7 - 2026-02-14
 

@@ -6,7 +6,17 @@ This plan defines how to build the productized package described in `README.md`,
 
 It is execution-oriented, phase-gated, and contract-first.
 
-Status: Completed through Phase 11 hardening (as of 2026-02-14).
+Status: Completed through Phase 12 hardening; release snapshot updated to v0.1.8 (as of 2026-02-15).
+
+## Release Execution Snapshot (v0.1.8, 2026-02-15)
+
+- Released version: `v0.1.8`
+- Release intent: dependency freeze uplift to `linguistic-enricher@1.1.35` plus refreshed `saas` golden references.
+- Validation evidence at release head:
+  - `npm test` green (`135/135`)
+  - full end-to-end run/validate/render succeeded for all seeds (`access_control`, `irs`, `prime_factors`, `prime_gen`, `saas`, `webshop`)
+- Notes:
+  - `s1` in `saas` now projects `location=Organization` as expected under upstream `1.1.35`.
 
 ## Release Execution Snapshot (v0.1.7, 2026-02-14)
 
