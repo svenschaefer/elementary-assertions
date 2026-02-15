@@ -5,9 +5,9 @@ const { spawnSync } = require("node:child_process");
 
 const repoRoot = path.resolve(__dirname, "..", "..");
 
-function runNodeScript(relPath) {
+function runNodeScript(relPath, args = []) {
   const fullPath = path.join(repoRoot, relPath);
-  const result = spawnSync(process.execPath, [fullPath], {
+  const result = spawnSync(process.execPath, [fullPath].concat(args), {
     cwd: repoRoot,
     encoding: "utf8",
   });
@@ -73,4 +73,37 @@ test("dev:reports aggregate emits valid JSON report map", () => {
     "report-maturity",
     "report-metrics",
   ]);
+});
+
+test("dev report scripts support --seed and --artifacts-root single-seed execution", () => {
+  const artifactsRoot = path.join(repoRoot, "test", "artifacts");
+  const seedId = "saas";
+  const scripts = [
+    "scripts/dev-report-metrics.js",
+    "scripts/dev-report-fragment-hotspots.js",
+    "scripts/dev-report-maturity.js",
+    "scripts/dev-diagnose-wiki-upstream.js",
+    "scripts/dev-diagnose-wti-wiring.js",
+    "scripts/dev-diagnose-coverage-audit.js",
+  ];
+
+  for (const relPath of scripts) {
+    const raw = runNodeScript(relPath, ["--seed", seedId, "--artifacts-root", artifactsRoot]);
+    const data = JSON.parse(raw);
+    assert.equal(Array.isArray(data.seeds), true, `${relPath}: seeds must be array`);
+    assert.equal(data.seeds.length, 1, `${relPath}: single-seed mode must emit exactly one seed row`);
+    assert.equal(data.seeds[0].seed_id, seedId, `${relPath}: emitted seed_id must match requested seed`);
+  }
+});
+
+test("dev:reports aggregate forwards --seed and --artifacts-root to child reports", () => {
+  const artifactsRoot = path.join(repoRoot, "test", "artifacts");
+  const seedId = "saas";
+  const raw = runNodeScript("scripts/dev-reports.js", ["--seed", seedId, "--artifacts-root", artifactsRoot]);
+  const data = JSON.parse(raw);
+  for (const report of Object.values(data.reports || {})) {
+    assert.equal(Array.isArray(report.seeds), true);
+    assert.equal(report.seeds.length, 1);
+    assert.equal(report.seeds[0].seed_id, seedId);
+  }
 });

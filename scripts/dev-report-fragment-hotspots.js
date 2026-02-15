@@ -1,17 +1,9 @@
 const fs = require("node:fs");
 const path = require("node:path");
 const yaml = require("js-yaml");
+const { parseArgs, resolveArtifactsRoot, resolveSeedIds } = require("./dev-artifacts");
 
 const FRAGMENT_CARRIER_CLASSES = new Set(["preposition", "auxiliary", "nominal_head"]);
-
-function listSeedIds(artifactsRoot) {
-  return fs
-    .readdirSync(artifactsRoot, { withFileTypes: true })
-    .filter((entry) => entry.isDirectory())
-    .map((entry) => entry.name)
-    .filter((seedId) => fs.existsSync(path.join(artifactsRoot, seedId, "result-reference", "seed.elementary-assertions.yaml")))
-    .sort((a, b) => a.localeCompare(b));
-}
 
 function readDoc(artifactsRoot, seedId) {
   const yamlPath = path.join(artifactsRoot, seedId, "result-reference", "seed.elementary-assertions.yaml");
@@ -185,8 +177,9 @@ function buildSeedReport(doc, seedId) {
 
 function main() {
   const repoRoot = path.resolve(__dirname, "..");
-  const artifactsRoot = path.join(repoRoot, "test", "artifacts");
-  const seedIds = listSeedIds(artifactsRoot);
+  const args = parseArgs(process.argv);
+  const artifactsRoot = resolveArtifactsRoot(repoRoot, args);
+  const seedIds = resolveSeedIds(artifactsRoot, args);
   const rows = seedIds.map((seedId) => buildSeedReport(readDoc(artifactsRoot, seedId), seedId));
   process.stdout.write(`${JSON.stringify({ generated_at: new Date().toISOString(), seeds: rows }, null, 2)}\n`);
 }

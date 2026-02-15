@@ -1,25 +1,9 @@
 const fs = require("node:fs");
 const path = require("node:path");
 const yaml = require("js-yaml");
+const { parseArgs, resolveArtifactsRoot, resolveSeedIds } = require("./dev-artifacts");
 
 const { validateElementaryAssertions } = require("../src/validate");
-
-function parseArgs(argv) {
-  const out = {};
-  for (let i = 2; i < argv.length; i += 1) {
-    const key = argv[i];
-    if (!key.startsWith("--")) continue;
-    const name = key.slice(2);
-    const value = argv[i + 1];
-    if (!value || value.startsWith("--")) {
-      out[name] = true;
-      continue;
-    }
-    out[name] = value;
-    i += 1;
-  }
-  return out;
-}
 
 function loadStructuredFile(filePath) {
   const raw = fs.readFileSync(filePath, "utf8");
@@ -42,7 +26,12 @@ function resolveTargets(args) {
   if (typeof args.in === "string" && args.in.length > 0) {
     return [path.resolve(args.in)];
   }
-  const artifactsRoot = path.resolve(args["artifacts-root"] || path.join("test", "artifacts"));
+  const repoRoot = path.resolve(__dirname, "..");
+  const artifactsRoot = resolveArtifactsRoot(repoRoot, args);
+  const seedIds = resolveSeedIds(artifactsRoot, args);
+  if (seedIds.length === 1) {
+    return [path.join(artifactsRoot, seedIds[0], "result-reference", "seed.elementary-assertions.yaml")];
+  }
   return collectGoldenYamlPaths(artifactsRoot);
 }
 

@@ -1,5 +1,6 @@
 const path = require("node:path");
 const { spawnSync } = require("node:child_process");
+const { parseArgs } = require("./dev-artifacts");
 
 const REPORT_SCRIPTS = [
   "dev-report-metrics.js",
@@ -10,9 +11,9 @@ const REPORT_SCRIPTS = [
   "dev-diagnose-coverage-audit.js",
 ];
 
-function runScript(repoRoot, scriptName) {
+function runScript(repoRoot, scriptName, scriptArgs) {
   const scriptPath = path.join(repoRoot, "scripts", scriptName);
-  const result = spawnSync(process.execPath, [scriptPath], {
+  const result = spawnSync(process.execPath, [scriptPath].concat(scriptArgs || []), {
     cwd: repoRoot,
     encoding: "utf8",
   });
@@ -36,10 +37,18 @@ function runScript(repoRoot, scriptName) {
 
 function main() {
   const repoRoot = path.resolve(__dirname, "..");
+  const args = parseArgs(process.argv);
+  const scriptArgs = [];
+  if (typeof args.seed === "string" && args.seed.length > 0) {
+    scriptArgs.push("--seed", args.seed);
+  }
+  if (typeof args["artifacts-root"] === "string" && args["artifacts-root"].length > 0) {
+    scriptArgs.push("--artifacts-root", args["artifacts-root"]);
+  }
   const reports = {};
   for (const scriptName of REPORT_SCRIPTS) {
     const key = scriptName.replace(/^dev-/, "").replace(/\.js$/, "");
-    reports[key] = runScript(repoRoot, scriptName);
+    reports[key] = runScript(repoRoot, scriptName, scriptArgs);
   }
   process.stdout.write(`${JSON.stringify({ generated_at: new Date().toISOString(), reports }, null, 2)}\n`);
 }

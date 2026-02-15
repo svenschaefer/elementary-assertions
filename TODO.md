@@ -855,10 +855,10 @@ Exit criteria:
 
 ### 14.5 Seed-Scoped Dev Ergonomics
 
-- [ ] Add seed-scoped options across dev diagnostics scripts:
-  - [ ] `--seed <name>`
-  - [ ] optional artifacts-root override
-- [ ] Ensure single-seed execution works without script edits.
+- [x] Add seed-scoped options across dev diagnostics scripts:
+  - [x] `--seed <name>`
+  - [x] optional artifacts-root override
+- [x] Ensure single-seed execution works without script edits.
 
 Exit criteria:
 - all non-public `dev:*` diagnostics can run on a single seed directly from CLI arguments.
