@@ -79,6 +79,84 @@ function validateCoverage(doc, mentionById, options = {}) {
   }
 
   if (options && options.strict) {
+    for (const item of unresolved) {
+      const mentionId = String((item && item.mention_id) || "");
+      const mentionIds = Array.isArray(item && item.mention_ids) ? item.mention_ids : null;
+      if (!Array.isArray(mentionIds)) {
+        failValidation(
+          "EA_VALIDATE_STRICT_UNRESOLVED_MENTION_IDS",
+          "Strict validation error: coverage.unresolved[*].mention_ids must be an array."
+        );
+      }
+      const mentionIdSet = new Set();
+      let prevMentionRef = null;
+      for (const ref of mentionIds) {
+        if (typeof ref !== "string" || ref.length === 0) {
+          failValidation(
+            "EA_VALIDATE_STRICT_UNRESOLVED_MENTION_IDS",
+            "Strict validation error: coverage.unresolved[*].mention_ids must contain non-empty string ids."
+          );
+        }
+        if (prevMentionRef !== null && prevMentionRef.localeCompare(ref) > 0) {
+          failValidation(
+            "EA_VALIDATE_STRICT_UNRESOLVED_MENTION_IDS",
+            "Strict validation error: coverage.unresolved[*].mention_ids must be sorted."
+          );
+        }
+        if (mentionIdSet.has(ref)) {
+          failValidation(
+            "EA_VALIDATE_STRICT_UNRESOLVED_MENTION_IDS",
+            "Strict validation error: coverage.unresolved[*].mention_ids must be unique."
+          );
+        }
+        mentionIdSet.add(ref);
+        prevMentionRef = ref;
+      }
+      if (mentionId && !mentionIdSet.has(mentionId)) {
+        failValidation(
+          "EA_VALIDATE_STRICT_UNRESOLVED_MENTION_IDS",
+          "Strict validation error: coverage.unresolved[*].mention_ids must include mention_id."
+        );
+      }
+
+      const evidence = item && item.evidence && typeof item.evidence === "object" ? item.evidence : {};
+      const tokenIds = Array.isArray(evidence.token_ids) ? evidence.token_ids : [];
+      let prevTokenId = null;
+      for (const tokenId of tokenIds) {
+        if (typeof tokenId !== "string" || tokenId.length === 0) {
+          failValidation(
+            "EA_VALIDATE_STRICT_UNRESOLVED_EVIDENCE_TOKEN_IDS",
+            "Strict validation error: coverage.unresolved[*].evidence.token_ids must contain non-empty string token ids."
+          );
+        }
+        if (prevTokenId !== null && prevTokenId.localeCompare(tokenId) > 0) {
+          failValidation(
+            "EA_VALIDATE_STRICT_UNRESOLVED_EVIDENCE_TOKEN_IDS",
+            "Strict validation error: coverage.unresolved[*].evidence.token_ids must be sorted."
+          );
+        }
+        prevTokenId = tokenId;
+      }
+
+      const upstreamRelationIds = Array.isArray(evidence.upstream_relation_ids) ? evidence.upstream_relation_ids : [];
+      let prevUpstreamId = null;
+      for (const relationId of upstreamRelationIds) {
+        if (typeof relationId !== "string" || relationId.length === 0) {
+          failValidation(
+            "EA_VALIDATE_STRICT_UNRESOLVED_UPSTREAM_RELATION_IDS",
+            "Strict validation error: coverage.unresolved[*].evidence.upstream_relation_ids must contain non-empty string ids."
+          );
+        }
+        if (prevUpstreamId !== null && prevUpstreamId.localeCompare(relationId) > 0) {
+          failValidation(
+            "EA_VALIDATE_STRICT_UNRESOLVED_UPSTREAM_RELATION_IDS",
+            "Strict validation error: coverage.unresolved[*].evidence.upstream_relation_ids must be sorted."
+          );
+        }
+        prevUpstreamId = relationId;
+      }
+    }
+
     const expectedPrimary = buildExpectedCoveragePrimarySet(doc);
     if (expectedPrimary.size !== primarySet.size) {
       failValidation(

@@ -752,18 +752,18 @@ Objective: close remaining diagnostics-depth gaps against prototype rigor withou
 
 ### 13.1 Deep Integrity for `coverage.unresolved[*]` (Strict/Dev)
 
-- [ ] Enforce strict/dev invariants:
-  - [ ] sorted, unique `mention_ids`
-  - [ ] sorted `evidence.token_ids`
-  - [ ] sorted and type-checked `evidence.upstream_relation_ids`
-- [ ] Keep runtime validation permissive; fail these checks only in strict/dev mode.
+- [x] Enforce strict/dev invariants:
+  - [x] sorted, unique `mention_ids`
+  - [x] sorted `evidence.token_ids`
+  - [x] sorted and type-checked `evidence.upstream_relation_ids`
+- [x] Keep runtime validation permissive; fail these checks only in strict/dev mode.
 
 ### 13.2 Determinism for `diagnostics.suppressed_assertions` Lists (Strict/Dev)
 
-- [ ] Enforce strict/dev list determinism:
-  - [ ] sorted-by-id order
-  - [ ] duplicate-id rejection
-- [ ] Keep this as a complement to existing per-item semantic checks.
+- [x] Enforce strict/dev list determinism:
+  - [x] sorted-by-id order
+  - [x] duplicate-id rejection
+- [x] Keep this as a complement to existing per-item semantic checks.
 
 ### 13.3 Re-Expose Prototype Diagnostics as Dev-Only Tooling
 

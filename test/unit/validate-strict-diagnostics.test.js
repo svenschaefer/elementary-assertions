@@ -279,3 +279,72 @@ test("strict diagnostics enforces suppressed transfer mention presence on host a
     (err) => err instanceof ValidationError && err.code === "EA_VALIDATE_STRICT_SUPPRESSED_SEMANTICS"
   );
 });
+
+test("strict diagnostics enforces coverage.unresolved mention_ids sorted/unique", () => {
+  const doc = buildStrictValidDoc();
+  doc.coverage = {
+    primary_mention_ids: ["m1", "m2", "m3"],
+    covered_primary_mention_ids: ["m1", "m2"],
+    uncovered_primary_mention_ids: ["m3"],
+    unresolved: [
+      {
+        kind: "unresolved_attachment",
+        segment_id: "s1",
+        mention_id: "m3",
+        mention_ids: ["m3", "m3"],
+        reason: "missing_relation",
+        evidence: { token_ids: ["t3"], upstream_relation_ids: [] },
+      },
+    ],
+  };
+  assert.throws(
+    () => validateElementaryAssertions(doc, { strict: true }),
+    (err) => err instanceof ValidationError && err.code === "EA_VALIDATE_STRICT_UNRESOLVED_MENTION_IDS"
+  );
+});
+
+test("strict diagnostics enforces coverage.unresolved evidence token_ids sorting", () => {
+  const doc = buildStrictValidDoc();
+  doc.coverage = {
+    primary_mention_ids: ["m1", "m2", "m3"],
+    covered_primary_mention_ids: ["m1", "m2"],
+    uncovered_primary_mention_ids: ["m3"],
+    unresolved: [
+      {
+        kind: "unresolved_attachment",
+        segment_id: "s1",
+        mention_id: "m3",
+        mention_ids: ["m3"],
+        reason: "missing_relation",
+        evidence: { token_ids: ["t3", "t1"], upstream_relation_ids: [] },
+      },
+    ],
+  };
+  assert.throws(
+    () => validateElementaryAssertions(doc, { strict: true }),
+    (err) => err instanceof ValidationError && err.code === "EA_VALIDATE_STRICT_UNRESOLVED_EVIDENCE_TOKEN_IDS"
+  );
+});
+
+test("strict diagnostics enforces coverage.unresolved evidence upstream_relation_ids typing/sorting", () => {
+  const doc = buildStrictValidDoc();
+  doc.coverage = {
+    primary_mention_ids: ["m1", "m2", "m3"],
+    covered_primary_mention_ids: ["m1", "m2"],
+    uncovered_primary_mention_ids: ["m3"],
+    unresolved: [
+      {
+        kind: "unresolved_attachment",
+        segment_id: "s1",
+        mention_id: "m3",
+        mention_ids: ["m3"],
+        reason: "missing_relation",
+        evidence: { token_ids: ["t3"], upstream_relation_ids: ["r2", "r1"] },
+      },
+    ],
+  };
+  assert.throws(
+    () => validateElementaryAssertions(doc, { strict: true }),
+    (err) => err instanceof ValidationError && err.code === "EA_VALIDATE_STRICT_UNRESOLVED_UPSTREAM_RELATION_IDS"
+  );
+});

@@ -218,6 +218,26 @@ function validateSuppressedAssertionsStrict(doc, assertionById) {
   const suppressed = Array.isArray((((doc || {}).diagnostics) || {}).suppressed_assertions)
     ? doc.diagnostics.suppressed_assertions
     : [];
+  let prevSuppressedId = null;
+  const seenSuppressedIds = new Set();
+  for (const item of suppressed) {
+    const suppressedId = String((item && item.id) || "");
+    if (prevSuppressedId !== null && prevSuppressedId.localeCompare(suppressedId) > 0) {
+      failValidation(
+        "EA_VALIDATE_STRICT_SUPPRESSED_LIST_ORDER",
+        "Strict diagnostics error: diagnostics.suppressed_assertions must be sorted by id."
+      );
+    }
+    if (seenSuppressedIds.has(suppressedId)) {
+      failValidation(
+        "EA_VALIDATE_STRICT_SUPPRESSED_LIST_DUPLICATE",
+        "Strict diagnostics error: diagnostics.suppressed_assertions must not contain duplicate ids."
+      );
+    }
+    seenSuppressedIds.add(suppressedId);
+    prevSuppressedId = suppressedId;
+  }
+
   for (const item of suppressed) {
     const suppressedId = String((item && item.id) || "");
     const predicate = item && item.predicate && typeof item.predicate === "object" ? item.predicate : {};
