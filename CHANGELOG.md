@@ -3,6 +3,14 @@
 ## Unreleased
 
 ### Added
+- (none)
+
+### Changed
+- (none)
+
+## v0.1.10 - 2026-02-15
+
+### Added
 - Phase 14 strict validation hardening for `coverage.unresolved[*]`:
   - mention reference existence checks (`mention_ids[*]`)
   - unresolved segment consistency checks for mention and evidence token references
@@ -17,6 +25,7 @@
 ### Changed
 - `npm run dev:reports` now forwards supported seed/artifacts options to all underlying report/diagnostics scripts.
 - README/DEV tooling docs/TODO were synchronized for Phase 14 completion scope.
+- SaaS table markdown golden reference was normalized to current renderer output for smoke parity.
 
 ## v0.1.9 - 2026-02-15
 
