@@ -820,24 +820,24 @@ Exit criteria:
 
 ### 14.2 Dev Wiki-Upstream Diagnostics: Upstream Context Recovery
 
-- [ ] Extend dev diagnostics to optionally ingest upstream accepted relations/annotations in addition to final EA output.
-- [ ] Add correlation reporting between:
-  - [ ] upstream accepted relations
-  - [ ] projected assertions/unresolved entries
-- [ ] Classify debug outcomes into:
-  - [ ] missing upstream acceptance
-  - [ ] present upstream evidence but not projected by EA logic
+- [x] Extend dev diagnostics to optionally ingest upstream accepted relations/annotations in addition to final EA output.
+- [x] Add correlation reporting between:
+  - [x] upstream accepted relations
+  - [x] projected assertions/unresolved entries
+- [x] Classify debug outcomes into:
+  - [x] missing upstream acceptance
+  - [x] present upstream evidence but not projected by EA logic
 
 Exit criteria:
 - dev diagnostics can distinguish upstream absence from EA projection behavior.
 
 ### 14.3 Dev WTI Wiring Diagnostics: Runtime Verification
 
-- [ ] Add runtime-level dev diagnostics for WTI wiring that verifies:
-  - [ ] endpoint configuration was effective
-  - [ ] health-check execution path was used
-  - [ ] positive signal pass-through is evidenced in runtime output context
-- [ ] Fail diagnostics explicitly on wiring-contract violations, even if output shape is superficially valid.
+- [x] Add runtime-level dev diagnostics for WTI wiring that verifies:
+  - [x] endpoint configuration was effective
+  - [x] health-check execution path was used
+  - [x] positive signal pass-through is evidenced in runtime output context
+- [x] Fail diagnostics explicitly on wiring-contract violations, even if output shape is superficially valid.
 
 Exit criteria:
 - misconfigured or bypassed WTI wiring is caught by dev diagnostics with explicit context.

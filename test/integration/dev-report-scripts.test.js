@@ -1,5 +1,7 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
+const fs = require("node:fs");
+const os = require("node:os");
 const path = require("node:path");
 const { spawnSync } = require("node:child_process");
 
@@ -44,11 +46,19 @@ test("dev-report-maturity emits valid JSON report", () => {
 test("dev-diagnose-wiki-upstream emits valid JSON report", () => {
   const raw = runNodeScript("scripts/dev-diagnose-wiki-upstream.js");
   assertReportShape(raw, "dev-diagnose-wiki-upstream");
+  const data = JSON.parse(raw);
+  for (const seedRow of data.seeds) {
+    assert.equal(typeof seedRow.correlation, "object");
+    assert.equal(seedRow.correlation.enabled, false);
+  }
 });
 
 test("dev-diagnose-wti-wiring emits valid JSON report", () => {
   const raw = runNodeScript("scripts/dev-diagnose-wti-wiring.js");
   assertReportShape(raw, "dev-diagnose-wti-wiring");
+  const data = JSON.parse(raw);
+  assert.equal(typeof data.runtime_probe, "object");
+  assert.equal(data.runtime_probe.enabled, false);
 });
 
 test("dev-diagnose-coverage-audit emits valid JSON report", () => {
@@ -116,4 +126,57 @@ test("dev:reports aggregate forwards --seed and --artifacts-root to child report
     assert.equal(report.seeds.length, 1);
     assert.equal(report.seeds[0].seed_id, seedId);
   }
+});
+
+test("dev-diagnose-wiki-upstream supports --upstream correlation mode", () => {
+  const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), "ea-upstream-"));
+  const upstreamPath = path.join(tmpDir, "upstream.json");
+  fs.writeFileSync(
+    upstreamPath,
+    JSON.stringify(
+      {
+        annotations: [
+          {
+            id: "r1",
+            kind: "dependency",
+            status: "accepted",
+            head: { id: "nonexistent-token-a" },
+            dep: { id: "nonexistent-token-b" },
+          },
+        ],
+      },
+      null,
+      2
+    )
+  );
+
+  try {
+    const artifactsRoot = path.join(repoRoot, "test", "artifacts");
+    const raw = runNodeScript("scripts/dev-diagnose-wiki-upstream.js", [
+      "--seed",
+      "saas",
+      "--artifacts-root",
+      artifactsRoot,
+      "--upstream",
+      upstreamPath,
+    ]);
+    const data = JSON.parse(raw);
+    assert.equal(data.seeds.length, 1);
+    assert.equal(data.seeds[0].seed_id, "saas");
+    assert.equal(data.seeds[0].correlation.enabled, true);
+    assert.equal(typeof data.seeds[0].correlation.uncovered_missing_upstream_acceptance_count, "number");
+    assert.equal(typeof data.seeds[0].correlation.uncovered_present_upstream_unprojected_count, "number");
+  } finally {
+    fs.rmSync(tmpDir, { recursive: true, force: true });
+  }
+});
+
+test("dev-diagnose-wti-wiring runtime probe requires explicit endpoint", () => {
+  const fullPath = path.join(repoRoot, "scripts", "dev-diagnose-wti-wiring.js");
+  const result = spawnSync(process.execPath, [fullPath, "--runtime-probe", "--seed", "saas"], {
+    cwd: repoRoot,
+    encoding: "utf8",
+  });
+  assert.notEqual(result.status, 0);
+  assert.match(String(result.stderr || ""), /runtime probe requires --wti-endpoint/i);
 });
