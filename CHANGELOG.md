@@ -3,6 +3,14 @@
 ## Unreleased
 
 ### Added
+- (none)
+
+### Changed
+- (none)
+
+## v1.0.2 - 2026-02-15
+
+### Added
 - `.editorconfig` for repository-wide LF/indent/newline consistency.
 - `CONTRIBUTING.md` and `SECURITY.md` repository policy documents.
 - `scripts/ensure-clean-worktree.js` plus release-check npm scripts for safer local release gating.
