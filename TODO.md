@@ -6,7 +6,21 @@ This plan defines how to build the productized package described in `README.md`,
 
 It is execution-oriented, phase-gated, and contract-first.
 
-Status: Completed through Phase 15 hardening; release snapshot updated to v0.1.10 baseline with post-release Phase 15 completion (as of 2026-02-15).
+Status: Completed through Phase 15 hardening; release snapshot updated to v0.1.11 baseline (as of 2026-02-15).
+
+## Release Execution Snapshot (v0.1.11, 2026-02-15)
+
+- Released version: `v0.1.11`
+- Release intent: complete Phase 15 diagnostics-depth parity hardening for non-public dev tooling.
+- Validation evidence at release head:
+  - `npm test` green (`150/150`)
+  - `npm pack --dry-run` green
+- Smoke workspaces (clean installs, version + reason naming):
+  - `C:\code\elementary-assertions-smoke-test\v0.1.11-pretag-smoke-20260215-164624`
+  - `C:\code\elementary-assertions-smoke-test\v0.1.11-posttag-smoke-20260215-164701`
+- Rendered smoke output roots:
+  - `C:\code\elementary-assertions-smoke-test\v0.1.11-pretag-smoke-20260215-164624\rendered`
+  - `C:\code\elementary-assertions-smoke-test\v0.1.11-posttag-smoke-20260215-164701\rendered`
 
 ## Release Execution Snapshot (v0.1.10, 2026-02-15)
 

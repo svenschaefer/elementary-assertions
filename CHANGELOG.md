@@ -20,6 +20,16 @@
 ### Changed
 - `docs/DEV_TOOLING.md`, `README.md`, and `TODO.md` were synchronized for Phase 15 completion scope.
 
+### Release Evidence
+- Release commit: `768e49edee6b09255a395a86a045041b55c5baed`
+- Tag: `v0.1.11`
+- Smoke roots:
+  - `C:\code\elementary-assertions-smoke-test\v0.1.11-pretag-smoke-20260215-164624`
+  - `C:\code\elementary-assertions-smoke-test\v0.1.11-posttag-smoke-20260215-164701`
+- Rendered smoke output roots:
+  - `C:\code\elementary-assertions-smoke-test\v0.1.11-pretag-smoke-20260215-164624\rendered`
+  - `C:\code\elementary-assertions-smoke-test\v0.1.11-posttag-smoke-20260215-164701\rendered`
+
 ## v0.1.10 - 2026-02-15
 
 ### Added
