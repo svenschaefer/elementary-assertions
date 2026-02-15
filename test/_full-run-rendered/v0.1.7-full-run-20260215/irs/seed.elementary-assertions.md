@@ -1,0 +1,361 @@
+# Elementary Assertions
+
+## Segments
+- Segment s1
+  - SegmentText: "The Incident Reporting System (IRS) is used by employees to submit reports about safety issues,
+policy violations, or operational incidents."
+- Segment s2
+  - SegmentText: "Reports may include structured fields (category, severity, location) as well as free-form descriptions."
+- Segment s3
+  - SegmentText: "Employees can attach photos, documents, or reference related incidents."
+- Segment s4
+  - SegmentText: "Before a report is accepted, the system must verify that:
+ - the reporter is authenticated,
+ - the selected category is valid,
+ - mandatory fields are present."
+- Segment s5
+  - SegmentText: "Once submitted, reports are reviewed by supervisors."
+- Segment s6
+  - SegmentText: "Supervisors may:
+ - request clarification,
+ - change the severity level,
+ - assign corrective actions."
+- Segment s7
+  - SegmentText: "All actions must be logged for audit purposes."
+- Segment s8
+  - SegmentText: "The system must retain reports for at least 10 years, even if an employee leaves the company."
+
+## Mentions
+- Segment s1
+  - 0-3 token The (head=The)
+  - 0-12 chunk (the) Incident (head=Incident)
+  - 4-12 token Incident (head=Incident)
+  - 4-29 mwe Incident Reporting System (head=System)
+  - 13-22 token Reporting (head=Reporting)
+  - 13-29 chunk Reporting System (head=Reporting)
+  - 13-29 mwe Reporting System (head=System)
+  - 23-29 token System (head=System)
+  - 30-31 chunk ( (head=()
+  - 30-31 token ( (head=()
+  - 31-34 chunk IRS (head=IRS)
+  - 31-34 token IRS (head=IRS)
+  - 34-35 chunk ) (head=))
+  - 34-35 token ) (head=))
+  - 36-38 token is (head=is)
+  - 36-56 chunk is used by employees (head=used)
+  - 39-43 token used (head=used)
+  - 44-46 token by (head=by)
+  - 47-56 token employees (head=employees)
+  - 57-59 chunk to (head=to)
+  - 57-59 token to (head=to)
+  - 60-66 token submit (head=submit)
+  - 60-74 mwe submit reports (head=reports)
+  - 60-94 chunk submit reports about safety issues (head=submit)
+  - 67-74 token reports (head=reports)
+  - 75-80 token about (head=about)
+  - 81-87 token safety (head=safety)
+  - 81-94 mwe safety issues (head=issues)
+  - 88-94 token issues (head=issues)
+  - 94-95 chunk , (head=,)
+  - 94-95 token , (head=,)
+  - 96-102 token policy (head=policy)
+  - 96-113 chunk policy violations (head=policy)
+  - 96-113 mwe policy violations (head=violations)
+  - 103-113 token violations (head=violations)
+  - 113-114 chunk , (head=,)
+  - 113-114 token , (head=,)
+  - 115-117 chunk or (head=or)
+  - 115-117 token or (head=or)
+  - 118-129 token operational (head=operational)
+  - 118-139 chunk operational incidents (head=incidents)
+  - 118-139 mwe operational incidents (head=incidents)
+  - 130-139 token incidents (head=incidents)
+  - 139-140 chunk . (head=.)
+  - 139-140 token . (head=.)
+- Segment s2
+  - 142-149 chunk Reports (head=Reports)
+  - 142-149 token Reports (head=Reports)
+  - 150-153 token may (head=may)
+  - 150-179 chunk may include structured fields (head=include)
+  - 154-161 token include (head=include)
+  - 162-172 token structured (head=structured)
+  - 162-179 mwe structured fields (head=fields)
+  - 173-179 token fields (head=fields)
+  - 180-181 chunk ( (head=()
+  - 180-181 token ( (head=()
+  - 181-189 chunk category (head=category)
+  - 181-189 token category (head=category)
+  - 189-190 chunk , (head=,)
+  - 189-190 token , (head=,)
+  - 191-199 chunk severity (head=severity)
+  - 191-199 token severity (head=severity)
+  - 199-200 chunk , (head=,)
+  - 199-200 token , (head=,)
+  - 201-209 chunk location (head=location)
+  - 201-209 token location (head=location)
+  - 209-210 chunk ) (head=))
+  - 209-210 token ) (head=))
+  - 211-213 chunk as (head=as)
+  - 211-213 token as (head=as)
+  - 214-218 chunk well (head=well)
+  - 214-218 token well (head=well)
+  - 219-221 token as (head=as)
+  - 219-244 chunk as free-form descriptions (head=as)
+  - 222-231 token free-form (head=free-form)
+  - 222-244 mwe free-form descriptions (head=descriptions)
+  - 232-244 token descriptions (head=descriptions)
+  - 244-245 chunk . (head=.)
+  - 244-245 token . (head=.)
+- Segment s3
+  - 246-255 chunk Employees (head=Employees)
+  - 246-255 token Employees (head=Employees)
+  - 256-259 token can (head=can)
+  - 256-273 chunk can attach photos (head=attach)
+  - 260-266 token attach (head=attach)
+  - 260-273 mwe attach photos (head=photos)
+  - 267-273 token photos (head=photos)
+  - 273-274 chunk , (head=,)
+  - 273-274 token , (head=,)
+  - 275-284 chunk documents (head=documents)
+  - 275-284 token documents (head=documents)
+  - 284-285 chunk , (head=,)
+  - 284-285 token , (head=,)
+  - 286-288 chunk or (head=or)
+  - 286-288 token or (head=or)
+  - 289-298 chunk reference (head=reference)
+  - 289-298 token reference (head=reference)
+  - 289-316 mwe reference related incidents (head=incidents)
+  - 299-306 token related (head=related)
+  - 299-316 chunk related incidents (head=related)
+  - 299-316 mwe related incidents (head=incidents)
+  - 307-316 token incidents (head=incidents)
+  - 316-317 chunk . (head=.)
+  - 316-317 token . (head=.)
+- Segment s4
+  - 319-325 token Before (head=Before)
+  - 319-334 chunk Before a report (head=Before)
+  - 326-327 token a (head=a)
+  - 328-334 token report (head=report)
+  - 335-337 token is (head=is)
+  - 335-346 chunk is accepted (head=accepted)
+  - 338-346 token accepted (head=accepted)
+  - 346-347 chunk , (head=,)
+  - 346-347 token , (head=,)
+  - 348-351 token the (head=the)
+  - 348-358 chunk (the) system (head=system)
+  - 352-358 token system (head=system)
+  - 359-363 token must (head=must)
+  - 359-370 chunk must verify (head=verify)
+  - 364-370 token verify (head=verify)
+  - 371-375 chunk that (head=that)
+  - 371-375 token that (head=that)
+  - 375-376 chunk : (head=:)
+  - 375-376 token : (head=:)
+  - 378-379 chunk - (head=-)
+  - 378-379 token - (head=-)
+  - 380-383 token the (head=the)
+  - 380-392 chunk (the) reporter (head=reporter)
+  - 384-392 token reporter (head=reporter)
+  - 393-395 token is (head=is)
+  - 393-409 chunk is authenticated (head=is)
+  - 396-409 token authenticated (head=authenticated)
+  - 409-410 chunk , (head=,)
+  - 409-410 token , (head=,)
+  - 412-413 chunk - (head=-)
+  - 412-413 token - (head=-)
+  - 414-417 token the (head=the)
+  - 414-435 chunk (the) selected category (head=category)
+  - 418-426 token selected (head=selected)
+  - 418-435 mwe selected category (head=category)
+  - 427-435 token category (head=category)
+  - 436-438 chunk is (head=is)
+  - 436-438 token is (head=is)
+  - 439-444 chunk valid (head=valid)
+  - 439-444 token valid (head=valid)
+  - 444-445 chunk , (head=,)
+  - 444-445 token , (head=,)
+  - 447-448 chunk - (head=-)
+  - 447-448 token - (head=-)
+  - 449-458 token mandatory (head=mandatory)
+  - 449-465 chunk mandatory fields (head=fields)
+  - 449-465 mwe mandatory fields (head=fields)
+  - 459-465 token fields (head=fields)
+  - 466-469 chunk are (head=are)
+  - 466-469 token are (head=are)
+  - 470-477 chunk present (head=present)
+  - 470-477 token present (head=present)
+  - 477-478 chunk . (head=.)
+  - 477-478 token . (head=.)
+- Segment s5
+  - 480-484 chunk Once (head=Once)
+  - 480-484 token Once (head=Once)
+  - 485-494 chunk submitted (head=submitted)
+  - 485-494 token submitted (head=submitted)
+  - 494-495 chunk , (head=,)
+  - 494-495 token , (head=,)
+  - 496-503 chunk reports (head=reports)
+  - 496-503 token reports (head=reports)
+  - 504-507 token are (head=are)
+  - 504-531 chunk are reviewed by supervisors (head=reviewed)
+  - 508-516 token reviewed (head=reviewed)
+  - 517-519 token by (head=by)
+  - 520-531 token supervisors (head=supervisors)
+  - 531-532 chunk . (head=.)
+  - 531-532 token . (head=.)
+- Segment s6
+  - 533-544 chunk Supervisors (head=Supervisors)
+  - 533-544 token Supervisors (head=Supervisors)
+  - 545-548 chunk may (head=may)
+  - 545-548 token may (head=may)
+  - 548-549 chunk : (head=:)
+  - 548-549 token : (head=:)
+  - 551-552 chunk - (head=-)
+  - 551-552 token - (head=-)
+  - 553-560 token request (head=request)
+  - 553-574 chunk request clarification (head=request)
+  - 553-574 mwe request clarification (head=clarification)
+  - 561-574 token clarification (head=clarification)
+  - 574-575 chunk , (head=,)
+  - 574-575 token , (head=,)
+  - 577-578 chunk - (head=-)
+  - 577-578 token - (head=-)
+  - 579-585 chunk change (head=change)
+  - 579-585 token change (head=change)
+  - 586-589 token the (head=the)
+  - 586-604 chunk (the) severity level (head=severity)
+  - 590-598 token severity (head=severity)
+  - 590-604 mwe severity level (head=level)
+  - 599-604 token level (head=level)
+  - 604-605 chunk , (head=,)
+  - 604-605 token , (head=,)
+  - 607-608 chunk - (head=-)
+  - 607-608 token - (head=-)
+  - 609-615 token assign (head=assign)
+  - 609-634 chunk assign corrective actions (head=assign)
+  - 616-626 token corrective (head=corrective)
+  - 616-634 mwe corrective actions (head=actions)
+  - 627-634 token actions (head=actions)
+  - 634-635 chunk . (head=.)
+  - 634-635 token . (head=.)
+- Segment s7
+  - 637-640 token All (head=All)
+  - 637-648 chunk (all) actions (head=actions)
+  - 641-648 token actions (head=actions)
+  - 649-653 token must (head=must)
+  - 649-663 chunk must be logged (head=logged)
+  - 654-656 token be (head=be)
+  - 657-663 token logged (head=logged)
+  - 664-667 token for (head=for)
+  - 664-682 chunk for audit purposes (head=for)
+  - 668-673 token audit (head=audit)
+  - 668-682 mwe audit purposes (head=purposes)
+  - 674-682 token purposes (head=purposes)
+  - 682-683 chunk . (head=.)
+  - 682-683 token . (head=.)
+- Segment s8
+  - 684-687 token The (head=The)
+  - 684-694 chunk (the) system (head=system)
+  - 688-694 token system (head=system)
+  - 695-699 token must (head=must)
+  - 695-714 chunk must retain reports (head=retain)
+  - 700-706 token retain (head=retain)
+  - 700-714 mwe retain reports (head=reports)
+  - 707-714 token reports (head=reports)
+  - 715-718 chunk for (head=for)
+  - 715-718 token for (head=for)
+  - 719-721 chunk at (head=at)
+  - 719-721 token at (head=at)
+  - 722-727 chunk least (head=least)
+  - 722-727 token least (head=least)
+  - 728-730 chunk 10 (head=10)
+  - 728-730 token 10 (head=10)
+  - 728-736 mwe 10 years (head=years)
+  - 731-736 chunk years (head=years)
+  - 731-736 token years (head=years)
+  - 736-737 chunk , (head=,)
+  - 736-737 token , (head=,)
+  - 738-742 chunk even (head=even)
+  - 738-742 token even (head=even)
+  - 743-745 token if (head=if)
+  - 743-757 chunk if an employee (head=if)
+  - 746-748 token an (head=an)
+  - 749-757 token employee (head=employee)
+  - 758-764 token leaves (head=leaves)
+  - 758-776 chunk leaves the company (head=leaves)
+  - 758-776 mwe leaves the company (head=company)
+  - 765-768 token the (head=the)
+  - 769-776 token company (head=company)
+  - 776-777 chunk . (head=.)
+  - 776-777 token . (head=.)
+
+## Assertions
+| segment_id | actor | predicate | theme | attr | location | other | ops | evidence |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| s1 | employees | used | IRS |  |  | complement_clause:submit reports about safety issues | control_inherit_subject, control_propagation | actor(r=0,t=1); complement_clause(r=0,t=5); theme(r=0,t=1); operators(r=0,t=0) |
+| s2 | Reports | include | category, severity, location |  |  |  | modality(may) | actor(r=0,t=1); theme(r=0,t=3); operators(r=0,t=0) |
+| s3 | Employees | can attach photos | documents |  |  |  | modality(can) | actor(r=0,t=1); theme(r=0,t=1); operators(r=0,t=0) |
+| s3 | reference | reference related incidents | related incidents |  |  |  | coordination_group(cg:04f8cfd78e81) | actor(r=0,t=1); theme(r=0,t=2); operators(r=0,t=0) |
+| s4 |  | accepted | system |  |  |  |  | theme(r=0,t=1); operators(r=0,t=0) |
+| s4 | (the) system | verify | reporter |  |  |  | modality(must) | actor(r=0,t=2); theme(r=0,t=1); operators(r=0,t=0) |
+| s4 | (the) reporter | is (predicate_quality=low) |  |  |  |  |  | actor(r=0,t=2); operators(r=0,t=0) |
+| s4 |  | authenticated | selected category |  |  |  |  | theme(r=0,t=2); operators(r=0,t=0) |
+| s4 |  | is (predicate_quality=low) |  | valid |  |  |  | attribute(r=0,t=1); operators(r=0,t=0) |
+| s4 |  | are (predicate_quality=low) |  | present |  |  |  | attribute(r=0,t=1); operators(r=0,t=0) |
+| s5 |  | submitted | reports |  |  |  |  | theme(r=0,t=1); operators(r=0,t=0) |
+| s5 | supervisors | reviewed | reports |  |  | modifier:Once |  | actor(r=0,t=1); modifier(r=0,t=1); theme(r=0,t=1); operators(r=0,t=0) |
+| s6 | Supervisors, request clarification, change, (the) severity level | assign | corrective actions |  |  |  |  | actor(r=0,t=7); theme(r=0,t=2); operators(r=0,t=0) |
+| s7 |  | logged | (all) actions |  |  | beneficiary:for audit purposes | modality(must), quantifier(all\|t114) | beneficiary(r=0,t=3); theme(r=0,t=2); operators(r=0,t=0) |
+| s8 | (the) system | must retain reports |  |  | 10 years | modifier:even | modality(must) | actor(r=0,t=2); location(r=0,t=2); modifier(r=0,t=1); operators(r=0,t=0) |
+
+## Coverage
+- primary_mention_ids count: 59
+- covered_primary_mention_ids count: 39
+- uncovered_primary_mention_ids count: 20
+
+### Strictly Uncovered Primary Mentions
+- is (mention_id=m:s1:36-38:token, reason=missing_relation)
+- policy violations (mention_id=m:s1:96-113:mwe, reason=missing_relation)
+- operational incidents (mention_id=m:s1:118-139:mwe, reason=missing_relation)
+- as (mention_id=m:s2:211-213:token, reason=missing_relation)
+- well (mention_id=m:s2:214-218:token, reason=missing_relation)
+- free-form descriptions (mention_id=m:s2:222-244:mwe, reason=missing_relation)
+- report (mention_id=m:s4:328-334:token, reason=missing_relation)
+- is (mention_id=m:s4:335-337:token, reason=missing_relation)
+- mandatory fields (mention_id=m:s4:449-465:mwe, reason=missing_relation)
+- are (mention_id=m:s5:504-507:token, reason=missing_relation)
+- be (mention_id=m:s7:654-656:token, reason=missing_relation)
+- employee (mention_id=m:s8:749-757:token, reason=missing_relation)
+- leaves the company (mention_id=m:s8:758-776:mwe, reason=projection_failed)
+
+### Contained Uncovered Primary Mentions
+- submit reports (mention_id=m:s1:60-74:mwe, contained_in=[m:s1:60-94:chunk], reason=projection_failed)
+- safety issues (mention_id=m:s1:81-94:mwe, contained_in=[m:s1:60-94:chunk], reason=missing_relation)
+- attach photos (mention_id=m:s3:260-273:mwe, contained_in=[m:s3:256-273:chunk], reason=projection_failed)
+- severity level (mention_id=m:s6:590-604:mwe, contained_in=[m:s6:586-604:chunk], reason=missing_relation)
+- audit purposes (mention_id=m:s7:668-682:mwe, contained_in=[m:s7:664-682:chunk], reason=missing_relation)
+- system (mention_id=m:s8:688-694:token, contained_in=[m:s8:684-694:chunk], reason=missing_relation)
+- retain reports (mention_id=m:s8:700-714:mwe, contained_in=[m:s8:695-714:chunk], reason=projection_failed)
+
+### Unresolved
+- unresolved_attachment / missing_relation
+  - operational incidents reason=missing_relation
+  - is reason=missing_relation
+  - safety issues reason=missing_relation
+  - policy violations reason=missing_relation
+  - as reason=missing_relation
+  - well reason=missing_relation
+  - free-form descriptions reason=missing_relation
+  - report reason=missing_relation
+  - is reason=missing_relation
+  - mandatory fields reason=missing_relation
+  - are reason=missing_relation
+  - severity level reason=missing_relation
+  - be reason=missing_relation
+  - audit purposes reason=missing_relation
+  - system reason=missing_relation
+  - employee reason=missing_relation
+- unresolved_attachment / projection_failed
+  - submit reports reason=projection_failed
+  - attach photos reason=projection_failed
+  - retain reports reason=projection_failed
+  - leaves the company reason=projection_failed

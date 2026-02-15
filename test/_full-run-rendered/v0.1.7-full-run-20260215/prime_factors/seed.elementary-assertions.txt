@@ -1,0 +1,140 @@
+Elementary Assertions
+
+Segments
+Segment s1
+SegmentText: "Prime factorization decomposes a positive integer into a set of prime numbers."
+Segment s2
+SegmentText: "Each factor must be prime, and their product must equal the original number."
+Segment s3
+SegmentText: "The process typically starts with the smallest prime factor and continues iteratively."
+Segment s4
+SegmentText: "Prime factorization is commonly used in number theory and cryptography."
+
+Mentions
+mention="Prime" kind=token is_primary=false head="Prime"
+mention="Prime factorization" kind=chunk is_primary=false head="Prime"
+mention="Prime factorization" kind=mwe is_primary=true head="factorization"
+mention="factorization" kind=token is_primary=false head="factorization"
+mention="decomposes" kind=token is_primary=true head="decomposes"
+mention="decomposes a positive integer into a set" kind=chunk is_primary=false head="decomposes"
+mention="a" kind=token is_primary=true head="a"
+mention="positive" kind=token is_primary=false head="positive"
+mention="positive integer" kind=mwe is_primary=true head="integer"
+mention="integer" kind=token is_primary=false head="integer"
+mention="into" kind=token is_primary=true head="into"
+mention="a" kind=token is_primary=true head="a"
+mention="set" kind=token is_primary=false head="set"
+mention="set of prime numbers" kind=mwe is_primary=true head="numbers"
+mention="of" kind=token is_primary=false head="of"
+mention="of prime numbers" kind=chunk is_primary=false head="of"
+mention="prime" kind=token is_primary=false head="prime"
+mention="prime numbers" kind=mwe is_primary=false head="numbers"
+mention="numbers" kind=token is_primary=false head="numbers"
+mention="." kind=chunk is_primary=false head="."
+mention="." kind=token is_primary=true head="."
+mention="Each" kind=token is_primary=true head="Each"
+mention="(each) factor" kind=chunk is_primary=false head="factor"
+mention="factor" kind=token is_primary=true head="factor"
+mention="must" kind=chunk is_primary=false head="must"
+mention="must" kind=token is_primary=true head="must"
+mention="be" kind=chunk is_primary=false head="be"
+mention="be" kind=token is_primary=true head="be"
+mention="prime" kind=chunk is_primary=false head="prime"
+mention="prime" kind=token is_primary=true head="prime"
+mention="," kind=chunk is_primary=false head=","
+mention="," kind=token is_primary=true head=","
+mention="and" kind=chunk is_primary=false head="and"
+mention="and" kind=token is_primary=true head="and"
+mention="their" kind=token is_primary=true head="their"
+mention="their product" kind=chunk is_primary=false head="product"
+mention="product" kind=token is_primary=true head="product"
+mention="must" kind=token is_primary=true head="must"
+mention="must equal the original number" kind=chunk is_primary=false head="equal"
+mention="equal" kind=token is_primary=true head="equal"
+mention="the" kind=token is_primary=true head="the"
+mention="original" kind=token is_primary=false head="original"
+mention="original number" kind=mwe is_primary=true head="number"
+mention="number" kind=token is_primary=false head="number"
+mention="." kind=chunk is_primary=false head="."
+mention="." kind=token is_primary=true head="."
+mention="The" kind=token is_primary=true head="The"
+mention="(the) process" kind=chunk is_primary=false head="process"
+mention="process" kind=token is_primary=true head="process"
+mention="typically" kind=chunk is_primary=false head="typically"
+mention="typically" kind=token is_primary=true head="typically"
+mention="starts" kind=token is_primary=true head="starts"
+mention="starts with the smallest prime factor" kind=chunk is_primary=false head="starts"
+mention="with" kind=token is_primary=true head="with"
+mention="the" kind=token is_primary=true head="the"
+mention="smallest" kind=token is_primary=true head="smallest"
+mention="prime" kind=token is_primary=false head="prime"
+mention="prime factor" kind=mwe is_primary=true head="factor"
+mention="factor" kind=token is_primary=false head="factor"
+mention="and" kind=chunk is_primary=false head="and"
+mention="and" kind=token is_primary=true head="and"
+mention="continues" kind=token is_primary=false head="continues"
+mention="continues iteratively" kind=chunk is_primary=false head="continues"
+mention="continues iteratively" kind=mwe is_primary=true head="iteratively"
+mention="iteratively" kind=token is_primary=false head="iteratively"
+mention="." kind=chunk is_primary=false head="."
+mention="." kind=token is_primary=true head="."
+mention="Prime" kind=token is_primary=false head="Prime"
+mention="Prime factorization" kind=chunk is_primary=false head="factorization"
+mention="Prime factorization" kind=mwe is_primary=true head="factorization"
+mention="factorization" kind=token is_primary=false head="factorization"
+mention="is" kind=chunk is_primary=false head="is"
+mention="is" kind=token is_primary=true head="is"
+mention="commonly" kind=chunk is_primary=false head="commonly"
+mention="commonly" kind=token is_primary=true head="commonly"
+mention="used" kind=chunk is_primary=false head="used"
+mention="used" kind=token is_primary=true head="used"
+mention="in" kind=token is_primary=true head="in"
+mention="in number theory" kind=chunk is_primary=false head="in"
+mention="number" kind=token is_primary=false head="number"
+mention="number theory" kind=mwe is_primary=true head="theory"
+mention="theory" kind=token is_primary=false head="theory"
+mention="and" kind=chunk is_primary=false head="and"
+mention="and" kind=token is_primary=true head="and"
+mention="cryptography" kind=chunk is_primary=false head="cryptography"
+mention="cryptography" kind=token is_primary=true head="cryptography"
+mention="." kind=chunk is_primary=false head="."
+mention="." kind=token is_primary=true head="."
+
+Assertions
+pred=decomposes actor=Prime factorization theme=positive integer attr= topic= location=set of prime numbers other= ops=
+  evidence: actor(r=0,t=2); location(r=0,t=4); theme(r=0,t=2); operators(r=0,t=0)
+pred=factor actor= theme= attr= topic= location= other= ops=coordination_group(cg:cc06689f5bae), coordination_group(cg:cc06689f5bae:and), quantifier(each|t14)
+  evidence: operators(r=0,t=0)
+pred=be actor=(each) factor theme= attr=prime topic= location= other= ops=
+  evidence: actor(r=0,t=2); attribute(r=0,t=1); operators(r=0,t=0)
+pred=equal actor=their product theme=original number attr= topic= location= other= ops=modality(must)
+  evidence: actor(r=0,t=2); theme(r=0,t=2); operators(r=0,t=0)
+pred=starts actor=(the) process theme=prime factor attr= topic= location= other=modifier:typically|smallest ops=coordination_group(cg:8d8920912124), coordination_group(cg:8d8920912124:and)
+  evidence: actor(r=0,t=2); modifier(r=0,t=2); theme(r=0,t=2); operators(r=0,t=0)
+pred=continues iteratively actor=(the) process theme= attr= topic= location= other= ops=coordination_group(cg:8d8920912124)
+  evidence: actor(r=0,t=2); operators(r=0,t=0)
+pred=used actor= theme=Prime factorization attr= topic= location=in number theory other=modifier:commonly ops=
+  evidence: location(r=0,t=3); modifier(r=0,t=1); theme(r=0,t=2); operators(r=0,t=0)
+
+Coverage
+primary_mention_ids count: 23
+covered_primary_mention_ids count: 18
+uncovered_primary_mention_ids count: 5
+
+Strictly Uncovered Primary Mentions
+is (mention_id=m:s4:263-265:token, reason=missing_relation)
+
+Contained Uncovered Primary Mentions
+their (mention_id=m:s2:110-115:token, contained_in=[m:s2:110-123:chunk], reason=missing_relation)
+product (mention_id=m:s2:116-123:token, contained_in=[m:s2:110-123:chunk], reason=missing_relation)
+process (mention_id=m:s3:160-167:token, contained_in=[m:s3:156-167:chunk], reason=missing_relation)
+number theory (mention_id=m:s4:283-296:mwe, contained_in=[m:s4:280-296:chunk], reason=operator_scope_open)
+
+Unresolved
+unresolved_attachment / missing_relation
+  their reason=missing_relation
+  product reason=missing_relation
+  process reason=missing_relation
+  is reason=missing_relation
+unresolved_attachment / operator_scope_open
+  number theory reason=operator_scope_open
