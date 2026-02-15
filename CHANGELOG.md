@@ -3,10 +3,20 @@
 ## Unreleased
 
 ### Added
-- (none)
+- Phase 14 strict validation hardening for `coverage.unresolved[*]`:
+  - mention reference existence checks (`mention_ids[*]`)
+  - unresolved segment consistency checks for mention and evidence token references
+  - evidence token reference existence checks
+- Seed-scoped developer tooling ergonomics across `dev:*` scripts:
+  - `--seed <name>`
+  - `--artifacts-root <path>`
+- Coverage-audit diagnostics now include per-mention triage rows (`per_mention`) with unresolved context and host candidates.
+- Wiki-upstream diagnostics now support optional upstream correlation mode via `--upstream <path>`.
+- WTI wiring diagnostics now support optional runtime probe mode (`--runtime-probe`) with explicit endpoint checks.
 
 ### Changed
-- (none)
+- `npm run dev:reports` now forwards supported seed/artifacts options to all underlying report/diagnostics scripts.
+- README/DEV tooling docs/TODO were synchronized for Phase 14 completion scope.
 
 ## v0.1.9 - 2026-02-15
 

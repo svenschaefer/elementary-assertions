@@ -134,7 +134,7 @@ Validation scope distinction:
 Dev/strict tooling boundary:
 - Runtime guarantees are defined by the public API + runtime validation contract.
 - Non-public `npm run dev:*` tooling is for maintainer triage and quality investigation.
-- Upstream-context diagnostics expansion is planned in `TODO.md`; current dev tooling primarily inspects committed EA artifact references.
+- Dev tooling supports both artifact-reference diagnostics and optional upstream-context correlation/runtime probes for maintainers.
 
 Rendering (view-only, multiple layouts):
 ```js

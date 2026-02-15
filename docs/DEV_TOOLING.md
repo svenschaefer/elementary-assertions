@@ -30,6 +30,25 @@ They read from committed artifact references under `test/artifacts/*/result-refe
 - a single file via `--in <path>`, or
 - all artifact golden YAML files under `test/artifacts/` (default).
 
+## Common script options
+
+Most `dev:*` scripts support:
+- `--seed <name>` to run on one artifact seed only
+- `--artifacts-root <path>` to override the default `test/artifacts` root
+
+`npm run dev:check` additionally supports:
+- `--in <path>` to validate one explicit document instead of artifact references
+
+`npm run dev:diagnose:wiki-upstream` additionally supports:
+- `--upstream <path>` (JSON/YAML) to correlate uncovered mentions between EA output and accepted upstream dependency endpoints
+
+`npm run dev:diagnose:wti-wiring` additionally supports:
+- `--runtime-probe` to enforce runtime wiring checks
+- `--wti-endpoint <url>` (required in runtime probe mode)
+- `--wti-timeout-ms <ms>` (optional override for runtime probe health timeout)
+
+Runtime probe mode intentionally fails on wiring-contract violations (for example missing endpoint or no positive pass-through signals).
+
 ## Contract boundary
 
 - Public/stable interfaces remain:
