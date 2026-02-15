@@ -942,3 +942,57 @@ Exit criteria:
   - `test/integration/dev-report-scripts.test.js`
 - Verification at completion head:
   - `npm test` green (`150/150`)
+
+## Phase 16 - Diagnostics and Strict-Check Ergonomics (Planned)
+
+Objective: improve developer triage depth and strict-check failure ergonomics without changing public API/CLI contract or core assertion semantics.
+
+### 16.1 Upstream Wikipedia Field Inventory: Stable Examples
+
+- [x] Extend developer `dev:diagnose:wiki-upstream` output to emit per-field-path example metadata:
+  - [x] bounded `example` payload snippet per `upstream_wikipedia_field_inventory.object_families[*].field_paths[*].path`
+  - [x] stable `example_source_id` pointer (token/mention/predicate id)
+- [x] Enforce determinism rules for example selection:
+  - [x] stable source selection (first by normalized id order)
+  - [x] stable truncation policy for bounded snippets
+
+Exit criteria:
+- each reported field path includes deterministic `example` and deterministic `example_source_id`.
+
+### 16.2 Predicate-Level Upstream Wikipedia Coverage Summary
+
+- [x] Add explicit predicate coverage section in developer `dev:diagnose:wiki-upstream` report:
+  - [x] total predicates considered
+  - [x] predicates with any wikipedia signal
+  - [x] predicates missing wikipedia signal (count + top-N samples with ids/surfaces)
+- [x] Distinguish two causes in summary output:
+  - [x] predicate accepted but no wikipedia payload attached
+  - [x] predicate not eligible or not present in accepted relations
+
+Exit criteria:
+- report includes reproducible predicate totals and reproducible missing-predicate samples.
+
+### 16.3 Strict-Check Failure Context Enrichment
+
+- [x] Enrich `npm run dev:check` failure output with invariant-family context:
+  - [x] deterministic error-family grouping (for example unresolved coverage references, diagnostics ordering, suppressed-assertion coherence)
+  - [x] first concrete failing pointer per family (seed, segment_id, mention_id/assertion_id)
+  - [x] recommended follow-up diagnose command with `--seed` hint
+- [x] Keep failure output deterministic and bounded (no full-object dumps).
+
+Exit criteria:
+- strict-check failures print:
+  - invariant family/code
+  - one minimal reproducer pointer
+  - next diagnostic command to run.
+
+## Phase 16 Completion Snapshot (2026-02-15)
+
+- Implemented developer diagnostics/report hardening:
+  - stable upstream wikipedia field-path example snippets + source pointers
+  - predicate-level wikipedia coverage summary with cause buckets
+  - strict-check invariant-family failure context and follow-up command hints
+- Added integration coverage in:
+  - `test/integration/dev-report-scripts.test.js`
+- Verification at completion head:
+  - `node --test "test/integration/dev-report-scripts.test.js"` green (`12/12`)

@@ -4,6 +4,7 @@ const fs = require("node:fs");
 const os = require("node:os");
 const path = require("node:path");
 const { spawnSync } = require("node:child_process");
+const yaml = require("js-yaml");
 
 const repoRoot = path.resolve(__dirname, "..", "..");
 
@@ -62,6 +63,9 @@ test("dev-diagnose-wiki-upstream emits valid JSON report", () => {
   assertReportShape(raw, "dev-diagnose-wiki-upstream");
   const data = JSON.parse(raw);
   for (const seedRow of data.seeds) {
+    assert.equal(typeof seedRow.wikipedia_carrier_count, "number");
+    assert.equal(typeof seedRow.positive_wikipedia_signal_count, "number");
+    assert.equal(typeof seedRow.diagnostics_token_wikipedia_signal_count, "number");
     assert.equal(typeof seedRow.correlation, "object");
     assert.equal(seedRow.correlation.enabled, false);
   }
@@ -162,6 +166,18 @@ test("dev-diagnose-wiki-upstream supports --upstream correlation mode", () => {
             status: "accepted",
             head: { id: "nonexistent-token-a" },
             dep: { id: "nonexistent-token-b" },
+            sources: [
+              {
+                id: "src-1",
+                name: "wikipedia-title-index",
+                evidence: {
+                  wikipedia_title_index: {
+                    wiki_any_signal: true,
+                    wiki_exact_match: true,
+                  },
+                },
+              },
+            ],
           },
         ],
       },
@@ -186,8 +202,18 @@ test("dev-diagnose-wiki-upstream supports --upstream correlation mode", () => {
     assert.equal(data.seeds[0].correlation.enabled, true);
     assert.equal(typeof data.seeds[0].correlation.uncovered_missing_upstream_acceptance_count, "number");
     assert.equal(typeof data.seeds[0].correlation.uncovered_present_upstream_unprojected_count, "number");
-    assert.equal(typeof data.seeds[0].correlation.upstream_wiki_field_inventory, "object");
-    assert.equal(Array.isArray(data.seeds[0].correlation.upstream_wiki_field_inventory.object_families), true);
+    assert.equal(typeof data.seeds[0].correlation.upstream_wikipedia_field_inventory, "object");
+    assert.equal(Array.isArray(data.seeds[0].correlation.upstream_wikipedia_field_inventory.object_families), true);
+    const families = data.seeds[0].correlation.upstream_wikipedia_field_inventory.object_families;
+    assert.ok(families.length > 0);
+    const fieldPath = families.flatMap((family) => family.field_paths || [])[0];
+    assert.equal(typeof fieldPath.example, "string");
+    assert.equal(fieldPath.example.length > 0, true);
+    assert.ok(fieldPath.example_source_id === null || typeof fieldPath.example_source_id === "string");
+    assert.equal(typeof data.seeds[0].correlation.predicate_wikipedia_coverage_summary, "object");
+    assert.equal(typeof data.seeds[0].correlation.predicate_wikipedia_coverage_summary.total_predicates_considered, "number");
+    assert.equal(typeof data.seeds[0].correlation.predicate_wikipedia_coverage_summary.predicates_with_wikipedia_signal, "number");
+    assert.equal(typeof data.seeds[0].correlation.predicate_wikipedia_coverage_summary.predicates_missing_wikipedia_signal, "number");
     assert.equal(typeof data.seeds[0].correlation.missing_field_samples, "object");
     assert.equal(typeof data.seeds[0].correlation.missing_field_samples.missing_upstream_acceptance, "object");
     assert.equal(typeof data.seeds[0].correlation.missing_field_samples.present_upstream_dropped_downstream, "object");
@@ -204,4 +230,39 @@ test("dev-diagnose-wti-wiring runtime probe requires explicit endpoint", () => {
   });
   assert.notEqual(result.status, 0);
   assert.match(String(result.stderr || ""), /runtime probe requires --wti-endpoint/i);
+});
+
+test("dev:check emits invariant-family failure context on strict validation error", () => {
+  const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), "ea-dev-check-"));
+  const badPath = path.join(tmpDir, "bad.yaml");
+  const goodPath = path.join(repoRoot, "test", "artifacts", "saas", "result-reference", "seed.elementary-assertions.yaml");
+  const goodDoc = yaml.load(fs.readFileSync(goodPath, "utf8"));
+  const mutated = JSON.parse(JSON.stringify(goodDoc));
+  if (!Array.isArray(mutated.coverage.unresolved) || mutated.coverage.unresolved.length < 1) {
+    throw new Error("fixture precondition failed: expected unresolved coverage items");
+  }
+  mutated.coverage.unresolved[0].mention_ids = ["m:z", "m:a"];
+  fs.writeFileSync(badPath, yaml.dump(mutated, { lineWidth: -1 }), "utf8");
+
+  try {
+    const fullPath = path.join(repoRoot, "scripts", "dev-check.js");
+    const result = spawnSync(process.execPath, [fullPath, "--in", badPath], {
+      cwd: repoRoot,
+      encoding: "utf8",
+    });
+    assert.notEqual(result.status, 0);
+    const payload = JSON.parse(String(result.stdout || "{}"));
+    assert.equal(payload.mode, "strict");
+    assert.equal(typeof payload.failed_count, "number");
+    assert.ok(Array.isArray(payload.failing_families));
+    assert.ok(payload.failing_families.length > 0);
+    const first = payload.failing_families[0];
+    assert.equal(typeof first.invariant_family, "string");
+    assert.equal(typeof first.error_code, "string");
+    assert.equal(typeof first.reproducer, "object");
+    assert.equal(typeof first.recommended_next_command, "string");
+    assert.match(first.recommended_next_command, /npm run dev:diagnose:coverage-audit|npm run dev:check/i);
+  } finally {
+    fs.rmSync(tmpDir, { recursive: true, force: true });
+  }
 });

@@ -22,7 +22,7 @@ They read from committed artifact references under `test/artifacts/*/result-refe
 - metrics
 - hotspots
 - maturity
-- wiki-upstream diagnostics
+- wikipedia-upstream diagnostics (`dev:diagnose:wiki-upstream`)
 - WTI wiring diagnostics
 - coverage-audit diagnostics
 
@@ -42,10 +42,33 @@ Most `dev:*` scripts support:
 `npm run dev:diagnose:wiki-upstream` additionally supports:
 - `--upstream <path>` (JSON/YAML) to correlate uncovered mentions between EA output and accepted upstream dependency endpoints
 
-Wiki-upstream diagnostics report depth:
-- upstream wiki field-path inventory by object family
+Wikipedia-upstream diagnostics report depth:
+- upstream wikipedia field-path inventory by object family
 - categorized missing-field samples (`missing_upstream_acceptance` vs `present_upstream_dropped_downstream`)
 - stratified representative samples by role class and mention kind
+
+Maintainer triage scope:
+- upstream diagnostics include bounded field-inventory examples and predicate-level coverage summaries
+- `dev:check` is a maintainer triage tool and should emit invariant-family failure context when strict checks fail
+
+`npm run dev:diagnose:wiki-upstream` report contracts used for maintainer triage:
+- `correlation.upstream_wikipedia_field_inventory.object_families[*].field_paths[*]` includes:
+  - `path`
+  - `count`
+  - bounded `example`
+  - deterministic `example_source_id`
+- `correlation.predicate_wikipedia_coverage_summary` includes:
+  - total predicates considered
+  - predicates with wikipedia signal
+  - predicates missing wikipedia signal
+  - cause split:
+    - accepted predicate but missing wikipedia payload
+    - predicate not present/eligible in accepted relations
+
+`npm run dev:check` failure output contract for strict mode:
+- emits deterministic `invariant_family` grouping per failing code family
+- includes minimal reproducer pointer (`seed_id`, `segment_id`, `mention_id`/`assertion_id`)
+- includes deterministic `recommended_next_command` for follow-up diagnostics
 
 `npm run dev:diagnose:wti-wiring` additionally supports:
 - `--runtime-probe` to enforce runtime wiring checks

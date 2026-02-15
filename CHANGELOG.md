@@ -8,6 +8,17 @@
 ### Changed
 - (none)
 
+## v0.1.12 - 2026-02-15
+
+### Added
+- Phase 16 diagnostics and strict-check ergonomics hardening (non-public tooling):
+  - `dev:diagnose:wiki-upstream` now includes deterministic upstream wikipedia field examples per path (`example` + `example_source_id`)
+  - `dev:diagnose:wiki-upstream` now includes predicate-level wikipedia coverage summary with cause buckets
+  - `dev:check` now emits strict failure context grouped by invariant family with minimal reproducer pointer and recommended follow-up command
+
+### Changed
+- `docs/DEV_TOOLING.md`, `README.md`, and `TODO.md` synchronized for Phase 16 completion scope.
+
 ## v0.1.11 - 2026-02-15
 
 ### Added

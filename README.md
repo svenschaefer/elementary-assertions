@@ -135,7 +135,8 @@ Dev/strict tooling boundary:
 - Runtime guarantees are defined by the public API + runtime validation contract.
 - Non-public `npm run dev:*` tooling is for maintainer triage and quality investigation.
 - Dev tooling supports both artifact-reference diagnostics and optional upstream-context correlation/runtime probes for maintainers.
-- Dev diagnostics include explicit enrichment views (for example upstream wiki field-path inventories and wiring attribution summaries) and may evolve between releases.
+- Dev diagnostics include explicit enrichment views (for example upstream wikipedia field-path inventories and wiring attribution summaries) and may evolve between releases.
+- Dev strict-check tooling (`npm run dev:check`) is triage-oriented: on failure it emits invariant-family context, a minimal reproducer pointer, and a suggested next diagnostics command.
 
 Rendering (view-only, multiple layouts):
 ```js

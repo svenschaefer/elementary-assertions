@@ -81,6 +81,27 @@ function canonicalizeFieldPath(pathText) {
   return String(pathText || "").replace(/\[\d+\]/g, "[]");
 }
 
+function stableJsonSnippet(value, maxLen = 180) {
+  function stable(value0) {
+    if (Array.isArray(value0)) return value0.map((item) => stable(item));
+    if (!value0 || typeof value0 !== "object") return value0;
+    const out = {};
+    for (const key of Object.keys(value0).sort((a, b) => a.localeCompare(b))) {
+      out[key] = stable(value0[key]);
+    }
+    return out;
+  }
+  let raw;
+  try {
+    raw = JSON.stringify(stable(value));
+  } catch (_) {
+    raw = String(value);
+  }
+  if (typeof raw !== "string") raw = String(raw);
+  if (raw.length <= maxLen) return raw;
+  return `${raw.slice(0, Math.max(0, maxLen - 3))}...`;
+}
+
 function isWikiFieldName(name) {
   return /wiki|wikipedia|title_index/i.test(String(name || ""));
 }
@@ -98,42 +119,65 @@ function collectUpstreamWikiFieldInventory(upstreamDoc) {
 
   const familyFieldPathCounts = new Map();
   const familyCarrierObjects = new Map();
+  const fieldPathExampleByFamily = new Map();
 
-  function addFieldPath(family, fieldPath, objectPath) {
+  function addFieldPath(family, fieldPath, objectPath, value, sourceId) {
     if (!familyFieldPathCounts.has(family)) familyFieldPathCounts.set(family, new Map());
     const fieldMap = familyFieldPathCounts.get(family);
     fieldMap.set(fieldPath, (fieldMap.get(fieldPath) || 0) + 1);
 
     if (!familyCarrierObjects.has(family)) familyCarrierObjects.set(family, new Set());
     familyCarrierObjects.get(family).add(objectPath);
+
+    if (!fieldPathExampleByFamily.has(family)) fieldPathExampleByFamily.set(family, new Map());
+    const sampleMap = fieldPathExampleByFamily.get(family);
+    const existing = sampleMap.get(fieldPath);
+    const normalizedSourceId = String(sourceId || "");
+    if (!existing || normalizedSourceId.localeCompare(existing.example_source_id) < 0) {
+      sampleMap.set(fieldPath, {
+        example: stableJsonSnippet(value, 180),
+        example_source_id: normalizedSourceId || null,
+      });
+    }
   }
 
-  function walk(node, pathParts) {
+  function walk(node, pathParts, inheritedSourceId) {
     if (!node || typeof node !== "object") return;
     const family = familyFromPathParts(pathParts);
+    const nodeSourceId = (node && typeof node.id === "string" && node.id.length > 0) ? node.id : inheritedSourceId;
     if (Array.isArray(node)) {
       for (let i = 0; i < node.length; i += 1) {
-        walk(node[i], pathParts.concat(`${pathParts.length ? "" : "root"}[${i}]`));
+        walk(node[i], pathParts.concat(`${pathParts.length ? "" : "root"}[${i}]`), nodeSourceId);
       }
       return;
     }
 
     const objectPath = canonicalizeFieldPath(pathParts.join("."));
-    for (const [key, value] of Object.entries(node)) {
+    const keys = Object.keys(node).sort((a, b) => a.localeCompare(b));
+    for (const key of keys) {
+      const value = node[key];
       const fieldPath = canonicalizeFieldPath(pathParts.concat(key).join("."));
-      if (isWikiFieldName(key)) addFieldPath(family, fieldPath, objectPath);
-      walk(value, pathParts.concat(key));
+      if (isWikiFieldName(key)) addFieldPath(family, fieldPath, objectPath, value, nodeSourceId);
+      walk(value, pathParts.concat(key), nodeSourceId);
     }
   }
 
-  walk(upstreamDoc, []);
+  walk(upstreamDoc, [], "");
 
   const objectFamilies = Array.from(familyFieldPathCounts.keys())
     .sort((a, b) => a.localeCompare(b))
     .map((family) => {
       const fieldPaths = Array.from(familyFieldPathCounts.get(family).entries())
         .sort((a, b) => a[0].localeCompare(b[0]))
-        .map(([pathText, count]) => ({ path: pathText, count }));
+        .map(([pathText, count]) => {
+          const sample = ((fieldPathExampleByFamily.get(family) || new Map()).get(pathText)) || { example: "", example_source_id: null };
+          return {
+            path: pathText,
+            count,
+            example: String(sample.example || ""),
+            example_source_id: sample.example_source_id,
+          };
+        });
       return {
         family,
         carrier_object_count: (familyCarrierObjects.get(family) || new Set()).size,
@@ -144,6 +188,66 @@ function collectUpstreamWikiFieldInventory(upstreamDoc) {
   return {
     enabled: true,
     object_families: objectFamilies,
+  };
+}
+
+function buildPredicateWikipediaCoverage(doc, upstreamDoc) {
+  if (!upstreamDoc || typeof upstreamDoc !== "object") {
+    return {
+      enabled: false,
+      total_predicates_considered: 0,
+      predicates_with_wikipedia_signal: 0,
+      predicates_missing_wikipedia_signal: 0,
+      missing_due_to_no_wikipedia_payload_count: 0,
+      missing_due_to_not_eligible_or_not_present_count: 0,
+      sample_missing_due_to_no_wikipedia_payload: [],
+      sample_missing_due_to_not_eligible_or_not_present: [],
+    };
+  }
+
+  const endpointTokenIds = acceptedUpstreamEndpointTokenIds(upstreamDoc);
+  const downstreamPositiveSignalTokenIds = positiveWikiSignalTokenIds(doc);
+  const assertions = Array.isArray(doc && doc.assertions) ? doc.assertions : [];
+  const missingNoPayload = [];
+  const missingNotEligible = [];
+  let withSignal = 0;
+  for (const assertion of assertions) {
+    const assertionId = String((assertion && assertion.id) || "");
+    const predicate = ((assertion || {}).predicate) || {};
+    const headTokenId = String(predicate.head_token_id || "");
+    const surface = String(predicate.surface || "");
+    if (!assertionId || !headTokenId) continue;
+    const hasSignal = downstreamPositiveSignalTokenIds.has(headTokenId);
+    if (hasSignal) {
+      withSignal += 1;
+      continue;
+    }
+    const row = {
+      assertion_id: assertionId,
+      segment_id: String((assertion && assertion.segment_id) || ""),
+      predicate_head_token_id: headTokenId,
+      surface,
+    };
+    if (endpointTokenIds.has(headTokenId)) missingNoPayload.push(row);
+    else missingNotEligible.push(row);
+  }
+
+  missingNoPayload.sort((a, b) => a.assertion_id.localeCompare(b.assertion_id));
+  missingNotEligible.sort((a, b) => a.assertion_id.localeCompare(b.assertion_id));
+  const totalPredicates = assertions.filter((assertion) => {
+    const predicate = ((assertion || {}).predicate) || {};
+    return typeof assertion.id === "string" && assertion.id.length > 0 && typeof predicate.head_token_id === "string" && predicate.head_token_id.length > 0;
+  }).length;
+
+  return {
+    enabled: true,
+    total_predicates_considered: totalPredicates,
+    predicates_with_wikipedia_signal: withSignal,
+    predicates_missing_wikipedia_signal: missingNoPayload.length + missingNotEligible.length,
+    missing_due_to_no_wikipedia_payload_count: missingNoPayload.length,
+    missing_due_to_not_eligible_or_not_present_count: missingNotEligible.length,
+    sample_missing_due_to_no_wikipedia_payload: missingNoPayload.slice(0, 10),
+    sample_missing_due_to_not_eligible_or_not_present: missingNotEligible.slice(0, 10),
   };
 }
 
@@ -210,7 +314,8 @@ function correlationForSeed(doc, upstreamDoc) {
       uncovered_present_upstream_unprojected_count: 0,
       sample_missing_upstream_acceptance_mention_ids: [],
       sample_present_upstream_unprojected_mention_ids: [],
-      upstream_wiki_field_inventory: { enabled: false, object_families: [] },
+      upstream_wikipedia_field_inventory: { enabled: false, object_families: [] },
+      predicate_wikipedia_coverage_summary: buildPredicateWikipediaCoverage(doc, upstreamDoc),
       missing_field_samples: {
         missing_upstream_acceptance: { by_role_class: {}, by_mention_kind: {} },
         present_upstream_dropped_downstream: { by_role_class: {}, by_mention_kind: {} },
@@ -291,7 +396,8 @@ function correlationForSeed(doc, upstreamDoc) {
     uncovered_present_upstream_unprojected_count: uncoveredPresentUpstreamUnprojected.length,
     sample_missing_upstream_acceptance_mention_ids: uncoveredMissingUpstreamAcceptance.slice(0, 10),
     sample_present_upstream_unprojected_mention_ids: uncoveredPresentUpstreamUnprojected.slice(0, 10),
-    upstream_wiki_field_inventory: collectUpstreamWikiFieldInventory(upstreamDoc),
+    upstream_wikipedia_field_inventory: collectUpstreamWikiFieldInventory(upstreamDoc),
+    predicate_wikipedia_coverage_summary: buildPredicateWikipediaCoverage(doc, upstreamDoc),
     missing_field_samples: {
       missing_upstream_acceptance: stratifySamples(missingUpstreamSamples),
       present_upstream_dropped_downstream: stratifySamples(droppedDownstreamSamples),
@@ -316,9 +422,9 @@ function buildSeedRow(doc, seedId, upstreamDoc) {
   return {
     seed_id: seedId,
     token_count: tokens.length,
-    wiki_carrier_count: carriers.length,
-    positive_wiki_signal_count: positiveCount,
-    diagnostics_token_wiki_signal_count: diagnosticsCount,
+    wikipedia_carrier_count: carriers.length,
+    positive_wikipedia_signal_count: positiveCount,
+    diagnostics_token_wikipedia_signal_count: diagnosticsCount,
     diagnostics_alignment: diagnosticsCount === positiveCount,
     correlation: correlationForSeed(doc, upstreamDoc),
   };
