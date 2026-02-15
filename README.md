@@ -208,4 +208,4 @@ For non-public developer quality tooling (`npm run dev:*`), see `docs/DEV_TOOLIN
 
 ## License
 
-See LICENSE (if present).
+MIT. See `LICENSE`.

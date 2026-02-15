@@ -1,6 +1,7 @@
 {
   "name": "elementary-assertions",
   "version": "0.1.12",
+  "license": "MIT",
   "private": true,
   "type": "commonjs",
   "main": "./src/index.js",
@@ -19,7 +20,8 @@
     "src/",
     "docs/",
     "README.md",
-    "CHANGELOG.md"
+    "CHANGELOG.md",
+    "LICENSE"
   ],
   "scripts": {
     "test": "node --test \"test/**/*.test.js\"",
