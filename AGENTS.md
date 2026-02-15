@@ -72,7 +72,7 @@ Tooling MUST NOT:
 Prototype lineage remains relevant for historical review, but a local `prototype/` workspace link is not required in this repository.
 
 - Product implementation, tests, and release flow MUST work without any local `prototype/` directory.
-- Prototype comparison/review is maintained in the Secos prototype repository/workspace.
+- Prototype comparison/review is maintained in a separate prototype repository/workspace.
 
 ## Test gates (mandatory)
 

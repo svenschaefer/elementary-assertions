@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://secos.rocks/schemas/seed.elementary-assertions.schema.json",
-  "title": "Secos Seed - Elementary Assertions",
+  "$id": "https://elementary-assertions/schemas/seed.elementary-assertions.schema.json",
+  "title": "Elementary Assertions Seed",
   "type": "object",
   "additionalProperties": false,
   "required": [
