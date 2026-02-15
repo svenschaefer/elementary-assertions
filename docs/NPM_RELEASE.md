@@ -181,6 +181,17 @@ npm ls elementary-assertions
   - one Git-install smoke root (`vX.Y.Z-git-smoke-*`)
   - one npmjs-install smoke root (`vX.Y.Z-npmjs-smoke-*`)
 
+## 10) GitHub Release creation (required)
+
+After tag push and verification, create a GitHub release for the same tag:
+
+```powershell
+gh release create vX.Y.Z --title "vX.Y.Z" --notes-file docs/RELEASE_NOTES_TEMPLATE.md
+gh release view vX.Y.Z --json url,tagName,publishedAt
+```
+
+Release evidence in `CHANGELOG.md` / `TODO.md` MUST include the GitHub release URL.
+
 ## Failure rule
 
 If anything is wrong after tagging, do not move or delete the tag.

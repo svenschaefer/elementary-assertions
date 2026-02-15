@@ -29,6 +29,19 @@
 - `README.md`, `CONTRIBUTING.md`, `docs/NPM_RELEASE.md`, and `docs/REPO_WORKFLOWS.md` now align on Node.js `>=24`.
 - `README.md` documentation index now includes guarantees, baseline-test, and status snapshot docs.
 
+### Release Evidence
+- Release commit: `ea6ba5617d7d0a96c5371ba498192ebb26bce835`
+- Tag: `v1.0.2`
+- npmjs verification:
+  - `npm view elementary-assertions version` -> `1.0.2`
+  - `npm view elementary-assertions dist-tags.latest` -> `1.0.2`
+  - npm publish timestamp (registry UTC): `2026-02-15T17:06:28.697Z`
+- Smoke roots:
+  - `C:\code\elementary-assertions-smoke-test\v1.0.2-git-smoke-20260215-180432`
+  - `C:\code\elementary-assertions-smoke-test\v1.0.2-npmjs-smoke-20260215-180718`
+- GitHub release:
+  - `https://github.com/svenschaefer/elementary-assertions/releases/tag/v1.0.2`
+
 ## v1.0.1 - 2026-02-15
 
 ### Added

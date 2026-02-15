@@ -25,6 +25,7 @@ test("release guide references shared smoke script", () => {
   assert.match(releaseGuide, /vX\.Y\.Z-git-smoke-/);
   assert.match(releaseGuide, /vX\.Y\.Z-npmjs-smoke-/);
   assert.match(releaseGuide, /\.github[\\/]+workflows[\\/]+release\.yml/);
+  assert.match(releaseGuide, /gh release create vX\.Y\.Z/);
 });
 
 test("release guide uses explicit staging paths for release commits", () => {

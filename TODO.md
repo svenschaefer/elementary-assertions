@@ -10,7 +10,28 @@ Note:
 - Prototype mapping in this document is historical provenance for review/diff context.
 - The product repository no longer requires a local `prototype/` workspace link.
 
-Status: Completed through Phase 17 publication hardening; npmjs release published as `v1.0.1` (as of 2026-02-15).
+Status: Completed through Phase 17 publication hardening; npmjs release published as `v1.0.2` (as of 2026-02-15).
+
+## Release Execution Snapshot (v1.0.2, 2026-02-15)
+
+- Released version: `v1.0.2`
+- Release intent: stabilize post-1.0 repository baseline hardening and publish workflow completion.
+- Release commit: `ea6ba5617d7d0a96c5371ba498192ebb26bce835`
+- Annotated tag: `v1.0.2` (pushed)
+- npmjs verification:
+  - `npm view elementary-assertions version` -> `1.0.2`
+  - `npm view elementary-assertions dist-tags.latest` -> `1.0.2`
+  - npm publish timestamp (registry UTC): `2026-02-15T17:06:28.697Z`
+- Validation evidence at release head:
+  - `npm run release:check` green
+- Smoke workspaces (clean installs, version + channel naming):
+  - `C:\code\elementary-assertions-smoke-test\v1.0.2-git-smoke-20260215-180432`
+  - `C:\code\elementary-assertions-smoke-test\v1.0.2-npmjs-smoke-20260215-180718`
+- Rendered smoke output roots:
+  - `C:\code\elementary-assertions-smoke-test\v1.0.2-git-smoke-20260215-180432\rendered`
+  - `C:\code\elementary-assertions-smoke-test\v1.0.2-npmjs-smoke-20260215-180718\rendered`
+- GitHub release:
+  - `https://github.com/svenschaefer/elementary-assertions/releases/tag/v1.0.2`
 
 ## Release Execution Snapshot (v1.0.1, 2026-02-15)
 
