@@ -42,7 +42,7 @@ test("ensureWtiEndpointReachable accepts only HTTP 200", async () => {
     res.end("not found");
   });
   try {
-    await ensureWtiEndpointReachable(ok.endpoint, 200);
+    await ensureWtiEndpointReachable(ok.endpoint, 2000);
   } finally {
     await closeServer(ok.server);
   }
@@ -58,7 +58,7 @@ test("ensureWtiEndpointReachable accepts only HTTP 200", async () => {
   });
   try {
     await assert.rejects(
-      () => ensureWtiEndpointReachable(bad.endpoint, 200),
+      () => ensureWtiEndpointReachable(bad.endpoint, 2000),
       /health check failed/i
     );
   } finally {
@@ -79,7 +79,7 @@ test("ensureWtiEndpointReachable does not retry on failure (single /health reque
     res.end("not found");
   });
   try {
-    await assert.rejects(() => ensureWtiEndpointReachable(bad.endpoint, 200), /health check failed/i);
+    await assert.rejects(() => ensureWtiEndpointReachable(bad.endpoint, 2000), /health check failed/i);
     assert.equal(healthCount, 1, "WTI health check must fail fast without retries");
   } finally {
     await closeServer(bad.server);

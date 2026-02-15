@@ -807,12 +807,12 @@ Objective: close remaining prototype-aligned validation/diagnostics depth gaps w
 
 ### 14.1 Coverage/Unresolved Strict Validation Hardening
 
-- [ ] Extend strict validation for `coverage.unresolved[*]` to enforce:
-  - [ ] every `mention_ids[*]` reference resolves to an existing mention
-  - [ ] `segment_id` matches the segment of each referenced mention
-  - [ ] `evidence.token_ids[*]` resolve to known tokens and stay segment-consistent
-  - [ ] determinism ordering for `mention_ids`, `evidence.token_ids`, and `evidence.upstream_relation_ids`
-- [ ] Add regression tests for malformed unresolved references and segment mismatches.
+- [x] Extend strict validation for `coverage.unresolved[*]` to enforce:
+  - [x] every `mention_ids[*]` reference resolves to an existing mention
+  - [x] `segment_id` matches the segment of each referenced mention
+  - [x] `evidence.token_ids[*]` resolve to known tokens and stay segment-consistent
+  - [x] determinism ordering for `mention_ids`, `evidence.token_ids`, and `evidence.upstream_relation_ids`
+- [x] Add regression tests for malformed unresolved references and segment mismatches.
 
 Exit criteria:
 - strict validation rejects unresolved structures previously only caught by prototype checker depth.

@@ -348,3 +348,84 @@ test("strict diagnostics enforces coverage.unresolved evidence upstream_relation
     (err) => err instanceof ValidationError && err.code === "EA_VALIDATE_STRICT_UNRESOLVED_UPSTREAM_RELATION_IDS"
   );
 });
+
+test("strict diagnostics enforces coverage.unresolved mention_ids reference validity", () => {
+  const doc = buildStrictValidDoc();
+  doc.coverage = {
+    primary_mention_ids: ["m1", "m2", "m3"],
+    covered_primary_mention_ids: ["m1", "m2"],
+    uncovered_primary_mention_ids: ["m3"],
+    unresolved: [
+      {
+        kind: "unresolved_attachment",
+        segment_id: "s1",
+        mention_id: "m3",
+        mention_ids: ["m3", "m404"],
+        reason: "missing_relation",
+        evidence: { token_ids: ["t3"], upstream_relation_ids: [] },
+      },
+    ],
+  };
+  assert.throws(
+    () => validateElementaryAssertions(doc, { strict: true }),
+    (err) => err instanceof ValidationError && err.code === "EA_VALIDATE_STRICT_UNRESOLVED_MENTION_REFERENCE"
+  );
+});
+
+test("strict diagnostics enforces coverage.unresolved segment consistency for mentions and evidence tokens", () => {
+  const doc = buildStrictValidDoc();
+  doc.segments.push({ id: "s2", span: { start: 20, end: 25 }, token_range: { start: 3, end: 4 } });
+  doc.tokens.push({ id: "t4", i: 3, segment_id: "s2", span: { start: 20, end: 25 }, surface: "Beta", pos: { tag: "NNP", coarse: "NOUN" } });
+  doc.mentions.push({
+    id: "m4",
+    kind: "token",
+    priority: 0,
+    token_ids: ["t4"],
+    head_token_id: "t4",
+    span: { start: 20, end: 25 },
+    segment_id: "s2",
+    is_primary: false,
+  });
+  doc.coverage = {
+    primary_mention_ids: ["m1", "m2", "m3"],
+    covered_primary_mention_ids: ["m1", "m2"],
+    uncovered_primary_mention_ids: ["m3"],
+    unresolved: [
+      {
+        kind: "unresolved_attachment",
+        segment_id: "s1",
+        mention_id: "m3",
+        mention_ids: ["m3", "m4"],
+        reason: "missing_relation",
+        evidence: { token_ids: ["t3", "t4"], upstream_relation_ids: [] },
+      },
+    ],
+  };
+  assert.throws(
+    () => validateElementaryAssertions(doc, { strict: true }),
+    (err) => err instanceof ValidationError && err.code === "EA_VALIDATE_STRICT_UNRESOLVED_SEGMENT_MISMATCH"
+  );
+});
+
+test("strict diagnostics enforces coverage.unresolved evidence token reference validity", () => {
+  const doc = buildStrictValidDoc();
+  doc.coverage = {
+    primary_mention_ids: ["m1", "m2", "m3"],
+    covered_primary_mention_ids: ["m1", "m2"],
+    uncovered_primary_mention_ids: ["m3"],
+    unresolved: [
+      {
+        kind: "unresolved_attachment",
+        segment_id: "s1",
+        mention_id: "m3",
+        mention_ids: ["m3"],
+        reason: "missing_relation",
+        evidence: { token_ids: ["t3", "t404"], upstream_relation_ids: [] },
+      },
+    ],
+  };
+  assert.throws(
+    () => validateElementaryAssertions(doc, { strict: true }),
+    (err) => err instanceof ValidationError && err.code === "EA_VALIDATE_STRICT_UNRESOLVED_EVIDENCE_TOKEN_REFERENCE"
+  );
+});

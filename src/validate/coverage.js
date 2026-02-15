@@ -32,6 +32,7 @@ function validateCoverage(doc, mentionById, options = {}) {
   const covered = Array.isArray(coverage.covered_primary_mention_ids) ? coverage.covered_primary_mention_ids : [];
   const uncovered = Array.isArray(coverage.uncovered_primary_mention_ids) ? coverage.uncovered_primary_mention_ids : [];
   const unresolved = Array.isArray(coverage.unresolved) ? coverage.unresolved : [];
+  const tokenById = new Map((doc.tokens || []).map((token) => [token && token.id, token]));
 
   ensureSortedStrings(primary, "coverage.primary_mention_ids must be sorted for determinism.");
   ensureSortedStrings(covered, "coverage.covered_primary_mention_ids must be sorted for determinism.");
@@ -81,6 +82,14 @@ function validateCoverage(doc, mentionById, options = {}) {
   if (options && options.strict) {
     for (const item of unresolved) {
       const mentionId = String((item && item.mention_id) || "");
+      const unresolvedSegmentId = String((item && item.segment_id) || "");
+      const unresolvedMention = mentionById.get(mentionId);
+      if (unresolvedMention && unresolvedMention.segment_id !== unresolvedSegmentId) {
+        failValidation(
+          "EA_VALIDATE_STRICT_UNRESOLVED_SEGMENT_MISMATCH",
+          "Strict validation error: coverage.unresolved[*].segment_id must match referenced mention/token segments."
+        );
+      }
       const mentionIds = Array.isArray(item && item.mention_ids) ? item.mention_ids : null;
       if (!Array.isArray(mentionIds)) {
         failValidation(
@@ -109,6 +118,19 @@ function validateCoverage(doc, mentionById, options = {}) {
             "Strict validation error: coverage.unresolved[*].mention_ids must be unique."
           );
         }
+        const mention = mentionById.get(ref);
+        if (!mention) {
+          failValidation(
+            "EA_VALIDATE_STRICT_UNRESOLVED_MENTION_REFERENCE",
+            "Strict validation error: coverage.unresolved[*].mention_ids must reference existing mentions."
+          );
+        }
+        if (mention.segment_id !== unresolvedSegmentId) {
+          failValidation(
+            "EA_VALIDATE_STRICT_UNRESOLVED_SEGMENT_MISMATCH",
+            "Strict validation error: coverage.unresolved[*].segment_id must match referenced mention/token segments."
+          );
+        }
         mentionIdSet.add(ref);
         prevMentionRef = ref;
       }
@@ -127,6 +149,19 @@ function validateCoverage(doc, mentionById, options = {}) {
           failValidation(
             "EA_VALIDATE_STRICT_UNRESOLVED_EVIDENCE_TOKEN_IDS",
             "Strict validation error: coverage.unresolved[*].evidence.token_ids must contain non-empty string token ids."
+          );
+        }
+        const token = tokenById.get(tokenId);
+        if (!token) {
+          failValidation(
+            "EA_VALIDATE_STRICT_UNRESOLVED_EVIDENCE_TOKEN_REFERENCE",
+            "Strict validation error: coverage.unresolved[*].evidence.token_ids must reference existing tokens."
+          );
+        }
+        if (token.segment_id !== unresolvedSegmentId) {
+          failValidation(
+            "EA_VALIDATE_STRICT_UNRESOLVED_SEGMENT_MISMATCH",
+            "Strict validation error: coverage.unresolved[*].segment_id must match referenced mention/token segments."
           );
         }
         if (prevTokenId !== null && prevTokenId.localeCompare(tokenId) > 0) {
