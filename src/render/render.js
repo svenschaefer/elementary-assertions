@@ -73,6 +73,19 @@ function assertionSortKey(a, mentionById, tokenById) {
   ].join('|');
 }
 
+function compareSegmentIdsNatural(a, b) {
+  const left = String(a || "");
+  const right = String(b || "");
+  const leftMatch = /^([^\d]*)(\d+)$/.exec(left);
+  const rightMatch = /^([^\d]*)(\d+)$/.exec(right);
+  if (leftMatch && rightMatch && leftMatch[1] === rightMatch[1]) {
+    const leftNum = Number(leftMatch[2]);
+    const rightNum = Number(rightMatch[2]);
+    if (leftNum !== rightNum) return leftNum - rightNum;
+  }
+  return left.localeCompare(right);
+}
+
 const ACTOR_ROLES = new Set(['actor', 'subject', 'agent', 'nsubj', 'nsubjpass', 'csubj', 'csubjpass']);
 const ROLE_TO_DISPLAY_COLUMN = new Map([
   ['theme', 'theme'],
@@ -554,7 +567,14 @@ function renderAssertionsTable(rows, options, lines, getWikiEvidenceForSurface) 
   initialColumns.push({ key: 'ops', title: 'ops' });
   initialColumns.push({ key: 'evidence', title: 'evidence', always: true });
 
-  const tableRows = rows.map((row) => ({
+  const tableRows = rows
+    .slice()
+    .sort((a, b) => {
+      const segCmp = compareSegmentIdsNatural(a && a.assertion && a.assertion.segment_id, b && b.assertion && b.assertion.segment_id);
+      if (segCmp !== 0) return segCmp;
+      return Number((a && a.ordinal) || 0) - Number((b && b.ordinal) || 0);
+    })
+    .map((row) => ({
     assertion_id: row.assertion.id,
     segment_id: row.assertion.segment_id || '',
     predicate: (() => {
@@ -570,7 +590,7 @@ function renderAssertionsTable(rows, options, lines, getWikiEvidenceForSurface) 
     other: row.slotValues.other.map((o) => `${o.role}:${o.values.map((v) => renderSurfaceWithWiki(v.text, getWikiEvidenceForSurface('slot', v.mention_id))).join(', ')}`).join(' ; '),
     ops: row.opsText,
     evidence: row.evidenceFootnote,
-  }));
+    }));
 
   const columns = initialColumns.filter((col) => col.always || tableRows.some((r) => (r[col.key] || '') !== ''));
   const header = '| ' + columns.map((c) => c.title).join(' | ') + ' |';
