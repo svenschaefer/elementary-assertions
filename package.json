@@ -29,7 +29,11 @@
     "dev:check": "node scripts/dev-check.js",
     "dev:report:metrics": "node scripts/dev-report-metrics.js",
     "dev:report:hotspots": "node scripts/dev-report-fragment-hotspots.js",
-    "dev:report:maturity": "node scripts/dev-report-maturity.js"
+    "dev:report:maturity": "node scripts/dev-report-maturity.js",
+    "dev:diagnose:wiki-upstream": "node scripts/dev-diagnose-wiki-upstream.js",
+    "dev:diagnose:wti-wiring": "node scripts/dev-diagnose-wti-wiring.js",
+    "dev:diagnose:coverage-audit": "node scripts/dev-diagnose-coverage-audit.js",
+    "dev:reports": "node scripts/dev-reports.js"
   },
   "dependencies": {
     "ajv": "^8.17.1",

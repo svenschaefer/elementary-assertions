@@ -11,8 +11,20 @@ These scripts are intended for internal quality analysis and regression triage:
 - `npm run dev:report:metrics`
 - `npm run dev:report:hotspots`
 - `npm run dev:report:maturity`
+- `npm run dev:diagnose:wiki-upstream`
+- `npm run dev:diagnose:wti-wiring`
+- `npm run dev:diagnose:coverage-audit`
+- `npm run dev:reports`
 
 They read from committed artifact references under `test/artifacts/*/result-reference/` and emit JSON reports to stdout.
+
+`npm run dev:reports` is an aggregate maintainer command that executes:
+- metrics
+- hotspots
+- maturity
+- wiki-upstream diagnostics
+- WTI wiring diagnostics
+- coverage-audit diagnostics
 
 `npm run dev:check` runs strict validation (`validateElementaryAssertions(..., { strict: true })`) across:
 - a single file via `--in <path>`, or

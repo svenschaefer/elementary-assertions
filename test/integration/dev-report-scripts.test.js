@@ -40,3 +40,37 @@ test("dev-report-maturity emits valid JSON report", () => {
   const raw = runNodeScript("scripts/dev-report-maturity.js");
   assertReportShape(raw, "dev-report-maturity");
 });
+
+test("dev-diagnose-wiki-upstream emits valid JSON report", () => {
+  const raw = runNodeScript("scripts/dev-diagnose-wiki-upstream.js");
+  assertReportShape(raw, "dev-diagnose-wiki-upstream");
+});
+
+test("dev-diagnose-wti-wiring emits valid JSON report", () => {
+  const raw = runNodeScript("scripts/dev-diagnose-wti-wiring.js");
+  assertReportShape(raw, "dev-diagnose-wti-wiring");
+});
+
+test("dev-diagnose-coverage-audit emits valid JSON report", () => {
+  const raw = runNodeScript("scripts/dev-diagnose-coverage-audit.js");
+  assertReportShape(raw, "dev-diagnose-coverage-audit");
+});
+
+test("dev:reports aggregate emits valid JSON report map", () => {
+  const raw = runNodeScript("scripts/dev-reports.js");
+  let data;
+  assert.doesNotThrow(() => {
+    data = JSON.parse(raw);
+  }, "dev:reports must emit valid JSON");
+  assert.equal(typeof data.generated_at, "string", "dev:reports must include generated_at");
+  assert.equal(typeof data.reports, "object", "dev:reports must include reports object");
+  const keys = Object.keys(data.reports || {}).sort((a, b) => a.localeCompare(b));
+  assert.deepEqual(keys, [
+    "diagnose-coverage-audit",
+    "diagnose-wiki-upstream",
+    "diagnose-wti-wiring",
+    "report-fragment-hotspots",
+    "report-maturity",
+    "report-metrics",
+  ]);
+});

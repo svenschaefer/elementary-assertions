@@ -767,21 +767,21 @@ Objective: close remaining diagnostics-depth gaps against prototype rigor withou
 
 ### 13.3 Re-Expose Prototype Diagnostics as Dev-Only Tooling
 
-- [ ] Provide non-public developer equivalents for:
-  - [ ] wiki-upstream diagnostics
-  - [ ] WTI wiring diagnostics
-  - [ ] coverage audit diagnostics
-- [ ] Expose only via `npm run dev:*` and/or `tools/dev/*`.
-- [ ] Keep public CLI contract minimal; no new public diagnostic flags.
+- [x] Provide non-public developer equivalents for:
+  - [x] wiki-upstream diagnostics
+  - [x] WTI wiring diagnostics
+  - [x] coverage audit diagnostics
+- [x] Expose only via `npm run dev:*` and/or `tools/dev/*`.
+- [x] Keep public CLI contract minimal; no new public diagnostic flags.
 
 ### 13.4 Single Aggregated Dev Report Command
 
-- [ ] Add cross-platform `npm run dev:reports` that aggregates:
-  - [ ] metrics
-  - [ ] hotspots
-  - [ ] maturity
-  - [ ] coverage/diagnostics audits
-- [ ] Position this command as maintainer/CI diagnostics only (non-public contract).
+- [x] Add cross-platform `npm run dev:reports` that aggregates:
+  - [x] metrics
+  - [x] hotspots
+  - [x] maturity
+  - [x] coverage/diagnostics audits
+- [x] Position this command as maintainer/CI diagnostics only (non-public contract).
 
 Exit criteria:
 - strict/dev diagnostics invariants cover unresolved and suppressed list determinism gaps.
