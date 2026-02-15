@@ -67,13 +67,12 @@ Tooling MUST NOT:
 - mutate core output
 - create alternative authoritative structures
 
-## Workspace link (prototype/) policy
+## Prototype lineage policy
 
-This repository may contain a workspace-local `prototype/` directory (junction) pointing to another working copy.
+Prototype lineage remains relevant for historical review, but a local `prototype/` workspace link is not required in this repository.
 
-- `prototype/` is allowed for development convenience.
-- `prototype/` MUST be excluded from npm package artifacts (via `.npmignore`).
-- `prototype/` is intentionally NOT ignored by Git if the workflow requires `git diff` visibility.
+- Product implementation, tests, and release flow MUST work without any local `prototype/` directory.
+- Prototype comparison/review is maintained in the Secos prototype repository/workspace.
 
 ## Test gates (mandatory)
 

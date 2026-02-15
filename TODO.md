@@ -1,10 +1,14 @@
 # TODO - Productize `elementary-assertions`
 
-This plan defines how to build the productized package described in `README.md`, using:
+This plan defines how to build the productized package described in `README.md`, using historical prototype lineage:
 - `prototype/elementary-assertions.js`
 - `prototype/elementary-assertions/*.js`
 
 It is execution-oriented, phase-gated, and contract-first.
+
+Note:
+- Prototype mapping in this document is historical provenance for review/diff context.
+- The product repository no longer requires a local `prototype/` workspace link.
 
 Status: Completed through Phase 16 hardening; release snapshot updated to v0.1.12 baseline (as of 2026-02-15).
 

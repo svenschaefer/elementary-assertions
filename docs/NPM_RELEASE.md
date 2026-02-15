@@ -29,7 +29,7 @@ Golden baseline freeze metadata is maintained in `test/artifacts/README.md`.
 
 - `npm pack --dry-run` MUST succeed.
 - `package.json` `files` is the primary packlist control.
-- `.npmignore` is an additional safeguard, including explicitly excluding `prototype/`.
+- `.npmignore` is an additional safeguard for local non-package files.
 
 ## 0) Preconditions
 
@@ -63,7 +63,7 @@ npm version X.Y.Z --no-git-tag-version
 
 If a lockfile exists and changes, keep it consistent with your npm version.
 
-## 4) Pack sanity (must exclude prototype/)
+## 4) Pack sanity
 
 ```powershell
 npm pack --dry-run
@@ -109,7 +109,6 @@ If the smoke test exercises `runElementaryAssertions`, also ensure the environme
 
 ## 6) Commit + merge to main
 
-Safeguard: `prototype/` is a junction. `git add -A` will stage changes from the junction target.
 For release commits, prefer explicit staging paths to avoid unintended additions, for example:
 `git add src docs test scripts package.json README.md CHANGELOG.md`.
 
