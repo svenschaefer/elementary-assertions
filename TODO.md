@@ -8,6 +8,22 @@ It is execution-oriented, phase-gated, and contract-first.
 
 Status: Completed through Phase 14 hardening; release snapshot updated to v0.1.9 baseline with post-release Phase 14 completion (as of 2026-02-15).
 
+## Release Execution Snapshot (v0.1.10, 2026-02-15)
+
+- Released version: `v0.1.10`
+- Release intent: complete Phase 14 validation/diagnostics hardening and dev tooling depth.
+- Validation evidence at release head:
+  - `npm test` green (`150/150`)
+  - `npm pack --dry-run` green
+- CI run:
+  - `22038001076` (success)
+- Smoke workspaces (clean installs, version + reason naming):
+  - `C:\code\elementary-assertions-smoke-test\v0.1.10-pretag-smoke-20260215-161258`
+  - `C:\code\elementary-assertions-smoke-test\v0.1.10-posttag-smoke-20260215-161350`
+- Rendered smoke output roots:
+  - `C:\code\elementary-assertions-smoke-test\v0.1.10-pretag-smoke-20260215-161258\rendered`
+  - `C:\code\elementary-assertions-smoke-test\v0.1.10-posttag-smoke-20260215-161350\rendered`
+
 ## Release Execution Snapshot (v0.1.9, 2026-02-15)
 
 - Released version: `v0.1.9`

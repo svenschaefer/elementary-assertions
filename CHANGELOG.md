@@ -27,6 +27,17 @@
 - README/DEV tooling docs/TODO were synchronized for Phase 14 completion scope.
 - SaaS table markdown golden reference was normalized to current renderer output for smoke parity.
 
+### Release Evidence
+- Release commit: `5b56a28b9c2c35e703a1c75666bb1d58b336c6ac`
+- Tag: `v0.1.10`
+- CI run: `22038001076` (success)
+- Smoke roots:
+  - `C:\code\elementary-assertions-smoke-test\v0.1.10-pretag-smoke-20260215-161258`
+  - `C:\code\elementary-assertions-smoke-test\v0.1.10-posttag-smoke-20260215-161350`
+- Rendered smoke output roots:
+  - `C:\code\elementary-assertions-smoke-test\v0.1.10-pretag-smoke-20260215-161258\rendered`
+  - `C:\code\elementary-assertions-smoke-test\v0.1.10-posttag-smoke-20260215-161350\rendered`
+
 ## v0.1.9 - 2026-02-15
 
 ### Added
