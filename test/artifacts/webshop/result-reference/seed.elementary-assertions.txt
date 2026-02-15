@@ -1,0 +1,170 @@
+Elementary Assertions
+
+Segments
+Segment s1
+SegmentText: "A WebShop is an online store where people can pick products they want to buy, put them into a shopping cart, and then complete the purchase by placing an order."
+Segment s2
+SegmentText: "While doing that, the shop needs to make sure the items are actually available, take the customer’s payment, and keep a reliable record of the order."
+
+Mentions
+mention="A" kind=token is_primary=true head="A"
+mention="(a) WebShop" kind=chunk is_primary=false head="WebShop"
+mention="WebShop" kind=token is_primary=true head="WebShop"
+mention="is" kind=chunk is_primary=false head="is"
+mention="is" kind=token is_primary=true head="is"
+mention="an" kind=token is_primary=true head="an"
+mention="(an) online store" kind=chunk is_primary=false head="store"
+mention="online" kind=token is_primary=false head="online"
+mention="online store" kind=mwe is_primary=true head="store"
+mention="store" kind=token is_primary=false head="store"
+mention="where" kind=chunk is_primary=false head="where"
+mention="where" kind=token is_primary=true head="where"
+mention="people" kind=chunk is_primary=false head="people"
+mention="people" kind=token is_primary=true head="people"
+mention="can" kind=token is_primary=true head="can"
+mention="can pick products" kind=chunk is_primary=false head="pick"
+mention="pick" kind=token is_primary=false head="pick"
+mention="pick products" kind=mwe is_primary=true head="products"
+mention="products" kind=token is_primary=false head="products"
+mention="they" kind=chunk is_primary=false head="they"
+mention="they" kind=token is_primary=true head="they"
+mention="want" kind=token is_primary=false head="want"
+mention="want to buy" kind=chunk is_primary=false head="want"
+mention="want to buy" kind=mwe is_primary=true head="buy"
+mention="to" kind=token is_primary=false head="to"
+mention="buy" kind=token is_primary=false head="buy"
+mention="," kind=chunk is_primary=false head=","
+mention="," kind=token is_primary=true head=","
+mention="put" kind=chunk is_primary=false head="put"
+mention="put" kind=token is_primary=true head="put"
+mention="them" kind=chunk is_primary=false head="them"
+mention="them" kind=token is_primary=true head="them"
+mention="into" kind=token is_primary=true head="into"
+mention="into a shopping cart" kind=chunk is_primary=false head="into"
+mention="a" kind=token is_primary=true head="a"
+mention="shopping" kind=token is_primary=false head="shopping"
+mention="shopping cart" kind=mwe is_primary=true head="cart"
+mention="cart" kind=token is_primary=false head="cart"
+mention="," kind=chunk is_primary=false head=","
+mention="," kind=token is_primary=true head=","
+mention="and" kind=chunk is_primary=false head="and"
+mention="and" kind=token is_primary=true head="and"
+mention="then" kind=chunk is_primary=false head="then"
+mention="then" kind=token is_primary=true head="then"
+mention="complete" kind=chunk is_primary=false head="complete"
+mention="complete" kind=token is_primary=true head="complete"
+mention="the" kind=token is_primary=true head="the"
+mention="(the) purchase" kind=chunk is_primary=false head="purchase"
+mention="purchase" kind=token is_primary=true head="purchase"
+mention="by" kind=chunk is_primary=false head="by"
+mention="by" kind=token is_primary=true head="by"
+mention="placing" kind=token is_primary=false head="placing"
+mention="placing an order" kind=chunk is_primary=false head="placing"
+mention="placing an order" kind=mwe is_primary=true head="order"
+mention="an" kind=token is_primary=false head="an"
+mention="order" kind=token is_primary=false head="order"
+mention="." kind=chunk is_primary=false head="."
+mention="." kind=token is_primary=true head="."
+mention="While" kind=chunk is_primary=false head="While"
+mention="While" kind=token is_primary=true head="While"
+mention="doing" kind=chunk is_primary=false head="doing"
+mention="doing" kind=token is_primary=true head="doing"
+mention="that" kind=chunk is_primary=false head="that"
+mention="that" kind=token is_primary=true head="that"
+mention="," kind=chunk is_primary=false head=","
+mention="," kind=token is_primary=true head=","
+mention="the" kind=token is_primary=true head="the"
+mention="(the) shop" kind=chunk is_primary=false head="shop"
+mention="shop" kind=token is_primary=true head="shop"
+mention="needs" kind=token is_primary=true head="needs"
+mention="needs to make" kind=chunk is_primary=false head="needs"
+mention="to" kind=token is_primary=true head="to"
+mention="make" kind=token is_primary=true head="make"
+mention="sure" kind=chunk is_primary=false head="sure"
+mention="sure" kind=token is_primary=true head="sure"
+mention="the" kind=token is_primary=true head="the"
+mention="(the) items" kind=chunk is_primary=false head="items"
+mention="items" kind=token is_primary=true head="items"
+mention="are" kind=chunk is_primary=false head="are"
+mention="are" kind=token is_primary=true head="are"
+mention="actually" kind=chunk is_primary=false head="actually"
+mention="actually" kind=token is_primary=true head="actually"
+mention="available" kind=chunk is_primary=false head="available"
+mention="available" kind=token is_primary=true head="available"
+mention="," kind=chunk is_primary=false head=","
+mention="," kind=token is_primary=true head=","
+mention="take" kind=token is_primary=true head="take"
+mention="take the customer" kind=chunk is_primary=false head="take"
+mention="take the customer" kind=mwe is_primary=false head="customer"
+mention="the" kind=token is_primary=true head="the"
+mention="customer" kind=token is_primary=false head="customer"
+mention="customer ’s payment" kind=mwe is_primary=true head="payment"
+mention="’s" kind=chunk is_primary=false head="’s"
+mention="’s" kind=token is_primary=false head="’s"
+mention="payment" kind=chunk is_primary=false head="payment"
+mention="payment" kind=token is_primary=false head="payment"
+mention="," kind=chunk is_primary=false head=","
+mention="," kind=token is_primary=true head=","
+mention="and" kind=chunk is_primary=false head="and"
+mention="and" kind=token is_primary=true head="and"
+mention="keep" kind=token is_primary=true head="keep"
+mention="keep a reliable record of the order" kind=chunk is_primary=false head="keep"
+mention="a" kind=token is_primary=true head="a"
+mention="reliable" kind=token is_primary=true head="reliable"
+mention="reliable record" kind=mwe is_primary=false head="record"
+mention="record" kind=token is_primary=false head="record"
+mention="record of the order" kind=mwe is_primary=true head="order"
+mention="of" kind=token is_primary=false head="of"
+mention="the" kind=token is_primary=false head="the"
+mention="order" kind=token is_primary=false head="order"
+mention="." kind=chunk is_primary=false head="."
+mention="." kind=token is_primary=true head="."
+
+Assertions
+pred=is actor=(a) WebShop theme= attr=(an) online store topic= location= other= ops=
+  evidence: actor(r=0,t=2); attribute(r=0,t=3); operators(r=0,t=0)
+pred=can pick products actor=people theme=they attr= topic= location= other= ops=modality(can)
+  evidence: actor(r=0,t=1); theme(r=0,t=1); operators(r=0,t=0)
+pred=want to buy actor=people theme=them attr= topic= location=shopping cart other= ops=control_inherit_subject, control_propagation, coordination_group(cg:6c9330bb9124), coordination_group(cg:6c9330bb9124:and)
+  evidence: actor(r=0,t=1); location(r=0,t=2); theme(r=0,t=1); operators(r=0,t=0)
+pred=put actor= theme=them attr= topic= location=into a shopping cart other=modifier:then ops=coordination_group(cg:6c9330bb9124)
+  evidence: location(r=0,t=4); modifier(r=0,t=1); theme(r=0,t=1); operators(r=0,t=0)
+pred=complete actor= theme=purchase attr= topic= location= other= ops=
+  evidence: theme(r=0,t=1); operators(r=0,t=0)
+pred=placing an order actor=(the) purchase theme= attr= topic= location= other= ops=
+  evidence: actor(r=0,t=2); operators(r=0,t=0)
+pred=needs actor=(the) shop theme=(the) items attr=available topic= location= other=complement_clause:make;modifier:actually ops=control_inherit_subject, control_propagation
+  evidence: actor(r=0,t=2); attribute(r=0,t=1); complement_clause(r=0,t=1); modifier(r=0,t=1); theme(r=0,t=2); operators(r=0,t=0)
+pred=are actor= theme= attr=available topic= location= other= ops=coordination_group(cg:e48944270340), coordination_group(cg:e48944270340:and)
+  evidence: attribute(r=0,t=1); operators(r=0,t=0)
+pred=take actor= theme=customer ’s payment attr= topic= location= other= ops=coordination_group(cg:e48944270340), coordination_group(cg:e48944270340:and)
+  evidence: theme(r=0,t=3); operators(r=0,t=0)
+pred=keep actor= theme=record of the order attr= topic= location= other= ops=coordination_group(cg:e48944270340)
+  evidence: theme(r=0,t=4); operators(r=0,t=0)
+
+Coverage
+primary_mention_ids count: 28
+covered_primary_mention_ids count: 21
+uncovered_primary_mention_ids count: 7
+
+Strictly Uncovered Primary Mentions
+doing (mention_id=m:s2:168-173:token, reason=projection_failed)
+reliable (mention_id=m:s2:282-290:token, reason=missing_relation)
+
+Contained Uncovered Primary Mentions
+WebShop (mention_id=m:s1:2-9:token, contained_in=[m:s1:0-9:chunk], reason=missing_relation)
+online store (mention_id=m:s1:16-28:mwe, contained_in=[m:s1:13-28:chunk], reason=missing_relation)
+pick products (mention_id=m:s1:46-59:mwe, contained_in=[m:s1:42-59:chunk], reason=projection_failed)
+shop (mention_id=m:s2:184-188:token, contained_in=[m:s2:180-188:chunk], reason=missing_relation)
+items (mention_id=m:s2:212-217:token, contained_in=[m:s2:208-217:chunk], reason=missing_relation)
+
+Unresolved
+unresolved_attachment / missing_relation
+  online store reason=missing_relation
+  WebShop reason=missing_relation
+  shop reason=missing_relation
+  items reason=missing_relation
+  reliable reason=missing_relation
+unresolved_attachment / projection_failed
+  pick products reason=projection_failed
+  doing reason=projection_failed

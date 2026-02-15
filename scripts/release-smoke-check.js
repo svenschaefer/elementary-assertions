@@ -48,7 +48,7 @@ function listSeedIds(artifactsRoot) {
     .map((entry) => entry.name)
     .filter((seedId) =>
       fs.existsSync(
-        path.join(artifactsRoot, seedId, "prototype-reference", "seed.elementary-assertions.yaml")
+        path.join(artifactsRoot, seedId, "result-reference", "seed.elementary-assertions.yaml")
       )
     )
     .sort((a, b) => a.localeCompare(b));
@@ -95,7 +95,7 @@ function main() {
   if (seedIds.length === 0) throw new Error("No artifact seeds found for smoke render checks.");
 
   for (const seedId of seedIds) {
-    const base = path.join(artifactsRoot, seedId, "prototype-reference");
+    const base = path.join(artifactsRoot, seedId, "result-reference");
     const inYaml = path.join(base, "seed.elementary-assertions.yaml");
     const goldenTxt = path.join(base, "seed.elementary-assertions.txt");
     const goldenMd = path.join(base, "seed.elementary-assertions.md");

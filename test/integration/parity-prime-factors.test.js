@@ -11,7 +11,7 @@ const base = path.join(
   "..",
   "artifacts",
   "prime_factors",
-  "prototype-reference"
+  "result-reference"
 );
 
 function loadDoc() {

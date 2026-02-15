@@ -32,7 +32,7 @@ function collectGoldenYamlPaths(artifactsRoot) {
   const entries = fs.readdirSync(artifactsRoot, { withFileTypes: true });
   for (const entry of entries) {
     if (!entry.isDirectory()) continue;
-    const filePath = path.join(artifactsRoot, entry.name, "prototype-reference", "seed.elementary-assertions.yaml");
+    const filePath = path.join(artifactsRoot, entry.name, "result-reference", "seed.elementary-assertions.yaml");
     if (fs.existsSync(filePath)) out.push(filePath);
   }
   return out.sort((a, b) => a.localeCompare(b));

@@ -11,7 +11,7 @@ const base = path.join(
   "..",
   "artifacts",
   "webshop",
-  "prototype-reference"
+  "result-reference"
 );
 
 function loadDoc() {

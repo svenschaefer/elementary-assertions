@@ -1,0 +1,181 @@
+# Elementary Assertions
+
+## Segments
+- Segment s1
+  - SegmentText: "An access control system regulates who may perform specific actions on protected resources."
+- Segment s2
+  - SegmentText: "Users authenticate using credentials and are assigned one or more roles."
+- Segment s3
+  - SegmentText: "Each role grants permissions such as read, write, or administer."
+- Segment s4
+  - SegmentText: "Before an action is executed, the system must verify that the user holds the required permission."
+- Segment s5
+  - SegmentText: "All access decisions should be recorded for auditing and security analysis."
+
+## Mentions
+- Segment s1
+  - 0-2 token An (head=An)
+  - 0-24 chunk (an) access control system (head=access)
+  - 3-9 token access (head=access)
+  - 3-17 mwe access control (head=control)
+  - 3-24 mwe access control system (head=system)
+  - 10-17 token control (head=control)
+  - 10-24 mwe control system (head=system)
+  - 18-24 token system (head=system)
+  - 25-34 chunk regulates (head=regulates)
+  - 25-34 token regulates (head=regulates)
+  - 35-38 chunk who (head=who)
+  - 35-38 token who (head=who)
+  - 39-42 token may (head=may)
+  - 39-90 chunk may perform specific actions on protected resources (head=perform)
+  - 43-50 token perform (head=perform)
+  - 51-59 token specific (head=specific)
+  - 51-67 mwe specific actions (head=actions)
+  - 60-67 token actions (head=actions)
+  - 68-70 token on (head=on)
+  - 71-80 token protected (head=protected)
+  - 71-90 mwe protected resources (head=resources)
+  - 81-90 token resources (head=resources)
+  - 90-91 chunk . (head=.)
+  - 90-91 token . (head=.)
+- Segment s2
+  - 92-97 chunk Users (head=Users)
+  - 92-97 token Users (head=Users)
+  - 98-110 token authenticate (head=authenticate)
+  - 98-128 chunk authenticate using credentials (head=authenticate)
+  - 111-116 token using (head=using)
+  - 111-128 mwe using credentials (head=credentials)
+  - 117-128 token credentials (head=credentials)
+  - 129-132 chunk and (head=and)
+  - 129-132 token and (head=and)
+  - 133-136 token are (head=are)
+  - 133-145 chunk are assigned (head=are)
+  - 137-145 token assigned (head=assigned)
+  - 146-149 chunk one (head=one)
+  - 146-149 token one (head=one)
+  - 150-152 chunk or (head=or)
+  - 150-152 token or (head=or)
+  - 153-157 token more (head=more)
+  - 153-163 chunk more roles (head=roles)
+  - 153-163 mwe more roles (head=roles)
+  - 158-163 token roles (head=roles)
+  - 163-164 chunk . (head=.)
+  - 163-164 token . (head=.)
+- Segment s3
+  - 165-169 token Each (head=Each)
+  - 165-174 chunk (each) role (head=role)
+  - 170-174 token role (head=role)
+  - 170-193 mwe role grants permissions (head=permissions)
+  - 175-181 token grants (head=grants)
+  - 175-193 chunk grants permissions (head=grants)
+  - 175-193 mwe grants permissions (head=permissions)
+  - 182-193 token permissions (head=permissions)
+  - 194-198 chunk such (head=such)
+  - 194-198 token such (head=such)
+  - 199-201 token as (head=as)
+  - 199-206 chunk as read (head=as)
+  - 202-206 token read (head=read)
+  - 206-207 chunk , (head=,)
+  - 206-207 token , (head=,)
+  - 208-213 chunk write (head=write)
+  - 208-213 token write (head=write)
+  - 213-214 chunk , (head=,)
+  - 213-214 token , (head=,)
+  - 215-217 chunk or (head=or)
+  - 215-217 token or (head=or)
+  - 218-228 chunk administer (head=administer)
+  - 218-228 token administer (head=administer)
+  - 228-229 chunk . (head=.)
+  - 228-229 token . (head=.)
+- Segment s4
+  - 230-236 token Before (head=Before)
+  - 230-246 chunk Before an action (head=Before)
+  - 237-239 token an (head=an)
+  - 240-246 token action (head=action)
+  - 247-249 token is (head=is)
+  - 247-258 chunk is executed (head=executed)
+  - 250-258 token executed (head=executed)
+  - 258-259 chunk , (head=,)
+  - 258-259 token , (head=,)
+  - 260-263 token the (head=the)
+  - 260-270 chunk (the) system (head=system)
+  - 264-270 token system (head=system)
+  - 271-275 token must (head=must)
+  - 271-296 chunk must verify that the user (head=verify)
+  - 276-282 token verify (head=verify)
+  - 283-287 token that (head=that)
+  - 288-291 token the (head=the)
+  - 292-296 token user (head=user)
+  - 297-302 token holds (head=holds)
+  - 297-326 chunk holds the required permission (head=holds)
+  - 303-306 token the (head=the)
+  - 307-315 token required (head=required)
+  - 307-326 mwe required permission (head=permission)
+  - 316-326 token permission (head=permission)
+  - 326-327 chunk . (head=.)
+  - 326-327 token . (head=.)
+- Segment s5
+  - 328-331 token All (head=All)
+  - 328-348 chunk (all) access decisions (head=decisions)
+  - 332-338 token access (head=access)
+  - 332-348 mwe access decisions (head=decisions)
+  - 339-348 token decisions (head=decisions)
+  - 349-355 token should (head=should)
+  - 349-367 chunk should be recorded (head=recorded)
+  - 356-358 token be (head=be)
+  - 359-367 token recorded (head=recorded)
+  - 368-371 chunk for (head=for)
+  - 368-371 token for (head=for)
+  - 372-380 chunk auditing (head=auditing)
+  - 372-380 token auditing (head=auditing)
+  - 381-384 chunk and (head=and)
+  - 381-384 token and (head=and)
+  - 385-393 token security (head=security)
+  - 385-402 chunk security analysis (head=security)
+  - 385-402 mwe security analysis (head=analysis)
+  - 394-402 token analysis (head=analysis)
+  - 402-403 chunk . (head=.)
+  - 402-403 token . (head=.)
+
+## Assertions
+| segment_id | actor | predicate | theme | location | other | ops | evidence |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| s1 | (an) access control system | regulates | specific actions | protected resources |  |  | actor(r=0,t=4); location(r=0,t=2); theme(r=0,t=2); operators(r=0,t=0) |
+| s1 | (an) access control system | perform | specific actions | protected resources |  | modality(may) | actor(r=0,t=4); location(r=0,t=2); theme(r=0,t=2); operators(r=0,t=0) |
+| s2 |  | authenticate | one |  | modifier:Users | coordination_group(cg:8babac3c4c4c), coordination_group(cg:8babac3c4c4c:and) | modifier(r=0,t=1); theme(r=0,t=1); operators(r=0,t=0) |
+| s2 | Users | are (predicate_quality=low) |  |  |  | coordination_group(cg:8babac3c4c4c) | actor(r=0,t=1); operators(r=0,t=0) |
+| s2 |  | assigned | more roles |  |  |  | theme(r=0,t=2); operators(r=0,t=0) |
+| s3 | (each) role | role grants permissions | grants permissions |  | exemplifies:as read, write, administer | quantifier(each\|t27) | actor(r=0,t=2); exemplifies(r=0,t=4); theme(r=0,t=2); operators(r=0,t=0) |
+| s3 |  | write |  |  |  | coordination_group(cg:a67bede8f441), coordination_group(cg:a67bede8f441:or) | operators(r=0,t=0) |
+| s3 |  | administer |  |  |  |  | operators(r=0,t=0) |
+| s4 |  | executed | system |  |  |  | theme(r=0,t=1); operators(r=0,t=0) |
+| s4 | (the) system | verify | user |  |  | modality(must) | actor(r=0,t=2); theme(r=0,t=1); operators(r=0,t=0) |
+| s4 | (the) system | holds |  |  |  |  | actor(r=0,t=2); operators(r=0,t=0) |
+| s5 |  | recorded | (all) access decisions |  | beneficiary:auditing | modality(should), quantifier(all\|t58) | beneficiary(r=0,t=1); theme(r=0,t=3); operators(r=0,t=0) |
+| s5 |  | auditing | security analysis |  |  | coordination_group(cg:46fe61b7fcdf), coordination_group(cg:46fe61b7fcdf:and) | theme(r=0,t=2); operators(r=0,t=0) |
+
+## Coverage
+- primary_mention_ids count: 30
+- covered_primary_mention_ids count: 23
+- uncovered_primary_mention_ids count: 7
+
+### Strictly Uncovered Primary Mentions
+- using credentials (mention_id=m:s2:111-128:mwe, reason=missing_relation)
+- such (mention_id=m:s3:194-198:token, reason=missing_relation)
+- action (mention_id=m:s4:240-246:token, reason=missing_relation)
+- is (mention_id=m:s4:247-249:token, reason=missing_relation)
+- be (mention_id=m:s5:356-358:token, reason=missing_relation)
+
+### Contained Uncovered Primary Mentions
+- access control system (mention_id=m:s1:3-24:mwe, contained_in=[m:s1:0-24:chunk], reason=missing_relation)
+- read (mention_id=m:s3:202-206:token, contained_in=[m:s3:199-206:chunk], reason=missing_relation)
+
+### Unresolved
+- unresolved_attachment / missing_relation
+  - access control system reason=missing_relation
+  - using credentials reason=missing_relation
+  - such reason=missing_relation
+  - read reason=missing_relation
+  - action reason=missing_relation
+  - is reason=missing_relation
+  - be reason=missing_relation

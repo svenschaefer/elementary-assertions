@@ -352,7 +352,7 @@ while enforcing product docs and constraints in:
   - `prototype/elementary-assertions/roles.js`
   - `prototype/elementary-assertions/tokens.js`
 - Golden baseline references are committed under:
-  - `test/artifacts/*/prototype-reference/`
+  - `test/artifacts/*/result-reference/`
   - `test/artifacts/README.md` (freeze metadata)
 - Golden parity locks are active for all artifact sets:
   - `prime_gen`
@@ -472,10 +472,10 @@ while enforcing product docs and constraints in:
 - Golden input set:
   - `test/artifacts/<seed>/seed.txt`
 - Golden output set (authoritative baseline outputs):
-  - `test/artifacts/<seed>/prototype-reference/seed.elementary-assertions.yaml`
-  - `test/artifacts/<seed>/prototype-reference/seed.elementary-assertions.md`
-  - `test/artifacts/<seed>/prototype-reference/seed.elementary-assertions.meaning.md`
-  - `test/artifacts/<seed>/prototype-reference/seed.elementary-assertions.txt`
+  - `test/artifacts/<seed>/result-reference/seed.elementary-assertions.yaml`
+  - `test/artifacts/<seed>/result-reference/seed.elementary-assertions.md`
+  - `test/artifacts/<seed>/result-reference/seed.elementary-assertions.meaning.md`
+  - `test/artifacts/<seed>/result-reference/seed.elementary-assertions.txt`
 - Comparison rules:
   - YAML: parsed structural equality for contract-relevant fields, plus deterministic serialization check for byte stability.
   - Rendered txt/md: byte comparison against golden files.
@@ -597,7 +597,7 @@ Exit criteria:
 - [x] Add tests for schema_version omission behavior.
 - [x] Add tests for strict CLI boolean parsing and one-of input enforcement.
 - [x] Add tests for WTI health-check strictness and timeout default.
-- [x] Add tests against frozen golden references in `test/artifacts/*/prototype-reference`.
+- [x] Add tests against frozen golden references in `test/artifacts/*/result-reference`.
 
 Exit criteria:
 - test suite asserts current product contract, not prototype internals.

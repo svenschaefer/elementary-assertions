@@ -17,10 +17,10 @@ function getSeedArtifactPaths(seedId) {
   return {
     base,
     seedTxt: path.join(base, "seed.txt"),
-    goldenYaml: path.join(base, "prototype-reference", "seed.elementary-assertions.yaml"),
-    goldenTxt: path.join(base, "prototype-reference", "seed.elementary-assertions.txt"),
-    goldenMd: path.join(base, "prototype-reference", "seed.elementary-assertions.md"),
-    goldenMeaningMd: path.join(base, "prototype-reference", "seed.elementary-assertions.meaning.md"),
+    goldenYaml: path.join(base, "result-reference", "seed.elementary-assertions.yaml"),
+    goldenTxt: path.join(base, "result-reference", "seed.elementary-assertions.txt"),
+    goldenMd: path.join(base, "result-reference", "seed.elementary-assertions.md"),
+    goldenMeaningMd: path.join(base, "result-reference", "seed.elementary-assertions.meaning.md"),
   };
 }
 

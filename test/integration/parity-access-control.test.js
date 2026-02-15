@@ -11,7 +11,7 @@ const base = path.join(
   "..",
   "artifacts",
   "access_control",
-  "prototype-reference"
+  "result-reference"
 );
 
 function loadDoc() {

@@ -9,12 +9,12 @@ function listSeedIds(artifactsRoot) {
     .readdirSync(artifactsRoot, { withFileTypes: true })
     .filter((entry) => entry.isDirectory())
     .map((entry) => entry.name)
-    .filter((seedId) => fs.existsSync(path.join(artifactsRoot, seedId, "prototype-reference", "seed.elementary-assertions.yaml")))
+    .filter((seedId) => fs.existsSync(path.join(artifactsRoot, seedId, "result-reference", "seed.elementary-assertions.yaml")))
     .sort((a, b) => a.localeCompare(b));
 }
 
 function readDoc(artifactsRoot, seedId) {
-  const yamlPath = path.join(artifactsRoot, seedId, "prototype-reference", "seed.elementary-assertions.yaml");
+  const yamlPath = path.join(artifactsRoot, seedId, "result-reference", "seed.elementary-assertions.yaml");
   return yaml.load(fs.readFileSync(yamlPath, "utf8"));
 }
 

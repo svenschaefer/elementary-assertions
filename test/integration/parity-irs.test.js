@@ -11,7 +11,7 @@ const base = path.join(
   "..",
   "artifacts",
   "irs",
-  "prototype-reference"
+  "result-reference"
 );
 
 function loadDoc() {
