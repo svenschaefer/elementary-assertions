@@ -1,0 +1,1 @@
+A classic SaaS system is centered around an Organization as the primary tenant scope.
