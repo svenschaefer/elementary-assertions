@@ -42,12 +42,27 @@ Most `dev:*` scripts support:
 `npm run dev:diagnose:wiki-upstream` additionally supports:
 - `--upstream <path>` (JSON/YAML) to correlate uncovered mentions between EA output and accepted upstream dependency endpoints
 
+Wiki-upstream diagnostics report depth:
+- upstream wiki field-path inventory by object family
+- categorized missing-field samples (`missing_upstream_acceptance` vs `present_upstream_dropped_downstream`)
+- stratified representative samples by role class and mention kind
+
 `npm run dev:diagnose:wti-wiring` additionally supports:
 - `--runtime-probe` to enforce runtime wiring checks
 - `--wti-endpoint <url>` (required in runtime probe mode)
 - `--wti-timeout-ms <ms>` (optional override for runtime probe health timeout)
 
+WTI wiring diagnostics report depth:
+- non-probe mode includes explicit wiring attribution:
+  - endpoint configured / mandatory endpoint behavior active
+  - per-step requested vs observed signal families
+- runtime probe remains authoritative for wiring truth and fail-fast behavior
+
 Runtime probe mode intentionally fails on wiring-contract violations (for example missing endpoint or no positive pass-through signals).
+
+Fragment hotspot diagnostics report depth:
+- primary lens: clause-local lexical host + evidence containment
+- secondary lens (triage-only): segment-level host availability and containment
 
 ## Contract boundary
 

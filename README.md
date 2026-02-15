@@ -135,6 +135,7 @@ Dev/strict tooling boundary:
 - Runtime guarantees are defined by the public API + runtime validation contract.
 - Non-public `npm run dev:*` tooling is for maintainer triage and quality investigation.
 - Dev tooling supports both artifact-reference diagnostics and optional upstream-context correlation/runtime probes for maintainers.
+- Dev diagnostics include explicit enrichment views (for example upstream wiki field-path inventories and wiring attribution summaries) and may evolve between releases.
 
 Rendering (view-only, multiple layouts):
 ```js
@@ -156,6 +157,9 @@ Tooling (file I/O and CLI wiring):
 const tools = require("elementary-assertions/tools");
 ```
 Advanced diagnostics tooling is intentionally non-public and exposed only via maintainer `npm run dev:*` workflows (not via public CLI flags).
+Diagnostics reports are triage tooling and may evolve between releases.
+Some diagnostics intentionally expose multiple interpretability lenses (for example clause-local vs segment-level) to aid investigation.
+For WTI wiring diagnostics, runtime probe mode is authoritative; non-probe reports are summarized diagnostic views.
 
 ## Output contract (summary)
 

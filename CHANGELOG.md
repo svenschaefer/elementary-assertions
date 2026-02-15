@@ -8,6 +8,18 @@
 ### Changed
 - (none)
 
+## v0.1.11 - 2026-02-15
+
+### Added
+- Phase 15 dev diagnostics depth parity hardening (non-public tooling):
+  - wiki-upstream diagnostics now emit upstream wiki field-path inventory by object family
+  - wiki-upstream diagnostics now emit stratified missing-field samples by role class and mention kind
+  - fragment hotspot diagnostics now include segment-level host lens (triage-only) in addition to clause-local lens
+  - WTI wiring diagnostics now emit explicit non-probe wiring attribution summaries (endpoint state + per-step requested/observed signal families)
+
+### Changed
+- `docs/DEV_TOOLING.md`, `README.md`, and `TODO.md` were synchronized for Phase 15 completion scope.
+
 ## v0.1.10 - 2026-02-15
 
 ### Added

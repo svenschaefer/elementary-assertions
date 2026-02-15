@@ -29,6 +29,178 @@ function acceptedUpstreamEndpointTokenIds(upstreamDoc) {
   return endpointIds;
 }
 
+function positiveWikiSignalTokenIds(doc) {
+  const out = new Set();
+  const tokens = Array.isArray(doc && doc.tokens) ? doc.tokens : [];
+  for (const token of tokens) {
+    const tokenId = String((token && token.id) || "");
+    if (!tokenId) continue;
+    const carrier = ((((token || {}).lexicon) || {}).wikipedia_title_index);
+    if (hasPositiveWikiSignal(carrier)) out.add(tokenId);
+  }
+  return out;
+}
+
+function buildMentionRoleClassMap(doc) {
+  const out = new Map();
+  const assertions = Array.isArray(doc && doc.assertions) ? doc.assertions : [];
+  for (const assertion of assertions) {
+    const argumentsEntries = Array.isArray((assertion || {}).arguments) ? assertion.arguments : [];
+    for (const entry of argumentsEntries) {
+      const mentionIds = Array.isArray((entry || {}).mention_ids) ? entry.mention_ids : [];
+      for (const mentionId of mentionIds) {
+        const key = String(mentionId || "");
+        if (!key) continue;
+        if (!out.has(key)) out.set(key, new Set());
+        out.get(key).add("argument");
+      }
+    }
+    const modifiers = Array.isArray((assertion || {}).modifiers) ? assertion.modifiers : [];
+    for (const modifier of modifiers) {
+      const mentionIds = Array.isArray((modifier || {}).mention_ids) ? modifier.mention_ids : [];
+      for (const mentionId of mentionIds) {
+        const key = String(mentionId || "");
+        if (!key) continue;
+        if (!out.has(key)) out.set(key, new Set());
+        out.get(key).add("modifier");
+      }
+    }
+  }
+  return out;
+}
+
+function mentionRoleClassForId(mentionId, mentionRoleClassMap) {
+  const classes = mentionRoleClassMap.get(mentionId);
+  if (!classes || classes.size === 0) return "none";
+  if (classes.has("argument")) return "argument";
+  if (classes.has("modifier")) return "modifier";
+  return "none";
+}
+
+function canonicalizeFieldPath(pathText) {
+  return String(pathText || "").replace(/\[\d+\]/g, "[]");
+}
+
+function isWikiFieldName(name) {
+  return /wiki|wikipedia|title_index/i.test(String(name || ""));
+}
+
+function familyFromPathParts(pathParts) {
+  if (!Array.isArray(pathParts) || pathParts.length === 0) return "root";
+  const first = String(pathParts[0] || "");
+  return first.includes("[") ? first.slice(0, first.indexOf("[")) : first;
+}
+
+function collectUpstreamWikiFieldInventory(upstreamDoc) {
+  if (!upstreamDoc || typeof upstreamDoc !== "object") {
+    return { enabled: false, object_families: [] };
+  }
+
+  const familyFieldPathCounts = new Map();
+  const familyCarrierObjects = new Map();
+
+  function addFieldPath(family, fieldPath, objectPath) {
+    if (!familyFieldPathCounts.has(family)) familyFieldPathCounts.set(family, new Map());
+    const fieldMap = familyFieldPathCounts.get(family);
+    fieldMap.set(fieldPath, (fieldMap.get(fieldPath) || 0) + 1);
+
+    if (!familyCarrierObjects.has(family)) familyCarrierObjects.set(family, new Set());
+    familyCarrierObjects.get(family).add(objectPath);
+  }
+
+  function walk(node, pathParts) {
+    if (!node || typeof node !== "object") return;
+    const family = familyFromPathParts(pathParts);
+    if (Array.isArray(node)) {
+      for (let i = 0; i < node.length; i += 1) {
+        walk(node[i], pathParts.concat(`${pathParts.length ? "" : "root"}[${i}]`));
+      }
+      return;
+    }
+
+    const objectPath = canonicalizeFieldPath(pathParts.join("."));
+    for (const [key, value] of Object.entries(node)) {
+      const fieldPath = canonicalizeFieldPath(pathParts.concat(key).join("."));
+      if (isWikiFieldName(key)) addFieldPath(family, fieldPath, objectPath);
+      walk(value, pathParts.concat(key));
+    }
+  }
+
+  walk(upstreamDoc, []);
+
+  const objectFamilies = Array.from(familyFieldPathCounts.keys())
+    .sort((a, b) => a.localeCompare(b))
+    .map((family) => {
+      const fieldPaths = Array.from(familyFieldPathCounts.get(family).entries())
+        .sort((a, b) => a[0].localeCompare(b[0]))
+        .map(([pathText, count]) => ({ path: pathText, count }));
+      return {
+        family,
+        carrier_object_count: (familyCarrierObjects.get(family) || new Set()).size,
+        field_paths: fieldPaths,
+      };
+    });
+
+  return {
+    enabled: true,
+    object_families: objectFamilies,
+  };
+}
+
+function buildMentionSample(mention, mentionId, roleClass) {
+  const tokenIds = Array.isArray((mention || {}).token_ids) ? mention.token_ids.map((x) => String(x || "")).filter(Boolean) : [];
+  return {
+    mention_id: mentionId,
+    mention_kind: String((mention && mention.kind) || "unknown"),
+    role_class: roleClass,
+    segment_id: String((mention && mention.segment_id) || ""),
+    surface: String((mention && mention.surface) || ""),
+    token_ids: tokenIds,
+  };
+}
+
+function buildPredicateSample(assertion, category) {
+  return {
+    assertion_id: String((assertion && assertion.id) || ""),
+    mention_kind: "predicate",
+    role_class: "predicate",
+    segment_id: String((assertion && assertion.segment_id) || ""),
+    surface: String((((assertion || {}).predicate) || {}).surface || ""),
+    predicate_head_token_id: String((((assertion || {}).predicate) || {}).head_token_id || ""),
+    category,
+  };
+}
+
+function stratifySamples(samples) {
+  const byRole = new Map();
+  const byMentionKind = new Map();
+  for (const sample of samples) {
+    const role = String(sample.role_class || "none");
+    const kind = String(sample.mention_kind || "unknown");
+    if (!byRole.has(role)) byRole.set(role, []);
+    if (!byMentionKind.has(kind)) byMentionKind.set(kind, []);
+    byRole.get(role).push(sample);
+    byMentionKind.get(kind).push(sample);
+  }
+
+  function mapToObject(map) {
+    const out = {};
+    for (const key of Array.from(map.keys()).sort((a, b) => a.localeCompare(b))) {
+      out[key] = map
+        .get(key)
+        .slice()
+        .sort((a, b) => String(a.mention_id || a.assertion_id || "").localeCompare(String(b.mention_id || b.assertion_id || "")))
+        .slice(0, 10);
+    }
+    return out;
+  }
+
+  return {
+    by_role_class: mapToObject(byRole),
+    by_mention_kind: mapToObject(byMentionKind),
+  };
+}
+
 function correlationForSeed(doc, upstreamDoc) {
   if (!upstreamDoc || typeof upstreamDoc !== "object") {
     return {
@@ -38,6 +210,11 @@ function correlationForSeed(doc, upstreamDoc) {
       uncovered_present_upstream_unprojected_count: 0,
       sample_missing_upstream_acceptance_mention_ids: [],
       sample_present_upstream_unprojected_mention_ids: [],
+      upstream_wiki_field_inventory: { enabled: false, object_families: [] },
+      missing_field_samples: {
+        missing_upstream_acceptance: { by_role_class: {}, by_mention_kind: {} },
+        present_upstream_dropped_downstream: { by_role_class: {}, by_mention_kind: {} },
+      },
     };
   }
 
@@ -47,23 +224,60 @@ function correlationForSeed(doc, upstreamDoc) {
   const coveredIds = Array.isArray(coverage.covered_primary_mention_ids) ? coverage.covered_primary_mention_ids : [];
   const uncoveredIds = Array.isArray(coverage.uncovered_primary_mention_ids) ? coverage.uncovered_primary_mention_ids : [];
   const endpointTokenIds = acceptedUpstreamEndpointTokenIds(upstreamDoc);
+  const downstreamPositiveSignalTokenIds = positiveWikiSignalTokenIds(doc);
+  const mentionRoleClassMap = buildMentionRoleClassMap(doc);
+  const missingUpstreamSamples = [];
+  const droppedDownstreamSamples = [];
 
   const mentionTouchesUpstreamEndpoint = (mentionId) => {
     const mention = mentionById.get(mentionId);
     const tokenIds = Array.isArray((mention || {}).token_ids) ? mention.token_ids : [];
     return tokenIds.some((tokenId) => endpointTokenIds.has(String(tokenId)));
   };
+  const mentionTouchesDownstreamSignal = (mentionId) => {
+    const mention = mentionById.get(mentionId);
+    const tokenIds = Array.isArray((mention || {}).token_ids) ? mention.token_ids : [];
+    return tokenIds.some((tokenId) => downstreamPositiveSignalTokenIds.has(String(tokenId)));
+  };
 
   const coveredMentionsWithUpstreamEndpoints = coveredIds.filter((mentionId) => mentionTouchesUpstreamEndpoint(mentionId));
   const uncoveredMissingUpstreamAcceptance = [];
   const uncoveredPresentUpstreamUnprojected = [];
   for (const mentionId of uncoveredIds) {
-    if (mentionTouchesUpstreamEndpoint(mentionId)) uncoveredPresentUpstreamUnprojected.push(mentionId);
+    const mention = mentionById.get(mentionId);
+    const roleClass = mentionRoleClassForId(mentionId, mentionRoleClassMap);
+    const upstreamPresent = mentionTouchesUpstreamEndpoint(mentionId);
+    const downstreamPresent = mentionTouchesDownstreamSignal(mentionId);
+    if (upstreamPresent) uncoveredPresentUpstreamUnprojected.push(mentionId);
     else uncoveredMissingUpstreamAcceptance.push(mentionId);
+    if (!upstreamPresent) {
+      missingUpstreamSamples.push(buildMentionSample(mention, String(mentionId || ""), roleClass));
+      continue;
+    }
+    if (!downstreamPresent) {
+      droppedDownstreamSamples.push(buildMentionSample(mention, String(mentionId || ""), roleClass));
+    }
+  }
+
+  const assertions = Array.isArray(doc && doc.assertions) ? doc.assertions : [];
+  for (const assertion of assertions) {
+    const headTokenId = String((((assertion || {}).predicate) || {}).head_token_id || "");
+    if (!headTokenId) continue;
+    const upstreamPresent = endpointTokenIds.has(headTokenId);
+    const downstreamPresent = downstreamPositiveSignalTokenIds.has(headTokenId);
+    if (!upstreamPresent) {
+      missingUpstreamSamples.push(buildPredicateSample(assertion, "missing_upstream_acceptance"));
+      continue;
+    }
+    if (!downstreamPresent) {
+      droppedDownstreamSamples.push(buildPredicateSample(assertion, "present_upstream_dropped_downstream"));
+    }
   }
 
   uncoveredMissingUpstreamAcceptance.sort((a, b) => String(a).localeCompare(String(b)));
   uncoveredPresentUpstreamUnprojected.sort((a, b) => String(a).localeCompare(String(b)));
+  missingUpstreamSamples.sort((a, b) => String(a.mention_id || a.assertion_id || "").localeCompare(String(b.mention_id || b.assertion_id || "")));
+  droppedDownstreamSamples.sort((a, b) => String(a.mention_id || a.assertion_id || "").localeCompare(String(b.mention_id || b.assertion_id || "")));
 
   return {
     enabled: true,
@@ -71,11 +285,17 @@ function correlationForSeed(doc, upstreamDoc) {
       ? upstreamDoc.annotations.filter((annotation) => annotation && annotation.status === "accepted" && annotation.kind === "dependency").length
       : 0,
     accepted_endpoint_token_count: endpointTokenIds.size,
+    downstream_positive_signal_token_count: downstreamPositiveSignalTokenIds.size,
     covered_mentions_with_upstream_endpoints: coveredMentionsWithUpstreamEndpoints.length,
     uncovered_missing_upstream_acceptance_count: uncoveredMissingUpstreamAcceptance.length,
     uncovered_present_upstream_unprojected_count: uncoveredPresentUpstreamUnprojected.length,
     sample_missing_upstream_acceptance_mention_ids: uncoveredMissingUpstreamAcceptance.slice(0, 10),
     sample_present_upstream_unprojected_mention_ids: uncoveredPresentUpstreamUnprojected.slice(0, 10),
+    upstream_wiki_field_inventory: collectUpstreamWikiFieldInventory(upstreamDoc),
+    missing_field_samples: {
+      missing_upstream_acceptance: stratifySamples(missingUpstreamSamples),
+      present_upstream_dropped_downstream: stratifySamples(droppedDownstreamSamples),
+    },
   };
 }
 

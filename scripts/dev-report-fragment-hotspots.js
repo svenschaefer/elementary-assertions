@@ -131,10 +131,10 @@ function buildSeedReport(doc, seedId) {
         .map((source) => {
           const sourceClass = String((((source || {}).diagnostics) || {}).predicate_class || "");
           const sourceI = tokenIndex.get(String((((source || {}).predicate) || {}).head_token_id || ""));
-          const hosts = segAssertions
+          const segmentHosts = segAssertions
             .filter((h) => {
               if (!h || h.id === source.id || !isLexicalHost(h)) return false;
-              return clauseKeyByAssertionId.get(String(h.id || "")) === clauseKeyByAssertionId.get(String(source.id || ""));
+              return true;
             })
             .map((h) => ({ id: String(h.id || ""), i: tokenIndex.get(String((((h || {}).predicate) || {}).head_token_id || "")), host: h }))
             .sort((a, b) => {
@@ -143,8 +143,13 @@ function buildSeedReport(doc, seedId) {
               if (da !== db) return da - db;
               return a.id.localeCompare(b.id);
             });
+          const hosts = segmentHosts.filter((h) => {
+            return clauseKeyByAssertionId.get(String(h.id || "")) === clauseKeyByAssertionId.get(String(source.id || ""));
+          });
           const hasClauseHost = hosts.length > 0;
           const clauseContainmentPass = hasClauseHost && hosts.some((h) => hasEvidenceContainment(source, h.host));
+          const hasSegmentHost = segmentHosts.length > 0;
+          const segmentContainmentPass = hasSegmentHost && segmentHosts.some((h) => hasEvidenceContainment(source, h.host));
           let failureReason = null;
           if (hasCoreRoles(source)) failureReason = "has_core_roles";
           else if (!hasClauseHost) failureReason = "no_host";
@@ -154,6 +159,10 @@ function buildSeedReport(doc, seedId) {
             predicate_class: sourceClass,
             has_clause_local_lexical_host: hasClauseHost,
             evidence_containment_pass: clauseContainmentPass,
+            segment_lens_triage_only: true,
+            has_segment_lexical_host: hasSegmentHost,
+            segment_evidence_containment_pass: segmentContainmentPass,
+            segment_host_candidate_assertion_ids: segmentHosts.map((h) => h.id),
             failure_reason: failureReason,
           };
         })

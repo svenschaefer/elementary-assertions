@@ -16,21 +16,80 @@ function hasPositiveWikiSignal(carrier) {
   return Number(carrier.wiki_prefix_count || 0) > 0;
 }
 
+function buildWiringAttribution(doc, counts) {
+  const pipeline = ((((doc || {}).sources) || {}).pipeline) || {};
+  const endpointConfigured = Boolean(pipeline.wikipedia_title_index_configured);
+  const tokenLexiconObserved = Number(counts.tokenLexiconCarrierCount || 0) > 0;
+  const evidenceMentionObserved = Number(counts.mentionMatches || 0) > 0;
+  const evidencePredicateObserved = Number(counts.predicateMatches || 0) > 0;
+  const diagnosticsObserved = Number(counts.diagnosticsMentions || 0) > 0 || Number(counts.diagnosticsAssertions || 0) > 0;
+  const observedFamilies = [];
+  if (tokenLexiconObserved) observedFamilies.push("token.lexicon.wikipedia_title_index");
+  if (evidenceMentionObserved) observedFamilies.push("wiki_title_evidence.mention_matches");
+  if (evidencePredicateObserved) observedFamilies.push("wiki_title_evidence.assertion_predicate_matches");
+  if (diagnosticsObserved) observedFamilies.push("diagnostics.wiki_signal_counters");
+
+  const requestedFamilies = endpointConfigured
+    ? [
+      "token.lexicon.wikipedia_title_index",
+      "wiki_title_evidence.mention_matches",
+      "wiki_title_evidence.assertion_predicate_matches",
+      "diagnostics.wiki_signal_counters",
+    ]
+    : [];
+
+  const missingFamilies = requestedFamilies.filter((family) => !observedFamilies.includes(family));
+  return {
+    endpoint_configured: endpointConfigured,
+    mandatory_endpoint_behavior_active: endpointConfigured,
+    per_step: [
+      {
+        step: "linguistic-enricher",
+        requested_signal_families: endpointConfigured ? ["wikipedia_title_index"] : [],
+        observed_signal_families: endpointConfigured ? ["wikipedia_title_index_configured"] : [],
+      },
+      {
+        step: "elementary-assertions-pass-through",
+        requested_signal_families: requestedFamilies,
+        observed_signal_families: observedFamilies,
+        missing_signal_families: missingFamilies,
+      },
+    ],
+  };
+}
+
 function buildSeedRow(doc, seedId) {
   const pipeline = ((((doc || {}).sources) || {}).pipeline) || {};
   const diagnostics = (((doc || {}).diagnostics) || {});
   const evidence = (((doc || {}).wiki_title_evidence) || {});
+  const tokenLexiconCarriers = Array.isArray((doc || {}).tokens)
+    ? doc.tokens
+      .map((token) => (((token || {}).lexicon) || {}).wikipedia_title_index)
+      .filter((carrier) => carrier && typeof carrier === "object")
+      .length
+    : 0;
   const mentionMatches = Array.isArray(evidence.mention_matches) ? evidence.mention_matches.length : 0;
   const predicateMatches = Array.isArray(evidence.assertion_predicate_matches) ? evidence.assertion_predicate_matches.length : 0;
+  const diagnosticsMentions = Number(diagnostics.mentions_with_lexicon_evidence || 0);
+  const diagnosticsAssertions = Number(diagnostics.assertions_with_wiki_signals || 0);
+  const counts = {
+    tokenLexiconCarrierCount: tokenLexiconCarriers,
+    mentionMatches,
+    predicateMatches,
+    diagnosticsMentions,
+    diagnosticsAssertions,
+  };
 
   return {
     seed_id: seedId,
     wikipedia_title_index_configured: Boolean(pipeline.wikipedia_title_index_configured),
-    diagnostics_mentions_with_lexicon_evidence: Number(diagnostics.mentions_with_lexicon_evidence || 0),
-    diagnostics_assertions_with_wiki_signals: Number(diagnostics.assertions_with_wiki_signals || 0),
+    diagnostics_mentions_with_lexicon_evidence: diagnosticsMentions,
+    diagnostics_assertions_with_wiki_signals: diagnosticsAssertions,
+    token_lexicon_wiki_carrier_count: tokenLexiconCarriers,
     wiki_title_evidence_mention_matches: mentionMatches,
     wiki_title_evidence_predicate_matches: predicateMatches,
     has_wiki_title_evidence_payload: mentionMatches > 0 || predicateMatches > 0,
+    wiring_attribution: buildWiringAttribution(doc, counts),
   };
 }
 

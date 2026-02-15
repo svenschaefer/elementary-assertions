@@ -6,7 +6,7 @@ This plan defines how to build the productized package described in `README.md`,
 
 It is execution-oriented, phase-gated, and contract-first.
 
-Status: Completed through Phase 14 hardening; release snapshot updated to v0.1.9 baseline with post-release Phase 14 completion (as of 2026-02-15).
+Status: Completed through Phase 15 hardening; release snapshot updated to v0.1.10 baseline with post-release Phase 15 completion (as of 2026-02-15).
 
 ## Release Execution Snapshot (v0.1.10, 2026-02-15)
 
@@ -878,3 +878,53 @@ Exit criteria:
 
 Exit criteria:
 - all non-public `dev:*` diagnostics can run on a single seed directly from CLI arguments.
+
+## Phase 15 - Diagnostics Depth Parity (Planned)
+
+Objective: increase developer-diagnostics observability parity with prototype intent without expanding public API/CLI contract or changing core assertion semantics.
+
+### 15.1 Upstream Wiki-Field Diagnostics Enrichment
+
+- [x] Extend dev wiki-upstream diagnostics to include prototype-style upstream inventory:
+  - [x] wiki field-path inventory by upstream object family
+  - [x] missing-field samples stratified by role class (predicate/argument/modifier)
+  - [x] missing-field samples stratified by mention type
+  - [x] categorization: missing upstream vs present-upstream-dropped-downstream
+- [x] Include concrete representative samples (ids + surfaces) and per-field counts in report output.
+
+Exit criteria:
+- dev wiki-upstream report includes field-path inventory and representative missing samples, not only carrier counts.
+
+### 15.2 Fragment Hotspot Diagnostics: Segment-Level Host Lens
+
+- [x] Keep clause-local host evaluation as primary diagnostics view.
+- [x] Add optional secondary diagnostics lens: segment-available host but clause-missed.
+- [x] Label segment-level lens explicitly as triage-only diagnostics context, not a behavior rule.
+
+Exit criteria:
+- fragment-hotspot diagnostics provide both:
+  - clause-local containment failures
+  - segment-level host availability context for triage
+
+### 15.3 WTI Wiring Diagnostics: Explicit Pass-Through Attribution Summary
+
+- [x] Keep runtime probe as authoritative wiring truth source.
+- [x] Add explicit wiring-attribution section to non-probe diagnostics output:
+  - [x] endpoint configured (yes/no)
+  - [x] mandatory endpoint behavior active (yes/no)
+  - [x] per-step pass-through attribution (requested vs observed signal families)
+- [x] Derive attribution from the same runtime instrumentation paths used by runtime probe mode.
+
+Exit criteria:
+- dev wti-wiring report includes explicit wiring-state summary and per-step attribution, not only artifact-level inspection.
+
+## Phase 15 Completion Snapshot (2026-02-15)
+
+- Implemented diagnostics depth parity hardening in non-public `dev:*` tooling:
+  - `scripts/dev-diagnose-wiki-upstream.js`
+  - `scripts/dev-report-fragment-hotspots.js`
+  - `scripts/dev-diagnose-wti-wiring.js`
+- Added integration locks for new report fields in:
+  - `test/integration/dev-report-scripts.test.js`
+- Verification at completion head:
+  - `npm test` green (`150/150`)

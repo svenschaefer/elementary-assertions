@@ -36,6 +36,20 @@ test("dev-report-metrics emits valid JSON report", () => {
 test("dev-report-fragment-hotspots emits valid JSON report", () => {
   const raw = runNodeScript("scripts/dev-report-fragment-hotspots.js");
   assertReportShape(raw, "dev-report-fragment-hotspots");
+  const data = JSON.parse(raw);
+  for (const seedRow of data.seeds) {
+    assert.equal(Array.isArray(seedRow.segments), true);
+    for (const segment of seedRow.segments) {
+      const carriers = Array.isArray(segment.carrier_diagnostics) ? segment.carrier_diagnostics : [];
+      if (!carriers.length) continue;
+      const carrier = carriers[0];
+      assert.equal(typeof carrier.segment_lens_triage_only, "boolean");
+      assert.equal(typeof carrier.has_segment_lexical_host, "boolean");
+      assert.equal(typeof carrier.segment_evidence_containment_pass, "boolean");
+      assert.equal(Array.isArray(carrier.segment_host_candidate_assertion_ids), true);
+      break;
+    }
+  }
 });
 
 test("dev-report-maturity emits valid JSON report", () => {
@@ -59,6 +73,12 @@ test("dev-diagnose-wti-wiring emits valid JSON report", () => {
   const data = JSON.parse(raw);
   assert.equal(typeof data.runtime_probe, "object");
   assert.equal(data.runtime_probe.enabled, false);
+  for (const seedRow of data.seeds) {
+    assert.equal(typeof seedRow.wiring_attribution, "object");
+    assert.equal(typeof seedRow.wiring_attribution.endpoint_configured, "boolean");
+    assert.equal(typeof seedRow.wiring_attribution.mandatory_endpoint_behavior_active, "boolean");
+    assert.equal(Array.isArray(seedRow.wiring_attribution.per_step), true);
+  }
 });
 
 test("dev-diagnose-coverage-audit emits valid JSON report", () => {
@@ -166,6 +186,11 @@ test("dev-diagnose-wiki-upstream supports --upstream correlation mode", () => {
     assert.equal(data.seeds[0].correlation.enabled, true);
     assert.equal(typeof data.seeds[0].correlation.uncovered_missing_upstream_acceptance_count, "number");
     assert.equal(typeof data.seeds[0].correlation.uncovered_present_upstream_unprojected_count, "number");
+    assert.equal(typeof data.seeds[0].correlation.upstream_wiki_field_inventory, "object");
+    assert.equal(Array.isArray(data.seeds[0].correlation.upstream_wiki_field_inventory.object_families), true);
+    assert.equal(typeof data.seeds[0].correlation.missing_field_samples, "object");
+    assert.equal(typeof data.seeds[0].correlation.missing_field_samples.missing_upstream_acceptance, "object");
+    assert.equal(typeof data.seeds[0].correlation.missing_field_samples.present_upstream_dropped_downstream, "object");
   } finally {
     fs.rmSync(tmpDir, { recursive: true, force: true });
   }
