@@ -1,6 +1,23 @@
 {
   "name": "elementary-assertions",
   "version": "1.0.1",
+  "description": "Deterministic, auditable assertion-construction layer for Node.js.",
+  "keywords": [
+    "nlp",
+    "assertions",
+    "determinism",
+    "linguistics",
+    "validation"
+  ],
+  "author": "svenschaefer",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/svenschaefer/elementary-assertions.git"
+  },
+  "bugs": {
+    "url": "https://github.com/svenschaefer/elementary-assertions/issues"
+  },
+  "homepage": "https://github.com/svenschaefer/elementary-assertions#readme",
   "license": "MIT",
   "private": false,
   "type": "commonjs",
@@ -29,6 +46,7 @@
     "test:unit": "node --test \"test/unit/**/*.test.js\"",
     "test:integration": "node --test \"test/integration/**/*.test.js\"",
     "pack:check": "npm pack --dry-run",
+    "smoke:release": "node scripts/smoke-release.js",
     "ci:check": "npm test && npm run dev:report:metrics && npm run dev:report:hotspots && npm run dev:report:maturity && npm run pack:check",
     "release:check": "node scripts/ensure-clean-worktree.js && npm run ci:check",
     "benchmark:core": "node scripts/benchmark-run-from-relations.js",

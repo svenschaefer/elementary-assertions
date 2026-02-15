@@ -1,0 +1,118 @@
+name: Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Release tag (for example: v1.2.3)"
+        required: true
+        type: string
+      publish_to_npm:
+        description: "Publish to npmjs"
+        required: false
+        default: false
+        type: boolean
+      npm_dist_tag:
+        description: "npm dist-tag (for example: latest, next)"
+        required: false
+        default: "latest"
+        type: string
+
+concurrency:
+  group: release-${{ github.ref }}-${{ github.event.inputs.tag }}
+  cancel-in-progress: false
+
+jobs:
+  release-check:
+    name: Release Check
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Validate tag format
+        run: |
+          TAG="${{ github.event.inputs.tag }}"
+          if [[ ! "$TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z.-]+)?$ ]]; then
+            echo "Invalid tag format: $TAG"
+            exit 1
+          fi
+
+      - name: Ensure tag exists in repository
+        run: |
+          git fetch --tags --force
+          TAG="${{ github.event.inputs.tag }}"
+          if ! git rev-parse "$TAG" >/dev/null 2>&1; then
+            echo "Tag not found: $TAG"
+            exit 1
+          fi
+
+      - name: Ensure tag points at main ancestry
+        run: |
+          TAG="${{ github.event.inputs.tag }}"
+          git fetch origin main --depth=1
+          TAG_COMMIT="$(git rev-list -n 1 "$TAG")"
+          if ! git merge-base --is-ancestor "$TAG_COMMIT" origin/main; then
+            echo "Tag commit is not reachable from origin/main: $TAG"
+            exit 1
+          fi
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+          registry-url: https://registry.npmjs.org
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run quality gates
+        run: npm run ci:check
+
+      - name: Verify package version matches tag
+        run: |
+          TAG="${{ github.event.inputs.tag }}"
+          PKG_VERSION="$(node -p "require('./package.json').version")"
+          if [[ "v$PKG_VERSION" != "$TAG" ]]; then
+            echo "Version mismatch: package.json=$PKG_VERSION tag=$TAG"
+            exit 1
+          fi
+
+      - name: Release smoke
+        run: npm run smoke:release
+
+      - name: Create npm tarball
+        run: npm pack
+
+      - name: Upload tarball artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: npm-tarball-${{ github.event.inputs.tag }}
+          path: "*.tgz"
+
+      - name: Publish to npm (optional)
+        if: ${{ github.event.inputs.publish_to_npm == 'true' }}
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          if [ -z "$NODE_AUTH_TOKEN" ]; then
+            echo "NPM_TOKEN secret is required when publish_to_npm=true"
+            exit 1
+          fi
+          npm publish --access public --tag "${{ github.event.inputs.npm_dist_tag }}"
+
+      - name: npm propagation checks (optional)
+        if: ${{ github.event.inputs.publish_to_npm == 'true' }}
+        run: |
+          PKG_NAME="$(node -p "require('./package.json').name")"
+          TAG="${{ github.event.inputs.tag }}"
+          VERSION="${TAG#v}"
+          npm view "$PKG_NAME@$VERSION" version --registry=https://registry.npmjs.org/
+          npm info "$PKG_NAME" dist-tags --registry=https://registry.npmjs.org/

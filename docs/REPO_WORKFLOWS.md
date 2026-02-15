@@ -58,3 +58,11 @@ npm run release:check
 This command enforces:
 - clean git worktree (`scripts/ensure-clean-worktree.js`)
 - repository quality gates via `npm run ci:check`
+
+Optional local smoke helper:
+
+```powershell
+npm run smoke:release
+```
+
+This creates a temporary local smoke workspace under `test/_smoke/`, installs from a packed tarball, and runs `scripts/release-smoke-check.js`.

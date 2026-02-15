@@ -190,3 +190,11 @@ Ship a new patch version with a new tag.
 
 Create/update release notes using:
 - `docs/RELEASE_NOTES_TEMPLATE.md`
+
+## Optional CI-assisted release check
+
+The repository also provides a manual GitHub Actions workflow:
+
+- `.github/workflows/release.yml`
+
+It validates tag format/ancestry, runs quality gates, verifies package version vs tag, runs release smoke, and can optionally publish to npmjs when `publish_to_npm=true` and `NPM_TOKEN` is configured.
