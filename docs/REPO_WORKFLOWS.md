@@ -46,3 +46,15 @@ Current CI workflow gates on:
 - packed-tarball clean-install smoke check via `scripts/release-smoke-check.js`
 
 These are repository quality gates and release hygiene checks, not package runtime contract.
+
+## Local release preflight (repo workflow)
+
+Run local preflight checks before tagging:
+
+```powershell
+npm run release:check
+```
+
+This command enforces:
+- clean git worktree (`scripts/ensure-clean-worktree.js`)
+- repository quality gates via `npm run ci:check`

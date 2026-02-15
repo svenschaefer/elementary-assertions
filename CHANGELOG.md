@@ -3,10 +3,13 @@
 ## Unreleased
 
 ### Added
-- (none)
+- `.editorconfig` for repository-wide LF/indent/newline consistency.
+- `CONTRIBUTING.md` and `SECURITY.md` repository policy documents.
+- `scripts/ensure-clean-worktree.js` plus release-check npm scripts for safer local release gating.
 
 ### Changed
-- (none)
+- CI install step now uses `npm ci` for deterministic dependency installation.
+- `README.md` documentation index now links `CONTRIBUTING.md` and `SECURITY.md`.
 
 ## v1.0.1 - 2026-02-15
 

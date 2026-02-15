@@ -21,12 +21,16 @@
     "docs/",
     "README.md",
     "CHANGELOG.md",
-    "LICENSE"
+    "LICENSE",
+    "SECURITY.md"
   ],
   "scripts": {
     "test": "node --test \"test/**/*.test.js\"",
     "test:unit": "node --test \"test/unit/**/*.test.js\"",
     "test:integration": "node --test \"test/integration/**/*.test.js\"",
+    "pack:check": "npm pack --dry-run",
+    "ci:check": "npm test && npm run dev:report:metrics && npm run dev:report:hotspots && npm run dev:report:maturity && npm run pack:check",
+    "release:check": "node scripts/ensure-clean-worktree.js && npm run ci:check",
     "benchmark:core": "node scripts/benchmark-run-from-relations.js",
     "dev:check": "node scripts/dev-check.js",
     "dev:report:metrics": "node scripts/dev-report-metrics.js",

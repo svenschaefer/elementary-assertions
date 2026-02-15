@@ -45,6 +45,8 @@ test("README documentation links reference existing files", () => {
     "docs/DEV_TOOLING.md",
     "docs/RELEASE_NOTES_TEMPLATE.md",
     "CHANGELOG.md",
+    "CONTRIBUTING.md",
+    "SECURITY.md",
   ];
 
   for (const doc of requiredDocs) {

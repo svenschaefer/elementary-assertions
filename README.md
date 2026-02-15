@@ -205,6 +205,8 @@ For non-public developer quality tooling (`npm run dev:*`), see `docs/DEV_TOOLIN
 - Developer tooling (non-public): `docs/DEV_TOOLING.md`
 - Release notes template: `docs/RELEASE_NOTES_TEMPLATE.md`
 - Changelog: `CHANGELOG.md`
+- Contributing guide: `CONTRIBUTING.md`
+- Security policy: `SECURITY.md`
 
 ## License
 
