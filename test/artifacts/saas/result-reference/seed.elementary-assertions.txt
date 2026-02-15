@@ -2512,8 +2512,8 @@ mention="." kind=chunk is_primary=false head="."
 mention="." kind=token is_primary=true head="."
 
 Assertions
-pred=centered actor= theme=(a) classic SaaS system attr= topic= location= other= ops=
-  evidence: theme(r=0,t=4); operators(r=0,t=0)
+pred=centered actor= theme=(a) classic SaaS system attr=as the primary tenant scope topic= location=Organization other= ops=
+  evidence: attribute(r=0,t=5); location(r=0,t=1); theme(r=0,t=4); operators(r=0,t=0)
 pred=Groups bundle memberships actor=Teams theme=bundle memberships|(a) Team|description attr= topic= location= other= ops=coordination_group(cg:09342b632f1c)
   evidence: actor(r=0,t=1); theme(r=0,t=5); operators(r=0,t=0)
 pred=has a name actor= theme=(a) name attr= topic= location= other= ops=coordination_group(cg:07be473d0907), coordination_group(cg:07be473d0907:and)
@@ -2524,8 +2524,8 @@ pred=updated timestamps actor= theme= attr= topic= location= other= ops=coordina
   evidence: operators(r=0,t=0)
 pred=is a member actor= theme= attr=(a) member topic= location= other= ops=
   evidence: attribute(r=0,t=2); operators(r=0,t=0)
-pred=modeled actor= theme=Business work objects attr= topic= location= other=modifier:typically ops=
-  evidence: modifier(r=0,t=1); theme(r=0,t=3); operators(r=0,t=0)
+pred=modeled actor= theme=Business work objects attr=Domain Resources topic= location= other=modifier:typically ops=
+  evidence: attribute(r=0,t=2); modifier(r=0,t=1); theme(r=0,t=3); operators(r=0,t=0)
 pred=is a hierarchical structure of Resource actor= theme= attr=hierarchical structure of Resource topic=of Resource Types|hierarchical structure of Resource location= other=modifier:Very|often ops=
   evidence: attribute(r=0,t=4); modifier(r=0,t=2); topic(r=0,t=5); operators(r=0,t=0)
 pred=describes actor=(a) Resource Type theme=business attributes attr= topic= location= other= ops=
@@ -2552,8 +2552,8 @@ pred=is actor= theme= attr= topic= location= other= ops=
   evidence: operators(r=0,t=0)
 pred=Resource of that type actor= theme= attr= topic=of that type location= other= ops=
   evidence: topic(r=0,t=3); operators(r=0,t=0)
-pred=serve actor=Projects theme=description|status|responsibility|visibility attr= topic= location= other=complement_clause:group resources;modifier:usually ops=control_inherit_subject, control_propagation
-  evidence: actor(r=0,t=1); complement_clause(r=0,t=2); modifier(r=0,t=1); theme(r=0,t=4); operators(r=0,t=0)
+pred=serve actor=Projects theme=description|status|responsibility|visibility attr=containers topic= location= other=complement_clause:group resources;modifier:usually ops=control_inherit_subject, control_propagation
+  evidence: actor(r=0,t=1); attribute(r=0,t=1); complement_clause(r=0,t=2); modifier(r=0,t=1); theme(r=0,t=4); operators(r=0,t=0)
 pred=archived actor= theme=responsibility attr= topic= location= other= ops=
   evidence: theme(r=0,t=1); operators(r=0,t=0)
 pred=access mode actor= theme= attr= topic= location=in a team context other= ops=coordination_group(cg:281586ec1300)
@@ -2580,8 +2580,14 @@ pred=timestamp actor= theme= attr= topic=of the last successful delivery locatio
   evidence: topic(r=0,t=5); operators(r=0,t=0)
 pred=organized actor= theme=Authorization attr= topic= location=three classes other=modifier:typically|conceptually|commonly ops=
   evidence: location(r=0,t=2); modifier(r=0,t=3); theme(r=0,t=1); operators(r=0,t=0)
+pred=Principals actor= theme= attr=as subjects topic= location= other= ops=
+  evidence: attribute(r=0,t=2); operators(r=0,t=0)
+pred=Authorization Artifacts actor= theme= attr=as the rule topic= location= other= ops=
+  evidence: attribute(r=0,t=3); operators(r=0,t=0)
 pred=set actor=Authorization Artifacts theme=Permissions attr= topic= location= other=modifier:optionally ops=
   evidence: actor(r=0,t=2); modifier(r=0,t=1); theme(r=0,t=1); operators(r=0,t=0)
+pred=Domain Resources actor= theme= attr=as protected objects topic= location= other= ops=coordination_group(cg:9a26e3fdebe5)
+  evidence: attribute(r=0,t=3); operators(r=0,t=0)
 pred=downstream business objects actor= theme= attr= topic= location= other=modifier:(all) downstream business objects ops=quantifier(all|t688)
   evidence: modifier(r=0,t=4); operators(r=0,t=0)
 pred=is actor=(the) Organization theme= attr=isolation boundary for data topic= location= other= ops=
@@ -2596,6 +2602,8 @@ pred=expressed actor= theme=category attr= topic= location= other=attached_other
   evidence: attached_other(r=0,t=2); instrument(r=0,t=3); modifier(r=0,t=1); theme(r=0,t=1); operators(r=0,t=0)
 pred=Roles bundle permissions actor=Roles theme=bundle permissions|description|classification attr= topic= location= other=modifier:typically ops=
   evidence: actor(r=0,t=1); modifier(r=0,t=1); theme(r=0,t=4); operators(r=0,t=0)
+pred=classification actor= theme= attr=as system vs custom role topic= location= other= ops=
+  evidence: attribute(r=0,t=5); operators(r=0,t=0)
 pred=is assigned actor=Assignments bind roles theme=record attr= topic= location=in a scope other=modifier:typically ops=control_inherit_subject, control_propagation
   evidence: actor(r=0,t=3); location(r=0,t=3); modifier(r=0,t=1); theme(r=0,t=1); operators(r=0,t=0)
 pred=assigned actor= theme=which role attr= topic= location= other=purpose:it ops=control_propagation
@@ -2626,6 +2634,8 @@ pred=grants an access actor=(a) grant theme=grants an access level attr= topic= 
   evidence: actor(r=0,t=2); theme(r=0,t=4); operators(r=0,t=0)
 pred=authorized actor=independent theme=scope roles attr= topic= location= other=modifier:principal|otherwise|sufficiently ops=
   evidence: actor(r=0,t=1); modifier(r=0,t=3); theme(r=0,t=2); operators(r=0,t=0)
+pred=ABAC complements actor= theme= attr=as a condition layer topic= location= other= ops=
+  evidence: attribute(r=0,t=4); operators(r=0,t=0)
 pred=making the decision actor=ABAC complements theme=(the) resource|(the) context|classifications|project status attr= topic= location= other=modifier:additionally ops=
   evidence: actor(r=0,t=2); modifier(r=0,t=1); theme(r=0,t=7); operators(r=0,t=0)
 pred=depend actor=ABAC complements theme= attr= topic= location=attributes other= ops=
@@ -2636,6 +2646,8 @@ pred=provides the coarse actor=RBAC theme=provides the coarse baseline|ACLs|sele
   evidence: actor(r=0,t=1); location(r=0,t=4); theme(r=0,t=8); operators(r=0,t=0)
 pred=targeted actor=grants model theme=object-level exceptions attr= topic= location= other=modifier:contextually ops=
   evidence: actor(r=0,t=2); modifier(r=0,t=1); theme(r=0,t=2); operators(r=0,t=0)
+pred=ABAC acts actor= theme= attr=as additional constraints topic= location= other= ops=coordination_group(cg:6c8d2c06d986)
+  evidence: attribute(r=0,t=3); operators(r=0,t=0)
 pred=restricts actor=selective extra logic theme= attr= topic= location=extends permissions other=modifier:clearly ops=
   evidence: actor(r=0,t=3); location(r=0,t=2); modifier(r=0,t=1); operators(r=0,t=0)
 pred=derived actor= theme=RBAC attr= topic= location= other= ops=coordination_group(cg:a31ac9ef58fe), coordination_group(cg:a31ac9ef58fe:and)
@@ -2696,12 +2708,12 @@ pred=created actor= theme= attr= topic= location= other= ops=coordination_group(
   evidence: operators(r=0,t=0)
 pred=updated timestamps actor= theme= attr= topic= location= other= ops=coordination_group(cg:ac52adb033b5)
   evidence: operators(r=0,t=0)
-pred=represented actor= theme=Entitlements attr= topic= location= other=attached_other:with overrides;modifier:optionally ops=coordination_group(cg:4af50d965eed)
-  evidence: attached_other(r=0,t=2); modifier(r=0,t=1); theme(r=0,t=1); operators(r=0,t=0)
+pred=represented actor= theme=Entitlements attr=feature switches topic= location= other=attached_other:with overrides;modifier:optionally ops=coordination_group(cg:4af50d965eed)
+  evidence: attached_other(r=0,t=2); attribute(r=0,t=2); modifier(r=0,t=1); theme(r=0,t=1); operators(r=0,t=0)
 pred=metering actor=Usage theme=meter attr= topic= location= other= ops=coordination_group(cg:a087f3dfeb29)
   evidence: actor(r=0,t=1); theme(r=0,t=1); operators(r=0,t=0)
-pred=represented actor= theme=Usage attr= topic= location= other=attached_other:with quantity ops=coordination_group(cg:2f7422179b98), coordination_group(cg:a087f3dfeb29), coordination_group(cg:a087f3dfeb29:and), coordination_group(cg:a087f3dfeb29:or)
-  evidence: attached_other(r=0,t=2); theme(r=0,t=1); operators(r=0,t=0)
+pred=represented actor= theme=Usage attr=consumption entries topic= location= other=attached_other:with quantity ops=coordination_group(cg:2f7422179b98), coordination_group(cg:a087f3dfeb29), coordination_group(cg:a087f3dfeb29:and), coordination_group(cg:a087f3dfeb29:or)
+  evidence: attached_other(r=0,t=2); attribute(r=0,t=2); theme(r=0,t=1); operators(r=0,t=0)
 pred=capture time actor=time window theme= attr= topic= location= other= ops=coordination_group(cg:a087f3dfeb29)
   evidence: actor(r=0,t=2); operators(r=0,t=0)
 pred=modeled actor= theme=Billing data attr= topic= location= other= ops=
@@ -2720,8 +2732,8 @@ pred=required actor=Common organization-level settings theme=domain attr= topic=
   evidence: actor(r=0,t=3); theme(r=0,t=1); operators(r=0,t=0)
 pred=contractual states actor= theme= attr= topic= location= other=exemplifies:as accepted terms|/|privacy|data processing agreements|retention rules ops=
   evidence: exemplifies(r=0,t=10); operators(r=0,t=0)
-pred=represented actor= theme=Users attr= topic= location=in the product other= ops=
-  evidence: location(r=0,t=3); theme(r=0,t=1); operators(r=0,t=0)
+pred=represented actor= theme=Users attr=Users topic= location=in the product other= ops=
+  evidence: attribute(r=0,t=1); location(r=0,t=3); theme(r=0,t=1); operators(r=0,t=0)
 pred=modeled actor=their affiliation theme=Membership attr= topic= location= other=attached_other:to an Organization ops=control_propagation, coordination_group(cg:d76fcadd172e)
   evidence: actor(r=0,t=2); attached_other(r=0,t=3); theme(r=0,t=1); operators(r=0,t=0)
 pred=has an email actor=(a) User theme=(an) email address|(an) optional username|(a) display name|profile fields|language|account status|last login attr= topic= location= other=modifier:typically|optionally ops=
@@ -2744,6 +2756,8 @@ pred=accepted actor= theme=owner attr= topic= location= other= ops=coordination_
   evidence: theme(r=0,t=1); operators(r=0,t=0)
 pred=revoked actor= theme=owner attr= topic= location= other= ops=coordination_group(cg:118901fd8886), coordination_group(cg:118901fd8886:and)
   evidence: theme(r=0,t=1); operators(r=0,t=0)
+pred=optional designation actor= theme= attr=as owner topic= location= other= ops=
+  evidence: attribute(r=0,t=2); operators(r=0,t=0)
 pred=default associations actor= theme= attr= topic= location= other=exemplifies:as a default team|created|updated timestamps ops=
   evidence: exemplifies(r=0,t=7); operators(r=0,t=0)
 pred=created actor= theme= attr= topic= location= other= ops=coordination_group(cg:118901fd8886), coordination_group(cg:118901fd8886:and)
@@ -2752,8 +2766,8 @@ pred=updated timestamps actor= theme= attr= topic= location= other= ops=coordina
   evidence: operators(r=0,t=0)
 pred=are actor= theme= attr= topic= location= other= ops=coordination_group(cg:72d513e86dde), coordination_group(cg:72d513e86dde:or)
   evidence: operators(r=0,t=0)
-pred=represented actor= theme=Invitations attr= topic= location= other=instrument:with target email;modifier:commonly ops=
-  evidence: instrument(r=0,t=3); modifier(r=0,t=1); theme(r=0,t=1); operators(r=0,t=0)
+pred=represented actor= theme=Invitations attr=Invitation object topic= location= other=instrument:with target email;modifier:commonly ops=
+  evidence: attribute(r=0,t=2); instrument(r=0,t=3); modifier(r=0,t=1); theme(r=0,t=1); operators(r=0,t=0)
 pred=desired role actor= theme= attr= topic= location= other= ops=coordination_group(cg:72d513e86dde)
   evidence: operators(r=0,t=0)
 pred=status actor= theme= attr= topic= location= other=instrument:with timestamps ops=coordination_group(cg:72d513e86dde)
@@ -2761,19 +2775,16 @@ pred=status actor= theme= attr= topic= location= other=instrument:with timestamp
 
 Coverage
 primary_mention_ids count: 527
-covered_primary_mention_ids count: 346
-uncovered_primary_mention_ids count: 181
+covered_primary_mention_ids count: 354
+uncovered_primary_mention_ids count: 173
 
 Strictly Uncovered Primary Mentions
 is (mention_id=m:s1:22-24:token, reason=missing_relation)
-Organization (mention_id=m:s1:44-56:token, reason=missing_relation)
-primary tenant scope (mention_id=m:s1:64-84:mwe, reason=missing_relation)
 policies (mention_id=m:s2:146-154:token, reason=missing_relation)
 limits (mention_id=m:s2:156-162:token, reason=operator_scope_open)
 operating mode (mention_id=m:s3:384-398:mwe, reason=missing_relation)
 such (mention_id=m:s4:661-665:token, reason=missing_relation)
 are (mention_id=m:s5:749-752:token, reason=missing_relation)
-Users (mention_id=m:s5:768-773:token, reason=missing_relation)
 is (mention_id=m:s5:831-833:token, reason=missing_relation)
 i.e. (mention_id=m:s5:860-864:token, reason=missing_relation)
 relationship (mention_id=m:s5:870-882:token, reason=missing_relation)
@@ -2783,11 +2794,9 @@ such (mention_id=m:s7:1147-1151:token, reason=missing_relation)
 as (mention_id=m:s7:1220-1222:token, reason=missing_relation)
 well (mention_id=m:s7:1223-1227:token, reason=missing_relation)
 such (mention_id=m:s8:1485-1489:token, reason=missing_relation)
-Invitation object (mention_id=m:s9:1588-1605:mwe, reason=missing_relation)
 inviter (mention_id=m:s9:1625-1632:token, reason=missing_relation)
 expiry time (mention_id=m:s9:1634-1645:mwe, reason=missing_relation)
 are (mention_id=m:s11:1897-1900:token, reason=missing_relation)
-Domain Resources (mention_id=m:s11:1922-1938:mwe, reason=missing_relation)
 actions (mention_id=m:s12:2071-2078:token, reason=missing_relation)
 lifecycle states (mention_id=m:s12:2080-2096:mwe, reason=operator_scope_open)
 object (mention_id=m:s12:2119-2125:token, reason=missing_relation)
@@ -2801,7 +2810,6 @@ owner (mention_id=m:s13:2335-2340:token, reason=missing_relation)
 category (mention_id=m:s13:2374-2382:token, reason=missing_relation)
 sensitivity (mention_id=m:s13:2384-2395:token, reason=operator_scope_open)
 specific project (mention_id=m:s14:2496-2512:mwe, reason=missing_relation)
-containers (mention_id=m:s15:2567-2577:token, reason=missing_relation)
 Organization (mention_id=m:s15:2588-2600:token, reason=missing_relation)
 carry name (mention_id=m:s15:2635-2645:mwe, reason=projection_failed)
 project (mention_id=m:s16:2784-2791:token, reason=missing_relation)
@@ -2814,19 +2822,13 @@ timestamps (mention_id=m:s17:3240-3250:token, reason=operator_scope_open)
 as (mention_id=m:s18:3407-3409:token, reason=missing_relation)
 well (mention_id=m:s18:3410-3414:token, reason=missing_relation)
 is (mention_id=m:s19:3582-3584:token, reason=missing_relation)
-Principals (mention_id=m:s19:3638-3648:token, reason=missing_relation)
-subjects (mention_id=m:s19:3652-3660:token, reason=missing_relation)
 Membership (mention_id=m:s19:3671-3681:token, reason=missing_relation)
 Team (mention_id=m:s19:3683-3687:token, reason=operator_scope_open)
-rule (mention_id=m:s19:3743-3747:token, reason=missing_relation)
 Roles (mention_id=m:s19:3766-3771:token, reason=missing_relation)
 Assignments (mention_id=m:s19:3773-3784:token, reason=missing_relation)
 Policies (mention_id=m:s19:3801-3809:token, reason=operator_scope_open)
-protected objects (mention_id=m:s19:3836-3853:mwe, reason=missing_relation)
 projects (mention_id=m:s19:3855-3863:token, reason=missing_relation)
 have name (mention_id=m:s21:4046-4055:mwe, reason=projection_failed)
-system vs custom (mention_id=m:s21:4088-4104:mwe, reason=missing_relation)
-role (mention_id=m:s21:4105-4109:token, reason=operator_scope_open)
 principals (mention_id=m:s22:4153-4163:token, reason=missing_relation)
 is (mention_id=m:s22:4231-4233:token, reason=missing_relation)
 RBAC (mention_id=m:s22:4293-4297:token, reason=missing_relation)
@@ -2836,10 +2838,8 @@ scope (mention_id=m:s23:4528-4533:token, reason=missing_relation)
 are (mention_id=m:s24:4631-4634:token, reason=missing_relation)
 specific actions (mention_id=m:s24:4731-4747:mwe, reason=missing_relation)
 is (mention_id=m:s24:4786-4788:token, reason=missing_relation)
-condition layer (mention_id=m:s25:4867-4882:mwe, reason=missing_relation)
 such (mention_id=m:s25:4989-4993:token, reason=missing_relation)
 sharing (mention_id=m:s26:5162-5169:token, reason=missing_relation)
-additional constraints (mention_id=m:s26:5216-5238:mwe, reason=missing_relation)
 as (mention_id=m:s27:5475-5477:token, reason=missing_relation)
 well (mention_id=m:s27:5478-5482:token, reason=missing_relation)
 SSO connections (mention_id=m:s27:5486-5501:mwe, reason=operator_scope_open)
@@ -2854,9 +2854,7 @@ is (mention_id=m:s34:6327-6329:token, reason=missing_relation)
 plan (mention_id=m:s34:6342-6346:token, reason=operator_scope_open)
 such (mention_id=m:s36:6651-6655:token, reason=missing_relation)
 are (mention_id=m:s37:6715-6718:token, reason=missing_relation)
-feature switches (mention_id=m:s37:6734-6750:mwe, reason=operator_scope_open)
 is (mention_id=m:s38:6814-6816:token, reason=missing_relation)
-consumption entries (mention_id=m:s38:6832-6851:mwe, reason=missing_relation)
 is (mention_id=m:s39:6923-6925:token, reason=missing_relation)
 customer (mention_id=m:s39:6940-6948:token, reason=operator_scope_open)
 tax information (mention_id=m:s39:6996-7011:mwe, reason=missing_relation)
@@ -2874,6 +2872,7 @@ failure information (mention_id=m:s39:7252-7271:mwe, reason=missing_relation)
 
 Contained Uncovered Primary Mentions
 classic SaaS system (mention_id=m:s1:2-21:mwe, contained_in=[m:s1:0-21:chunk], reason=missing_relation)
+primary tenant scope (mention_id=m:s1:64-84:mwe, contained_in=[m:s1:57-84:chunk], reason=missing_relation)
 Organization (mention_id=m:s2:90-102:token, contained_in=[m:s2:86-102:chunk], reason=missing_relation)
 access (mention_id=m:s2:138-144:token, contained_in=[m:s2:129-144:chunk], reason=missing_relation)
 Organization (mention_id=m:s3:241-253:token, contained_in=[m:s3:238-253:chunk], reason=missing_relation)
@@ -2913,6 +2912,11 @@ event types (mention_id=m:s18:3358-3369:mwe, contained_in=[m:s18:3353-3369:chunk
 delivery attempts (mention_id=m:s18:3472-3489:mwe, contained_in=[m:s18:3467-3489:chunk], reason=missing_relation)
 last (mention_id=m:s18:3541-3545:token, contained_in=[m:s18:3534-3565:chunk], reason=missing_relation)
 successful delivery (mention_id=m:s18:3546-3565:mwe, contained_in=[m:s18:3534-3565:chunk], reason=missing_relation)
+subjects (mention_id=m:s19:3652-3660:token, contained_in=[m:s19:3649-3660:chunk], reason=missing_relation)
+rule (mention_id=m:s19:3743-3747:token, contained_in=[m:s19:3736-3747:chunk], reason=missing_relation)
+protected objects (mention_id=m:s19:3836-3853:mwe, contained_in=[m:s19:3833-3853:chunk], reason=missing_relation)
+system vs custom (mention_id=m:s21:4088-4104:mwe, contained_in=[m:s21:4085-4109:chunk], reason=missing_relation)
+role (mention_id=m:s21:4105-4109:token, contained_in=[m:s21:4085-4109:chunk], reason=operator_scope_open)
 scope (mention_id=m:s22:4169-4174:token, contained_in=[m:s22:4164-4174:chunk], reason=missing_relation)
 role (mention_id=m:s22:4202-4206:token, contained_in=[m:s22:4196-4206:chunk], reason=missing_relation)
 is (mention_id=m:s22:4207-4209:token, contained_in=[m:s22:4207-4218:chunk], reason=missing_relation)
@@ -2922,10 +2926,12 @@ set (mention_id=m:s23:4468-4471:token, contained_in=[m:s23:4450-4490:chunk], rea
 allowed actions (mention_id=m:s23:4475-4490:mwe, contained_in=[m:s23:4450-4490:chunk], reason=missing_relation)
 domain resources (mention_id=m:s23:4499-4515:mwe, contained_in=[m:s23:4491-4515:chunk], reason=missing_relation)
 level (mention_id=m:s24:4722-4727:token, contained_in=[m:s24:4705-4727:chunk], reason=missing_relation)
+condition layer (mention_id=m:s25:4867-4882:mwe, contained_in=[m:s25:4862-4882:chunk], reason=missing_relation)
 resource (mention_id=m:s25:4962-4970:token, contained_in=[m:s25:4958-4970:chunk], reason=missing_relation)
 owner rules (mention_id=m:s25:4997-5008:mwe, contained_in=[m:s25:4994-5008:chunk], reason=missing_relation)
 typical composition (mention_id=m:s26:5076-5095:mwe, contained_in=[m:s26:5069-5095:chunk], reason=missing_relation)
 baseline (mention_id=m:s26:5122-5130:token, contained_in=[m:s26:5102-5130:chunk], reason=missing_relation)
+additional constraints (mention_id=m:s26:5216-5238:mwe, contained_in=[m:s26:5213-5238:chunk], reason=missing_relation)
 selective (mention_id=m:s26:5242-5251:token, contained_in=[m:s26:5242-5263:chunk], reason=missing_relation)
 extra logic (mention_id=m:s26:5252-5263:mwe, contained_in=[m:s26:5242-5263:chunk], reason=missing_relation)
 operations (mention_id=m:s27:5377-5387:token, contained_in=[m:s27:5373-5387:chunk], reason=operator_scope_open)
@@ -2953,11 +2959,9 @@ Unresolved
 unresolved_attachment / missing_relation
   classic SaaS system reason=missing_relation
   is reason=missing_relation
-  Organization reason=missing_relation
   primary tenant scope reason=missing_relation
   Team reason=missing_relation
   are reason=missing_relation
-  Domain Resources reason=missing_relation
   Resource Type reason=missing_relation
   actions reason=missing_relation
   object reason=missing_relation
@@ -2976,7 +2980,6 @@ unresolved_attachment / missing_relation
   model reason=missing_relation
   Resource Type reason=missing_relation
   specific project reason=missing_relation
-  containers reason=missing_relation
   Organization reason=missing_relation
   project reason=missing_relation
   such reason=missing_relation
@@ -2991,7 +2994,6 @@ unresolved_attachment / missing_relation
   last reason=missing_relation
   successful delivery reason=missing_relation
   is reason=missing_relation
-  Principals reason=missing_relation
   subjects reason=missing_relation
   Membership reason=missing_relation
   rule reason=missing_relation
@@ -3057,7 +3059,6 @@ unresolved_attachment / missing_relation
   are reason=missing_relation
   overrides reason=missing_relation
   is reason=missing_relation
-  consumption entries reason=missing_relation
   quantity reason=missing_relation
   is reason=missing_relation
   address reason=missing_relation
@@ -3078,7 +3079,6 @@ unresolved_attachment / missing_relation
   such reason=missing_relation
   accepted terms reason=missing_relation
   are reason=missing_relation
-  Users reason=missing_relation
   their reason=missing_relation
   Organization reason=missing_relation
   is reason=missing_relation
@@ -3097,7 +3097,6 @@ unresolved_attachment / missing_relation
   Membership reason=missing_relation
   such reason=missing_relation
   default team reason=missing_relation
-  Invitation object reason=missing_relation
   target email reason=missing_relation
   inviter reason=missing_relation
   expiry time reason=missing_relation
@@ -3121,7 +3120,6 @@ unresolved_attachment / operator_scope_open
   billing reason=operator_scope_open
   IP reason=operator_scope_open
   plan reason=operator_scope_open
-  feature switches reason=operator_scope_open
   customer reason=operator_scope_open
   payment provider linkage reason=operator_scope_open
   due date reason=operator_scope_open

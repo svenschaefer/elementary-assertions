@@ -2554,8 +2554,12 @@ RBAC is the standard baseline: a principal receives roles in a scope, at minimum
 
 ### Definitions
 - Actor | Predicate | Theme | Attr | Location | wiki⁺
+- - | centered | (a) classic SaaS system | as the primary tenant scope | Organization | -
+  - evidence: attribute(r=0,t=5); location(r=0,t=1); theme(r=0,t=4); operators(r=0,t=0)
 - - | is a member | - | (a) member | - | -
   - evidence: attribute(r=0,t=2); operators(r=0,t=0)
+- - | modeled | Business work objects | Domain Resources | - | -
+  - evidence: attribute(r=0,t=2); modifier(r=0,t=1); theme(r=0,t=3); operators(r=0,t=0)
 - - | is a hierarchical structure of Resource | - | hierarchical structure of Resource | - | -
   - evidence: attribute(r=0,t=4); modifier(r=0,t=2); topic(r=0,t=5); operators(r=0,t=0)
 - - | is a container | - | (a) container | - | -
@@ -2566,21 +2570,35 @@ RBAC is the standard baseline: a principal receives roles in a scope, at minimum
   - evidence: actor(r=0,t=1); attribute(r=0,t=3); location(r=0,t=3); modifier(r=0,t=1); operators(r=0,t=0)
 - - | is | - | - | - | -
   - evidence: operators(r=0,t=0)
+- Projects | serve | description, status, responsibility, visibility | containers | - | -
+  - evidence: actor(r=0,t=1); attribute(r=0,t=1); complement_clause(r=0,t=2); modifier(r=0,t=1); theme(r=0,t=4); operators(r=0,t=0)
 - comments, tasks, approvals | (copula:are) | - | common | - | -
   - evidence: actor(r=0,t=3); attribute(r=0,t=1); beneficiary(r=0,t=2); modifier(r=0,t=1); operators(r=0,t=0)
 - - | are configurations | - | configurations, such | - | -
   - evidence: attribute(r=0,t=2); beneficiary(r=0,t=2); exemplifies(r=0,t=29); modifier(r=0,t=1); operators(r=0,t=0)
+- - | Principals | - | as subjects | - | -
+  - evidence: attribute(r=0,t=2); operators(r=0,t=0)
+- - | Authorization Artifacts | - | as the rule | - | -
+  - evidence: attribute(r=0,t=3); operators(r=0,t=0)
 - (the) Organization | (copula:is) | - | isolation boundary for data | - | -
   - evidence: actor(r=0,t=2); attribute(r=0,t=4); operators(r=0,t=0)
 - Permissions | (copula:are) | - | atomic capabilities | - | -
   - evidence: actor(r=0,t=1); attribute(r=0,t=2); operators(r=0,t=0)
+- - | classification | - | as system vs custom role | - | -
+  - evidence: attribute(r=0,t=5); operators(r=0,t=0)
 - - | (copula:is) | - | (the) standard baseline | - | -
   - evidence: attribute(r=0,t=3); operators(r=0,t=0)
+- - | ABAC complements | - | as a condition layer | - | -
+  - evidence: attribute(r=0,t=4); operators(r=0,t=0)
+- - | represented | Users | Users | in the product | -
+  - evidence: attribute(r=0,t=1); location(r=0,t=3); theme(r=0,t=1); operators(r=0,t=0)
+- - | optional designation | - | as owner | - | -
+  - evidence: attribute(r=0,t=2); operators(r=0,t=0)
+- - | represented | Invitations | Invitation object | - | -
+  - evidence: attribute(r=0,t=2); instrument(r=0,t=3); modifier(r=0,t=1); theme(r=0,t=1); operators(r=0,t=0)
 
 ### Requirements
 - Actor | Predicate | Theme | Attr | Location | wiki⁺
-- Projects | serve | description, status, responsibility, visibility | - | - | -
-  - evidence: actor(r=0,t=1); complement_clause(r=0,t=2); modifier(r=0,t=1); theme(r=0,t=4); operators(r=0,t=0)
 - (all) business objects | belong | one Organization | - | - | -
   - evidence: actor(r=0,t=3); modifier(r=0,t=1); theme(r=0,t=2); operators(r=0,t=0)
 - Assignments bind roles | is assigned | record | - | in a scope | -
@@ -2622,6 +2640,8 @@ RBAC is the standard baseline: a principal receives roles in a scope, at minimum
   - evidence: instrument(r=0,t=3); operators(r=0,t=0)
 - - | notification settings | - | - | - | -
   - evidence: modifier(r=0,t=1); operators(r=0,t=0)
+- - | Domain Resources | - | as protected objects | - | -
+  - evidence: attribute(r=0,t=3); operators(r=0,t=0)
 - - | expressed | category | - | - | -
   - evidence: attached_other(r=0,t=2); instrument(r=0,t=3); modifier(r=0,t=1); theme(r=0,t=1); operators(r=0,t=0)
 - (a) grant | binds | concrete resource | - | - | -
@@ -2630,6 +2650,8 @@ RBAC is the standard baseline: a principal receives roles in a scope, at minimum
   - evidence: actor(r=0,t=2); operators(r=0,t=0)
 - (a) grant | grants an access | grants an access level | - | - | -
   - evidence: actor(r=0,t=2); theme(r=0,t=4); operators(r=0,t=0)
+- - | ABAC acts | - | as additional constraints | - | -
+  - evidence: attribute(r=0,t=3); operators(r=0,t=0)
 - - | derived | RBAC | - | - | -
   - evidence: theme(r=0,t=1); operators(r=0,t=0)
 - - | created | region | - | - | -
@@ -2662,12 +2684,12 @@ RBAC is the standard baseline: a principal receives roles in a scope, at minimum
   - evidence: operators(r=0,t=0)
 - - | updated timestamps | - | - | - | -
   - evidence: operators(r=0,t=0)
-- - | represented | Entitlements | - | - | -
-  - evidence: attached_other(r=0,t=2); modifier(r=0,t=1); theme(r=0,t=1); operators(r=0,t=0)
+- - | represented | Entitlements | feature switches | - | -
+  - evidence: attached_other(r=0,t=2); attribute(r=0,t=2); modifier(r=0,t=1); theme(r=0,t=1); operators(r=0,t=0)
 - Usage | metering | meter | - | - | -
   - evidence: actor(r=0,t=1); theme(r=0,t=1); operators(r=0,t=0)
-- - | represented | Usage | - | - | -
-  - evidence: attached_other(r=0,t=2); theme(r=0,t=1); operators(r=0,t=0)
+- - | represented | Usage | consumption entries | - | -
+  - evidence: attached_other(r=0,t=2); attribute(r=0,t=2); theme(r=0,t=1); operators(r=0,t=0)
 - time window | capture time | - | - | - | -
   - evidence: actor(r=0,t=2); operators(r=0,t=0)
 - - | transactions | - | - | - | -
@@ -2697,10 +2719,6 @@ RBAC is the standard baseline: a principal receives roles in a scope, at minimum
 
 ### Actions
 - Actor | Predicate | Theme | Attr | Location | wiki⁺
-- - | centered | (a) classic SaaS system | - | - | -
-  - evidence: theme(r=0,t=4); operators(r=0,t=0)
-- - | modeled | Business work objects | - | - | -
-  - evidence: modifier(r=0,t=1); theme(r=0,t=3); operators(r=0,t=0)
 - (a) Resource Type | describes | business attributes | - | - | -
   - evidence: actor(r=0,t=3); theme(r=0,t=2); operators(r=0,t=0)
 - - | instance of a Resource | - | - | - | -
@@ -2793,8 +2811,6 @@ RBAC is the standard baseline: a principal receives roles in a scope, at minimum
   - evidence: actor(r=0,t=3); theme(r=0,t=1); operators(r=0,t=0)
 - - | contractual states | - | - | - | -
   - evidence: exemplifies(r=0,t=10); operators(r=0,t=0)
-- - | represented | Users | - | in the product | -
-  - evidence: location(r=0,t=3); theme(r=0,t=1); operators(r=0,t=0)
 - (a) User | has an email | profile fields, language, account status, last login, (an) email address, (an) optional username, (a) display name | - | - | -
   - evidence: actor(r=0,t=2); modifier(r=0,t=2); theme(r=0,t=16); operators(r=0,t=0)
 - has an email | verified | optional username | - | - | -
@@ -2807,24 +2823,19 @@ RBAC is the standard baseline: a principal receives roles in a scope, at minimum
   - evidence: location(r=0,t=4); modifier(r=0,t=4); operators(r=0,t=0)
 - - | default associations | - | - | - | -
   - evidence: exemplifies(r=0,t=7); operators(r=0,t=0)
-- - | represented | Invitations | - | - | -
-  - evidence: instrument(r=0,t=3); modifier(r=0,t=1); theme(r=0,t=1); operators(r=0,t=0)
 
 ## Coverage
 - primary_mention_ids count: 527
-- covered_primary_mention_ids count: 346
-- uncovered_primary_mention_ids count: 181
+- covered_primary_mention_ids count: 354
+- uncovered_primary_mention_ids count: 173
 
 ### Strictly Uncovered Primary Mentions
 - is (mention_id=m:s1:22-24:token, reason=missing_relation)
-- Organization (mention_id=m:s1:44-56:token, reason=missing_relation)
-- primary tenant scope (mention_id=m:s1:64-84:mwe, reason=missing_relation)
 - policies (mention_id=m:s2:146-154:token, reason=missing_relation)
 - limits (mention_id=m:s2:156-162:token, reason=operator_scope_open)
 - operating mode (mention_id=m:s3:384-398:mwe, reason=missing_relation)
 - such (mention_id=m:s4:661-665:token, reason=missing_relation)
 - are (mention_id=m:s5:749-752:token, reason=missing_relation)
-- Users (mention_id=m:s5:768-773:token, reason=missing_relation)
 - is (mention_id=m:s5:831-833:token, reason=missing_relation)
 - i.e. (mention_id=m:s5:860-864:token, reason=missing_relation)
 - relationship (mention_id=m:s5:870-882:token, reason=missing_relation)
@@ -2834,11 +2845,9 @@ RBAC is the standard baseline: a principal receives roles in a scope, at minimum
 - as (mention_id=m:s7:1220-1222:token, reason=missing_relation)
 - well (mention_id=m:s7:1223-1227:token, reason=missing_relation)
 - such (mention_id=m:s8:1485-1489:token, reason=missing_relation)
-- Invitation object (mention_id=m:s9:1588-1605:mwe, reason=missing_relation)
 - inviter (mention_id=m:s9:1625-1632:token, reason=missing_relation)
 - expiry time (mention_id=m:s9:1634-1645:mwe, reason=missing_relation)
 - are (mention_id=m:s11:1897-1900:token, reason=missing_relation)
-- Domain Resources (mention_id=m:s11:1922-1938:mwe, reason=missing_relation)
 - actions (mention_id=m:s12:2071-2078:token, reason=missing_relation)
 - lifecycle states (mention_id=m:s12:2080-2096:mwe, reason=operator_scope_open)
 - object (mention_id=m:s12:2119-2125:token, reason=missing_relation)
@@ -2852,7 +2861,6 @@ RBAC is the standard baseline: a principal receives roles in a scope, at minimum
 - category (mention_id=m:s13:2374-2382:token, reason=missing_relation)
 - sensitivity (mention_id=m:s13:2384-2395:token, reason=operator_scope_open)
 - specific project (mention_id=m:s14:2496-2512:mwe, reason=missing_relation)
-- containers (mention_id=m:s15:2567-2577:token, reason=missing_relation)
 - Organization (mention_id=m:s15:2588-2600:token, reason=missing_relation)
 - carry name (mention_id=m:s15:2635-2645:mwe, reason=projection_failed)
 - project (mention_id=m:s16:2784-2791:token, reason=missing_relation)
@@ -2865,19 +2873,13 @@ RBAC is the standard baseline: a principal receives roles in a scope, at minimum
 - as (mention_id=m:s18:3407-3409:token, reason=missing_relation)
 - well (mention_id=m:s18:3410-3414:token, reason=missing_relation)
 - is (mention_id=m:s19:3582-3584:token, reason=missing_relation)
-- Principals (mention_id=m:s19:3638-3648:token, reason=missing_relation)
-- subjects (mention_id=m:s19:3652-3660:token, reason=missing_relation)
 - Membership (mention_id=m:s19:3671-3681:token, reason=missing_relation)
 - Team (mention_id=m:s19:3683-3687:token, reason=operator_scope_open)
-- rule (mention_id=m:s19:3743-3747:token, reason=missing_relation)
 - Roles (mention_id=m:s19:3766-3771:token, reason=missing_relation)
 - Assignments (mention_id=m:s19:3773-3784:token, reason=missing_relation)
 - Policies (mention_id=m:s19:3801-3809:token, reason=operator_scope_open)
-- protected objects (mention_id=m:s19:3836-3853:mwe, reason=missing_relation)
 - projects (mention_id=m:s19:3855-3863:token, reason=missing_relation)
 - have name (mention_id=m:s21:4046-4055:mwe, reason=projection_failed)
-- system vs custom (mention_id=m:s21:4088-4104:mwe, reason=missing_relation)
-- role (mention_id=m:s21:4105-4109:token, reason=operator_scope_open)
 - principals (mention_id=m:s22:4153-4163:token, reason=missing_relation)
 - is (mention_id=m:s22:4231-4233:token, reason=missing_relation)
 - RBAC (mention_id=m:s22:4293-4297:token, reason=missing_relation)
@@ -2887,10 +2889,8 @@ RBAC is the standard baseline: a principal receives roles in a scope, at minimum
 - are (mention_id=m:s24:4631-4634:token, reason=missing_relation)
 - specific actions (mention_id=m:s24:4731-4747:mwe, reason=missing_relation)
 - is (mention_id=m:s24:4786-4788:token, reason=missing_relation)
-- condition layer (mention_id=m:s25:4867-4882:mwe, reason=missing_relation)
 - such (mention_id=m:s25:4989-4993:token, reason=missing_relation)
 - sharing (mention_id=m:s26:5162-5169:token, reason=missing_relation)
-- additional constraints (mention_id=m:s26:5216-5238:mwe, reason=missing_relation)
 - as (mention_id=m:s27:5475-5477:token, reason=missing_relation)
 - well (mention_id=m:s27:5478-5482:token, reason=missing_relation)
 - SSO connections (mention_id=m:s27:5486-5501:mwe, reason=operator_scope_open)
@@ -2905,9 +2905,7 @@ RBAC is the standard baseline: a principal receives roles in a scope, at minimum
 - plan (mention_id=m:s34:6342-6346:token, reason=operator_scope_open)
 - such (mention_id=m:s36:6651-6655:token, reason=missing_relation)
 - are (mention_id=m:s37:6715-6718:token, reason=missing_relation)
-- feature switches (mention_id=m:s37:6734-6750:mwe, reason=operator_scope_open)
 - is (mention_id=m:s38:6814-6816:token, reason=missing_relation)
-- consumption entries (mention_id=m:s38:6832-6851:mwe, reason=missing_relation)
 - is (mention_id=m:s39:6923-6925:token, reason=missing_relation)
 - customer (mention_id=m:s39:6940-6948:token, reason=operator_scope_open)
 - tax information (mention_id=m:s39:6996-7011:mwe, reason=missing_relation)
@@ -2925,6 +2923,7 @@ RBAC is the standard baseline: a principal receives roles in a scope, at minimum
 
 ### Contained Uncovered Primary Mentions
 - classic SaaS system (mention_id=m:s1:2-21:mwe, contained_in=[m:s1:0-21:chunk], reason=missing_relation)
+- primary tenant scope (mention_id=m:s1:64-84:mwe, contained_in=[m:s1:57-84:chunk], reason=missing_relation)
 - Organization (mention_id=m:s2:90-102:token, contained_in=[m:s2:86-102:chunk], reason=missing_relation)
 - access (mention_id=m:s2:138-144:token, contained_in=[m:s2:129-144:chunk], reason=missing_relation)
 - Organization (mention_id=m:s3:241-253:token, contained_in=[m:s3:238-253:chunk], reason=missing_relation)
@@ -2964,6 +2963,11 @@ RBAC is the standard baseline: a principal receives roles in a scope, at minimum
 - delivery attempts (mention_id=m:s18:3472-3489:mwe, contained_in=[m:s18:3467-3489:chunk], reason=missing_relation)
 - last (mention_id=m:s18:3541-3545:token, contained_in=[m:s18:3534-3565:chunk], reason=missing_relation)
 - successful delivery (mention_id=m:s18:3546-3565:mwe, contained_in=[m:s18:3534-3565:chunk], reason=missing_relation)
+- subjects (mention_id=m:s19:3652-3660:token, contained_in=[m:s19:3649-3660:chunk], reason=missing_relation)
+- rule (mention_id=m:s19:3743-3747:token, contained_in=[m:s19:3736-3747:chunk], reason=missing_relation)
+- protected objects (mention_id=m:s19:3836-3853:mwe, contained_in=[m:s19:3833-3853:chunk], reason=missing_relation)
+- system vs custom (mention_id=m:s21:4088-4104:mwe, contained_in=[m:s21:4085-4109:chunk], reason=missing_relation)
+- role (mention_id=m:s21:4105-4109:token, contained_in=[m:s21:4085-4109:chunk], reason=operator_scope_open)
 - scope (mention_id=m:s22:4169-4174:token, contained_in=[m:s22:4164-4174:chunk], reason=missing_relation)
 - role (mention_id=m:s22:4202-4206:token, contained_in=[m:s22:4196-4206:chunk], reason=missing_relation)
 - is (mention_id=m:s22:4207-4209:token, contained_in=[m:s22:4207-4218:chunk], reason=missing_relation)
@@ -2973,10 +2977,12 @@ RBAC is the standard baseline: a principal receives roles in a scope, at minimum
 - allowed actions (mention_id=m:s23:4475-4490:mwe, contained_in=[m:s23:4450-4490:chunk], reason=missing_relation)
 - domain resources (mention_id=m:s23:4499-4515:mwe, contained_in=[m:s23:4491-4515:chunk], reason=missing_relation)
 - level (mention_id=m:s24:4722-4727:token, contained_in=[m:s24:4705-4727:chunk], reason=missing_relation)
+- condition layer (mention_id=m:s25:4867-4882:mwe, contained_in=[m:s25:4862-4882:chunk], reason=missing_relation)
 - resource (mention_id=m:s25:4962-4970:token, contained_in=[m:s25:4958-4970:chunk], reason=missing_relation)
 - owner rules (mention_id=m:s25:4997-5008:mwe, contained_in=[m:s25:4994-5008:chunk], reason=missing_relation)
 - typical composition (mention_id=m:s26:5076-5095:mwe, contained_in=[m:s26:5069-5095:chunk], reason=missing_relation)
 - baseline (mention_id=m:s26:5122-5130:token, contained_in=[m:s26:5102-5130:chunk], reason=missing_relation)
+- additional constraints (mention_id=m:s26:5216-5238:mwe, contained_in=[m:s26:5213-5238:chunk], reason=missing_relation)
 - selective (mention_id=m:s26:5242-5251:token, contained_in=[m:s26:5242-5263:chunk], reason=missing_relation)
 - extra logic (mention_id=m:s26:5252-5263:mwe, contained_in=[m:s26:5242-5263:chunk], reason=missing_relation)
 - operations (mention_id=m:s27:5377-5387:token, contained_in=[m:s27:5373-5387:chunk], reason=operator_scope_open)
@@ -3004,11 +3010,9 @@ RBAC is the standard baseline: a principal receives roles in a scope, at minimum
 - unresolved_attachment / missing_relation
   - classic SaaS system reason=missing_relation
   - is reason=missing_relation
-  - Organization reason=missing_relation
   - primary tenant scope reason=missing_relation
   - Team reason=missing_relation
   - are reason=missing_relation
-  - Domain Resources reason=missing_relation
   - Resource Type reason=missing_relation
   - actions reason=missing_relation
   - object reason=missing_relation
@@ -3027,7 +3031,6 @@ RBAC is the standard baseline: a principal receives roles in a scope, at minimum
   - model reason=missing_relation
   - Resource Type reason=missing_relation
   - specific project reason=missing_relation
-  - containers reason=missing_relation
   - Organization reason=missing_relation
   - project reason=missing_relation
   - such reason=missing_relation
@@ -3042,7 +3045,6 @@ RBAC is the standard baseline: a principal receives roles in a scope, at minimum
   - last reason=missing_relation
   - successful delivery reason=missing_relation
   - is reason=missing_relation
-  - Principals reason=missing_relation
   - subjects reason=missing_relation
   - Membership reason=missing_relation
   - rule reason=missing_relation
@@ -3108,7 +3110,6 @@ RBAC is the standard baseline: a principal receives roles in a scope, at minimum
   - are reason=missing_relation
   - overrides reason=missing_relation
   - is reason=missing_relation
-  - consumption entries reason=missing_relation
   - quantity reason=missing_relation
   - is reason=missing_relation
   - address reason=missing_relation
@@ -3129,7 +3130,6 @@ RBAC is the standard baseline: a principal receives roles in a scope, at minimum
   - such reason=missing_relation
   - accepted terms reason=missing_relation
   - are reason=missing_relation
-  - Users reason=missing_relation
   - their reason=missing_relation
   - Organization reason=missing_relation
   - is reason=missing_relation
@@ -3148,7 +3148,6 @@ RBAC is the standard baseline: a principal receives roles in a scope, at minimum
   - Membership reason=missing_relation
   - such reason=missing_relation
   - default team reason=missing_relation
-  - Invitation object reason=missing_relation
   - target email reason=missing_relation
   - inviter reason=missing_relation
   - expiry time reason=missing_relation
@@ -3172,7 +3171,6 @@ RBAC is the standard baseline: a principal receives roles in a scope, at minimum
   - billing reason=operator_scope_open
   - IP reason=operator_scope_open
   - plan reason=operator_scope_open
-  - feature switches reason=operator_scope_open
   - customer reason=operator_scope_open
   - payment provider linkage reason=operator_scope_open
   - due date reason=operator_scope_open

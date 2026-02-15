@@ -1,10 +1,34 @@
 {
   "sentence": "A classic SaaS system is centered around an Organization as the primary tenant scope.",
   "generated_from": {
-    "linguistic_enricher_version": "1.1.34",
+    "linguistic_enricher_version": "1.1.35",
     "wti_endpoint": "http://127.0.0.1:32123"
   },
   "accepted_dependencies": [
+    {
+      "id": "rel-55e81875d482",
+      "label": "attribute",
+      "head_token_id": "t6",
+      "dep_token_id": "t13",
+      "head_surface": "centered",
+      "dep_surface": "tenant"
+    },
+    {
+      "id": "rel-4b373a619805",
+      "label": "attribute",
+      "head_token_id": "t6",
+      "dep_token_id": "t14",
+      "head_surface": "centered",
+      "dep_surface": "scope"
+    },
+    {
+      "id": "rel-03f457de222b",
+      "label": "location",
+      "head_token_id": "t6",
+      "dep_token_id": "t9",
+      "head_surface": "centered",
+      "dep_surface": "Organization"
+    },
     {
       "id": "rel-5ae9f4e79af7",
       "label": "modifier",
@@ -12,6 +36,14 @@
       "dep_token_id": "t12",
       "head_surface": "tenant",
       "dep_surface": "primary"
+    },
+    {
+      "id": "rel-cc4b925e9843",
+      "label": "modifier",
+      "head_token_id": "t4",
+      "dep_token_id": "t2",
+      "head_surface": "system",
+      "dep_surface": "classic"
     },
     {
       "id": "rel-7550b13f0adf",
@@ -28,14 +60,6 @@
       "dep_token_id": "t4",
       "head_surface": "centered",
       "dep_surface": "system"
-    },
-    {
-      "id": "rel-cc4b925e9843",
-      "label": "modifier",
-      "head_token_id": "t4",
-      "dep_token_id": "t2",
-      "head_surface": "system",
-      "dep_surface": "classic"
     }
   ]
 }

@@ -17,7 +17,7 @@ function mentionSurface(doc, mentionId) {
     .join(" ");
 }
 
-test("saas s1 currently emits centered with theme-only and unresolved around-phrase attachments", () => {
+test("saas s1 emits centered with Organization location after upstream 1.1.35 acceptance update", () => {
   const inPath = path.resolve(
     __dirname,
     "..",
@@ -43,14 +43,20 @@ test("saas s1 currently emits centered with theme-only and unresolved around-phr
   assert.ok(themeMentions.some((text) => text.includes("classic SaaS system")));
   assert.ok(!themeMentions.some((text) => text.includes("Organization")));
 
+  const locationMentions = (centered.arguments || [])
+    .filter((entry) => entry.role === "location")
+    .flatMap((entry) => entry.mention_ids || [])
+    .map((mentionId) => mentionSurface(doc, mentionId));
+  assert.ok(locationMentions.includes("Organization"));
+
   const s1Unresolved = ((doc.coverage || {}).unresolved || [])
     .filter((u) => u.segment_id === "s1")
     .map((u) => mentionSurface(doc, u.mention_id));
-  assert.ok(s1Unresolved.includes("Organization"));
+  assert.ok(!s1Unresolved.includes("Organization"));
   assert.ok(s1Unresolved.includes("primary tenant scope"));
 });
 
-test("sentence upstream accepted dependencies lack around/Organization linkage", () => {
+test("sentence upstream accepted dependencies include centered/Organization location linkage", () => {
   const fixturePath = path.resolve(
     __dirname,
     "..",
@@ -65,13 +71,12 @@ test("sentence upstream accepted dependencies lack around/Organization linkage",
     deps.some((d) => d.label === "patient" && d.head_surface === "centered" && d.dep_surface === "system"),
     "expected accepted centered->system patient dependency"
   );
-
   assert.ok(
-    !deps.some((d) => d.head_surface === "centered" && d.dep_surface === "around"),
-    "unexpected accepted centered->around dependency; update scoped investigation assumptions"
+    deps.some((d) => d.label === "location" && d.head_surface === "centered" && d.dep_surface === "Organization"),
+    "expected accepted centered->Organization location dependency"
   );
   assert.ok(
-    !deps.some((d) => d.head_surface === "around" && d.dep_surface === "Organization"),
-    "unexpected accepted around->Organization dependency; update scoped investigation assumptions"
+    deps.some((d) => d.label === "attribute" && d.head_surface === "centered" && d.dep_surface === "scope"),
+    "expected accepted centered->scope attribute dependency"
   );
 });
