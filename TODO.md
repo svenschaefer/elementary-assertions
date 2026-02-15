@@ -6,7 +6,21 @@ This plan defines how to build the productized package described in `README.md`,
 
 It is execution-oriented, phase-gated, and contract-first.
 
-Status: Completed through Phase 13 hardening; release snapshot updated to v0.1.8 (as of 2026-02-15).
+Status: Completed through Phase 13 hardening; release snapshot updated to v0.1.9 (as of 2026-02-15).
+
+## Release Execution Snapshot (v0.1.9, 2026-02-15)
+
+- Released version: `v0.1.9`
+- Release intent: complete Phase 13 strict diagnostics hardening and dev-only diagnostics/report tooling parity.
+- Validation evidence at release head:
+  - `npm test` green (`142/142`)
+- Notes:
+  - strict/dev unresolved integrity checks now enforce sorted/typed evidence arrays and stable `mention_ids`.
+  - non-public maintainer diagnostics tooling now includes:
+    - `dev:diagnose:wiki-upstream`
+    - `dev:diagnose:wti-wiring`
+    - `dev:diagnose:coverage-audit`
+    - `dev:reports` aggregate command
 
 ## Release Execution Snapshot (v0.1.8, 2026-02-15)
 

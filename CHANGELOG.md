@@ -8,6 +8,24 @@
 ### Changed
 - (none)
 
+## v0.1.9 - 2026-02-15
+
+### Added
+- Strict/dev deep integrity checks for `coverage.unresolved[*]`:
+  - sorted + unique `mention_ids`
+  - sorted `evidence.token_ids`
+  - sorted + type-checked `evidence.upstream_relation_ids`
+- New dev-only diagnostics tooling:
+  - `npm run dev:diagnose:wiki-upstream`
+  - `npm run dev:diagnose:wti-wiring`
+  - `npm run dev:diagnose:coverage-audit`
+- Aggregated non-public diagnostics/report command:
+  - `npm run dev:reports`
+
+### Changed
+- Strict/dev diagnostics list determinism was expanded for `diagnostics.suppressed_assertions` ordering/duplicate-id checks.
+- `docs/DEV_TOOLING.md` and `TODO.md` were updated to reflect completed Phase 13 hardening.
+
 ## v0.1.8 - 2026-02-15
 
 ### Changed
