@@ -722,6 +722,16 @@ Objective: non-breaking hardening of strict/dev validation depth and release-smo
 - [x] Extend release smoke checks to include `md/meaning` renderer outputs.
 - [x] Keep parity tests as ground truth; smoke checks verify install-time wiring.
 
+### 12.6 Coverage Primary ID Ordering Regression (`saas` seed)
+
+- [x] Fix `runFromRelations` output determinism for large/new seeds where `coverage.primary_mention_ids` can be emitted unsorted.
+- [x] Ensure emitted `coverage.primary_mention_ids` ordering is stable and sorted for all seeds (including newly added `test/artifacts/saas/seed.txt`).
+- [x] Add regression test that locks the `s1`/`s19` locale-sort ordering invariant at the coverage-domain builder boundary.
+
+Exit criteria:
+- `test/artifacts/saas/seed.elementary-assertions.yaml` validates without `EA_VALIDATE_DETERMINISM_SORT`.
+- render commands (`txt/compact`, `md/table`, `md/meaning`) succeed for `saas` output.
+
 Exit criteria:
 - strict/dev guarantees are expanded for diagnostics/suppression/coverage coherence.
 - release smoke verifies all contract-locked renderer outputs.

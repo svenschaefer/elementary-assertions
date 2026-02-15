@@ -119,7 +119,7 @@ function buildCoverageDomainMentionIds(mentions, tokenById) {
     if (isPunctuationSurface(headTok.surface)) continue;
     ids.push(m.id);
   }
-  return ids.sort();
+  return normalizeIds(ids);
 }
 
 function buildOutput({
@@ -138,8 +138,8 @@ function buildOutput({
 }) {
   const tokenById = new Map((relationsSeed.tokens || []).map((t) => [t.id, t]));
   const coverageDomain = new Set(buildCoverageDomainMentionIds(mentions, tokenById));
-  const primary = Array.from(coverageDomain).sort();
-  const covered = Array.from(coveredMentions || []).filter((id) => coverageDomain.has(id)).sort();
+  const primary = normalizeIds(Array.from(coverageDomain));
+  const covered = normalizeIds(Array.from(coveredMentions || []).filter((id) => coverageDomain.has(id)));
   const uncovered = primary.filter((id) => !(coveredMentions || new Set()).has(id));
 
   const normalizedSegments = (relationsSeed.segments || []).map((s) => ({
